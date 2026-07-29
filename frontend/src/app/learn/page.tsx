@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, X, RotateCcw, Shuffle, ListOrdered, ArrowRight, BookOpen } from "lucide-react";
+import { Check, X, RotateCcw, Shuffle, ListOrdered, ArrowRight, BookOpen, Bot, Sparkles, Loader2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { questions } from "@/data/questions";
@@ -50,6 +51,10 @@ export default function LearnPage() {
   const [selectedOpt, setSelectedOpt] = React.useState<string | null>(null);
   const [shake, setShake] = React.useState(false);
   const [showResumeDialog, setShowResumeDialog] = React.useState(false);
+
+  // AI state
+  const [aiExplanation, setAiExplanation] = React.useState<string | null>(null);
+  const [isAiLoading, setIsAiLoading] = React.useState(false);
 
   React.useEffect(() => {
     const saved = localStorage.getItem("learn_session");
@@ -136,6 +141,9 @@ export default function LearnPage() {
     if (selectedOpt || !currentQ) return;
     
     setSelectedOpt(key);
+    setAiExplanation(null);
+    setIsAiLoading(false);
+    
     const isCorrect = key === currentQ.correctAnswer;
     
     if (isCorrect) {
@@ -256,6 +264,37 @@ export default function LearnPage() {
     setIsBatchRetry(false);
     setCompletedCount(0);
     setShowSegmentSummary(false);
+    setAiExplanation(null);
+  };
+
+  const handleAskAI = async () => {
+    if (!currentQ || isAiLoading) return;
+    setIsAiLoading(true);
+    setAiExplanation(null);
+    
+    try {
+      const response = await fetch("/api/explain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: currentQ.question,
+          options: currentQ.options,
+          correctAnswer: currentQ.correctAnswer,
+          userSelected: selectedOpt
+        })
+      });
+      
+      const data = await response.json();
+      if (response.ok) {
+        setAiExplanation(data.explanation);
+      } else {
+        toast.error(data.error || "Có lỗi khi gọi AI.");
+      }
+    } catch (error) {
+      toast.error("Không thể kết nối với server AI.");
+    } finally {
+      setIsAiLoading(false);
+    }
   };
 
   const totalActiveQuestions = activeRange ? activeRange[1] - activeRange[0] : questions.length;
@@ -554,13 +593,37 @@ export default function LearnPage() {
                     </div>
                   </div>
                 )}
-                <div className="flex justify-end">
-                <Button 
-                  onClick={advance} 
-                  className="rounded-full px-8 bg-amber-500 hover:bg-amber-600 text-white shadow-sm"
-                >
-                  Đã hiểu, tiếp tục <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+
+                {aiExplanation && (
+                  <div className="relative overflow-hidden bg-purple-50 dark:bg-purple-900/20 border-y border-r border-purple-200 dark:border-purple-800 border-l-4 border-l-purple-500 rounded-xl p-5 md:p-6 text-sm md:text-base text-purple-900 dark:text-purple-100 shadow-md mt-2">
+                    <div className="font-semibold text-purple-700 dark:text-purple-300 mb-3 flex items-center gap-2 text-base md:text-lg">
+                      <Sparkles className="w-5 h-5" /> Trợ lý AI giải thích:
+                    </div>
+                    <div className="leading-relaxed prose prose-purple dark:prose-invert max-w-none">
+                      <ReactMarkdown>{aiExplanation}</ReactMarkdown>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-between items-center mt-2">
+                  <Button 
+                    onClick={handleAskAI} 
+                    disabled={isAiLoading || !!aiExplanation}
+                    variant="outline"
+                    className="rounded-full px-4 md:px-6 border-purple-200 hover:border-purple-300 hover:bg-purple-50 text-purple-700 dark:border-purple-800 dark:text-purple-300 dark:hover:bg-purple-900/30"
+                  >
+                    {isAiLoading ? (
+                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Đang hỏi AI...</>
+                    ) : (
+                      <><Bot className="w-4 h-4 mr-2" /> Hỏi AI</>
+                    )}
+                  </Button>
+                  <Button 
+                    onClick={advance} 
+                    className="rounded-full px-6 md:px-8 bg-amber-500 hover:bg-amber-600 text-white shadow-sm"
+                  >
+                    Tiếp tục <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
                 </div>
               </motion.div>
             )}
