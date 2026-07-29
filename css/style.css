@@ -581,3 +581,9 @@ kbd { padding: 5px 8px; border-radius: 6px; border: 1px solid #cfd9e2; backgroun
     transition-duration: .01ms !important;
   }
 }
+
+/* Fix question text formatting to preserve spaces and newlines */
+.question-text, .learn-question, .card-title, #question-text, #review-question-text, #learn-question, .library-question strong {
+  white-space: pre-wrap !important;
+  font-family: inherit;
+}

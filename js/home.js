@@ -1,8 +1,8 @@
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "flutterQuizActive";
-  const THEME_KEY = "flutterQuizTheme";
+  const STORAGE_KEY = "prn232QuizActive";
+  const THEME_KEY = "prn232QuizTheme";
   const optionGrid = document.querySelector("#quiz-options");
   const modal = document.querySelector("#start-modal");
   const countOutput = document.querySelector("#modal-count");

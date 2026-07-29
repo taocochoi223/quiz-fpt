@@ -1,8 +1,8 @@
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "flutterQuizActive";
-  const RESULT_KEY = "flutterQuizLastResult";
+  const STORAGE_KEY = "prn232QuizActive";
+  const RESULT_KEY = "prn232QuizLastResult";
   const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
 
   if (!state || state.status !== "active" || !Array.isArray(state.questions)) {

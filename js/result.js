@@ -1,8 +1,8 @@
 (() => {
   "use strict";
 
-  const RESULT_KEY = "flutterQuizLastResult";
-  const ACTIVE_KEY = "flutterQuizActive";
+  const RESULT_KEY = "prn232QuizLastResult";
+  const ACTIVE_KEY = "prn232QuizActive";
   const result = JSON.parse(localStorage.getItem(RESULT_KEY) || "null");
 
   if (!result || result.status !== "completed") {
@@ -16,7 +16,7 @@
 
   const getEvaluation = (percentage) => {
     if (percentage >= 90) return ["Xuất sắc!", "Kiến thức của bạn rất vững vàng. Tiếp tục phát huy nhé!"];
-    if (percentage >= 75) return ["Tốt!", "Bạn đã nắm chắc phần lớn kiến thức Flutter & Dart."];
+    if (percentage >= 75) return ["Tốt!", "Bạn đã nắm chắc phần lớn kiến thức PRN232."];
     if (percentage >= 60) return ["Khá!", "Kết quả ổn. Hãy xem lại các câu sai để tiến bộ nhanh hơn."];
     return ["Cần cố gắng!", "Đừng nản lòng. Mỗi lần xem lại là một bước tiến mới."];
   };

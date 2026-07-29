@@ -1,69 +1,12 @@
-/* ── PASSWORD GATE ── */
-(() => {
-  const CORRECT   = ["quí sờ tộc", "quý sờ tộc", "qui so toc", "quy so toc"]; // so sánh lowercase, hỗ trợ cả i/y và có/không dấu
-  const SESSION_K = "prmLearnUnlocked";
-  const gate      = document.getElementById("password-gate");
-  const pwInput   = document.getElementById("pw-input");
-  const pwSubmit  = document.getElementById("pw-submit");
-  const pwError   = document.getElementById("pw-error");
-  const pwToggle  = document.getElementById("pw-toggle");
-  if (!gate) return;
 
-  const unlock = () => {
-    sessionStorage.setItem(SESSION_K, "1");
-    gate.style.opacity = "0";
-    gate.style.transition = "opacity .4s ease";
-    setTimeout(() => gate.remove(), 420);
-  };
-
-  // Đã đăng nhập trong session này → bỏ qua
-  if (sessionStorage.getItem(SESSION_K) === "1") { unlock(); return; }
-
-  // Shake animation khi sai
-  const shake = (el) => {
-    el.style.animation = "none";
-    el.offsetHeight; // reflow
-    el.style.animation = "pwShake .4s ease";
-  };
-
-  const check = () => {
-    const val = (pwInput.value || "").trim().toLowerCase();
-    if (CORRECT.includes(val)) {
-      pwError.style.display = "none";
-      pwInput.style.borderColor = "#4ade80";
-      setTimeout(unlock, 200);
-    } else {
-      pwError.style.display = "block";
-      pwInput.style.borderColor = "#f87171";
-      shake(pwInput);
-      pwInput.select();
-    }
-  };
-
-  pwSubmit.addEventListener("click", check);
-  pwInput.addEventListener("keydown", e => { if (e.key === "Enter") check(); });
-  pwToggle.addEventListener("click", () => {
-    const show = pwInput.type === "password";
-    pwInput.type = show ? "text" : "password";
-    pwToggle.textContent = show ? "🙈" : "👁️";
-  });
-  pwInput.focus();
-})();
-
-/* ── KEYFRAME cho shake ── */
-(() => {
-  const s = document.createElement("style");
-  s.textContent = `@keyframes pwShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}`;
-  document.head.appendChild(s);
-})();
 
 (() => {
   "use strict";
 
   /* ── CONFIG ── */
   const customConfig = window.LEARN_CONFIG || {};
-  const STORAGE_KEY  = customConfig.storageKey || "prmLearnProgress";   // lưu tiến trình
-  const THEME_KEY    = "flutterQuizTheme";   // lưu chế độ tối/sáng
+  const STORAGE_KEY  = customConfig.storageKey || "PRN232LearnProgress";   // lưu tiến trình
+  const THEME_KEY    = "prn232QuizTheme";   // lưu chế độ tối/sáng
   const DISTRACTORS  = 3;                    // số đáp án sai đi kèm
   const AUTO_NEXT_MS = 900;                  // ms tự động qua câu khi đúng
 
@@ -211,6 +154,13 @@
           completedCount = s.completedCount || 0;
           currentBatchTotal = s.currentBatchTotal || queue.length || BATCH_SIZE;
         }
+        
+        // Kiểm tra xem dữ liệu cũ có khớp với bộ câu hỏi hiện tại không (tránh lỗi cache cũ)
+        if (queue.length > 0 && !qMap.has(queue[0])) {
+          startFreshRound();
+          return;
+        }
+        
         round        = s.round || 1;
         correct      = s.correct || 0;
         wrong        = s.wrong   || 0;

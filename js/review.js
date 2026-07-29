@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const RESULT_KEY = "flutterQuizLastResult";
+  const RESULT_KEY = "prn232QuizLastResult";
   const result = JSON.parse(localStorage.getItem(RESULT_KEY) || "null");
   if (!result || result.status !== "completed") {
     window.location.replace("index.html");
