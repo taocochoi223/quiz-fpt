@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       genAI = new GoogleGenerativeAI(apiKey);
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const optionsText = options.map((opt: any) => `- ${opt.key}: ${opt.text}`).join("\n");
     
