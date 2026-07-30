@@ -144,8 +144,9 @@ export default function LearnPage() {
       ? subjQuestions.map(q => q.id)
       : shuffle(subjQuestions.map(q => q.id));
     
-    setPendingIds([]); // No more chunking
-    const initialQ = ids;
+    const BATCH_SIZE = 7;
+    const initialQ = ids.slice(0, BATCH_SIZE);
+    setPendingIds(ids.slice(BATCH_SIZE));
     setQueue(initialQ);
     setCurrentBatchIds(initialQ);
     setQIndex(0);
@@ -243,10 +244,11 @@ export default function LearnPage() {
       return;
     }
     toast.success("Tuyệt vời! Bắt đầu chặng mới.");
-    const nextBatch = pendingIds;
+    const BATCH_SIZE = 7;
+    const nextBatch = pendingIds.slice(0, BATCH_SIZE);
     setQueue(nextBatch);
     setCurrentBatchIds(nextBatch);
-    setPendingIds([]);
+    setPendingIds(pendingIds.slice(BATCH_SIZE));
     setQIndex(0);
     setIsBatchRetry(false);
     setBatchWrongIds([]);
@@ -600,7 +602,11 @@ export default function LearnPage() {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <Progress value={progressPercent} segments={Math.ceil(totalActiveQuestions / 7)} className="h-3 flex-1 [&_[data-slot=progress-indicator]]:bg-emerald-500" />
+          <Progress 
+            value={progressPercent} 
+            segmentBreakpoints={Array.from({ length: Math.ceil(totalActiveQuestions / 7) - 1 }).map((_, i) => ((i + 1) * 7 / totalActiveQuestions) * 100)}
+            className="h-3 flex-1 [&_[data-slot=progress-indicator]]:bg-emerald-500" 
+          />
           <span className="text-sm font-medium text-muted-foreground min-w-[60px] text-right">
             {completedCount} / {totalActiveQuestions}
           </span>

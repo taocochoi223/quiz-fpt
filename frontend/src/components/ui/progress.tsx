@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 
 interface ProgressProps extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
   segments?: number;
+  segmentBreakpoints?: number[];
 }
 
 function Progress({
@@ -13,6 +14,7 @@ function Progress({
   children,
   value,
   segments,
+  segmentBreakpoints,
   ...props
 }: ProgressProps) {
   return (
@@ -25,13 +27,19 @@ function Progress({
       {children}
       <ProgressTrack>
         <ProgressIndicator />
-        {segments && segments > 1 && (
+        {segmentBreakpoints ? (
           <div className="absolute inset-0 pointer-events-none">
-             {Array.from({ length: segments - 1 }).map((_, i) => (
-                <div key={i} className="w-[1px] h-full bg-background" style={{ left: `${((i + 1) / segments) * 100}%`, position: 'absolute' }} />
+             {segmentBreakpoints.map((bp, i) => (
+                <div key={i} className="w-[1px] h-full bg-background/50" style={{ left: `${bp}%`, position: 'absolute' }} />
              ))}
           </div>
-        )}
+        ) : segments && segments > 1 ? (
+          <div className="absolute inset-0 pointer-events-none">
+             {Array.from({ length: segments - 1 }).map((_, i) => (
+                <div key={i} className="w-[1px] h-full bg-background/50" style={{ left: `${((i + 1) / segments) * 100}%`, position: 'absolute' }} />
+             ))}
+          </div>
+        ) : null}
       </ProgressTrack>
     </ProgressPrimitive.Root>
   )
