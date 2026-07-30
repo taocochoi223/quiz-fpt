@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PRN232 Flashcards",
-  description: "A premium flashcard and quiz app for PRN232",
+  title: "FPT Quiz App",
+  description: "A premium flashcard and quiz app for students",
 };
 
 export default function RootLayout({
