@@ -609,1169 +609,1219 @@ export const questions: Question[] = [
 
 export const questions_paper2: Question[] = [
   {
-    "id": 51,
-    "question": "What is the fundamental syntax for selecting an HTML element and applying an action in jQuery?",
-    "options": [
+    id: 51,
+    question: "What is the fundamental syntax for selecting an HTML element and applying an action in jQuery?",
+    options: [
       {
-        "key": "A",
-        "text": "element.action()"
+        key: "A",
+        text: "element.action()"
       },
       {
-        "key": "B",
-        "text": "$(selector).action()"
+        key: "B",
+        text: "$(selector).action()"
       },
       {
-        "key": "C",
-        "text": "jQuery(action).selector()"
+        key: "C",
+        text: "jQuery(action).selector()"
       },
       {
-        "key": "D",
-        "text": "select(element).do(action)"
+        key: "D",
+        text: "select(element).do(action)"
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Trong jQuery, cú pháp cơ bản để chọn phần tử là $(selector), sau đó gọi hàm hành động action()."
   },
   {
-    "id": 52,
-    "question": "How would you access a query string parameter named sort in a controller action?",
-    "options": [
+    id: 52,
+    question: "How would you access a query string parameter named sort in a controller action?",
+    options: [
       {
-        "key": "A",
-        "text": "[HttpGet] public IActionResult Get([FromRoute] string sort) { /.../ }"
+        key: "A",
+        text: "[HttpGet] public IActionResult Get([FromRoute] string sort) { /.../ }"
       },
       {
-        "key": "B",
-        "text": "[HttpGet] public IActionResult Get([FromBody] string sort) { /.../ }"
+        key: "B",
+        text: "[HttpGet] public IActionResult Get([FromBody] string sort) { /.../ }"
       },
       {
-        "key": "C",
-        "text": "[HttpGet] public IActionResult Get([FromHeader] string sort) { /.../ }"
+        key: "C",
+        text: "[HttpGet] public IActionResult Get([FromHeader] string sort) { /.../ }"
       },
       {
-        "key": "D",
-        "text": "[HttpGet] public IActionResult Get([FromQuery] string sort) { /.../ }"
+        key: "D",
+        text: "[HttpGet] public IActionResult Get([FromQuery] string sort) { /.../ }"
       }
     ],
-    "correctAnswer": "D"
+    correctAnswer: "D",
+    explanation: "Để lấy giá trị tham số từ query string trong ASP.NET Core Web API, sử dụng attribute [FromQuery]."
   },
   {
-    "id": 53,
-    "question": "gRPC's support for long-lived streaming is made possible primarily by which HTTP/2 feature?",
-    "options": [
+    id: 53,
+    question: "gRPC's support for long-lived streaming is made possible primarily by which HTTP/2 feature?",
+    options: [
       {
-        "key": "A",
-        "text": "Server Push"
+        key: "A",
+        text: "Server Push"
       },
       {
-        "key": "B",
-        "text": "Header Compression"
+        key: "B",
+        text: "Header Compression"
       },
       {
-        "key": "C",
-        "text": "Binary Framing"
+        key: "C",
+        text: "Binary Framing"
       },
       {
-        "key": "D",
-        "text": "Bi-directional streams"
+        key: "D",
+        text: "Bi-directional streams"
       }
     ],
-    "correctAnswer": "D"
+    correctAnswer: "D",
+    explanation: "gRPC sử dụng HTTP/2, hỗ trợ Bi-directional streams (luồng hai chiều), cho phép kết nối streaming lâu dài."
   },
   {
-    "id": 54,
-    "question": "How do you create a gRPC client in a .NET 8 console application?",
-    "options": [
+    id: 54,
+    question: "How do you create a gRPC client in a .NET 8 console application?",
+    options: [
       {
-        "key": "A",
-        "text": "var client = new HttpClient();"
+        key: "A",
+        text: "var client = new HttpClient();"
       },
       {
-        "key": "B",
-        "text": "var channel = GrpcChannel.ForAddress(\"https://localhost:5001\");\nvar client = new Greeter.GreeterClient(channel);"
+        key: "B",
+        text: "var channel = GrpcChannel.ForAddress(\"https://localhost:5001\");\nvar client = new Greeter.GreeterClient(channel);"
       },
       {
-        "key": "C",
-        "text": "var client = new Greeter.GreeterStub(\"https://localhost:5001\");"
+        key: "C",
+        text: "var client = new Greeter.GreeterStub(\"https://localhost:5001\");"
       },
       {
-        "key": "D",
-        "text": "var client = GrpcClient.Create<GreeterClient>(\"https://localhost:5001\");"
+        key: "D",
+        text: "var client = GrpcClient.Create<GreeterClient>(\"https://localhost:5001\");"
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Trong .NET, tạo gRPC client bằng cách dùng GrpcChannel.ForAddress để tạo kênh, sau đó khởi tạo Client từ kênh đó."
   },
   {
-    "id": 55,
-    "question": "Which of the following questions does \"Authentication\" answer?",
-    "options": [
+    id: 55,
+    question: "Which of the following questions does \"Authentication\" answer?",
+    options: [
       {
-        "key": "A",
-        "text": "\"What can you do?\""
+        key: "A",
+        text: "\"What can you do?\""
       },
       {
-        "key": "B",
-        "text": "\"Who are you?\""
+        key: "B",
+        text: "\"Who are you?\""
       },
       {
-        "key": "C",
-        "text": "\"How long can you stay?\""
+        key: "C",
+        text: "\"How long can you stay?\""
       },
       {
-        "key": "D",
-        "text": "\"Where are you from?\""
+        key: "D",
+        text: "\"Where are you from?\""
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Authentication (Xác thực) nhằm trả lời câu hỏi 'Who are you?' (Bạn là ai?), phân biệt với Authorization (Bạn được làm gì)."
   },
   {
-    "id": 56,
-    "question": "Consider this simple CoreWCF service contract for a .NET 9 application:\n```csharp\n[ServiceContract]\npublic interface IGreeterService\n{\n[OperationContract]\nstring Greet(string name);\n}\n```\nWhich part defines what the service does?",
-    "options": [
+    id: 56,
+    question: "Consider this simple CoreWCF service contract for a .NET 9 application:\n```csharp\n[ServiceContract]\npublic interface IGreeterService\n{\n[OperationContract]\nstring Greet(string name);\n}\n```\nWhich part defines what the service does?",
+    options: [
       {
-        "key": "A",
-        "text": "[ServiceContract]"
+        key: "A",
+        text: "[ServiceContract]"
       },
       {
-        "key": "B",
-        "text": "public interface IGreeterService"
+        key: "B",
+        text: "public interface IGreeterService"
       },
       {
-        "key": "C",
-        "text": "[OperationContract]"
+        key: "C",
+        text: "[OperationContract]"
       },
       {
-        "key": "D",
-        "text": "string Greet(string name);"
+        key: "D",
+        text: "string Greet(string name);"
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Attribute [OperationContract] được dùng để định nghĩa một phương thức (hành động) cụ thể mà dịch vụ sẽ cung cấp."
   },
   {
-    "id": 57,
-    "question": "What is the fundamental concept of \"Code-First\" development in Entity Framework Core?",
-    "options": [
+    id: 57,
+    question: "What is the fundamental concept of \"Code-First\" development in Entity Framework Core?",
+    options: [
       {
-        "key": "A",
-        "text": "You design the database schema first, and then EF Core generates the C# model classes."
+        key: "A",
+        text: "You design the database schema first, and then EF Core generates the C# model classes."
       },
       {
-        "key": "B",
-        "text": "You write the API endpoints first, which then dictates the model and database structure."
+        key: "B",
+        text: "You write the API endpoints first, which then dictates the model and database structure."
       },
       {
-        "key": "C",
-        "text": "You define your data models as C# classes, and EF Core creates or updates the database schema to match them."
+        key: "C",
+        text: "You define your data models as C# classes, and EF Core creates or updates the database schema to match them."
       },
       {
-        "key": "D",
-        "text": "You write raw SQL scripts first for all data operations."
+        key: "D",
+        text: "You write raw SQL scripts first for all data operations."
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Code-First trong EF Core là phương pháp viết các class C# trước, sau đó EF Core sẽ tự sinh ra schema trong database tương ứng."
   },
   {
-    "id": 58,
-    "question": "Which system query option is used to filter a collection of resources in an OData request?",
-    "options": [
+    id: 58,
+    question: "Which system query option is used to filter a collection of resources in an OData request?",
+    options: [
       {
-        "key": "A",
-        "text": "$select"
+        key: "A",
+        text: "$select"
       },
       {
-        "key": "B",
-        "text": "$orderby"
+        key: "B",
+        text: "$orderby"
       },
       {
-        "key": "C",
-        "text": "$filter"
+        key: "C",
+        text: "$filter"
       },
       {
-        "key": "D",
-        "text": "$top"
+        key: "D",
+        text: "$top"
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Query option $filter trong OData được dùng để lọc danh sách các tài nguyên theo một điều kiện cụ thể."
   },
   {
-    "id": 59,
-    "question": "What is the purpose of the $expand query option?",
-    "options": [
+    id: 59,
+    question: "What is the purpose of the $expand query option?",
+    options: [
       {
-        "key": "A",
-        "text": "To retrieve the next page of results in a paged collection."
+        key: "A",
+        text: "To retrieve the next page of results in a paged collection."
       },
       {
-        "key": "B",
-        "text": "To include related entities in the same response."
+        key: "B",
+        text: "To include related entities in the same response."
       },
       {
-        "key": "C",
-        "text": "To get a count of all entities in a collection."
+        key: "C",
+        text: "To get a count of all entities in a collection."
       },
       {
-        "key": "D",
-        "text": "To expand all properties of an entity instead of a subset."
+        key: "D",
+        text: "To expand all properties of an entity instead of a subset."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Query option $expand trong OData được dùng để lấy kèm luôn các entity có quan hệ (related entities) trong cùng một response."
   },
   {
-    "id": 60,
-    "question": "What does the \"asynchronous\" in AJAX mean?",
-    "options": [
+    id: 60,
+    question: "What does the \"asynchronous\" in AJAX mean?",
+    options: [
       {
-        "key": "A",
-        "text": "The code is guaranteed to execute in a specific, synchronous order."
+        key: "A",
+        text: "The code is guaranteed to execute in a specific, synchronous order."
       },
       {
-        "key": "B",
-        "text": "The web browser can continue to be responsive to the user while waiting for the server to send back a response."
+        key: "B",
+        text: "The web browser can continue to be responsive to the user while waiting for the server to send back a response."
       },
       {
-        "key": "C",
-        "text": "The server must respond to the request immediately."
+        key: "C",
+        text: "The server must respond to the request immediately."
       },
       {
-        "key": "D",
-        "text": "The data must be in XML format."
+        key: "D",
+        text: "The data must be in XML format."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Bất đồng bộ (asynchronous) trong AJAX có nghĩa là trình duyệt không bị treo, người dùng vẫn có thể thao tác trong khi chờ server phản hồi."
   },
   {
-    "id": 61,
-    "question": "What is \"binding source parameter inference' in controllers marked with [ApiController]?",
-    "options": [
+    id: 61,
+    question: "What is \"binding source parameter inference' in controllers marked with [ApiController]?",
+    options: [
       {
-        "key": "A",
-        "text": "The process of guessing the data types of action parameters."
+        key: "A",
+        text: "The process of guessing the data types of action parameters."
       },
       {
-        "key": "B",
-        "text": "A feature where ASP.NET Core automatically applies binding source attributes ([FromRoute], [FromBody], etc.) based on conventions, reducing boilerplate code."
+        key: "B",
+        text: "A feature where ASP.NET Core automatically applies binding source attributes ([FromRoute], [FromBody], etc.) based on conventions, reducing boilerplate code."
       },
       {
-        "key": "C",
-        "text": "The ability to infer validation rules from property names."
+        key: "C",
+        text: "The ability to infer validation rules from property names."
       },
       {
-        "key": "D",
-        "text": "A mechanism for the client to tell the server where to find data."
+        key: "D",
+        text: "A mechanism for the client to tell the server where to find data."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Trong controller dùng [ApiController], ASP.NET Core sẽ tự động suy luận nguồn dữ liệu (từ Route, Body, Query) dựa trên quy ước (conventions)."
   },
   {
-    "id": 62,
-    "question": "If a client sends an Accept header with application/json; q=0.9, application/xml; q=1.0, what is it indicating?",
-    "options": [
+    id: 62,
+    question: "If a client sends an Accept header with application/json; q=0.9, application/xml; q=1.0, what is it indicating?",
+    options: [
       {
-        "key": "A",
-        "text": "It can only accept JSON."
+        key: "A",
+        text: "It can only accept JSON."
       },
       {
-        "key": "B",
-        "text": "It prefers XML (q=1.0) over JSON (q=0.9)."
+        key: "B",
+        text: "It prefers XML (q=1.0) over JSON (q=0.9)."
       },
       {
-        "key": "C",
-        "text": "It can only accept XML."
+        key: "C",
+        text: "It can only accept XML."
       },
       {
-        "key": "D",
-        "text": "It wants the response to be split between JSON and XML."
+        key: "D",
+        text: "It wants the response to be split between JSON and XML."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Header Accept với q=1.0 cho XML và q=0.9 cho JSON báo hiệu client ưu tiên nhận XML hơn JSON."
   },
   {
-    "id": 63,
-    "question": "What is Content Negotiation in ASP.NET Core Web API?",
-    "options": [
+    id: 63,
+    question: "What is Content Negotiation in ASP.NET Core Web API?",
+    options: [
       {
-        "key": "A",
-        "text": "The process where the client and server agree on which controller action to invoke."
+        key: "A",
+        text: "The process where the client and server agree on which controller action to invoke."
       },
       {
-        "key": "B",
-        "text": "The process where the server selects the best representation (e.g., JSON or XML) for a response based on the client's Accept header."
+        key: "B",
+        text: "The process where the server selects the best representation (e.g., JSON or XML) for a response based on the client's Accept header."
       },
       {
-        "key": "C",
-        "text": "The process of negotiating security credentials."
+        key: "C",
+        text: "The process of negotiating security credentials."
       },
       {
-        "key": "D",
-        "text": "The process where the client specifies which data it wants to post using the Content-Type header.\n\n64Which communication protocol is often chosen for high-performance, internal, service-to-service communication due to its\nuse of HTTP/2 and binary serialization?"
+        key: "D",
+        text: "The process where the client specifies which data it wants to post using the Content-Type header.\n\n64Which communication protocol is often chosen for high-performance, internal, service-to-service communication due to its\nuse of HTTP/2 and binary serialization?"
       },
       {
-        "key": "A",
-        "text": "SOAP"
+        key: "A",
+        text: "SOAP"
       },
       {
-        "key": "B",
-        "text": "REST over HTTP/1.1 with JSON"
+        key: "B",
+        text: "REST over HTTP/1.1 with JSON"
       },
       {
-        "key": "C",
-        "text": "gRPC"
+        key: "C",
+        text: "gRPC"
       },
       {
-        "key": "D",
-        "text": "FTP"
+        key: "D",
+        text: "FTP"
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Content Negotiation là quá trình server chọn ra định dạng dữ liệu trả về tốt nhất (như JSON hay XML) dựa trên header Accept của client."
   },
   {
-    "id": 64,
-    "question": "Which communication protocol is often chosen for high-performance, internal, service-to-service communication due to its use of HTTP/2 and binary serialization?",
-    "options": [
+    id: 64,
+    question: "Which communication protocol is often chosen for high-performance, internal, service-to-service communication due to its use of HTTP/2 and binary serialization?",
+    options: [
       {
-        "key": "A",
-        "text": "SOAP"
+        key: "A",
+        text: "SOAP"
       },
       {
-        "key": "B",
-        "text": "REST over HTTP/1.1 with JSON"
+        key: "B",
+        text: "REST over HTTP/1.1 with JSON"
       },
       {
-        "key": "C",
-        "text": "gRPC"
+        key: "C",
+        text: "gRPC"
       },
       {
-        "key": "D",
-        "text": "FTP"
+        key: "D",
+        text: "FTP"
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "gRPC là giao thức tối ưu cao cho việc giao tiếp giữa các service nội bộ nhờ dùng HTTP/2 và định dạng nhị phân (Protobuf)."
   },
   {
-    "id": 65,
-    "question": "To allow access to users who are in either the \"Manager\" role or the \"Supervisor\" role, what is the correct syntax?",
-    "options": [
+    id: 65,
+    question: "To allow access to users who are in either the \"Manager\" role or the \"Supervisor\" role, what is the correct syntax?",
+    options: [
       {
-        "key": "A",
-        "text": "[Authorize(Roles = \"Manager\", \"Supervisor\")]"
+        key: "A",
+        text: "[Authorize(Roles = \"Manager\", \"Supervisor\")]"
       },
       {
-        "key": "B",
-        "text": "[Authorize(Roles = \"Manager\")] [Authorize(Roles = \"Supervisor\")]"
+        key: "B",
+        text: "[Authorize(Roles = \"Manager\")] [Authorize(Roles = \"Supervisor\")]"
       },
       {
-        "key": "C",
-        "text": "[Authorize(Roles = \"Manager or Supervisor\")]"
+        key: "C",
+        text: "[Authorize(Roles = \"Manager or Supervisor\")]"
       },
       {
-        "key": "D",
-        "text": "[Authorize(Roles = \"Manager,Supervisor\")]"
+        key: "D",
+        text: "[Authorize(Roles = \"Manager,Supervisor\")]"
       }
     ],
-    "correctAnswer": "D"
+    correctAnswer: "D",
+    explanation: "Để cho phép user có role Manager HOẶC Supervisor, cú pháp đúng là [Authorize(Roles = \"Manager,Supervisor\")]."
   },
   {
-    "id": 66,
-    "question": "What is the primary purpose of the HTTP protocol?",
-    "options": [
+    id: 66,
+    question: "What is the primary purpose of the HTTP protocol?",
+    options: [
       {
-        "key": "A",
-        "text": "To securely encrypt data transmissions."
+        key: "A",
+        text: "To securely encrypt data transmissions."
       },
       {
-        "key": "B",
-        "text": "To transfer hypertext documents across the internet."
+        key: "B",
+        text: "To transfer hypertext documents across the internet."
       },
       {
-        "key": "C",
-        "text": "To manage and query databases."
+        key: "C",
+        text: "To manage and query databases."
       },
       {
-        "key": "D",
-        "text": "To define the structure of a web page."
+        key: "D",
+        text: "To define the structure of a web page."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Mục đích cốt lõi của HTTP (HyperText Transfer Protocol) là truyền tải các tài liệu siêu văn bản (như HTML) qua Internet."
   },
   {
-    "id": 67,
-    "question": "Why is it critical to always use HTTPS for RESTful APIs?",
-    "options": [
+    id: 67,
+    question: "Why is it critical to always use HTTPS for RESTful APIs?",
+    options: [
       {
-        "key": "A",
-        "text": "It makes the API faster by compressing the data."
+        key: "A",
+        text: "It makes the API faster by compressing the data."
       },
       {
-        "key": "B",
-        "text": "It ensures that the data (including credentials and sensitive information) transferred between the client and server\nis encrypted and protected from eavesdropping."
+        key: "B",
+        text: "It ensures that the data (including credentials and sensitive information) transferred between the client and server\nis encrypted and protected from eavesdropping."
       },
       {
-        "key": "C",
-        "text": "It is the only protocol that supports the GET and POST verbs."
+        key: "C",
+        text: "It is the only protocol that supports the GET and POST verbs."
       },
       {
-        "key": "D",
-        "text": "It automatically handles user authorization."
+        key: "D",
+        text: "It automatically handles user authorization."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Luôn cần HTTPS cho REST API vì nó mã hóa dữ liệu truyền tải, bảo vệ thông tin nhạy cảm và credentials khỏi bị nghe lén."
   },
   {
-    "id": 68,
-    "question": "Which data types are supported in JSON?",
-    "options": [
+    id: 68,
+    question: "Which data types are supported in JSON?",
+    options: [
       {
-        "key": "A",
-        "text": "String, Number, Boolean, Array, Object, null"
+        key: "A",
+        text: "String, Number, Boolean, Array, Object, null"
       },
       {
-        "key": "B",
-        "text": "String, Integer, Float, Date, Array, Hashtable"
+        key: "B",
+        text: "String, Integer, Float, Date, Array, Hashtable"
       },
       {
-        "key": "C",
-        "text": "Text, Decimal, Bit, List, Dictionary, null"
+        key: "C",
+        text: "Text, Decimal, Bit, List, Dictionary, null"
       },
       {
-        "key": "D",
-        "text": "Varchar, Number, Boolean, Collection, Object, undefined"
+        key: "D",
+        text: "Varchar, Number, Boolean, Collection, Object, undefined"
       }
     ],
-    "correctAnswer": "A"
+    correctAnswer: "A",
+    explanation: "Các kiểu dữ liệu chuẩn của JSON bao gồm: String, Number, Boolean, Array, Object và null."
   },
   {
-    "id": 69,
-    "question": "Which of the following is a simple representation of a Model class in C# for an ASP.NET Core application?",
-    "options": [
+    id: 69,
+    question: "Which of the following is a simple representation of a Model class in C# for an ASP.NET Core application?",
+    options: [
       {
-        "key": "A",
-        "text": "A static class with methods for rendering HTML."
+        key: "A",
+        text: "A static class with methods for rendering HTML."
       },
       {
-        "key": "B",
-        "text": "An interface defining controller actions."
+        key: "B",
+        text: "An interface defining controller actions."
       },
       {
-        "key": "C",
-        "text": "A class with properties representing data, often called a POCO (Plain Old CLR Object)."
+        key: "C",
+        text: "A class with properties representing data, often called a POCO (Plain Old CLR Object)."
       },
       {
-        "key": "D",
-        "text": "An attribute used for routing."
+        key: "D",
+        text: "An attribute used for routing."
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Trong ASP.NET Core, Model class thường được biểu diễn đơn giản qua một class chứa các property, thường gọi là POCO."
   },
   {
-    "id": 70,
-    "question": "Which selector targets the first paragraph element (<p>) on the page?",
-    "options": [
+    id: 70,
+    question: "Which selector targets the first paragraph element (<p>) on the page?",
+    options: [
       {
-        "key": "A",
-        "text": "$(\"p:first-child\")"
+        key: "A",
+        text: "$(\"p:first-child\")"
       },
       {
-        "key": "B",
-        "text": "$(\"p:first\")"
+        key: "B",
+        text: "$(\"p:first\")"
       },
       {
-        "key": "C",
-        "text": "$(\"p:first-of-type\")"
+        key: "C",
+        text: "$(\"p:first-of-type\")"
       },
       {
-        "key": "D",
-        "text": "All of the above could potentially work depending on the HTML structure."
+        key: "D",
+        text: "All of the above could potentially work depending on the HTML structure."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Trong jQuery, selector $('p:first') sẽ nhắm đến thẻ <p> đầu tiên xuất hiện trên trang."
   },
   {
-    "id": 71,
-    "question": "The following C# code in a .NET creates an endpoint. What does it do?\n```csharp\napp.MapGet(\"/products/{id)\", (int id=>{\n// Logic to find a product by id\nreturn Results.Ok($\"Product {id}\");\n});\n```",
-    "options": [
+    id: 71,
+    question: "The following C# code in a .NET creates an endpoint. What does it do?\n```csharp\napp.MapGet(\"/products/{id)\", (int id=>{\n// Logic to find a product by id\nreturn Results.Ok($\"Product {id}\");\n});\n```",
+    options: [
       {
-        "key": "A",
-        "text": "It defines an endpoint that creates a new product."
+        key: "A",
+        text: "It defines an endpoint that creates a new product."
       },
       {
-        "key": "B",
-        "text": "It defines an endpoint that retrieves a product by its ID using a POST request."
+        key: "B",
+        text: "It defines an endpoint that retrieves a product by its ID using a POST request."
       },
       {
-        "key": "C",
-        "text": "It defines an endpoint that retrieves a product by its ID using a GET request."
+        key: "C",
+        text: "It defines an endpoint that retrieves a product by its ID using a GET request."
       },
       {
-        "key": "D",
-        "text": "It defines an endpoint that deletes a product by its ID."
+        key: "D",
+        text: "It defines an endpoint that deletes a product by its ID."
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "app.MapGet định nghĩa một endpoint xử lý HTTP GET request để lấy sản phẩm dựa trên tham số ID."
   },
   {
-    "id": 72,
-    "question": "What is the opposite of a microservices architecture?",
-    "options": [
+    id: 72,
+    question: "What is the opposite of a microservices architecture?",
+    options: [
       {
-        "key": "A",
-        "text": "A serverless architecture"
+        key: "A",
+        text: "A serverless architecture"
       },
       {
-        "key": "B",
-        "text": "A monolithic architecture"
+        key: "B",
+        text: "A monolithic architecture"
       },
       {
-        "key": "C",
-        "text": "A service-oriented architecture (SOA)"
+        key: "C",
+        text: "A service-oriented architecture (SOA)"
       },
       {
-        "key": "D",
-        "text": "A distributed architecture"
+        key: "D",
+        text: "A distributed architecture"
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Monolithic architecture (Kiến trúc nguyên khối) là kiến trúc trái ngược với Microservices (chia nhỏ thành nhiều dịch vụ)."
   },
   {
-    "id": 73,
-    "question": "The following .NET 8 code is in Program.cs. What is its purpose?\n```csharp\nvar app = builder.Build();\n\napp.UseAuthentication();\napp.UseAuthorization();\n\napp.Run();\n```",
-    "options": [
+    id: 73,
+    question: "The following .NET 8 code is in Program.cs. What is its purpose?\n```csharp\nvar app = builder.Build();\n\napp.UseAuthentication();\napp.UseAuthorization();\n\napp.Run();\n```",
+    options: [
       {
-        "key": "A",
-        "text": "It registers the authentication services."
+        key: "A",
+        text: "It registers the authentication services."
       },
       {
-        "key": "B",
-        "text": "It adds the authentication and authorization middleware components to the request pipeline."
+        key: "B",
+        text: "It adds the authentication and authorization middleware components to the request pipeline."
       },
       {
-        "key": "C",
-        "text": "It configures the default authentication scheme."
+        key: "C",
+        text: "It configures the default authentication scheme."
       },
       {
-        "key": "D",
-        "text": "It is redundant and has no effect."
+        key: "D",
+        text: "It is redundant and has no effect."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "UseAuthentication() và UseAuthorization() dùng để thêm các middleware xác thực và phân quyền vào HTTP request pipeline."
   },
   {
-    "id": 74,
-    "question": "What is a \"channel\" in gRPC?",
-    "options": [
+    id: 74,
+    question: "What is a \"channel\" in gRPC?",
+    options: [
       {
-        "key": "A",
-        "text": "The service implementation on the server."
+        key: "A",
+        text: "The service implementation on the server."
       },
       {
-        "key": "B",
-        "text": "The generated client-side code."
+        key: "B",
+        text: "The generated client-side code."
       },
       {
-        "key": "C",
-        "text": "A long-lived connection to a gRPC service, which can be reused for multiple calls."
+        key: "C",
+        text: "A long-lived connection to a gRPC service, which can be reused for multiple calls."
       },
       {
-        "key": "D",
-        "text": "A specific type of streaming method."
+        key: "D",
+        text: "A specific type of streaming method."
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Channel trong gRPC là một kết nối lâu dài đến gRPC service, có thể được dùng lại cho nhiều lời gọi hàm (calls) khác nhau."
   },
   {
-    "id": 75,
-    "question": "In a .NET 8 Web API, what is the recommended way to handle model validation errors automatically and return a 400 Bad\nRequest response?",
-    "options": [
+    id: 75,
+    question: "In a .NET 8 Web API, what is the recommended way to handle model validation errors automatically and return a 400 Bad\nRequest response?",
+    options: [
       {
-        "key": "A",
-        "text": "Manually checking ModelState.IsValid in every action."
+        key: "A",
+        text: "Manually checking ModelState.IsValid in every action."
       },
       {
-        "key": "B",
-        "text": "The [ApiController] attribute automatically handles it."
+        key: "B",
+        text: "The [ApiController] attribute automatically handles it."
       },
       {
-        "key": "C",
-        "text": "Using a custom middleware to inspect every request."
+        key: "C",
+        text: "Using a custom middleware to inspect every request."
       },
       {
-        "key": "D",
-        "text": "Relying on the database to throw an exception."
+        key: "D",
+        text: "Relying on the database to throw an exception."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Attribute [ApiController] tự động xử lý lỗi validation của model và trả về mã 400 Bad Request nếu ModelState không hợp lệ."
   },
   {
-    "id": 76,
-    "question": "In an OData service with Categories and Products, how would you request all products belonging to the category with an\nID of 5?",
-    "options": [
+    id: 76,
+    question: "In an OData service with Categories and Products, how would you request all products belonging to the category with an\nID of 5?",
+    options: [
       {
-        "key": "A",
-        "text": "GET /Products?$filter=Categoryld eq 5"
+        key: "A",
+        text: "GET /Products?$filter=Categoryld eq 5"
       },
       {
-        "key": "B",
-        "text": "GET /Categories(5)/Products"
+        key: "B",
+        text: "GET /Categories(5)/Products"
       },
       {
-        "key": "C",
-        "text": "GET /Products/Category(5)"
+        key: "C",
+        text: "GET /Products/Category(5)"
       },
       {
-        "key": "D",
-        "text": "Both A and B are typically valid ways to query."
+        key: "D",
+        text: "Both A and B are typically valid ways to query."
       }
     ],
-    "correctAnswer": "D"
+    correctAnswer: "D",
+    explanation: "Cách thông dụng nhất trong OData để lấy tất cả products của category ID=5 là GET /Categories(5)/Products hoặc dùng filter GET /Products?$filter=Categoryld eq 5."
   },
   {
-    "id": 77,
-    "question": "To retrieve a single Category entity and all of its related Product entities in one request, which query would you use?",
-    "options": [
+    id: 77,
+    question: "To retrieve a single Category entity and all of its related Product entities in one request, which query would you use?",
+    options: [
       {
-        "key": "A",
-        "text": "GET /Categories(1)?$select=Products"
+        key: "A",
+        text: "GET /Categories(1)?$select=Products"
       },
       {
-        "key": "B",
-        "text": "GET /Categories(1)?$expand=Products"
+        key: "B",
+        text: "GET /Categories(1)?$expand=Products"
       },
       {
-        "key": "C",
-        "text": "GET /Categories(1)/Products"
+        key: "C",
+        text: "GET /Categories(1)/Products"
       },
       {
-        "key": "D",
-        "text": "GET /Categories(1)/Products?$fetch=all"
+        key: "D",
+        text: "GET /Categories(1)/Products?$fetch=all"
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Để lấy một Category và toàn bộ Products của nó trong cùng 1 request, ta dùng $expand=Products."
   },
   {
-    "id": 78,
-    "question": "What is ASP.NET Core Identity?",
-    "options": [
+    id: 78,
+    question: "What is ASP.NET Core Identity?",
+    options: [
       {
-        "key": "A",
-        "text": "A simple interface for generating unique IDs."
+        key: "A",
+        text: "A simple interface for generating unique IDs."
       },
       {
-        "key": "B",
-        "text": "A membership system that provides services for user authentication and authorization, including user management,\npassword hashing, and role management."
+        key: "B",
+        text: "A membership system that provides services for user authentication and authorization, including user management,\npassword hashing, and role management."
       },
       {
-        "key": "C",
-        "text": "A client-side library for managing user profiles."
+        key: "C",
+        text: "A client-side library for managing user profiles."
       },
       {
-        "key": "D",
-        "text": "The default authentication scheme for Windows Authentication."
+        key: "D",
+        text: "The default authentication scheme for Windows Authentication."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "ASP.NET Core Identity là hệ thống cung cấp các chức năng quản lý user, mật khẩu, xác thực, role, v.v."
   },
   {
-    "id": 79,
-    "question": "Which of the following is NOT a core principle of REST?",
-    "options": [
+    id: 79,
+    question: "Which of the following is NOT a core principle of REST?",
+    options: [
       {
-        "key": "A",
-        "text": "Statelessness"
+        key: "A",
+        text: "Statelessness"
       },
       {
-        "key": "B",
-        "text": "Client-Server architecture"
+        key: "B",
+        text: "Client-Server architecture"
       },
       {
-        "key": "C",
-        "text": "Stateful connections"
+        key: "C",
+        text: "Stateful connections"
       },
       {
-        "key": "D",
-        "text": "Uniform Interface"
+        key: "D",
+        text: "Uniform Interface"
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Kết nối có trạng thái (Stateful connections) KHÔNG phải là nguyên lý của REST; REST yêu cầu Statelessness (Không trạng thái)."
   },
   {
-    "id": 80,
-    "question": "What is the primary advantage of using attribute routing over conventional routing?",
-    "options": [
+    id: 80,
+    question: "What is the primary advantage of using attribute routing over conventional routing?",
+    options: [
       {
-        "key": "A",
-        "text": "It is the only way to define routes in minimal APIs."
+        key: "A",
+        text: "It is the only way to define routes in minimal APIs."
       },
       {
-        "key": "B",
-        "text": "It keeps the route definition next to the action method that it maps to, improving locality and discoverability."
+        key: "B",
+        text: "It keeps the route definition next to the action method that it maps to, improving locality and discoverability."
       },
       {
-        "key": "C",
-        "text": "It offers significantly better performance than conventional routing."
+        key: "C",
+        text: "It offers significantly better performance than conventional routing."
       },
       {
-        "key": "D",
-        "text": "It is required for enabling Swagger/OpenAPI documentation."
+        key: "D",
+        text: "It is required for enabling Swagger/OpenAPI documentation."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Attribute routing cho phép đặt định nghĩa URL route ngay cạnh action method, giúp code dễ quản lý và dễ tìm kiếm (discoverability)."
   },
   {
-    "id": 81,
-    "question": "The metadata of an OData service, which describes its data model, is typically exposed via which endpoint?",
-    "options": [
+    id: 81,
+    question: "The metadata of an OData service, which describes its data model, is typically exposed via which endpoint?",
+    options: [
       {
-        "key": "A",
-        "text": "/Smetadata"
+        key: "A",
+        text: "/Smetadata"
       },
       {
-        "key": "B",
-        "text": "/Shelp"
+        key: "B",
+        text: "/Shelp"
       },
       {
-        "key": "C",
-        "text": "/Sschema"
+        key: "C",
+        text: "/Sschema"
       },
       {
-        "key": "D",
-        "text": "/Sinfo"
+        key: "D",
+        text: "/Sinfo"
       }
     ],
-    "correctAnswer": "A"
+    correctAnswer: "A",
+    explanation: "Siêu dữ liệu (metadata) của một dịch vụ OData mô tả cấu trúc data model thường được phơi bày qua endpoint /$metadata."
   },
   {
-    "id": 82,
-    "question": "Which formatter is configured by default in a new ASP.NET Core 8 Web API project?",
-    "options": [
+    id: 82,
+    question: "Which formatter is configured by default in a new ASP.NET Core 8 Web API project?",
+    options: [
       {
-        "key": "A",
-        "text": "An XML-based formatter (XmlSerializerInputFormatter/XmlSerializerOutputFormatter)."
+        key: "A",
+        text: "An XML-based formatter (XmlSerializerInputFormatter/XmlSerializerOutputFormatter)."
       },
       {
-        "key": "B",
-        "text": "A JSON-based formatter using System.Text.Json."
+        key: "B",
+        text: "A JSON-based formatter using System.Text.Json."
       },
       {
-        "key": "C",
-        "text": "A plain text formatter (TextinputFormatter/TextOutputFormatter)."
+        key: "C",
+        text: "A plain text formatter (TextinputFormatter/TextOutputFormatter)."
       },
       {
-        "key": "D",
-        "text": "A custom binary formatter."
+        key: "D",
+        text: "A custom binary formatter."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Mặc định Web API của .NET 8 được cấu hình dùng JSON formatter với thư viện System.Text.Json."
   },
   {
-    "id": 83,
-    "question": "What is a \"load balancer\" in the context of scaling a web service?",
-    "options": [
+    id: 83,
+    question: "What is a \"load balancer\" in the context of scaling a web service?",
+    options: [
       {
-        "key": "A",
-        "text": "A tool that validates the data load of a JSON request."
+        key: "A",
+        text: "A tool that validates the data load of a JSON request."
       },
       {
-        "key": "B",
-        "text": "A server or service that distributes incoming network traffic across multiple backend servers."
+        key: "B",
+        text: "A server or service that distributes incoming network traffic across multiple backend servers."
       },
       {
-        "key": "C",
-        "text": "A database feature that balances data across multiple tables."
+        key: "C",
+        text: "A database feature that balances data across multiple tables."
       },
       {
-        "key": "D",
-        "text": "A client-side library for managing application load times."
+        key: "D",
+        text: "A client-side library for managing application load times."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Load balancer là một máy chủ/dịch vụ giúp phân bổ đều lưu lượng mạng (traffic) từ người dùng đến nhiều server backend khác nhau."
   },
   {
-    "id": 84,
-    "question": "In an ASP.NET Core Web API, which attribute is used to decorate an action method that should respond to HTTP POST requests?",
-    "options": [
+    id: 84,
+    question: "In an ASP.NET Core Web API, which attribute is used to decorate an action method that should respond to HTTP POST requests?",
+    options: [
       {
-        "key": "A",
-        "text": "[HttpGet]"
+        key: "A",
+        text: "[HttpGet]"
       },
       {
-        "key": "B",
-        "text": "[HttpPost]"
+        key: "B",
+        text: "[HttpPost]"
       },
       {
-        "key": "C",
-        "text": "[HttpPut]"
+        key: "C",
+        text: "[HttpPut]"
       },
       {
-        "key": "D",
-        "text": "[HttpDelete]"
+        key: "D",
+        text: "[HttpDelete]"
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Attribute [HttpPost] được dùng để trang trí (decorate) một action xử lý các request mang phương thức HTTP POST."
   },
   {
-    "id": 85,
-    "question": "Which query correctly finds all products where the Name property ends with the string 'Edition'?",
-    "options": [
+    id: 85,
+    question: "Which query correctly finds all products where the Name property ends with the string 'Edition'?",
+    options: [
       {
-        "key": "A",
-        "text": "GET /Products?$filter=endswith(Name, 'Edition')"
+        key: "A",
+        text: "GET /Products?$filter=endswith(Name, 'Edition')"
       },
       {
-        "key": "B",
-        "text": "GET /Products?$filter=Name.endsWith('Edition')"
+        key: "B",
+        text: "GET /Products?$filter=Name.endsWith('Edition')"
       },
       {
-        "key": "C",
-        "text": "GET /Products?$filter=last(Name) eq 'Edition'"
+        key: "C",
+        text: "GET /Products?$filter=last(Name) eq 'Edition'"
       },
       {
-        "key": "D",
-        "text": "GET /Products?$filter=Name like '%Edition'"
+        key: "D",
+        text: "GET /Products?$filter=Name like '%Edition'"
       }
     ],
-    "correctAnswer": "A"
+    correctAnswer: "A",
+    explanation: "Trong OData, hàm built-in endswith() dùng để lọc chữ kết thúc, cú pháp chuẩn là: $filter=endswith(Name, 'Edition')."
   },
   {
-    "id": 86,
-    "question": "Which of the following is a correctly formatted Media Type for JSON?",
-    "options": [
+    id: 86,
+    question: "Which of the following is a correctly formatted Media Type for JSON?",
+    options: [
       {
-        "key": "A",
-        "text": "text/json"
+        key: "A",
+        text: "text/json"
       },
       {
-        "key": "B",
-        "text": "application/json"
+        key: "B",
+        text: "application/json"
       },
       {
-        "key": "C",
-        "text": "data/json"
+        key: "C",
+        text: "data/json"
       },
       {
-        "key": "D",
-        "text": "json/application"
+        key: "D",
+        text: "json/application"
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Media Type đúng chuẩn dành cho dữ liệu JSON là application/json."
   },
   {
-    "id": 87,
-    "question": "How do you enable OData query options on a specific controller action?",
-    "options": [
+    id: 87,
+    question: "How do you enable OData query options on a specific controller action?",
+    options: [
       {
-        "key": "A",
-        "text": "By adding the [EnableQuery] attribute to the action method."
+        key: "A",
+        text: "By adding the [EnableQuery] attribute to the action method."
       },
       {
-        "key": "B",
-        "text": "By naming the action method GetWithOData."
+        key: "B",
+        text: "By naming the action method GetWithOData."
       },
       {
-        "key": "C",
-        "text": "By inheriting from ODataController."
+        key: "C",
+        text: "By inheriting from ODataController."
       },
       {
-        "key": "D",
-        "text": "It is enabled automatically on all actions once OData is configured."
+        key: "D",
+        text: "It is enabled automatically on all actions once OData is configured."
       }
     ],
-    "correctAnswer": "A"
+    correctAnswer: "A",
+    explanation: "Để cho phép sử dụng OData query options (như $filter, $select) trên một action, cần thêm attribute [EnableQuery]."
   },
   {
-    "id": 88,
-    "question": "The following code uses ODataModelBuilder to construct an EDM. What does it do?\n```csharp\nvar builder = new ODataConventionModelBuilder();\nbuilder.EntitySet<Product>(\"Products\");\nbuilder.EntitySet<Category>(\"Categories\");\nreturn builder.GetEdmModel();\n```",
-    "options": [
+    id: 88,
+    question: "The following code uses ODataModelBuilder to construct an EDM. What does it do?\n```csharp\nvar builder = new ODataConventionModelBuilder();\nbuilder.EntitySet<Product>(\"Products\");\nbuilder.EntitySet<Category>(\"Categories\");\nreturn builder.GetEdmModel();\n```",
+    options: [
       {
-        "key": "A",
-        "text": "It creates two entity sets, Products and Categories, and infers their properties and relationships by convention from the C# classes."
+        key: "A",
+        text: "It creates two entity sets, Products and Categories, and infers their properties and relationships by convention from the C# classes."
       },
       {
-        "key": "B",
-        "text": "It defines two complex types that cannot be queried directly."
+        key: "B",
+        text: "It defines two complex types that cannot be queried directly."
       },
       {
-        "key": "C",
-        "text": "It creates an empty model and waits for the database to provide the schema."
+        key: "C",
+        text: "It creates an empty model and waits for the database to provide the schema."
       },
       {
-        "key": "D",
-        "text": "It registers two controllers named Products and Categories."
+        key: "D",
+        text: "It registers two controllers named Products and Categories."
       }
     ],
-    "correctAnswer": "A"
+    correctAnswer: "A",
+    explanation: "Đoạn code cấu hình EDM thông qua ODataConventionModelBuilder sẽ tạo ra 2 entity sets (Products và Categories) và tự suy luận property từ class C#."
   },
   {
-    "id": 89,
-    "question": "What is an \"Entity Set\"?",
-    "options": [
+    id: 89,
+    question: "What is an \"Entity Set\"?",
+    options: [
       {
-        "key": "A",
-        "text": "The set of properties that make up an entity's key."
+        key: "A",
+        text: "The set of properties that make up an entity's key."
       },
       {
-        "key": "B",
-        "text": "A named collection of entities of a specific Entity Type, like Products being a collection of Product entities."
+        key: "B",
+        text: "A named collection of entities of a specific Entity Type, like Products being a collection of Product entities."
       },
       {
-        "key": "C",
-        "text": "The schema version of the data model."
+        key: "C",
+        text: "The schema version of the data model."
       },
       {
-        "key": "D",
-        "text": "A set of validation rules for an entity."
+        key: "D",
+        text: "A set of validation rules for an entity."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Entity Set là một bộ sưu tập (collection) được đặt tên chứa các thực thể (entities) có cùng một Entity Type."
   },
   {
-    "id": 90,
-    "question": "In a bidirectional streaming call, when does the server wait for the client to send all its messages before sending its own?",
-    "options": [
+    id: 90,
+    question: "In a bidirectional streaming call, when does the server wait for the client to send all its messages before sending its own?",
+    options: [
       {
-        "key": "A",
-        "text": "Always."
+        key: "A",
+        text: "Always."
       },
       {
-        "key": "B",
-        "text": "Never; the client and server can read and write in any order, their streams operate independently."
+        key: "B",
+        text: "Never; the client and server can read and write in any order, their streams operate independently."
       },
       {
-        "key": "C",
-        "text": "Only if the client explicitly signals it has finished writing."
+        key: "C",
+        text: "Only if the client explicitly signals it has finished writing."
       },
       {
-        "key": "D",
-        "text": "This is configured by the wait_for_client option in the .proto file."
+        key: "D",
+        text: "This is configured by the wait_for_client option in the .proto file."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Trong stream hai chiều (bidirectional) của gRPC, client và server có thể gửi nhận dữ liệu song song độc lập, không ai phải đợi ai."
   },
   {
-    "id": 91,
-    "question": "A JWT consists of three parts separated by dots (.). What are they in the correct order?",
-    "options": [
+    id: 91,
+    question: "A JWT consists of three parts separated by dots (.). What are they in the correct order?",
+    options: [
       {
-        "key": "A",
-        "text": "Header, Payload, Signature"
+        key: "A",
+        text: "Header, Payload, Signature"
       },
       {
-        "key": "B",
-        "text": "Payload, Header, Signature"
+        key: "B",
+        text: "Payload, Header, Signature"
       },
       {
-        "key": "C",
-        "text": "Signature, Header, Payload"
+        key: "C",
+        text: "Signature, Header, Payload"
       },
       {
-        "key": "D",
-        "text": "Header, Signature, Body"
+        key: "D",
+        text: "Header, Signature, Body"
       }
     ],
-    "correctAnswer": "A"
+    correctAnswer: "A",
+    explanation: "JWT luôn bao gồm 3 phần theo thứ tự: Header (thông tin thuật toán), Payload (chứa claims), và Signature (chữ ký bảo mật)."
   },
   {
-    "id": 92,
-    "question": "What is a \"claim\" in the context of a JWT?",
-    "options": [
+    id: 92,
+    question: "What is a \"claim\" in the context of a JWT?",
+    options: [
       {
-        "key": "A",
-        "text": "A statement about a subject, such as a user's name, ID, or role."
+        key: "A",
+        text: "A statement about a subject, such as a user's name, ID, or role."
       },
       {
-        "key": "B",
-        "text": "A request from the client to access a protected resource."
+        key: "B",
+        text: "A request from the client to access a protected resource."
       },
       {
-        "key": "C",
-        "text": "An error message indicating invalid credentials."
+        key: "C",
+        text: "An error message indicating invalid credentials."
       },
       {
-        "key": "D",
-        "text": "The algorithm used to sign the token."
+        key: "D",
+        text: "The algorithm used to sign the token."
       }
     ],
-    "correctAnswer": "A"
+    correctAnswer: "A",
+    explanation: "Claim trong JWT là một mẩu thông tin mô tả về đối tượng (chẳng hạn như tên, quyền hạn, ID của user)."
   },
   {
-    "id": 93,
-    "question": "What is CoreWCF?",
-    "options": [
+    id: 93,
+    question: "What is CoreWCF?",
+    options: [
       {
-        "key": "A",
-        "text": "A complete rewrite of WCF with a different architecture and programming model."
+        key: "A",
+        text: "A complete rewrite of WCF with a different architecture and programming model."
       },
       {
-        "key": "B",
-        "text": "A port of WCF to .NET (Core) and .NET 5+ that allows existing WCF services to be migrated to modern, cross-platform environments."
+        key: "B",
+        text: "A port of WCF to .NET (Core) and .NET 5+ that allows existing WCF services to be migrated to modern, cross-platform environments."
       },
       {
-        "key": "C",
-        "text": "A client-only library for consuming legacy WCF services."
+        key: "C",
+        text: "A client-only library for consuming legacy WCF services."
       },
       {
-        "key": "D",
-        "text": "A graphical tool for managing WCF services."
+        key: "D",
+        text: "A graphical tool for managing WCF services."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "CoreWCF là dự án port WCF từ .NET Framework cũ sang nền tảng .NET (Core) / .NET 5+ hiện đại, đa nền tảng."
   },
   {
-    "id": 94,
-    "question": "To add support for XML serialization in a .NET 8 Web API, what service configuration is typically used in Program.cs?",
-    "options": [
+    id: 94,
+    question: "To add support for XML serialization in a .NET 8 Web API, what service configuration is typically used in Program.cs?",
+    options: [
       {
-        "key": "A",
-        "text": "builder.Services.AddControllers().AddXml0;"
+        key: "A",
+        text: "builder.Services.AddControllers().AddXml0;"
       },
       {
-        "key": "B",
-        "text": "builder.Services.AddMvc().AddXmlSerializerFormatters();"
+        key: "B",
+        text: "builder.Services.AddMvc().AddXmlSerializerFormatters();"
       },
       {
-        "key": "C",
-        "text": "builder.Services.AddControllers().AddXmlSerializerFormatters();"
+        key: "C",
+        text: "builder.Services.AddControllers().AddXmlSerializerFormatters();"
       },
       {
-        "key": "D",
-        "text": "builder.Services.AddXmlFormatting0;"
+        key: "D",
+        text: "builder.Services.AddXmlFormatting0;"
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Để Web API hỗ trợ trả về XML, bạn cần gọi AddXmlSerializerFormatters() khi đăng ký dịch vụ controller."
   },
   {
-    "id": 95,
-    "question": "Which attribute forces a primitive type parameter to be bound exclusively from the query string?",
-    "options": [
+    id: 95,
+    question: "Which attribute forces a primitive type parameter to be bound exclusively from the query string?",
+    options: [
       {
-        "key": "A",
-        "text": "[FromRoute]"
+        key: "A",
+        text: "[FromRoute]"
       },
       {
-        "key": "B",
-        "text": "[FromQuery]"
+        key: "B",
+        text: "[FromQuery]"
       },
       {
-        "key": "C",
-        "text": "[FromBody]"
+        key: "C",
+        text: "[FromBody]"
       },
       {
-        "key": "D",
-        "text": "[FromHeader]"
+        key: "D",
+        text: "[FromHeader]"
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "Attribute [FromQuery] bắt buộc một tham số chỉ được phép lấy dữ liệu từ phần query string của URL."
   },
   {
-    "id": 96,
-    "question": "If a request is made to `/products?id=abc` for an action defined as `public IActionResult GetProduct(int id)`, what will be the state of ModelState?",
-    "options": [
+    id: 96,
+    question: "If a request is made to `/products?id=abc` for an action defined as `public IActionResult GetProduct(int id)`, what will be the state of ModelState?",
+    options: [
       {
-        "key": "A",
-        "text": "ModelState.IsValid will be true, and id will be 0."
+        key: "A",
+        text: "ModelState.IsValid will be true, and id will be 0."
       },
       {
-        "key": "B",
-        "text": "An InvalidCastException will be thrown."
+        key: "B",
+        text: "An InvalidCastException will be thrown."
       },
       {
-        "key": "C",
-        "text": "ModelState.IsValid will be false because \"abc\" cannot be converted to an integer."
+        key: "C",
+        text: "ModelState.IsValid will be false because \"abc\" cannot be converted to an integer."
       },
       {
-        "key": "D",
-        "text": "id will be null."
+        key: "D",
+        text: "id will be null."
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Do tham số kiểu int mà URL truyền vào chuỗi 'abc', ModelState.IsValid sẽ trả về false do lỗi ép kiểu."
   },
   {
-    "id": 97,
-    "question": "What is the primary reason for using Data Transfer Objects (DTOs) in an API?",
-    "options": [
+    id: 97,
+    question: "What is the primary reason for using Data Transfer Objects (DTOs) in an API?",
+    options: [
       {
-        "key": "A",
-        "text": "To replace the need for a database."
+        key: "A",
+        text: "To replace the need for a database."
       },
       {
-        "key": "B",
-        "text": "To shape data specifically for the client, preventing over-posting and under-posting, and decoupling the API from the database schema."
+        key: "B",
+        text: "To shape data specifically for the client, preventing over-posting and under-posting, and decoupling the API from the database schema."
       },
       {
-        "key": "C",
-        "text": "To increase the performance of database queries."
+        key: "C",
+        text: "To increase the performance of database queries."
       },
       {
-        "key": "D",
-        "text": "To enforce business logic and validation."
+        key: "D",
+        text: "To enforce business logic and validation."
       }
     ],
-    "correctAnswer": "B"
+    correctAnswer: "B",
+    explanation: "DTOs (Data Transfer Objects) giúp định dạng cấu trúc data gửi về client, ngăn chặn over-posting và tách biệt API với DB schema."
   },
   {
-    "id": 98,
-    "question": "To create a new entity in an OData service, which HTTP method should be used?",
-    "options": [
+    id: 98,
+    question: "To create a new entity in an OData service, which HTTP method should be used?",
+    options: [
       {
-        "key": "A",
-        "text": "GET"
+        key: "A",
+        text: "GET"
       },
       {
-        "key": "B",
-        "text": "PUT"
+        key: "B",
+        text: "PUT"
       },
       {
-        "key": "C",
-        "text": "POST"
+        key: "C",
+        text: "POST"
       },
       {
-        "key": "D",
-        "text": "MERGE"
+        key: "D",
+        text: "MERGE"
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Trong OData (cũng như REST API nói chung), để tạo mới một thực thể, HTTP method tiêu chuẩn là POST."
   },
   {
-    "id": 99,
-    "question": "Which of the following bindings is designed for high performance, .NET-to -. NET communication on the same machine or\nacross an intranet?",
-    "options": [
+    id: 99,
+    question: "Which of the following bindings is designed for high performance, .NET-to -. NET communication on the same machine or\nacross an intranet?",
+    options: [
       {
-        "key": "A",
-        "text": "BasicHttpBinding"
+        key: "A",
+        text: "BasicHttpBinding"
       },
       {
-        "key": "B",
-        "text": "WSHttpBinding"
+        key: "B",
+        text: "WSHttpBinding"
       },
       {
-        "key": "C",
-        "text": "NetTcpBinding"
+        key: "C",
+        text: "NetTcpBinding"
       },
       {
-        "key": "D",
-        "text": "WebHttpBinding"
+        key: "D",
+        text: "WebHttpBinding"
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "NetTcpBinding là binding được thiết kế tối ưu hóa tốc độ, phục vụ cho giao tiếp giữa các ứng dụng .NET trong cùng mạng (intranet)."
   },
   {
-    "id": 100,
-    "question": "In a controller decorated with [ApiController], what happens automatically if ModelState.IsValid is false?",
-    "options": [
+    id: 100,
+    question: "In a controller decorated with [ApiController], what happens automatically if ModelState.IsValid is false?",
+    options: [
       {
-        "key": "A",
-        "text": "The action method still executes as normal."
+        key: "A",
+        text: "The action method still executes as normal."
       },
       {
-        "key": "B",
-        "text": "An HTTP 500 Internal Server Error is returned."
+        key: "B",
+        text: "An HTTP 500 Internal Server Error is returned."
       },
       {
-        "key": "C",
-        "text": "The request is automatically rejected with an HTTP 400 Bad Request response containing details of the validation errors"
+        key: "C",
+        text: "The request is automatically rejected with an HTTP 400 Bad Request response containing details of the validation errors"
       },
       {
-        "key": "D",
-        "text": "The application logs the error and returns an HTTP 200 OK."
+        key: "D",
+        text: "The application logs the error and returns an HTTP 200 OK."
       }
     ],
-    "correctAnswer": "C"
+    correctAnswer: "C",
+    explanation: "Do có [ApiController], khi model bị lỗi (false), API tự chặn request và trả ngay mã 400 Bad Request cùng chi tiết lỗi."
   }
 ];
