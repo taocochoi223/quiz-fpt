@@ -29,7 +29,7 @@ export default function Home() {
     >
       <motion.div variants={item} className="inline-flex items-center rounded-full border border-border bg-muted/30 px-4 py-1.5 text-sm font-medium text-muted-foreground backdrop-blur-md shadow-sm">
         <span className="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
-        Hệ thống ôn thi PRN232 Premium V2 đã sẵn sàng!
+        Hệ thống ôn thi FPTU Flashcards Premium V2 đã sẵn sàng!
       </motion.div>
 
       <motion.h1 variants={item} className="text-5xl md:text-7xl font-bold tracking-tighter max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60 leading-tight pb-2">
@@ -37,7 +37,7 @@ export default function Home() {
       </motion.h1>
 
       <motion.p variants={item} className="text-xl md:text-2xl text-muted-foreground max-w-2xl font-light leading-relaxed">
-        Nền tảng học tập tối giản, siêu tốc. Giúp bạn "diệt gọn" PRN232 cực kỳ nhẹ nhàng. Chúc bạn ôn tập thật tốt và thi qua môn điểm cao nhé! 🚀
+        Nền tảng học tập tối giản, siêu tốc. Giúp bạn "diệt gọn" mọi môn học cực kỳ nhẹ nhàng. Chúc bạn ôn tập thật tốt và thi qua môn điểm cao nhé! 🚀
       </motion.p>
 
       <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto flex-wrap justify-center">

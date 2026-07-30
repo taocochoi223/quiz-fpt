@@ -2,18 +2,16 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, X, RotateCcw, Shuffle, ListOrdered, ArrowRight, BookOpen, Bot, Sparkles, Loader2 } from "lucide-react";
+import { Check, X, RotateCcw, Shuffle, ListOrdered, ArrowRight, BookOpen, Bot, Sparkles, Loader2, GraduationCap } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { questions } from "@/data/questions";
+import { subjects, Subject } from "@/data/subjects";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import Link from "next/link";
 import { playCorrectSound, playWrongSound } from "@/lib/audio";
-
-const BATCH_SIZE = 7;
 
 function shuffle<T>(array: T[]): T[] {
   const copy = [...array];
@@ -25,73 +23,104 @@ function shuffle<T>(array: T[]): T[] {
 }
 
 const generateChunks = (total: number, size: number) => {
-  const chunks = [];
-  for (let i = 0; i < total; i += size) {
-    chunks.push([i, Math.min(i + size, total)] as [number, number]);
-  }
-  return chunks;
+  return []; // Deprecated, we use papers now
 };
-const prn232Chunks = generateChunks(questions.length, BATCH_SIZE);
 
 export default function LearnPage() {
-  const [mode, setMode] = React.useState<"select" | "full" | "prn232">("select");
-  const [expandedCard, setExpandedCard] = React.useState<"prn232" | null>(null);
-  const [activeRange, setActiveRange] = React.useState<[number, number] | null>(null);
-  const [queue, setQueue] = React.useState<number[]>([]);
-  const [pendingIds, setPendingIds] = React.useState<number[]>([]);
+  const [mode, setMode] = React.useState<"select" | "subject" | "full">("select");
+  const [selectedSubjectId, setSelectedSubjectId] = React.useState<string | null>(null);
+  const [expandedCard, setExpandedCard] = React.useState<string | null>(null);
+  
+  const [activePaperId, setActivePaperId] = React.useState<string | null>(null);
+  const [queue, setQueue] = React.useState<any[]>([]);
+  const [pendingIds, setPendingIds] = React.useState<any[]>([]); // Deprecated, always empty
   const [qIndex, setQIndex] = React.useState(0);
-  const [batchWrongIds, setBatchWrongIds] = React.useState<number[]>([]);
+  const [batchWrongIds, setBatchWrongIds] = React.useState<any[]>([]);
   const [isBatchRetry, setIsBatchRetry] = React.useState(false);
   const [completedCount, setCompletedCount] = React.useState(0);
   const [showSegmentSummary, setShowSegmentSummary] = React.useState(false);
   
-  const [currentBatchIds, setCurrentBatchIds] = React.useState<number[]>([]);
-  const [initialWrongIds, setInitialWrongIds] = React.useState<number[]>([]);
+  const [currentBatchIds, setCurrentBatchIds] = React.useState<any[]>([]);
+  const [initialWrongIds, setInitialWrongIds] = React.useState<any[]>([]);
   
   const [selectedOpt, setSelectedOpt] = React.useState<string | null>(null);
   const [shake, setShake] = React.useState(false);
   const [showResumeDialog, setShowResumeDialog] = React.useState(false);
+  
+  // For resume dialog, we need to know what to resume
+  const [resumeSubjectId, setResumeSubjectId] = React.useState<string | null>(null);
 
   // AI state
   const [aiExplanation, setAiExplanation] = React.useState<string | null>(null);
   const [isAiLoading, setIsAiLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    const saved = localStorage.getItem("learn_session");
-    if (saved) {
-      setShowResumeDialog(true);
+  // Determine current active questions list based on mode
+  let activeQuestions: any[] = [];
+  if (mode === "subject" && selectedSubjectId) {
+    const subj = subjects.find(s => s.id === selectedSubjectId);
+    if (subj) {
+      if (activePaperId) {
+        activeQuestions = subj.papers.find(p => p.id === activePaperId)?.questions || [];
+      } else {
+        activeQuestions = subj.papers.flatMap(p => p.questions);
+      }
     }
+  } else if (mode === "full") {
+    activeQuestions = subjects.flatMap(s => s.papers.flatMap(p => p.questions));
+  } else {
+    // When in select mode, default to PRN232 for old resume compatibility
+    activeQuestions = subjects.find(s => s.id === "prn232")?.papers.flatMap(p => p.questions) || [];
+  }
+
+  const [hasSavedSessions, setHasSavedSessions] = React.useState<Record<string, boolean>>({});
+
+  React.useEffect(() => {
+    const sessions: Record<string, boolean> = {};
+    for (const subj of subjects) {
+      if (localStorage.getItem(`learn_session_${subj.id}`)) {
+        sessions[subj.id] = true;
+      }
+    }
+    if (localStorage.getItem("learn_session")) {
+      sessions["prn232"] = true;
+    }
+    setHasSavedSessions(sessions);
   }, []);
 
   React.useEffect(() => {
     if (mode === "select" || (queue.length === 0 && completedCount > 0)) return;
-    const session = { mode, activeRange, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds };
-    localStorage.setItem("learn_session", JSON.stringify(session));
-  }, [mode, activeRange, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds]);
+    const session = { mode, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds };
+    
+    if (mode === "subject" && selectedSubjectId) {
+      localStorage.setItem(`learn_session_${selectedSubjectId}`, JSON.stringify(session));
+    } else if (mode === "full") {
+      localStorage.setItem("learn_session_full", JSON.stringify(session));
+    }
+  }, [mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds]);
 
   const resumeSession = () => {
-    const saved = localStorage.getItem("learn_session");
+    let saved = null;
+    if (resumeSubjectId) {
+      saved = localStorage.getItem(`learn_session_${resumeSubjectId}`);
+      if (!saved && resumeSubjectId === "prn232") {
+        saved = localStorage.getItem("learn_session"); // Legacy
+      }
+    }
+    
     if (saved) {
       try {
         const data = JSON.parse(saved);
-        setMode(data.mode);
-        setActiveRange(data.activeRange);
+        setMode(data.mode === "prn232" ? "subject" : data.mode);
+        setSelectedSubjectId(resumeSubjectId);
+        setActivePaperId(data.activePaperId || null);
         setQueue(data.queue);
         setPendingIds(data.pendingIds);
         setQIndex(data.qIndex);
         setBatchWrongIds(data.batchWrongIds);
         setIsBatchRetry(data.isBatchRetry);
         setCompletedCount(data.completedCount);
-        if (data.currentBatchIds) {
-          setCurrentBatchIds(data.currentBatchIds);
-        } else {
-          setCurrentBatchIds(data.queue);
-        }
-        if (data.initialWrongIds) {
-          setInitialWrongIds(data.initialWrongIds);
-        } else {
-          setInitialWrongIds(data.batchWrongIds || []);
-        }
+        setCurrentBatchIds(data.currentBatchIds || data.queue);
+        setInitialWrongIds(data.initialWrongIds || data.batchWrongIds || []);
       } catch (e) {
         console.error("Failed to parse session", e);
       }
@@ -100,22 +129,23 @@ export default function LearnPage() {
   };
 
   const abandonSession = () => {
-    localStorage.removeItem("learn_session");
+    if (resumeSubjectId) {
+      localStorage.removeItem(`learn_session_${resumeSubjectId}`);
+      if (resumeSubjectId === "prn232") localStorage.removeItem("learn_session");
+      
+      setHasSavedSessions(prev => ({ ...prev, [resumeSubjectId]: false }));
+      setExpandedCard(resumeSubjectId);
+    }
     setShowResumeDialog(false);
   };
 
-  const initRound = React.useCallback((ordered = false, range: [number, number] | null = null) => {
-    let activeQuestions = questions;
-    if (range) {
-      activeQuestions = questions.slice(range[0], range[1]);
-    }
-    
+  const initRound = React.useCallback((ordered = false, paperId: string | null = null, subjQuestions: any[]) => {
     const ids = ordered 
-      ? activeQuestions.map(q => q.id).sort((a,b) => a - b)
-      : shuffle(activeQuestions.map(q => q.id));
+      ? subjQuestions.map(q => q.id)
+      : shuffle(subjQuestions.map(q => q.id));
     
-    setPendingIds(ids.slice(BATCH_SIZE));
-    const initialQ = ids.slice(0, BATCH_SIZE);
+    setPendingIds([]); // No more chunking
+    const initialQ = ids;
     setQueue(initialQ);
     setCurrentBatchIds(initialQ);
     setQIndex(0);
@@ -126,16 +156,32 @@ export default function LearnPage() {
     setSelectedOpt(null);
   }, []);
 
-  const handleStartMode = (selectedMode: "full" | "prn232", range: [number, number] | null = null) => {
+  const handleStartMode = (selectedMode: "full" | "subject", subjectId: string | null = null, paperId: string | null = null) => {
     setMode(selectedMode);
-    setActiveRange(range);
+    setSelectedSubjectId(subjectId);
+    setActivePaperId(paperId);
+    
+    let subjQs: any[] = [];
+    if (selectedMode === "subject" && subjectId) {
+      const subj = subjects.find(s => s.id === subjectId);
+      if (subj) {
+        if (paperId) {
+          subjQs = subj.papers.find(p => p.id === paperId)?.questions || [];
+        } else {
+          subjQs = subj.papers.flatMap(p => p.questions);
+        }
+      }
+    } else if (selectedMode === "full") {
+      subjQs = subjects.flatMap(s => s.papers.flatMap(p => p.questions));
+    }
+
     setTimeout(() => {
-      initRound(true, range);
+      initRound(true, paperId, subjQs);
     }, 100);
   };
 
   const currentQId = queue[qIndex];
-  const currentQ = questions.find(q => q.id === currentQId);
+  const currentQ = activeQuestions.find(q => q.id === currentQId);
 
   const handleSelect = (key: string) => {
     if (selectedOpt || !currentQ) return;
@@ -164,7 +210,6 @@ export default function LearnPage() {
       if (!isBatchRetry && !initialWrongIds.includes(currentQId)) {
         setInitialWrongIds(prev => [...prev, currentQId]);
       }
-      // Require manual continue for wrong answers
     }
   };
 
@@ -189,16 +234,19 @@ export default function LearnPage() {
     setShowSegmentSummary(false);
     if (pendingIds.length === 0) {
       toast.success("Chúc mừng! Bạn đã hoàn thành toàn bộ câu hỏi!");
-      localStorage.removeItem("learn_session");
+      if (mode === "subject" && selectedSubjectId) {
+        localStorage.removeItem(`learn_session_${selectedSubjectId}`);
+        if (selectedSubjectId === "prn232") localStorage.removeItem("learn_session");
+      }
       setQueue([]);
       setCurrentBatchIds([]);
       return;
     }
     toast.success("Tuyệt vời! Bắt đầu chặng mới.");
-    const nextBatch = pendingIds.slice(0, BATCH_SIZE);
+    const nextBatch = pendingIds;
     setQueue(nextBatch);
     setCurrentBatchIds(nextBatch);
-    setPendingIds(pendingIds.slice(BATCH_SIZE));
+    setPendingIds([]);
     setQIndex(0);
     setIsBatchRetry(false);
     setBatchWrongIds([]);
@@ -232,7 +280,8 @@ export default function LearnPage() {
   const orderRemaining = () => {
     if (isBatchRetry) {
       const remaining = [...queue.slice(qIndex)];
-      const ordered = remaining.sort((a,b) => a - b);
+      // fallback for strings
+      const ordered = remaining.sort((a,b) => a.toString().localeCompare(b.toString()));
       const newQueue = [...queue.slice(0, qIndex), ...ordered];
       setQueue(newQueue);
       setSelectedOpt(null);
@@ -241,7 +290,7 @@ export default function LearnPage() {
     }
 
     const remaining = [...queue.slice(qIndex), ...pendingIds];
-    const ordered = Array.from(new Set(remaining)).sort((a,b) => a - b);
+    const ordered = Array.from(new Set(remaining)).sort((a,b) => a.toString().localeCompare(b.toString()));
     const spotsLeftInBatch = queue.length - qIndex;
     const newBatchSuffix = ordered.slice(0, spotsLeftInBatch);
     const newQueue = [...queue.slice(0, qIndex), ...newBatchSuffix];
@@ -254,9 +303,13 @@ export default function LearnPage() {
   };
 
   const handleRestart = () => {
-    localStorage.removeItem("learn_session");
+    if (mode === "subject" && selectedSubjectId) {
+      localStorage.removeItem(`learn_session_${selectedSubjectId}`);
+      if (selectedSubjectId === "prn232") localStorage.removeItem("learn_session");
+    }
     setMode("select");
-    setActiveRange(null);
+    setSelectedSubjectId(null);
+    setActivePaperId(null);
     setQueue([]);
     setPendingIds([]);
     setQIndex(0);
@@ -297,7 +350,7 @@ export default function LearnPage() {
     }
   };
 
-  const totalActiveQuestions = activeRange ? activeRange[1] - activeRange[0] : questions.length;
+  const totalActiveQuestions = activeQuestions.length;
 
   if (showResumeDialog) {
     return (
@@ -307,7 +360,7 @@ export default function LearnPage() {
             <RotateCcw className="w-10 h-10 text-amber-500" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight">Tiếp tục bài học?</h1>
-          <p className="text-muted-foreground text-lg">Bạn có một bài học đang dang dở trước đó. Bạn muốn tiếp tục hay học bài mới?</p>
+          <p className="text-muted-foreground text-lg">Bạn có bài học đang dang dở. Bạn muốn tiếp tục hay học bài mới?</p>
           <div className="flex gap-4 justify-center mt-4">
             <Button onClick={abandonSession} variant="outline" className="rounded-full px-8">Bắt đầu mới</Button>
             <Button onClick={resumeSession} className="rounded-full px-8 bg-emerald-500 hover:bg-emerald-600 text-white">Tiếp tục học</Button>
@@ -331,7 +384,8 @@ export default function LearnPage() {
         
         <div className="flex flex-col gap-4">
           {currentBatchIds.map((qId, idx) => {
-            const q = questions.find(x => x.id === qId)!;
+            const q = activeQuestions.find(x => x.id === qId);
+            if (!q) return null;
             const wasWrong = initialWrongIds.includes(qId);
             return (
               <Card key={qId} className={`p-5 flex flex-col gap-4 border-2 ${wasWrong ? 'border-destructive/50 bg-destructive/5' : 'border-emerald-500/30 bg-emerald-500/5'}`}>
@@ -339,15 +393,38 @@ export default function LearnPage() {
                   <Badge variant={wasWrong ? "destructive" : "default"} className={wasWrong ? "" : "bg-emerald-500"}>
                     {idx + 1}
                   </Badge>
-                  <span className={wasWrong ? "text-destructive" : ""}>{q.question}</span>
+                  <div className={wasWrong ? "text-destructive w-full" : "w-full"}>
+                    <ReactMarkdown
+                      components={{
+                        p({node, children, ...props}: any) {
+                          return <span {...props}>{children}</span>
+                        },
+                        code({node, inline, className, children, ...props}: any) {
+                          return !inline ? (
+                            <span className="block bg-muted p-3 rounded-lg overflow-x-auto text-[0.85rem] my-2 border border-border/50 shadow-inner font-mono text-left w-full max-w-full text-foreground">
+                              <code className={className} {...props}>
+                                {children}
+                              </code>
+                            </span>
+                          ) : (
+                            <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-foreground" {...props}>
+                              {children}
+                            </code>
+                          )
+                        }
+                      }}
+                    >
+                      {q.question}
+                    </ReactMarkdown>
+                  </div>
                 </div>
                 
                 <div className="ml-10 flex flex-col gap-2 mt-2">
-                  {q.options.map((opt) => {
+                  {q.options.map((opt: any, idx: number) => {
                     const isCorrect = opt.key === q.correctAnswer;
                     return (
                       <div
-                        key={opt.key}
+                        key={`${opt.key}-${idx}`}
                         className={`flex items-start gap-3 p-3 rounded-lg border transition-colors ${
                           isCorrect 
                             ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-900 dark:text-emerald-100" 
@@ -389,72 +466,85 @@ export default function LearnPage() {
 
   if (mode === "select") {
     return (
-      <div className="flex flex-col h-full max-w-4xl mx-auto w-full gap-8 pt-10 pb-20 items-center justify-center">
+      <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-8 pt-10 pb-20 items-center justify-center">
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col gap-6 text-center mb-6"
         >
-          <h1 className="text-4xl font-bold tracking-tight">Chọn chế độ học</h1>
-          <p className="text-muted-foreground text-lg">Bạn muốn học theo cách nào hôm nay?</p>
+          <h1 className="text-4xl font-bold tracking-tight">Chọn môn học</h1>
+          <p className="text-muted-foreground text-lg">Bạn muốn ôn luyện môn nào hôm nay?</p>
         </motion.div>
 
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
         >
-          {/* Card 1: PRN232 */}
-          <Card 
-            className={`flex flex-col p-8 items-center text-center gap-4 transition-all ${expandedCard === 'prn232' ? 'border-primary shadow-lg ring-2 ring-primary/20' : 'cursor-pointer hover:border-primary/50 hover:shadow-lg group'}`}
-            onClick={() => { if (expandedCard !== 'prn232') setExpandedCard('prn232'); }}
-          >
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center transition-transform group-hover:scale-110">
-              <ListOrdered className="w-8 h-8" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">PRN232 - SP26 - FE</h3>
-              <p className="text-sm text-muted-foreground">Bộ {questions.length} câu hỏi theo mã môn hiện tại.</p>
-            </div>
+          {subjects.map(subj => {
+            const isExpanded = expandedCard === subj.id;
+            const hasSession = hasSavedSessions[subj.id];
             
-            {expandedCard !== 'prn232' ? (
-              <Button className="mt-4 w-full rounded-full" variant="outline">Chọn phần học</Button>
-            ) : (
-              <div className="w-full mt-4 flex flex-col gap-2">
-                <Button className="w-full rounded-full mb-2 bg-primary/10 text-primary hover:bg-primary/20" variant="ghost" onClick={(e) => { e.stopPropagation(); handleStartMode("prn232", null); }}>
-                  Học toàn bộ 50 câu
-                </Button>
-                <div className="grid grid-cols-2 gap-2 w-full">
-                  {prn232Chunks.map((chunk, i) => (
-                    <Button 
-                      key={i} 
-                      variant="outline" 
-                      className="text-xs py-1 h-8 rounded-full"
-                      onClick={(e) => { e.stopPropagation(); handleStartMode("prn232", chunk); }}
-                    >
-                      Phần {i + 1} ({chunk[0] + 1}-{chunk[1]})
+            return (
+              <Card 
+                key={subj.id}
+                className={`flex flex-col p-6 md:p-8 items-center text-center gap-4 transition-all ${isExpanded ? 'border-primary shadow-lg ring-2 ring-primary/20 md:col-span-2 lg:col-span-3' : 'cursor-pointer hover:border-primary/50 hover:shadow-lg group'}`}
+                onClick={() => { 
+                  if (!isExpanded) {
+                    if (hasSavedSessions[subj.id]) {
+                      setResumeSubjectId(subj.id);
+                      setShowResumeDialog(true);
+                    } else {
+                      setExpandedCard(subj.id); 
+                    }
+                  } 
+                }}
+              >
+                <div className={`flex flex-col md:flex-row items-center gap-4 w-full ${isExpanded ? 'md:justify-between' : 'justify-center'}`}>
+                  <div className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center transition-transform group-hover:scale-110 shrink-0">
+                      <GraduationCap className="w-8 h-8" />
+                    </div>
+                    <div className={isExpanded ? 'text-center md:text-left' : ''}>
+                      <h3 className="text-xl font-bold mb-1">{subj.fullName}</h3>
+                      <p className="text-sm text-muted-foreground">Bộ {subj.papers.flatMap(p => p.questions).length} câu hỏi.</p>
+                    </div>
+                  </div>
+                  {!isExpanded && (
+                    <Button className="mt-2 w-full rounded-full md:hidden" variant="outline">Chọn môn</Button>
+                  )}
+                  {isExpanded && (
+                    <Button className="hidden md:inline-flex rounded-full bg-primary/10 text-primary hover:bg-primary/20" variant="ghost" onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, null); }}>
+                      Học toàn bộ
                     </Button>
-                  ))}
+                  )}
                 </div>
-              </div>
-            )}
-          </Card>
-
-          {/* Card 2: Full */}
-          <Card 
-            className="flex flex-col p-8 items-center text-center gap-4 cursor-pointer hover:border-primary/50 hover:shadow-lg transition-all group"
-            onClick={() => handleStartMode("full")}
-          >
-            <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center group-hover:scale-110 transition-transform">
-              <BookOpen className="w-8 h-8" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Học toàn bộ (Full)</h3>
-              <p className="text-sm text-muted-foreground">Ôn tập ngẫu nhiên tất cả các câu hỏi có trong hệ thống.</p>
-            </div>
-            <Button className="mt-4 w-full rounded-full" variant="outline">Học ngay</Button>
-          </Card>
+                
+                {isExpanded && (
+                  <div className="w-full mt-4 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2">
+                    <Button className="w-full rounded-full md:hidden bg-primary/10 text-primary hover:bg-primary/20 mb-2" variant="ghost" onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, null); }}>
+                      Học toàn bộ
+                    </Button>
+                    <div className="h-px w-full bg-border" />
+                    <div className="text-left font-medium text-sm text-muted-foreground">Hoặc chọn học theo đề:</div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 w-full">
+                      {subj.papers.map((paper, i) => (
+                        <Button 
+                          key={paper.id} 
+                          variant="outline" 
+                          className="text-xs py-1 h-9 rounded-full truncate px-2"
+                          onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, paper.id); }}
+                        >
+                          {paper.name} ({paper.questions.length} câu)
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </Card>
+            )
+          })}
         </motion.div>
       </div>
     );
@@ -471,7 +561,7 @@ export default function LearnPage() {
           <p className="text-muted-foreground text-lg mb-8">Bạn đã học xong {totalActiveQuestions} câu hỏi.</p>
           <div className="flex gap-4 justify-center">
             <Button onClick={handleRestart} className="rounded-full px-8">
-              <RotateCcw className="w-4 h-4 mr-2" /> Học lại từ đầu
+              <RotateCcw className="w-4 h-4 mr-2" /> Chọn môn khác
             </Button>
             <Link href="/" className="inline-flex h-10 items-center justify-center rounded-full border border-input bg-background px-8 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
               Về trang chủ
@@ -485,20 +575,21 @@ export default function LearnPage() {
   if (!currentQ) return null;
 
   const progressPercent = (completedCount / totalActiveQuestions) * 100;
+  const currentSubject = mode === "subject" ? subjects.find(s => s.id === selectedSubjectId) : null;
 
   return (
     <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-8 pt-4 pb-20">
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Chế độ học (Learn)</h1>
+            <h1 className="text-2xl font-bold tracking-tight">Chế độ học: {currentSubject ? currentSubject.name : "Toàn bộ"}</h1>
             <p className="text-sm text-muted-foreground">
               {isBatchRetry ? "Đang ôn lại câu sai..." : `Chặng hiện tại: Câu ${qIndex + 1} / ${queue.length}`}
             </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" onClick={handleRestart} title="Học lại từ đầu">
-              <RotateCcw className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Bắt đầu lại</span>
+            <Button variant="outline" size="sm" onClick={handleRestart} title="Chọn môn khác">
+              <RotateCcw className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Đổi môn</span>
             </Button>
             <Button variant="outline" size="sm" onClick={orderRemaining} title="Sắp xếp theo thứ tự">
               <ListOrdered className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Thứ tự</span>
@@ -531,11 +622,31 @@ export default function LearnPage() {
                 <RotateCcw className="w-3 h-3" /> Làm lại
               </div>
             )}
-            <h2 className="text-2xl md:text-3xl font-medium leading-relaxed whitespace-pre-wrap">{currentQ.question}</h2>
+            <div className="text-2xl md:text-3xl font-medium leading-relaxed max-w-none w-full">
+              <ReactMarkdown
+                components={{
+                  code({node, inline, className, children, ...props}: any) {
+                    return !inline ? (
+                      <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-[1rem] my-4 border border-border/50 shadow-inner font-mono">
+                        <code className={className} {...props}>
+                          {children}
+                        </code>
+                      </pre>
+                    ) : (
+                      <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-primary" {...props}>
+                        {children}
+                      </code>
+                    )
+                  }
+                }}
+              >
+                {currentQ.question}
+              </ReactMarkdown>
+            </div>
           </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-            {currentQ.options.map((opt) => {
+            {currentQ.options.map((opt: any, idx: number) => {
               const isSelected = selectedOpt === opt.key;
               const isCorrectOpt = opt.key === currentQ.correctAnswer;
               
@@ -556,7 +667,7 @@ export default function LearnPage() {
 
               return (
                 <motion.div
-                  key={opt.key}
+                  key={`${opt.key}-${idx}`}
                   whileHover={!selectedOpt ? { scale: 1.02, y: -2 } : {}}
                   whileTap={!selectedOpt ? { scale: 0.98 } : {}}
                   onClick={() => handleSelect(opt.key)}

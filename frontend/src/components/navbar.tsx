@@ -44,7 +44,7 @@ export function Navbar() {
             <div className="bg-primary text-primary-foreground p-1.5 rounded-md">
               <BookOpen className="w-5 h-5" />
             </div>
-            <span className="font-bold tracking-tight text-lg hidden sm:inline-block">PRN232 Flashcards</span>
+            <span className="font-bold tracking-tight text-lg hidden sm:inline-block">FPTU Flashcards</span>
           </Link>
           <nav className="hidden md:flex items-center space-x-1">
             {links.map((link) => (
