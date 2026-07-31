@@ -579,6 +579,11 @@ export default function LearnPage() {
   const progressPercent = (completedCount / totalActiveQuestions) * 100;
   const currentSubject = mode === "subject" ? subjects.find(s => s.id === selectedSubjectId) : null;
 
+  const shuffledOptions = React.useMemo(() => {
+    if (!currentQ) return [];
+    return shuffle(currentQ.options);
+  }, [currentQ?.id]);
+
   return (
     <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-8 pt-4 pb-20">
       <div className="flex flex-col gap-4">
@@ -652,7 +657,7 @@ export default function LearnPage() {
           </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-            {currentQ.options.map((opt: any, idx: number) => {
+            {shuffledOptions.map((opt: any, idx: number) => {
               const isSelected = selectedOpt === opt.key;
               const isCorrectOpt = opt.key === currentQ.correctAnswer;
               

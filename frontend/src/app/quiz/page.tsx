@@ -337,6 +337,10 @@ export default function QuizPage() {
 
   if (!currentQ) return null;
 
+  const shuffledOptions = React.useMemo(() => {
+    return shuffleArray(currentQ.options);
+  }, [currentQ.uniqueId]);
+
   const currentAnswer = answers[currentQ.uniqueId];
 
   return (
@@ -385,7 +389,7 @@ export default function QuizPage() {
           </Card>
 
           <div className="grid grid-cols-1 gap-3 mt-4">
-            {currentQ.options.map((opt: any, idx: number) => {
+            {shuffledOptions.map((opt: any, idx: number) => {
               const isSelected = currentAnswer === opt.key;
               
               let stateClass = "bg-background border-border/50 hover:border-primary/50 hover:bg-muted/50 cursor-pointer";
