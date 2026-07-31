@@ -1809,3 +1809,899 @@ export const questions_paper2: Question[] = [
     explanation: "Do có [ApiController], khi model bị lỗi (false), API tự chặn request và trả ngay mã 400 Bad Request cùng chi tiết lỗi."
   }
 ];
+
+
+export const questions_paper3: Question[] = [
+  {
+    "id": 101,
+    "question": "Which of the message exchange patterns is not supported in WCF?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Duplex"
+      },
+      {
+        "key": "B",
+        "text": "Multi-way"
+      },
+      {
+        "key": "C",
+        "text": "One-way"
+      },
+      {
+        "key": "D",
+        "text": "Request-reply"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "WCF (Windows Communication Foundation) hỗ trợ các mô hình trao đổi thông báo (message exchange patterns) như: Request-Reply, One-Way và Duplex. Multi-way không phải là một mô hình hợp lệ trong WCF."
+  },
+  {
+    "id": 102,
+    "question": "Choose the correct information about scaling RESTful web services.",
+    "options": [
+      {
+        "key": "A",
+        "text": "None of the others."
+      },
+      {
+        "key": "B",
+        "text": "RESTful web services depend on the IP address and port number of the system to get a responsE)"
+      },
+      {
+        "key": "C",
+        "text": "RESTful web services support both Vertical and Horizontal scaling."
+      },
+      {
+        "key": "D",
+        "text": "RESTful web services support only support vertical scaling in communication."
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "RESTful web services có khả năng mở rộng rất tốt. Do tính chất stateless (không lưu trạng thái client trên server), RESTful hỗ trợ cả mở rộng theo chiều dọc (Vertical scaling) và chiều ngang (Horizontal scaling)."
+  },
+  {
+    "id": 103,
+    "question": "Which one is not a benefit of gRPC?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Tooling available for many languages to generate strongly-typed servers and clients."
+      },
+      {
+        "key": "B",
+        "text": "Modern, high-performance, lightweight RPC framework."
+      },
+      {
+        "key": "C",
+        "text": "Supports client, server, but does not allow bi-directional streaming calls."
+      },
+      {
+        "key": "D",
+        "text": "Contract-first API development, using Protocol Buffers by default, allowing for language agnostic implementations."
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "gRPC thực chất có hỗ trợ luồng dữ liệu hai chiều (bi-directional streaming calls) thông qua HTTP/2. Do đó, phát biểu 'does not allow bi-directional streaming calls' là không chính xác."
+  },
+  {
+    "id": 104,
+    "question": "What is Open Web Interface for .NET (OWIN)?",
+    "options": [
+      {
+        "key": "A",
+        "text": "All of the others."
+      },
+      {
+        "key": "B",
+        "text": "OWIN defines a standard way for middleware to be used in a pipeline to handle requests and associated responses."
+      },
+      {
+        "key": "C",
+        "text": "ASP.NET Core applications and middleware can interoperate with OWIN-based applications, servers, and middlewarE) OWIN allows web apps to be decoupled from web servers."
+      },
+      {
+        "key": "D",
+        "text": "None of the others."
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "OWIN (Open Web Interface for .NET) định nghĩa một tiêu chuẩn giao tiếp giữa web server và web application trong .NET, giúp tách rời (decouple) ứng dụng web khỏi server (như IIS)."
+  },
+  {
+    "id": 105,
+    "question": "Which contract in WCF maps data contracts to SOAP envelopes?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Service Contract"
+      },
+      {
+        "key": "B",
+        "text": "Operation Contract"
+      },
+      {
+        "key": "C",
+        "text": "Data Contract"
+      },
+      {
+        "key": "D",
+        "text": "Message Contract"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Message Contract trong WCF cho phép bạn kiểm soát hoàn toàn cấu trúc của thông báo SOAP (SOAP envelope, header và body), rất hữu ích khi cần tùy chỉnh các thông báo ở mức độ thấp."
+  },
+  {
+    "id": 106,
+    "question": "The Observer pattern defines a one-to-many dependency between objects, where changes to one object automatically notify its dependents. Which of the following is a participant in the Observer pattern?",
+    "options": [
+      {
+        "key": "A",
+        "text": "All of the above."
+      },
+      {
+        "key": "B",
+        "text": "Subject"
+      },
+      {
+        "key": "C",
+        "text": "Observer"
+      },
+      {
+        "key": "D",
+        "text": "ConcreteSubject"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Mẫu thiết kế Observer bao gồm các thành phần chính: Subject, Observer, ConcreteSubject và ConcreteObserver. Do đó, cả 3 thành phần trên đều thuộc mẫu Observer."
+  },
+  {
+    "id": 107,
+    "question": "What is content negotiation?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Content negotiation is an application that can be used to serve different representations of the same resource at a given URI, providing ability to their clients to decide the best suited representations."
+      },
+      {
+        "key": "B",
+        "text": "None of the others"
+      },
+      {
+        "key": "C",
+        "text": "Content negotiation is a mechanism that can be used to serve different representations of the same resource at a given URI, providing ability to their clients to decide the best suited representations."
+      },
+      {
+        "key": "D",
+        "text": "Content negotiation is a collection of API that can be used to serve different representations of the same resource at a given URI, providing ability to their clients to decide the best suited representations."
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Content negotiation (Đàm phán nội dung) là cơ chế của HTTP cho phép client và server thỏa thuận về định dạng dữ liệu (ví dụ: JSON hoặc XML) tốt nhất để trao đổi dựa trên header Accept."
+  },
+  {
+    "id": 108,
+    "question": "Which one is not a microservice attribute?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Technology adoption"
+      },
+      {
+        "key": "B",
+        "text": "Independent deployment"
+      },
+      {
+        "key": "C",
+        "text": "Combined functionality"
+      },
+      {
+        "key": "D",
+        "text": "Consistency and resiliency"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Microservices được thiết kế để phân chia thành các dịch vụ nhỏ, mỗi dịch vụ đảm nhận một chức năng duy nhất (single responsibility). Việc 'kết hợp chức năng' (Combined functionality) đi ngược lại với triết lý của kiến trúc Microservices."
+  },
+  {
+    "id": 109,
+    "question": "What is a Model in ASP.NET Core Web API?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Models are used only to set the datA)"
+      },
+      {
+        "key": "B",
+        "text": "None of the others."
+      },
+      {
+        "key": "C",
+        "text": "A model is a class with .cs (for C#) as an extension having both properties and methods."
+      },
+      {
+        "key": "D",
+        "text": "All of the others."
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Trong ASP.NET Core, Model thường là các lớp C# (.cs file) định nghĩa cấu trúc dữ liệu, chứa các thuộc tính (properties) và có thể kèm theo các phương thức (methods) xử lý."
+  },
+  {
+    "id": 110,
+    "question": "The Abstract Factory pattern provides an interface for creating families of related objects without specifying their concrete classes. Which of the following is a participant in the Abstract Factory pattern?",
+    "options": [
+      {
+        "key": "A",
+        "text": "ConcreteFactory"
+      },
+      {
+        "key": "B",
+        "text": "AbstractProduct"
+      },
+      {
+        "key": "C",
+        "text": "All of the above."
+      },
+      {
+        "key": "D",
+        "text": "AbstractFactory"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Mẫu Abstract Factory có các thành phần tham gia (participants) bao gồm: AbstractFactory, ConcreteFactory, AbstractProduct, ConcreteProduct và Client. Do đó tất cả đều đúng."
+  },
+  {
+    "id": 111,
+    "question": "The Prototype pattern allows the creation of new objects by cloning an existing object. Which of the following is a key benefit of the Prototype pattern?",
+    "options": [
+      {
+        "key": "A",
+        "text": "All of the above."
+      },
+      {
+        "key": "B",
+        "text": "It provides a way to create objects without specifying their concrete classes."
+      },
+      {
+        "key": "C",
+        "text": "It reduces the cost of creating new objects."
+      },
+      {
+        "key": "D",
+        "text": "It allows for the creation of objects without exposing the instantiation logic to the client."
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Lợi ích chính của mẫu Prototype là khả năng tạo ra các đối tượng mới bằng cách sao chép (clone) đối tượng hiện có. Điều này giúp giảm đáng kể chi phí khởi tạo (cost of creating new objects)."
+  },
+  {
+    "id": 112,
+    "question": "Which of the following is a disadvantage of the Builder pattern?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It can lead to complex object creation logic."
+      },
+      {
+        "key": "B",
+        "text": "Both B and C."
+      },
+      {
+        "key": "C",
+        "text": "The number of lines of code increases compared to a traditional constructor."
+      },
+      {
+        "key": "D",
+        "text": "It requires creating a separate ConcreteBuilder for each different type of Product."
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Một trong những nhược điểm của mẫu Builder là bạn phải tạo ra một lớp ConcreteBuilder riêng biệt cho từng loại Product khác nhau, điều này làm tăng số lượng lớp (classes) và độ phức tạp."
+  },
+  {
+    "id": 113,
+    "question": "Which one is not communication in microservices?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Concurrency"
+      },
+      {
+        "key": "B",
+        "text": "None of the others"
+      },
+      {
+        "key": "C",
+        "text": "Asynchronous"
+      },
+      {
+        "key": "D",
+        "text": "Synchronous"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Trong kiến trúc microservices, giao tiếp giữa các dịch vụ thường là Đồng bộ (Synchronous) hoặc Bất đồng bộ (Asynchronous). Concurrency (Đồng thời) là khái niệm về xử lý đa luồng, không phải là một mô hình giao tiếp."
+  },
+  {
+    "id": 114,
+    "question": "Which utility can be used to create WSDL from WCF services?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Wcf.exe"
+      },
+      {
+        "key": "B",
+        "text": "SvcUtil.exe"
+      },
+      {
+        "key": "C",
+        "text": "Svc.exe"
+      },
+      {
+        "key": "D",
+        "text": "ILDASM.exe"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "SvcUtil.exe (ServiceModel Metadata Utility Tool) là công cụ dòng lệnh của .NET dùng để tạo ra mã client (proxy) và file cấu hình từ WSDL của dịch vụ WCF."
+  },
+  {
+    "id": 115,
+    "question": "What is gRPC (Remote Procedure Calls)?",
+    "options": [
+      {
+        "key": "A",
+        "text": "gRPC is a new and modern framework for building scalable, modern and fast API"
+      },
+      {
+        "key": "B",
+        "text": "enables programmers to write micro-services in any language they want while keeping the ability to easily create communications between these services"
+      },
+      {
+        "key": "C",
+        "text": "All of the others"
+      },
+      {
+        "key": "D",
+        "text": "It relies on Protocol Buffers for the transport mechanism and Service Definition language"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "gRPC là một framework RPC hiện đại, mã nguồn mở, hoạt động hiệu suất cao. Nó cho phép kết nối các dịch vụ phân tán bằng nhiều ngôn ngữ khác nhau và dựa trên Protocol Buffers."
+  },
+  {
+    "id": 116,
+    "question": "The Factory Method pattern allows subclasses to decide which class to instantiate. Which of the following is a key benefit of the Factory Method pattern?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It simplifies the construction of complex objects."
+      },
+      {
+        "key": "B",
+        "text": "All of the above."
+      },
+      {
+        "key": "C",
+        "text": "It reduces the coupling between the client and the concrete classes."
+      },
+      {
+        "key": "D",
+        "text": "It allows for the creation of objects without exposing the instantiation logic to the client."
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Lợi ích chính của mẫu Factory Method là nó cho phép tạo ra các đối tượng mà không cần để lộ logic khởi tạo (instantiation logic) cho client, giúp giảm sự phụ thuộc (coupling)."
+  },
+  {
+    "id": 117,
+    "question": "What are static files in ASP.NET Core API Project?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Images"
+      },
+      {
+        "key": "B",
+        "text": "JavaScript files"
+      },
+      {
+        "key": "C",
+        "text": "CSS files"
+      },
+      {
+        "key": "D",
+        "text": "None of the others"
+      },
+      {
+        "key": "E",
+        "text": "HTML files"
+      },
+      {
+        "key": "F",
+        "text": "All of the others"
+      }
+    ],
+    "correctAnswer": "F",
+    "explanation": "Trong dự án ASP.NET Core, các static files (tài nguyên tĩnh) bao gồm: file HTML, CSS, JavaScript, hình ảnh, v.v. Tất cả các phương án đều đúng."
+  },
+  {
+    "id": 118,
+    "question": "What is Model State?",
+    "options": [
+      {
+        "key": "A",
+        "text": "All of the others"
+      },
+      {
+        "key": "B",
+        "text": "None of the others"
+      },
+      {
+        "key": "C",
+        "text": "Errors that originate from model binding are generally data conversion errors."
+      },
+      {
+        "key": "D",
+        "text": "Model state represents errors that come from two subsystems: model binding and model validation."
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Model State trong ASP.NET Core chứa các lỗi phát sinh từ hai hệ thống: Model Binding (chuyển đổi dữ liệu thất bại) và Model Validation (dữ liệu không hợp lệ theo quy tắc)."
+  },
+  {
+    "id": 119,
+    "question": "Which OData query option that determine all attributes or properties to include in the fetched result:",
+    "options": [
+      {
+        "key": "A",
+        "text": "$selectall"
+      },
+      {
+        "key": "B",
+        "text": "$select"
+      },
+      {
+        "key": "C",
+        "text": "$inlinecount"
+      },
+      {
+        "key": "D",
+        "text": "$top"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Trong OData, toán tử truy vấn `$select` được sử dụng để chỉ định các thuộc tính (properties) cụ thể nào của một thực thể sẽ được trả về, giúp giảm kích thước payload."
+  },
+  {
+    "id": 120,
+    "question": "Choose the INCORRECT information about ControllerBase class in ASP.NET Core Web API.",
+    "options": [
+      {
+        "key": "A",
+        "text": "All othe the others."
+      },
+      {
+        "key": "B",
+        "text": "None of the others."
+      },
+      {
+        "key": "C",
+        "text": "A base class for an MVC controller without model support."
+      },
+      {
+        "key": "D",
+        "text": "The context associated with the current request for a controller."
+      },
+      {
+        "key": "E",
+        "text": "The context associated with the current session for a controller."
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "ControllerBase là lớp cơ sở cho các API controller không cần View. Do đó 'All of the others' là lựa chọn không chính xác vì ControllerBase không hỗ trợ các tính năng của MVC như Views hay Session theo mặc định."
+  },
+  {
+    "id": 121,
+    "question": "What are media type formatters in ASP.NET Core Web API?",
+    "options": [
+      {
+        "key": "A",
+        "text": "All of the others."
+      },
+      {
+        "key": "B",
+        "text": "XmlMediaTypeFormatter class handles HTML form URL-encoded datA)"
+      },
+      {
+        "key": "C",
+        "text": "Media type formatters are classes that are responsible for serialization datA)"
+      },
+      {
+        "key": "D",
+        "text": "The Web API cannot understand request data format in serializing request/response data and send data in a format that the client expects."
+      },
+      {
+        "key": "E",
+        "text": "JsonMediaTypeFormatter class handles both XML format and JSON format"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Media Type Formatters trong ASP.NET Core là các lớp chịu trách nhiệm tuần tự hóa (serialization) và giải tuần tự hóa dữ liệu request/response thành các định dạng (như JSON, XML) mà client mong đợi."
+  },
+  {
+    "id": 122,
+    "question": "The Singleton pattern is used to ensure that a class has only one instance and provides a global point of access to it. Which of the following statements is true about the Singleton pattern?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The Singleton class must have a private constructor."
+      },
+      {
+        "key": "B",
+        "text": "All of the above."
+      },
+      {
+        "key": "C",
+        "text": "The Singleton class is responsible for creating and maintaining its own unique instance."
+      },
+      {
+        "key": "D",
+        "text": "The Singleton class must have a public static method to access the single instance."
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Mẫu Singleton đảm bảo chỉ có duy nhất một instance của lớp. Để làm được điều này, lớp Singleton thường phải có constructor là private để ngăn tạo instance mới từ bên ngoài."
+  },
+  {
+    "id": 123,
+    "question": "What is the primary purpose of using design patterns in software development?",
+    "options": [
+      {
+        "key": "A",
+        "text": "To create complex objects"
+      },
+      {
+        "key": "B",
+        "text": "To provide reusable solutions for common problems D) To improve code readability"
+      },
+      {
+        "key": "C",
+        "text": "To enforce a specific class structure"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Mục đích chính của việc sử dụng Design Patterns là cung cấp các giải pháp có thể tái sử dụng (reusable solutions) cho các vấn đề thiết kế phần mềm thường gặp."
+  },
+  {
+    "id": 124,
+    "question": "Choose the correct information about Async programming with ASP.NET Web API.",
+    "options": [
+      {
+        "key": "A",
+        "text": "Async programming is a parallel programming technique that allows the working process to run separately from the main application threaD)"
+      },
+      {
+        "key": "B",
+        "text": "Using async programming, we can enhance the responsiveness of our application."
+      },
+      {
+        "key": "C",
+        "text": "Using async programming, we can avoid performance bottlenecks."
+      },
+      {
+        "key": "D",
+        "text": "All of the others."
+      },
+      {
+        "key": "E",
+        "text": "None of the others."
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Lập trình bất đồng bộ (Async) trong ASP.NET Web API giúp giải phóng thread chính, tránh nút thắt cổ chai (bottlenecks) và tăng khả năng phản hồi (responsiveness) của ứng dụng."
+  },
+  {
+    "id": 125,
+    "question": "Which query function that the Web API is not support standard OData string?",
+    "options": [
+      {
+        "key": "A",
+        "text": "startswith: $filter=startswith(name,'a')"
+      },
+      {
+        "key": "B",
+        "text": "endswith: $filter=endswith(name,'InC)')"
+      },
+      {
+        "key": "C",
+        "text": "containsIgnoreCase: $filter=containsignorecase(name,'(Sample)')"
+      },
+      {
+        "key": "D",
+        "text": "contains: $filter=contains(name,'(sample)')"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Trong chuẩn OData, hàm `contains`, `startswith`, và `endswith` được hỗ trợ mặc định. Tuy nhiên, `containsignorecase` không phải là một hàm chuẩn trong đặc tả OData."
+  },
+  {
+    "id": 126,
+    "question": "Which of the following is executed on each request in RESTful with ASP.NET Core Web API?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Main method"
+      },
+      {
+        "key": "B",
+        "text": "Startup"
+      },
+      {
+        "key": "C",
+        "text": "All"
+      },
+      {
+        "key": "D",
+        "text": "Middlewares"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Middlewares là các thành phần được lắp ráp vào pipeline của ứng dụng ASP.NET Core để xử lý các request và response. Mỗi request HTTP gửi tới API đều sẽ đi qua Middlewares."
+  },
+  {
+    "id": 127,
+    "question": "Which file is the application configuration file in ASP.NET Core Web Application or Web API used to store the configuration settings (database connections strings, any application scope global variables)?",
+    "options": [
+      {
+        "key": "A",
+        "text": "appsettings.Development.json"
+      },
+      {
+        "key": "B",
+        "text": "Startup.cs"
+      },
+      {
+        "key": "C",
+        "text": "appsettings.json"
+      },
+      {
+        "key": "D",
+        "text": "Program.cs"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Trong ASP.NET Core, file `appsettings.json` được sử dụng để lưu trữ các cấu hình của ứng dụng (như chuỗi kết nối database, các biến môi trường)."
+  },
+  {
+    "id": 128,
+    "question": "Choose the INCORRECT information about Validation Built-in attributes. The attributes can get from the System.ComponentModel.DataAnnotations namespacE)",
+    "options": [
+      {
+        "key": "A",
+        "text": "[EmailAddress]: Validates that the property has an email format."
+      },
+      {
+        "key": "B",
+        "text": "[Required]: Validates that the field is not null."
+      },
+      {
+        "key": "C",
+        "text": "[Compare]: Validates that two properties in a model match."
+      },
+      {
+        "key": "D",
+        "text": "[RegularExpression]: Validates that the property value matches a specified rangE)"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Attribute `[RegularExpression]` được dùng để xác thực chuỗi nhập vào có khớp với một biểu thức chính quy (Regex) hay không, chứ không phải để kiểm tra một khoảng giá trị như `[Range]`."
+  },
+  {
+    "id": 129,
+    "question": "In the case the request is simple, input parameter are of type int, string, boolean, GUID, decimal, etC) and is available in the URL, then such kind of request is mapped to what model binding?",
+    "options": [
+      {
+        "key": "A",
+        "text": "complex model binder"
+      },
+      {
+        "key": "B",
+        "text": "primitive model binding"
+      },
+      {
+        "key": "C",
+        "text": "combination model binding"
+      },
+      {
+        "key": "D",
+        "text": "extraction model binder"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Khi các tham số đầu vào là kiểu nguyên thủy (primitive types) như int, string, boolean... và xuất hiện trên URL, ASP.NET Core sẽ tự động sử dụng Primitive Model Binding."
+  },
+  {
+    "id": 130,
+    "question": "JavaScript is a powerful programming language for calling ASP.NET Core Web API. Which object is used to call the Web API from JavaScript object?",
+    "options": [
+      {
+        "key": "A",
+        "text": "XMLHttpResponseObject (XHR) object"
+      },
+      {
+        "key": "B",
+        "text": "XMLHttpRequestObject (XHR)"
+      },
+      {
+        "key": "C",
+        "text": "XMLHttpResponse (XHR) object"
+      },
+      {
+        "key": "D",
+        "text": "XMLHttpRequest (XHR) object"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Đối tượng XMLHttpRequest (XHR) là một API tích hợp trên trình duyệt web dùng để thực hiện các yêu cầu HTTP (gọi API) từ JavaScript tới server một cách bất đồng bộ."
+  },
+  {
+    "id": 131,
+    "question": "gRPC services couldn't be hosted by which ASP.NET Core server?",
+    "options": [
+      {
+        "key": "A",
+        "text": "TestServer"
+      },
+      {
+        "key": "B",
+        "text": "Kestrel"
+      },
+      {
+        "key": "C",
+        "text": "HTTP .sys"
+      },
+      {
+        "key": "D",
+        "text": "None of the others"
+      },
+      {
+        "key": "E",
+        "text": "IIS"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "HTTP.sys là một web server dành riêng cho Windows. Tài liệu chính thức lưu ý rằng gRPC hiện tại không được hỗ trợ khi host trực tiếp trên HTTP.sys do các hạn chế về HTTP/2 trailing headers."
+  },
+  {
+    "id": 132,
+    "question": "What is JSON?",
+    "options": [
+      {
+        "key": "A",
+        "text": "JSON (JavaScript Object Notation): It is used for representing structured information such as documents, data, configuration, etC)"
+      },
+      {
+        "key": "B",
+        "text": "JSON (JavaScript Object Notation): It is especially designed to store and transport datA)"
+      },
+      {
+        "key": "C",
+        "text": "None of the others."
+      },
+      {
+        "key": "D",
+        "text": "JSON (JavaScript Object Notation): It is a lightweight format designed to store and transport datA)"
+      },
+      {
+        "key": "E",
+        "text": "All of the others."
+      },
+      {
+        "key": "F",
+        "text": "JSON (JavaScript Object Notation): It is similar to HTML but is more flexible than HTML because it allows users to create their own custom tags."
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "JSON (JavaScript Object Notation) là một định dạng dữ liệu nhẹ, dễ đọc đối với con người và dễ phân tích đối với máy tính, được thiết kế đặc biệt để lưu trữ và truyền tải dữ liệu."
+  },
+  {
+    "id": 133,
+    "question": "Message Contract can be applied to ...?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Service"
+      },
+      {
+        "key": "B",
+        "text": "Class"
+      },
+      {
+        "key": "C",
+        "text": "Interface"
+      },
+      {
+        "key": "D",
+        "text": "Method"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Trong WCF, thuộc tính `[MessageContract]` được áp dụng ở mức Lớp (Class) hoặc Struct để xác định cấu trúc chính xác của thông báo SOAP (bao gồm header và body)."
+  },
+  {
+    "id": 134,
+    "question": "What is Docker?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Docker is an open-source project for automating the deployment of applications as portable, selfsufficient containers that can run on the cloud or on-premises."
+      },
+      {
+        "key": "B",
+        "text": "Docker is an Oracle open source project..."
+      },
+      {
+        "key": "C",
+        "text": "Docker is an IBM open-source project..."
+      },
+      {
+        "key": "D",
+        "text": "Docker is an Microsoft project..."
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Docker là một dự án mã nguồn mở (open-source) giúp tự động hóa việc triển khai các ứng dụng bên trong các container (vùng chứa) phần mềm độc lập và di động."
+  },
+  {
+    "id": 135,
+    "question": "Which of the following is not a category of the Gang of Four (GoF) design patterns?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Structural"
+      },
+      {
+        "key": "B",
+        "text": "Behavioral"
+      },
+      {
+        "key": "C",
+        "text": "Creational"
+      },
+      {
+        "key": "D",
+        "text": "Functional"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Theo Gang of Four (GoF), Design Patterns được chia thành 3 nhóm chính: Creational, Structural và Behavioral. Functional không phải là một nhóm trong GoF."
+  },
+  {
+    "id": 136,
+    "question": "Which of the following is a key benefit of using design patterns in software development?",
+    "options": [
+      {
+        "key": "A",
+        "text": "They improve code readability and maintainability."
+      },
+      {
+        "key": "B",
+        "text": "They provide general solutions to common problems."
+      },
+      {
+        "key": "C",
+        "text": "They speed up the development process."
+      },
+      {
+        "key": "D",
+        "text": "All of the above."
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Lợi ích của việc sử dụng Design Patterns bao gồm: cải thiện khả năng đọc và bảo trì mã nguồn, cung cấp giải pháp chung cho các vấn đề thường gặp và tăng tốc quá trình phát triển."
+  }
+];
