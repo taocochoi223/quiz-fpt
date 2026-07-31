@@ -574,15 +574,15 @@ export default function LearnPage() {
     );
   }
 
-  if (!currentQ) return null;
-
-  const progressPercent = (completedCount / totalActiveQuestions) * 100;
-  const currentSubject = mode === "subject" ? subjects.find(s => s.id === selectedSubjectId) : null;
-
   const shuffledOptions = React.useMemo(() => {
     if (!currentQ) return [];
     return shuffle(currentQ.options);
   }, [currentQ?.id]);
+
+  if (!currentQ) return null;
+
+  const progressPercent = (completedCount / totalActiveQuestions) * 100;
+  const currentSubject = mode === "subject" ? subjects.find(s => s.id === selectedSubjectId) : null;
 
   return (
     <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-8 pt-4 pb-20">

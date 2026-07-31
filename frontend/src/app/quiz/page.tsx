@@ -335,11 +335,12 @@ export default function QuizPage() {
     );
   }
 
-  if (!currentQ) return null;
-
   const shuffledOptions = React.useMemo(() => {
+    if (!currentQ) return [];
     return shuffleArray(currentQ.options);
-  }, [currentQ.uniqueId]);
+  }, [currentQ?.uniqueId]);
+
+  if (!currentQ) return null;
 
   const currentAnswer = answers[currentQ.uniqueId];
 
