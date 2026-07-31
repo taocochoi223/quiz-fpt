@@ -914,23 +914,7 @@ export const questions_paper2: Question[] = [
       },
       {
         key: "D",
-        text: "The process where the client specifies which data it wants to post using the Content-Type header.\n\n64Which communication protocol is often chosen for high-performance, internal, service-to-service communication due to its\nuse of HTTP/2 and binary serialization?"
-      },
-      {
-        key: "A",
-        text: "SOAP"
-      },
-      {
-        key: "B",
-        text: "REST over HTTP/1.1 with JSON"
-      },
-      {
-        key: "C",
-        text: "gRPC"
-      },
-      {
-        key: "D",
-        text: "FTP"
+        text: "The process where the client specifies which data it wants to post using the Content-Type header."
       }
     ],
     correctAnswer: "B",
