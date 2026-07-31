@@ -30,6 +30,12 @@ export default function QuizPage() {
   const [answers, setAnswers] = React.useState<Record<string, string>>({});
   const [isFinished, setIsFinished] = React.useState(false);
 
+  const currentQ = quizSet[currentIndex] || null;
+  const shuffledOptions = React.useMemo(() => {
+    if (!currentQ) return [];
+    return shuffleArray(currentQ.options);
+  }, [currentQ?.uniqueId]);
+
   const startQuiz = () => {
     let activeQuestions: any[] = [];
     if (selectedSubjectId === "full") {
@@ -186,7 +192,6 @@ export default function QuizPage() {
     );
   }
 
-  const currentQ = quizSet[currentIndex];
   const progressPercent = (Object.keys(answers).length / quizSet.length) * 100;
 
   const handleSelect = (key: string) => {
@@ -334,11 +339,6 @@ export default function QuizPage() {
       </div>
     );
   }
-
-  const shuffledOptions = React.useMemo(() => {
-    if (!currentQ) return [];
-    return shuffleArray(currentQ.options);
-  }, [currentQ?.uniqueId]);
 
   if (!currentQ) return null;
 

@@ -72,6 +72,14 @@ export default function LearnPage() {
     activeQuestions = subjects.find(s => s.id === "prn232")?.papers.flatMap(p => p.questions) || [];
   }
 
+  const currentQId = queue[qIndex];
+  const currentQ = activeQuestions.find(q => q.id === currentQId) || null;
+
+  const shuffledOptions = React.useMemo(() => {
+    if (!currentQ || !currentQ.options) return [];
+    return shuffle(currentQ.options);
+  }, [currentQ?.id]);
+
   const [hasSavedSessions, setHasSavedSessions] = React.useState<Record<string, boolean>>({});
 
   React.useEffect(() => {
@@ -180,9 +188,6 @@ export default function LearnPage() {
       initRound(true, paperId, subjQs);
     }, 100);
   };
-
-  const currentQId = queue[qIndex];
-  const currentQ = activeQuestions.find(q => q.id === currentQId);
 
   const handleSelect = (key: string) => {
     if (selectedOpt || !currentQ) return;
@@ -573,11 +578,6 @@ export default function LearnPage() {
       </div>
     );
   }
-
-  const shuffledOptions = React.useMemo(() => {
-    if (!currentQ) return [];
-    return shuffle(currentQ.options);
-  }, [currentQ?.id]);
 
   if (!currentQ) return null;
 
