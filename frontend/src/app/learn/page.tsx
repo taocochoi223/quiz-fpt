@@ -688,7 +688,7 @@ export default function LearnPage() {
                     isSelected && !isCorrectOpt ? "bg-destructive text-destructive-foreground border-destructive" : 
                     isCorrectOpt && selectedOpt ? "bg-emerald-500 text-white border-emerald-500" : "bg-muted text-muted-foreground border-border"
                   }`}>
-                    {opt.key}
+                    {String.fromCharCode(65 + idx)}
                   </div>
                   <div className="flex-1 whitespace-pre-wrap text-lg md:text-xl leading-relaxed pt-1">{opt.text}</div>
                   {icon}

@@ -410,7 +410,7 @@ export default function QuizPage() {
                   className={`flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${stateClass}`}
                 >
                   <div className={`flex items-center justify-center w-12 h-12 text-lg rounded-lg shrink-0 font-bold transition-colors ${badgeClass}`}>
-                    {opt.key}
+                    {String.fromCharCode(65 + idx)}
                   </div>
                   <div className="flex-1 whitespace-pre-wrap text-lg md:text-xl leading-relaxed">{opt.text}</div>
                 </motion.div>
