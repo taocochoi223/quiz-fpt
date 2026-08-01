@@ -2366,11 +2366,15 @@ export const questions_paper3: Question[] = [
       },
       {
         "key": "B",
-        "text": "To provide reusable solutions for common problems D) To improve code readability"
+        "text": "To provide reusable solutions for common problems"
       },
       {
         "key": "C",
         "text": "To enforce a specific class structure"
+      },
+      {
+        "key": "D",
+        "text": "To improve code readability"
       }
     ],
     "correctAnswer": "B",
