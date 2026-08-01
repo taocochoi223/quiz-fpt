@@ -43,6 +43,9 @@ export default function LearnPage() {
   const [currentBatchIds, setCurrentBatchIds] = React.useState<any[]>([]);
   const [initialWrongIds, setInitialWrongIds] = React.useState<any[]>([]);
   
+  const [globalWrongIds, setGlobalWrongIds] = React.useState<any[]>([]);
+  const [isFinalReview, setIsFinalReview] = React.useState(false);
+  
   const [selectedOpt, setSelectedOpt] = React.useState<string | null>(null);
   const [shake, setShake] = React.useState(false);
   const [showResumeDialog, setShowResumeDialog] = React.useState(false);
@@ -97,14 +100,14 @@ export default function LearnPage() {
 
   React.useEffect(() => {
     if (mode === "select" || (queue.length === 0 && completedCount > 0)) return;
-    const session = { mode, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds };
+    const session = { mode, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview };
     
     if (mode === "subject" && selectedSubjectId) {
       localStorage.setItem(`learn_session_${selectedSubjectId}`, JSON.stringify(session));
     } else if (mode === "full") {
       localStorage.setItem("learn_session_full", JSON.stringify(session));
     }
-  }, [mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds]);
+  }, [mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview]);
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -147,6 +150,8 @@ export default function LearnPage() {
         setCompletedCount(data.completedCount);
         setCurrentBatchIds(data.currentBatchIds || data.queue);
         setInitialWrongIds(data.initialWrongIds || data.batchWrongIds || []);
+        setGlobalWrongIds(data.globalWrongIds || []);
+        setIsFinalReview(data.isFinalReview || false);
       } catch (e) {
         console.error("Failed to parse session", e);
       }
@@ -178,6 +183,8 @@ export default function LearnPage() {
     setQIndex(0);
     setBatchWrongIds([]);
     setInitialWrongIds([]);
+    setGlobalWrongIds([]);
+    setIsFinalReview(false);
     setIsBatchRetry(false);
     setCompletedCount(0);
     setSelectedOpt(null);
@@ -219,7 +226,9 @@ export default function LearnPage() {
     if (isCorrect) {
       playCorrectSound();
       toast.success("Chính xác!", { duration: 800 });
-      setCompletedCount(c => c + 1);
+      if (!isFinalReview) {
+        setCompletedCount(c => c + 1);
+      }
       setTimeout(() => {
         advance();
       }, 1200);
@@ -233,6 +242,9 @@ export default function LearnPage() {
       }
       if (!isBatchRetry && !initialWrongIds.includes(currentQId)) {
         setInitialWrongIds(prev => [...prev, currentQId]);
+      }
+      if (!isBatchRetry && !isFinalReview && !globalWrongIds.includes(currentQId)) {
+        setGlobalWrongIds(prev => [...prev, currentQId]);
       }
     }
   };
@@ -257,7 +269,9 @@ export default function LearnPage() {
   const handleBatchEnd = () => {
     setShowSegmentSummary(false);
     if (pendingIds.length === 0) {
-      toast.success("Chúc mừng! Bạn đã hoàn thành toàn bộ câu hỏi!");
+      if (!isFinalReview) {
+        toast.success("Chúc mừng! Bạn đã hoàn thành toàn bộ câu hỏi!");
+      }
       if (mode === "subject" && selectedSubjectId) {
         localStorage.removeItem(`learn_session_${selectedSubjectId}`);
         if (selectedSubjectId === "prn232") localStorage.removeItem("learn_session");
@@ -324,7 +338,21 @@ export default function LearnPage() {
     setCurrentBatchIds(newQueue);
     setPendingIds(ordered.slice(spotsLeftInBatch));
     setSelectedOpt(null);
-    toast.success("Đã sắp xếp thứ tự các câu còn lại!");
+    toast.success("Đã trộn lại các câu chưa làm!");
+  };
+
+  const startFinalReview = () => {
+    setIsFinalReview(true);
+    const BATCH_SIZE = 7;
+    const initialQ = globalWrongIds.slice(0, BATCH_SIZE);
+    setPendingIds(globalWrongIds.slice(BATCH_SIZE));
+    setQueue(initialQ);
+    setCurrentBatchIds(initialQ);
+    setQIndex(0);
+    setBatchWrongIds([]);
+    setInitialWrongIds([]);
+    setIsBatchRetry(false);
+    setSelectedOpt(null);
   };
 
   const handleRestart = () => {
@@ -584,20 +612,63 @@ export default function LearnPage() {
   }
 
   if (!currentQ && queue.length === 0 && completedCount > 0) {
+    if (isFinalReview) {
+      return (
+        <div className="flex flex-col items-center justify-center h-full max-w-xl mx-auto w-full gap-6 pb-20 pt-10 text-center">
+          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", bounce: 0.5 }}>
+            <div className="w-24 h-24 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">
+              <Check className="w-12 h-12 text-emerald-500" />
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight mb-2">Hoàn thành ôn tập!</h1>
+            <p className="text-muted-foreground text-lg mb-8">Bạn đã khắc phục xong tất cả các câu sai.</p>
+            <div className="flex gap-4 justify-center">
+              <Button onClick={handleRestart} className="rounded-full px-8">
+                <RotateCcw className="w-4 h-4 mr-2" /> Học bài khác
+              </Button>
+              <Link href="/" className="inline-flex h-10 items-center justify-center rounded-full border border-input bg-background px-8 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
+                Về trang chủ
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      );
+    }
+
+    const firstAttemptCorrect = totalActiveQuestions - globalWrongIds.length;
+    const accuracy = totalActiveQuestions > 0 ? (firstAttemptCorrect / totalActiveQuestions) * 100 : 0;
+
     return (
-      <div className="flex flex-col items-center justify-center h-full max-w-xl mx-auto w-full gap-6 pb-20 pt-10 text-center">
-        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", bounce: 0.5 }}>
-          <div className="w-24 h-24 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">
-            <Check className="w-12 h-12 text-emerald-500" />
+      <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto w-full gap-6 pb-20 pt-4 text-center">
+        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-full flex flex-col items-center">
+          <div className="w-20 h-20 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+            <GraduationCap className="w-10 h-10 text-emerald-500" />
           </div>
-          <h1 className="text-3xl font-bold tracking-tight mb-2">Hoàn thành xuất sắc!</h1>
-          <p className="text-muted-foreground text-lg mb-8">Bạn đã học xong {totalActiveQuestions} câu hỏi.</p>
-          <div className="flex gap-4 justify-center">
-            <Button onClick={handleRestart} className="rounded-full px-8">
-              <RotateCcw className="w-4 h-4 mr-2" /> Chọn môn khác
-            </Button>
-            <Link href="/" className="inline-flex h-10 items-center justify-center rounded-full border border-input bg-background px-8 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
-              Về trang chủ
+          <h1 className="text-3xl font-bold tracking-tight mb-2">Tổng kết bài học</h1>
+          <p className="text-muted-foreground text-lg mb-8">Bạn đã hoàn thành {totalActiveQuestions} câu hỏi trong bài này.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mb-8">
+            <Card className="p-6 flex flex-col items-center justify-center bg-card border-2">
+              <div className="text-4xl font-bold text-primary mb-2">{accuracy.toFixed(0)}%</div>
+              <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Độ chính xác</div>
+            </Card>
+            <Card className="p-6 flex flex-col items-center justify-center bg-emerald-500/5 border-2 border-emerald-500/20">
+              <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">{firstAttemptCorrect}</div>
+              <div className="text-sm font-medium text-emerald-600/80 dark:text-emerald-400/80 uppercase tracking-wider">Làm đúng ngay</div>
+            </Card>
+            <Card className="p-6 flex flex-col items-center justify-center bg-destructive/5 border-2 border-destructive/20">
+              <div className="text-4xl font-bold text-destructive mb-2">{globalWrongIds.length}</div>
+              <div className="text-sm font-medium text-destructive/80 uppercase tracking-wider">Làm sai (cần ôn)</div>
+            </Card>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">
+            {globalWrongIds.length > 0 && (
+              <Button onClick={startFinalReview} className="rounded-full px-8 h-12 text-lg w-full sm:w-auto shadow-md">
+                <RotateCcw className="w-5 h-5 mr-2" /> Ôn lại {globalWrongIds.length} câu sai
+              </Button>
+            )}
+            <Link href="/" className="inline-flex h-12 items-center justify-center rounded-full border-2 border-input bg-background px-8 text-base font-medium hover:bg-accent hover:text-accent-foreground transition-colors w-full sm:w-auto">
+              Đóng
             </Link>
           </div>
         </motion.div>
