@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, X, RotateCcw, Shuffle, ListOrdered, ArrowRight, BookOpen, Bot, Sparkles, Loader2, GraduationCap } from "lucide-react";
+import { Check, X, RotateCcw, Shuffle, ListOrdered, ArrowRight, BookOpen, Bot, Sparkles, Loader2, GraduationCap, Settings } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -45,6 +45,11 @@ export default function LearnPage() {
   
   const [globalWrongIds, setGlobalWrongIds] = React.useState<any[]>([]);
   const [isFinalReview, setIsFinalReview] = React.useState(false);
+  const [totalQuestions, setTotalQuestions] = React.useState(0);
+  
+  const [customCount, setCustomCount] = React.useState<number | "">("");
+  const [customSubjectId, setCustomSubjectId] = React.useState<string>("all");
+  const [customPaperId, setCustomPaperId] = React.useState<string>("all");
   
   const [selectedOpt, setSelectedOpt] = React.useState<string | null>(null);
   const [shake, setShake] = React.useState(false);
@@ -100,14 +105,14 @@ export default function LearnPage() {
 
   React.useEffect(() => {
     if (mode === "select" || (queue.length === 0 && completedCount > 0)) return;
-    const session = { mode, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview };
+    const session = { mode, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
     
     if (mode === "subject" && selectedSubjectId) {
       localStorage.setItem(`learn_session_${selectedSubjectId}`, JSON.stringify(session));
     } else if (mode === "full") {
       localStorage.setItem("learn_session_full", JSON.stringify(session));
     }
-  }, [mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview]);
+  }, [mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions]);
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -152,6 +157,7 @@ export default function LearnPage() {
         setInitialWrongIds(data.initialWrongIds || data.batchWrongIds || []);
         setGlobalWrongIds(data.globalWrongIds || []);
         setIsFinalReview(data.isFinalReview || false);
+        setTotalQuestions(data.totalQuestions || 0);
       } catch (e) {
         console.error("Failed to parse session", e);
       }
@@ -188,9 +194,10 @@ export default function LearnPage() {
     setIsBatchRetry(false);
     setCompletedCount(0);
     setSelectedOpt(null);
+    setTotalQuestions(ids.length);
   }, []);
 
-  const handleStartMode = (selectedMode: "full" | "subject", subjectId: string | null = null, paperId: string | null = null) => {
+  const handleStartMode = (selectedMode: "full" | "subject", subjectId: string | null = null, paperId: string | null = null, customLimit?: number) => {
     setMode(selectedMode);
     setSelectedSubjectId(subjectId);
     setActivePaperId(paperId);
@@ -207,6 +214,10 @@ export default function LearnPage() {
       }
     } else if (selectedMode === "full") {
       subjQs = subjects.flatMap(s => s.papers.flatMap(p => p.questions));
+    }
+
+    if (customLimit && customLimit > 0) {
+      subjQs = shuffle([...subjQs]).slice(0, customLimit);
     }
 
     setTimeout(() => {
@@ -403,7 +414,7 @@ export default function LearnPage() {
     }
   };
 
-  const totalActiveQuestions = activeQuestions.length;
+  const totalActiveQuestions = totalQuestions || activeQuestions.length;
 
   if (showResumeDialog) {
     return (
@@ -543,6 +554,85 @@ export default function LearnPage() {
           transition={{ delay: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
         >
+          <Card 
+            className={`flex flex-col p-6 md:p-8 items-center text-center gap-4 transition-all ${expandedCard === 'custom' ? 'border-primary shadow-lg ring-2 ring-primary/20 md:col-span-2 lg:col-span-3' : 'cursor-pointer hover:border-primary/50 hover:shadow-lg group'}`}
+            onClick={() => setExpandedCard('custom')}
+          >
+            <div className={`flex flex-col md:flex-row items-center gap-4 w-full ${expandedCard === 'custom' ? 'md:justify-between' : 'justify-center'}`}>
+              <div className="flex flex-col md:flex-row items-center gap-4">
+                <div className="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center transition-transform group-hover:scale-110 shrink-0">
+                  <Settings className="w-8 h-8" />
+                </div>
+                <div className={expandedCard === 'custom' ? 'text-center md:text-left' : ''}>
+                  <h3 className="text-xl font-bold mb-1">Tùy chỉnh luyện tập</h3>
+                  <p className="text-sm text-muted-foreground">Chọn số câu và phạm vi học.</p>
+                </div>
+              </div>
+            </div>
+            
+            {expandedCard === 'custom' && (
+              <div className="w-full mt-4 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2 text-left">
+                <div className="h-px w-full bg-border" />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-medium">Số lượng câu hỏi</label>
+                    <input 
+                      type="number" 
+                      min="1"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      value={customCount}
+                      onChange={(e) => setCustomCount(e.target.value === "" ? "" : parseInt(e.target.value))}
+                      placeholder="VD: 20"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-medium">Môn học</label>
+                    <select 
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      value={customSubjectId}
+                      onChange={(e) => {
+                        setCustomSubjectId(e.target.value);
+                        setCustomPaperId("all");
+                      }}
+                    >
+                      <option value="all">Tất cả môn</option>
+                      {subjects.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
+                    </select>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-medium">Đề thi (tùy chọn)</label>
+                    <select 
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      value={customPaperId}
+                      onChange={(e) => setCustomPaperId(e.target.value)}
+                      disabled={customSubjectId === "all"}
+                    >
+                      <option value="all">Tất cả đề</option>
+                      {customSubjectId !== "all" && subjects.find(s => s.id === customSubjectId)?.papers.map(p => (
+                        <option key={p.id} value={p.id}>{p.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="flex justify-end mt-2">
+                  <Button 
+                    className="rounded-full px-8"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const limit = customCount === "" ? undefined : customCount;
+                      if (customSubjectId === "all") {
+                        handleStartMode("full", null, null, limit);
+                      } else {
+                        handleStartMode("subject", customSubjectId, customPaperId === "all" ? null : customPaperId, limit);
+                      }
+                    }}
+                  >
+                    Bắt đầu luyện tập
+                  </Button>
+                </div>
+              </div>
+            )}
+          </Card>
           {subjects.map(subj => {
             const isExpanded = expandedCard === subj.id;
             const hasSession = hasSavedSessions[subj.id];
