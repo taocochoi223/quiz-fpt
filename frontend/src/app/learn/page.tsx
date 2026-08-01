@@ -106,6 +106,24 @@ export default function LearnPage() {
     }
   }, [mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds]);
 
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+      if (e.key === "Enter" || e.key === " ") {
+        if (showSegmentSummary) {
+          e.preventDefault();
+          handleBatchEnd();
+        } else if (selectedOpt && currentQ && selectedOpt !== currentQ.correctAnswer) {
+          e.preventDefault();
+          advance();
+        }
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  });
+
   const resumeSession = () => {
     let saved = null;
     if (resumeSubjectId) {
@@ -380,11 +398,19 @@ export default function LearnPage() {
   if (showSegmentSummary) {
     return (
       <div className="flex flex-col h-full max-w-3xl mx-auto w-full gap-6 pt-4 pb-20">
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-2">
-          <h1 className="text-3xl font-bold tracking-tight text-center">
-            Tổng kết chặng {isBatchRetry ? "(Ôn tập)" : ""}
-          </h1>
-          <p className="text-muted-foreground text-center mb-4">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-2 relative">
+          <div className="flex justify-between items-center w-full">
+            <div className="w-24 hidden md:block"></div>
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-center flex-1">
+              Tổng kết chặng {isBatchRetry ? "(Ôn tập)" : ""}
+            </h1>
+            <div className="w-auto md:w-24 flex justify-end">
+              <Button onClick={handleBatchEnd} variant="outline" size="sm" className="rounded-full bg-background shadow-sm hover:bg-muted">
+                Bỏ qua <ArrowRight className="w-4 h-4 ml-1" />
+              </Button>
+            </div>
+          </div>
+          <p className="text-muted-foreground text-center mb-4 mt-2">
             Dưới đây là các câu hỏi bạn vừa làm. Hãy xem lại các câu sai (màu đỏ) nhé!
           </p>
         </motion.div>
