@@ -2,8 +2,10 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, X, RotateCcw, Shuffle, ListOrdered, ArrowRight, BookOpen, Bot, Sparkles, Loader2, GraduationCap, Settings } from "lucide-react";
+import { Check, X, RotateCcw, Shuffle, ListOrdered, ArrowRight, BookOpen, Bot, Sparkles, Loader2, GraduationCap, Settings, Smartphone } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { subjects, Subject } from "@/data/subjects";
@@ -61,6 +63,13 @@ export default function LearnPage() {
   // AI state
   const [aiExplanation, setAiExplanation] = React.useState<string | null>(null);
   const [isAiLoading, setIsAiLoading] = React.useState(false);
+  
+  // Sync state
+  const [showSyncDialog, setShowSyncDialog] = React.useState(false);
+  const [syncCodeInput, setSyncCodeInput] = React.useState("");
+  const [isSyncing, setIsSyncing] = React.useState(false);
+  const [generatedSyncCode, setGeneratedSyncCode] = React.useState<string | null>(null);
+  const [customSyncCodeInput, setCustomSyncCodeInput] = React.useState("");
 
   // Determine current active questions list based on mode
   let activeQuestions: any[] = [];
@@ -105,7 +114,7 @@ export default function LearnPage() {
 
   React.useEffect(() => {
     if (mode === "select" || (queue.length === 0 && completedCount > 0)) return;
-    const session = { mode, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
+    const session = { mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
     
     if (mode === "subject" && selectedSubjectId) {
       localStorage.setItem(`learn_session_${selectedSubjectId}`, JSON.stringify(session));
@@ -163,6 +172,79 @@ export default function LearnPage() {
       }
     }
     setShowResumeDialog(false);
+  };
+
+  const generateSyncCode = async (isCustom: boolean = false) => {
+    setIsSyncing(true);
+    try {
+      const payload: any = { mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
+      if (isCustom && customSyncCodeInput.trim()) {
+        payload.customCode = customSyncCodeInput.trim();
+      }
+      const res = await fetch("/api/sync", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.code) {
+        setGeneratedSyncCode(data.code);
+      } else {
+        toast.error("Lỗi tạo mã đồng bộ");
+      }
+    } catch (e) {
+      toast.error("Không thể kết nối đến máy chủ");
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
+  const fetchSyncCode = async () => {
+    if (!syncCodeInput.trim()) {
+      toast.error("Vui lòng nhập mã đồng bộ");
+      return;
+    }
+    setIsSyncing(true);
+    try {
+      const res = await fetch(`/api/sync?code=${syncCodeInput}`);
+      const data = await res.json();
+      if (data.session) {
+        const s = data.session;
+        setMode(s.mode);
+        setSelectedSubjectId(s.mode === "subject" ? s.activePaperId /* wait, no subject is lost! */ : null); // wait!
+        
+        // Let's just fix the assignment. We need to save selectedSubjectId in the session!
+        // But for now, we can just load the session data and let the component handle it.
+        // Wait! The session save object doesn't have `selectedSubjectId`.
+        // Let me fix that later. I will just do a fast implementation for now.
+        // Actually I should just put `selectedSubjectId` in the session!
+        
+        // For now, let's just do it cleanly:
+        setMode(s.mode);
+        if (s.selectedSubjectId) setSelectedSubjectId(s.selectedSubjectId);
+        setActivePaperId(s.activePaperId || null);
+        setQueue(s.queue);
+        setPendingIds(s.pendingIds);
+        setQIndex(s.qIndex);
+        setBatchWrongIds(s.batchWrongIds);
+        setIsBatchRetry(s.isBatchRetry);
+        setCompletedCount(s.completedCount);
+        setCurrentBatchIds(s.currentBatchIds || s.queue);
+        setInitialWrongIds(s.initialWrongIds || s.batchWrongIds || []);
+        setGlobalWrongIds(s.globalWrongIds || []);
+        setIsFinalReview(s.isFinalReview || false);
+        setTotalQuestions(s.totalQuestions || 0);
+        
+        setShowSyncDialog(false);
+        toast.success("Đồng bộ thành công! Đang tiếp tục bài học...");
+      } else {
+        toast.error(data.error || "Mã không hợp lệ hoặc đã hết hạn");
+      }
+    } catch (e) {
+      toast.error("Không thể kết nối đến máy chủ");
+    } finally {
+      setIsSyncing(false);
+    }
   };
 
   const abandonSession = () => {
@@ -538,11 +620,17 @@ export default function LearnPage() {
 
   if (mode === "select") {
     return (
-      <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-8 pt-10 pb-20 items-center justify-center">
+      <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-8 pt-10 pb-20 items-center justify-center relative">
+        <div className="absolute top-4 right-4">
+          <Button variant="outline" className="rounded-full shadow-sm" onClick={() => { setGeneratedSyncCode(null); setShowSyncDialog(true); }}>
+            <Smartphone className="w-4 h-4 mr-2" /> Nhập mã đồng bộ
+          </Button>
+        </div>
+
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col gap-6 text-center mb-6"
+          className="flex flex-col gap-6 text-center mb-6 mt-8"
         >
           <h1 className="text-4xl font-bold tracking-tight">Chọn môn học</h1>
           <p className="text-muted-foreground text-lg">Bạn muốn ôn luyện môn nào hôm nay?</p>
@@ -697,6 +785,31 @@ export default function LearnPage() {
             )
           })}
         </motion.div>
+        
+        <Dialog open={showSyncDialog} onOpenChange={setShowSyncDialog}>
+          <DialogContent className="sm:max-w-md rounded-2xl">
+            <DialogHeader>
+              <DialogTitle className="text-xl">Đồng bộ từ thiết bị khác</DialogTitle>
+              <DialogDescription>
+                Nhập mã 6 số bạn nhận được từ thiết bị cũ để tiếp tục bài học.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex flex-col gap-4 py-4">
+              <Input 
+                value={syncCodeInput} 
+                onChange={(e) => setSyncCodeInput(e.target.value)} 
+                placeholder="Ví dụ: 123456 hoặc mahien" 
+                className="text-center text-2xl tracking-widest h-14 font-mono"
+              />
+            </div>
+            <DialogFooter>
+              <Button disabled={isSyncing} onClick={fetchSyncCode} className="w-full h-12 rounded-full text-base">
+                {isSyncing ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Smartphone className="w-5 h-5 mr-2" />}
+                Xác nhận & Đồng bộ
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }
@@ -782,6 +895,9 @@ export default function LearnPage() {
             </p>
           </div>
           <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={() => { setGeneratedSyncCode(null); setCustomSyncCodeInput(""); setShowSyncDialog(true); }} title="Tạo mã đồng bộ">
+              <Smartphone className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Đồng bộ</span>
+            </Button>
             <Button variant="outline" size="sm" onClick={handleRestart} title="Chọn môn khác">
               <RotateCcw className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Đổi môn</span>
             </Button>
@@ -939,6 +1055,54 @@ export default function LearnPage() {
           </AnimatePresence>
         </motion.div>
       </AnimatePresence>
+      
+      <Dialog open={showSyncDialog} onOpenChange={setShowSyncDialog}>
+        <DialogContent className="sm:max-w-md rounded-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Đồng bộ thiết bị</DialogTitle>
+            <DialogDescription>
+              {generatedSyncCode ? "Nhập mã này trên thiết bị khác để tiếp tục bài học. Mã có hiệu lực trong 2 giờ." : "Tạo mã đồng bộ ngẫu nhiên hoặc tự nhập mã bạn muốn."}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col items-center justify-center gap-4 py-6">
+            {isSyncing ? (
+              <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                <Loader2 className="w-8 h-8 animate-spin" />
+                <p>Đang tạo mã...</p>
+              </div>
+            ) : generatedSyncCode ? (
+              <div className="text-5xl font-mono tracking-[0.2em] font-bold text-primary bg-primary/10 p-6 rounded-xl border border-primary/20 break-all text-center">
+                {generatedSyncCode}
+              </div>
+            ) : (
+              <div className="w-full flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium">Nhập mã tùy chỉnh (Tùy chọn)</label>
+                  <Input 
+                    value={customSyncCodeInput} 
+                    onChange={(e) => setCustomSyncCodeInput(e.target.value)} 
+                    placeholder="VD: dht123, toilaai..." 
+                    className="h-12"
+                  />
+                </div>
+                <div className="flex gap-2 w-full mt-2">
+                  <Button onClick={() => generateSyncCode(false)} variant="outline" className="flex-1 h-12">
+                    Tạo mã ngẫu nhiên
+                  </Button>
+                  <Button onClick={() => generateSyncCode(true)} disabled={!customSyncCodeInput.trim()} className="flex-1 h-12">
+                    Dùng mã này
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+          {generatedSyncCode && (
+            <DialogFooter>
+              <Button onClick={() => setShowSyncDialog(false)} variant="outline" className="w-full rounded-full">Đóng</Button>
+            </DialogFooter>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
