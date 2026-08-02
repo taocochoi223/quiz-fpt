@@ -70,6 +70,7 @@ export default function LearnPage() {
   const [isSyncing, setIsSyncing] = React.useState(false);
   const [generatedSyncCode, setGeneratedSyncCode] = React.useState<string | null>(null);
   const [customSyncCodeInput, setCustomSyncCodeInput] = React.useState("");
+  const [lastSyncCode, setLastSyncCode] = React.useState<string | null>(null);
 
   // Determine current active questions list based on mode
   let activeQuestions: any[] = [];
@@ -110,6 +111,12 @@ export default function LearnPage() {
       sessions["prn232"] = true;
     }
     setHasSavedSessions(sessions);
+    
+    const savedSyncCode = localStorage.getItem("lastSyncCode");
+    if (savedSyncCode) {
+      setLastSyncCode(savedSyncCode);
+      setCustomSyncCodeInput(savedSyncCode);
+    }
   }, []);
 
   React.useEffect(() => {
@@ -174,12 +181,13 @@ export default function LearnPage() {
     setShowResumeDialog(false);
   };
 
-  const generateSyncCode = async (isCustom: boolean = false) => {
+  const generateSyncCode = async (isCustom: boolean = false, specificCode?: string) => {
     setIsSyncing(true);
     try {
       const payload: any = { mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
-      if (isCustom && customSyncCodeInput.trim()) {
-        payload.customCode = customSyncCodeInput.trim();
+      const codeToUse = specificCode || customSyncCodeInput.trim();
+      if (isCustom && codeToUse) {
+        payload.customCode = codeToUse;
       }
       const res = await fetch("/api/sync", {
         method: "POST",
@@ -188,7 +196,13 @@ export default function LearnPage() {
       });
       const data = await res.json();
       if (data.code) {
-        setGeneratedSyncCode(data.code);
+        setLastSyncCode(data.code);
+        localStorage.setItem("lastSyncCode", data.code);
+        if (specificCode) {
+          toast.success(`Đã lưu tiến độ vào mã: ${data.code}`);
+        } else {
+          setGeneratedSyncCode(data.code);
+        }
       } else {
         toast.error("Lỗi tạo mã đồng bộ");
       }
@@ -234,6 +248,9 @@ export default function LearnPage() {
         setGlobalWrongIds(s.globalWrongIds || []);
         setIsFinalReview(s.isFinalReview || false);
         setTotalQuestions(s.totalQuestions || 0);
+        
+        setLastSyncCode(syncCodeInput);
+        localStorage.setItem("lastSyncCode", syncCodeInput);
         
         setShowSyncDialog(false);
         toast.success("Đồng bộ thành công! Đang tiếp tục bài học...");
@@ -895,8 +912,14 @@ export default function LearnPage() {
             </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" onClick={() => { setGeneratedSyncCode(null); setCustomSyncCodeInput(""); setShowSyncDialog(true); }} title="Tạo mã đồng bộ">
-              <Smartphone className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Đồng bộ</span>
+            {lastSyncCode && (
+              <Button variant="outline" size="sm" onClick={() => generateSyncCode(true, lastSyncCode)} disabled={isSyncing} title={`Lưu tiến độ vào mã ${lastSyncCode}`}>
+                {isSyncing ? <Loader2 className="w-4 h-4 mr-1 md:mr-2 animate-spin" /> : <Smartphone className="w-4 h-4 mr-1 md:mr-2" />}
+                <span className="hidden md:inline">Đồng bộ nhanh</span>
+              </Button>
+            )}
+            <Button variant="outline" size="sm" onClick={() => { setGeneratedSyncCode(null); setCustomSyncCodeInput(lastSyncCode || ""); setShowSyncDialog(true); }} title="Đổi mã đồng bộ khác">
+              <Smartphone className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">{lastSyncCode ? 'Mã khác' : 'Đồng bộ'}</span>
             </Button>
             <Button variant="outline" size="sm" onClick={handleRestart} title="Chọn môn khác">
               <RotateCcw className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Đổi môn</span>
