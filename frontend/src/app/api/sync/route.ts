@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import os from "os";
 
-const syncFilePath = path.join(process.cwd(), "sync-data.json");
+const syncFilePath = path.join(os.tmpdir(), "sync-data.json");
 
 export async function POST(req: Request) {
   try {
