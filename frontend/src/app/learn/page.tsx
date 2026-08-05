@@ -255,7 +255,7 @@ export default function LearnPage() {
         setShowSyncDialog(false);
         toast.success("Đồng bộ thành công! Đang tiếp tục bài học...");
       } else {
-        toast.error(data.error || "Mã không hợp lệ hoặc đã hết hạn");
+        toast.error(data.error || "Mã không hợp lệ hoặc không tìm thấy");
       }
     } catch (e) {
       toast.error("Không thể kết nối đến máy chủ");
