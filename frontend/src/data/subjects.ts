@@ -39,7 +39,7 @@ export const subjects: Subject[] = [
       },
       {
         id: "prn232_paper4",
-        name: "Đề 4 (48 câu)",
+        name: "Đề 4 (50 câu)",
         questions: prn232Paper4,
       }
     ]

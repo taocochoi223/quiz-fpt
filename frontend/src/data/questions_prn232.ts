@@ -2721,7 +2721,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "HTTP/2" },
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "gRPC được xây dựng dựa trên giao thức HTTP/2, cho phép truyền dữ liệu nhị phân tốc độ cao, ghép kênh (multiplexing) và Server Push."
   },
   {
     "id": 138,
@@ -2733,7 +2733,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "Protobuf has a more flexible schema that can be changed by the client at will." },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Protocol Buffers (Protobuf) là định dạng nhị phân, nhỏ gọn và phân tích cú pháp nhanh hơn đáng kể so với định dạng văn bản (text-based) như JSON."
   },
   {
     "id": 139,
@@ -2745,7 +2745,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "Class Library" },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Để tạo một project dịch vụ gRPC mới trong .NET 8, bạn nên sử dụng template 'gRPC Service' (gRPC ASP.NET Core)."
   },
   {
     "id": 140,
@@ -2757,7 +2757,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "var client = GrpcClient.Create<GreeterClient>(\"https://localhost:5001\");" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong .NET 8, để tạo một gRPC client, bạn cần tạo một kênh kết nối bằng GrpcChannel.ForAddress() và sau đó truyền kênh đó vào class Client (ví dụ GreeterClient) được sinh ra tự động."
   },
   {
     "id": 141,
@@ -2769,7 +2769,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "A mechanism for streaming video content." },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong HTTP/2, Server Push là tính năng cho phép máy chủ chủ động gửi các tài nguyên (JS, CSS) mà nó dự đoán client sẽ cần trong tương lai, mà không cần client gửi request trực tiếp yêu cầu tài nguyên đó."
   },
   {
     "id": 142,
@@ -2781,7 +2781,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "[HttpDelete]" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thuộc tính [HttpPost] được sử dụng trong ASP.NET Core Web API để đánh dấu một Action xử lý các request HTTP POST (thường dùng để thêm mới dữ liệu)."
   },
   {
     "id": 143,
@@ -2793,7 +2793,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "To define the structure of a web page." },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Mục đích chính của giao thức HTTP (HyperText Transfer Protocol) là truyền tải các tài liệu siêu văn bản (hypertext) và các tài nguyên khác qua mạng internet."
   },
   {
     "id": 144,
@@ -2805,7 +2805,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "The server encrypts all state information." },
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong kiến trúc REST, 'Statelessness' (Phi trạng thái) có nghĩa là máy chủ không lưu trữ bất kỳ trạng thái phiên làm việc (session) nào của client giữa các request. Mỗi request từ client phải chứa tất cả thông tin cần thiết để xử lý."
   },
   {
     "id": 145,
@@ -2817,7 +2817,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "DELETE" },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Giao thức HTTP PUT thường được sử dụng để cập nhật toàn bộ một tài nguyên đã tồn tại dựa trên ID của nó, phù hợp với hành động UpdateProduct."
   },
   {
     "id": 146,
@@ -2829,7 +2829,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "NoContent()" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Phương thức NotFound() sẽ trả về mã lỗi HTTP 404 (Not Found), báo cho client biết rằng tài nguyên được yêu cầu không tồn tại."
   },
   {
     "id": 147,
@@ -2841,7 +2841,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "select(element).do(action)" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Cú pháp cơ bản của jQuery là $(selector).action(), trong đó $ đại diện cho jQuery, selector dùng để tìm các phần tử HTML và action là hành động cần thực hiện trên phần tử đó."
   },
   {
     "id": 148,
@@ -2853,7 +2853,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "DELETE" },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Phương thức HTTP GET được sử dụng phổ biến nhất để yêu cầu và lấy dữ liệu từ một Web API mà không làm thay đổi dữ liệu trên server."
   },
   {
     "id": 149,
@@ -2865,7 +2865,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "It creates a new product with an ID of 12." },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Đoạn mã jQuery $.ajax với type: 'GET' sẽ gửi yêu cầu để lấy dữ liệu (retrieve) của sản phẩm có ID 12 và in kết quả ra console nếu thành công."
   },
   {
     "id": 150,
@@ -2877,7 +2877,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "FormData" },
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Đối tượng XMLHttpRequest (hoặc Fetch API đời mới hơn) là đối tượng gốc của JavaScript được sử dụng đằng sau các thư viện như jQuery để thực hiện các yêu cầu AJAX gửi lên Web API."
   },
   {
     "id": 151,
@@ -2889,7 +2889,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "$(\"div ~ p\")" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Bộ chọn $('div p') (có khoảng trắng) trong jQuery sẽ chọn tất cả các thẻ <p> nằm bên trong (descendants) một thẻ <div>, bất kể chúng nằm ở cấp độ sâu bao nhiêu."
   },
   {
     "id": 152,
@@ -2901,7 +2901,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "A distributed architecture" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trái ngược với kiến trúc Microservices (chia nhỏ ứng dụng thành nhiều dịch vụ độc lập) là kiến trúc Monolithic (nguyên khối), trong đó tất cả các thành phần của ứng dụng được xây dựng thành một khối duy nhất."
   },
   {
     "id": 153,
@@ -2913,7 +2913,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "Avoiding cloud deployment" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Nguyên tắc cốt lõi của Microservices Architecture là phân chia một ứng dụng lớn thành các dịch vụ nhỏ, độc lập, có thể triển khai và bảo trì riêng biệt."
   },
   {
     "id": 154,
@@ -2925,7 +2925,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "UI layer" },
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong kiến trúc Microservices, mỗi dịch vụ (service) thường có một cơ sở dữ liệu riêng biệt để đảm bảo sự độc lập và không phụ thuộc vào các dịch vụ khác (Database per service)."
   },
   {
     "id": 155,
@@ -2937,7 +2937,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "FTP" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Docker là công nghệ phổ biến nhất được sử dụng để đóng gói (containerize) một microservice ASP.NET Core cùng với tất cả các phụ thuộc của nó vào một container để triển khai."
   },
   {
     "id": 156,
@@ -2949,7 +2949,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "FTP" },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "gRPC thường được chọn để giao tiếp giữa các dịch vụ nội bộ (service-to-service) vì nó sử dụng HTTP/2 và định dạng nhị phân Protobuf, mang lại hiệu suất rất cao."
   },
   {
     "id": 157,
@@ -2961,7 +2961,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "The application logs the error and returns an HTTP 200 OK." },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Khi controller sử dụng attribute [ApiController], ASP.NET Core sẽ tự động kiểm tra ModelState.IsValid. Nếu dữ liệu không hợp lệ, nó sẽ tự động trả về lỗi 400 Bad Request kèm theo chi tiết lỗi mà không cần viết mã thủ công."
   },
   {
     "id": 158,
@@ -2973,7 +2973,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "[InHeader]" },
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thuộc tính [FromHeader] được sử dụng để liên kết (bind) một tham số của action với một giá trị được truyền qua Header của request HTTP."
   },
   {
     "id": 159,
@@ -2985,7 +2985,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "[HttpGet] public IActionResult Get([FromQuery] string sort) { /*...*/ }" },
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thuộc tính [FromQuery] chỉ định rằng giá trị của tham số (ở đây là sort) sẽ được lấy từ query string trên URL."
   },
   {
     "id": 160,
@@ -2997,7 +2997,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "From the request headers." },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong một controller có [ApiController], model binder của ASP.NET Core theo mặc định sẽ cố gắng lấy dữ liệu cho các kiểu phức tạp (complex type) từ phần thân của request (Request body) dưới dạng JSON."
   },
   {
     "id": 161,
@@ -3009,7 +3009,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "The API automatically retries the request" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "ASP.NET Core Web API sẽ tự động trả về phản hồi 400 Bad Request nếu quá trình xác thực dữ liệu mô hình (model validation) thất bại."
   },
   {
     "id": 162,
@@ -3021,7 +3021,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "Adapter, Broker, Contract" },
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Ba yếu tố cốt lõi của WCF (Windows Communication Foundation) endpoint là ABC: Address (ở đâu), Binding (như thế nào) và Contract (cái gì)."
   },
   {
     "id": 163,
@@ -3033,7 +3033,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "[Route]" },
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thuộc tính [WebGet] được dùng cho HTTP GET và [WebInvoke] được dùng cho HTTP POST, PUT, DELETE trong WCF RESTful services."
   },
   {
     "id": 164,
@@ -3045,7 +3045,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "[ServiceContract]" },
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong WCF, thuộc tính [ServiceContract] được đặt trên một interface hoặc class để xác định rằng nó định nghĩa một dịch vụ hợp đồng."
   },
   {
     "id": 165,
@@ -3057,7 +3057,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "[ContractProperty]" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Khi một class được đánh dấu bằng [DataContract], chỉ những thuộc tính được đánh dấu rành mạch bằng [DataMember] mới được phép tham gia vào quá trình truyền nhận dữ liệu."
   },
   {
     "id": 166,
@@ -3069,7 +3069,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "Web Control Foundation" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "WCF là viết tắt của Windows Communication Foundation, một framework của Microsoft dùng để xây dựng các ứng dụng hướng dịch vụ (service-oriented)."
   },
   {
     "id": 167,
@@ -3081,7 +3081,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "$orderby" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Toán tử truy vấn $select trong OData được sử dụng để thu hẹp lại kết quả, chỉ định rõ những trường (fields) cụ thể nào của thực thể sẽ được trả về, giúp giảm kích thước payload."
   },
   {
     "id": 168,
@@ -3093,7 +3093,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "GET /Categories(1)/Products?$fetch=all" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Toán tử $expand trong OData được sử dụng để tải các thực thể liên quan (related entities). Yêu cầu này sẽ trả về Category có ID 1 và toàn bộ danh sách Products của nó."
   },
   {
     "id": 169,
@@ -3105,7 +3105,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "/$info" },
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Endpoint /$metadata thường được các dịch vụ OData cung cấp để hiển thị siêu dữ liệu (metadata) dưới định dạng XML (EDMX), mô tả cấu trúc dữ liệu của API đó."
   },
   {
     "id": 170,
@@ -3117,7 +3117,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "REMOVE /Products/123" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong REST/OData, để xóa một tài nguyên cụ thể, ta dùng phương thức HTTP DELETE kết hợp với đường dẫn chứa ID của tài nguyên đó: DELETE /Products(123)."
   },
   {
     "id": 171,
@@ -3129,7 +3129,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "To handle static file serving" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Mục đích chính của OData (Open Data Protocol) là tạo ra một quy chuẩn chung cho việc truy vấn và thao tác dữ liệu qua HTTP (như lọc, phân trang, sắp xếp) bằng các cú pháp URL đồng nhất."
   },
   {
     "id": 172,
@@ -3141,7 +3141,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "ActionResult" },
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các lỗi xảy ra trong quá trình xác thực mô hình (Model Validation) được ASP.NET Core lưu trữ trong thuộc tính ModelState của Controller."
   },
   {
     "id": 173,
@@ -3153,7 +3153,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "The database is created when the project is compiled." },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong phương pháp Code-First của EF Core, sau khi định nghĩa DbContext và Models, bạn cần sử dụng các lệnh Migration (dotnet ef migrations add và dotnet ef database update) để sinh ra các bảng trong database."
   },
   {
     "id": 174,
@@ -3165,7 +3165,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "To define the routing rules for API endpoints." },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Mẫu thiết kế Repository Pattern được sử dụng để trừu tượng hóa các logic truy cập dữ liệu (data access logic), giúp ứng dụng dễ dàng bảo trì, thay đổi nguồn dữ liệu và thực hiện Unit Test."
   },
   {
     "id": 175,
@@ -3177,7 +3177,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "You must manually register each class using builder.Services.AddTransient<Product>()." },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Entity Framework Core tự động nhận diện các class cần đưa vào mô hình database thông qua các thuộc tính kiểu DbSet<T> được khai báo công khai (public) bên trong class kế thừa DbContext."
   },
   {
     "id": 176,
@@ -3189,7 +3189,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "Varchar, Number, Boolean, Collection, Object, undefined" },
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các kiểu dữ liệu cơ bản được hỗ trợ chuẩn xác trong JSON bao gồm: String, Number, Boolean, Array, Object và null. (Lưu ý: JSON không có kiểu Date gốc, ngày tháng thường lưu ở dạng String ISO 8601)."
   },
   {
     "id": 177,
@@ -3201,7 +3201,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "CSV Formatter" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "ASP.NET Core Web API mặc định cấu hình sử dụng JSON Formatter để định dạng và trả về dữ liệu (output) cho các HTTP request."
   },
   {
     "id": 178,
@@ -3213,7 +3213,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "Non-browser clients are required to accept application/json only." },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các trình duyệt (Browsers) thường gửi Header Accept rất rộng và phức tạp để báo hiệu chúng hỗ trợ nhiều loại tài liệu (HTML, XML, Ảnh), trong khi các HTTP Client phi trình duyệt (như Postman, HttpClient) thường gửi Accept rất cụ thể như application/json."
   },
   {
     "id": 179,
@@ -3225,7 +3225,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "OutputFormatter" },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Để tạo một custom input formatter có nhiệm vụ đọc dữ liệu đầu vào (input) từ request theo chuẩn text/csv, bạn cần kế thừa từ lớp cơ sở TextInputFormatter."
   },
   {
     "id": 180,
@@ -3237,7 +3237,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "{ \"name\": \"John Doe\", \"age\": 30 }" },
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Cú pháp hợp lệ duy nhất của JSON là tên thuộc tính và chuỗi (String) bắt buộc phải được đặt trong dấu ngoặc kép đôi, và không được có dấu phẩy thừa ở cuối (trailing comma)."
   },
   {
     "id": 181,
@@ -3249,7 +3249,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "It defaults to requiring the \"Admin\" role." },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Khi áp dụng [Authorize] lên controller mà không truyền thêm tham số, ASP.NET Core sẽ chỉ yêu cầu người dùng đó phải đăng nhập thành công (authenticated), không đòi hỏi thêm Role hay Policy cụ thể nào."
   },
   {
     "id": 182,
@@ -3261,7 +3261,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "A client-side library for managing application load times." },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "'Load Balancer' (Cân bằng tải) là một máy chủ/dịch vụ đứng trước các ứng dụng để phân phối thông lượng mạng (network traffic) đầu vào đều đặn cho nhiều backend server, giúp hệ thống không bị quá tải."
   },
   {
     "id": 183,
@@ -3273,7 +3273,7 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "403" },
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Mã HTTP 401 Unauthorized được trả về khi người dùng yêu cầu truy cập tài nguyên bảo mật nhưng chưa được xác thực (chưa đăng nhập) hoặc xác thực không hợp lệ."
   },
   {
     "id": 184,
@@ -3285,6 +3285,30 @@ export const questions_paper4: Question[] = [
       { "key": "D", "text": "Use of XML as the only data format" },
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Đặc tính 'Statelessness' (Phi trạng thái) là chìa khóa để hỗ trợ Horizontal Scaling (mở rộng theo chiều ngang). Do không cần nhớ trạng thái trên máy chủ cụ thể nào, bất kỳ máy chủ nào cũng có thể xử lý các request kế tiếp của client."
   },
+  {
+    "id": 185,
+    "question": "A controller action needs to return a \"Not Found\" response when a resource does not exist. Which of the following is the best way to achieve this?\n\n```csharp\n[HttpGet(\"{id}\")]\npublic ActionResult<Product> GetProduct(int id)\n{\n    var product = _productService.GetById(id);\n    if (product == null)\n    {\n        return ???; // What should be here?\n    }\n    return product;\n}\n```",
+    "options": [
+      { "key": "A", "text": "Ok()" },
+      { "key": "B", "text": "NotFound()" },
+      { "key": "C", "text": "BadRequest()" },
+      { "key": "D", "text": "NoContent()" }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Giống câu 146, để trả về lỗi không tìm thấy tài nguyên trong Controller, cách tốt nhất là sử dụng phương thức NotFound(), tương ứng với HTTP Status 404."
+  },
+  {
+    "id": 186,
+    "question": "The following controller action is intended to update an existing product. Which HTTP verb is most appropriate for this action?\n\n```csharp\n[HttpPut(\"{id}\")]\npublic IActionResult UpdateProduct(int id, [FromBody] Product product)\n{\n    // Logic to update the product\n    return NoContent();\n}\n```",
+    "options": [
+      { "key": "A", "text": "GET" },
+      { "key": "B", "text": "POST" },
+      { "key": "C", "text": "PUT" },
+      { "key": "D", "text": "DELETE" }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Giống câu 145, hành động cập nhật một thực thể sẵn có hoàn toàn (UpdateProduct) chuẩn xác nhất với giao thức HTTP là PUT."
+  }
 ];
