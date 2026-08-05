@@ -2707,5 +2707,584 @@ export const questions_paper3: Question[] = [
     ],
     "correctAnswer": "D",
     "explanation": "Lợi ích của việc sử dụng Design Patterns bao gồm: cải thiện khả năng đọc và bảo trì mã nguồn, cung cấp giải pháp chung cho các vấn đề thường gặp và tăng tốc quá trình phát triển."
-  }
+  },
+];
+
+export const questions_paper4: Question[] = [
+  {
+    "id": 137,
+    "question": "gRPC is built on top of which underlying transport protocol?",
+    "options": [
+      { "key": "A", "text": "TCP/IP directly" },
+      { "key": "B", "text": "HTTP/1.1" },
+      { "key": "C", "text": "UDP" },
+      { "key": "D", "text": "HTTP/2" },
+    ],
+    "correctAnswer": "D",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 138,
+    "question": "What is a primary advantage of using Protocol Buffers (Protobuf) over JSON?",
+    "options": [
+      { "key": "A", "text": "Protobuf is a human-readable text format, making it easier to debug." },
+      { "key": "B", "text": "Protobuf uses a binary serialization format, which is typically smaller and faster to parse than text-based JSON." },
+      { "key": "C", "text": "Protobuf is natively supported by all web browsers without any libraries." },
+      { "key": "D", "text": "Protobuf has a more flexible schema that can be changed by the client at will." },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 139,
+    "question": "To create a new gRPC service project in .NET 8, which project template should you use?",
+    "options": [
+      { "key": "A", "text": "ASP.NET Core Web API" },
+      { "key": "B", "text": "Worker Service" },
+      { "key": "C", "text": "gRPC Service" },
+      { "key": "D", "text": "Class Library" },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 140,
+    "question": "How do you create a gRPC client in a .NET 8 console application?",
+    "options": [
+      { "key": "A", "text": "var client = new HttpClient();" },
+      { "key": "B", "text": "var channel = GrpcChannel.ForAddress(\"https://localhost:5001\");\nvar client = new Greeter.GreeterClient(channel);" },
+      { "key": "C", "text": "var client = new Greeter.GreeterStub(\"https://localhost:5001\");" },
+      { "key": "D", "text": "var client = GrpcClient.Create<GreeterClient>(\"https://localhost:5001\");" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 141,
+    "question": "What is \"Server Push\" in HTTP/2?",
+    "options": [
+      { "key": "A", "text": "The ability for the client to push data to the server's cache." },
+      { "key": "B", "text": "A security feature that pushes updates to the client." },
+      { "key": "C", "text": "The ability for the server to send resources to the client that it anticipates the client will need, without the client explicitly requesting them." },
+      { "key": "D", "text": "A mechanism for streaming video content." },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 142,
+    "question": "In an ASP.NET Core Web API, which attribute is used to decorate an action method that should respond to HTTP POST requests?",
+    "options": [
+      { "key": "A", "text": "[HttpGet]" },
+      { "key": "B", "text": "[HttpPost]" },
+      { "key": "C", "text": "[HttpPut]" },
+      { "key": "D", "text": "[HttpDelete]" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 143,
+    "question": "What is the primary purpose of the HTTP protocol?",
+    "options": [
+      { "key": "A", "text": "To securely encrypt data transmissions." },
+      { "key": "B", "text": "To transfer hypertext documents across the internet." },
+      { "key": "C", "text": "To manage and query databases." },
+      { "key": "D", "text": "To define the structure of a web page." },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 144,
+    "question": "What does \"Statelessness\" in REST mean?",
+    "options": [
+      { "key": "A", "text": "The server does not store any information about the client's state between requests." },
+      { "key": "B", "text": "The client does not need to maintain any state about the server." },
+      { "key": "C", "text": "The communication protocol does not support sessions." },
+      { "key": "D", "text": "The server encrypts all state information." },
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 145,
+    "question": "The following controller action is intended to update an existing product. Which HTTP verb is most appropriate for this action?\n\n```csharp\n[HttpPut(\"{id}\")]\npublic IActionResult UpdateProduct(int id, [FromBody] Product product)\n{\n    // Logic to update the product\n    return NoContent();\n}\n```",
+    "options": [
+      { "key": "A", "text": "GET" },
+      { "key": "B", "text": "POST" },
+      { "key": "C", "text": "PUT" },
+      { "key": "D", "text": "DELETE" },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 146,
+    "question": "A controller action needs to return a \"Not Found\" response when a resource does not exist. Which of the following is the best way to achieve this?\n\n```csharp\n[HttpGet(\"{id}\")]\npublic ActionResult<Product> GetProduct(int id)\n{\n    var product = _productService.GetById(id);\n    if (product == null)\n    {\n        return ???; // What should be here?\n    }\n    return product;\n}\n```",
+    "options": [
+      { "key": "A", "text": "Ok()" },
+      { "key": "B", "text": "NotFound()" },
+      { "key": "C", "text": "BadRequest()" },
+      { "key": "D", "text": "NoContent()" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 147,
+    "question": "What is the fundamental syntax for selecting an HTML element and applying an action in jQuery?",
+    "options": [
+      { "key": "A", "text": "element.action()" },
+      { "key": "B", "text": "$(selector).action()" },
+      { "key": "C", "text": "jQuery(action).selector()" },
+      { "key": "D", "text": "select(element).do(action)" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 148,
+    "question": "Which HTTP method is commonly used in JavaScript to retrieve data from a Web API?",
+    "options": [
+      { "key": "A", "text": "POST" },
+      { "key": "B", "text": "PUT" },
+      { "key": "C", "text": "GET" },
+      { "key": "D", "text": "DELETE" },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 149,
+    "question": "Given a .NET 8 Web API endpoint at https://api.example.com/products/12, what does the following jQuery code do?\n\n```javascript\n$.ajax({\n  url: \"https://api.example.com/products/12\",\n  type: \"GET\",\n  success: function(data) {\n    console.log(data);\n  },\n  error: function(xhr) {\n    console.error(\"Error fetching data: \" + xhr.statusText);\n  }\n});\n```",
+    "options": [
+      { "key": "A", "text": "It updates product 12 with new data." },
+      { "key": "B", "text": "It deletes product 12." },
+      { "key": "C", "text": "It attempts to retrieve the data for product 12 and logs it to the console on success." },
+      { "key": "D", "text": "It creates a new product with an ID of 12." },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 150,
+    "question": "Which JavaScript object is commonly used to send AJAX requests to a Web API?",
+    "options": [
+      { "key": "A", "text": "XMLHttpRequest" },
+      { "key": "B", "text": "JSON" },
+      { "key": "C", "text": "WebSocket" },
+      { "key": "D", "text": "FormData" },
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 151,
+    "question": "How would you select all <p> elements that are descendants of a <div> element?",
+    "options": [
+      { "key": "A", "text": "$(\"div > p\")" },
+      { "key": "B", "text": "$(\"div p\")" },
+      { "key": "C", "text": "$(\"div + p\")" },
+      { "key": "D", "text": "$(\"div ~ p\")" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 152,
+    "question": "What is the opposite of a microservices architecture?",
+    "options": [
+      { "key": "A", "text": "A serverless architecture" },
+      { "key": "B", "text": "A monolithic architecture" },
+      { "key": "C", "text": "A service-oriented architecture (SOA)" },
+      { "key": "D", "text": "A distributed architecture" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 153,
+    "question": "What is the main principle of Microservices Architecture?",
+    "options": [
+      { "key": "A", "text": "Building one large monolithic application" },
+      { "key": "B", "text": "Breaking an application into small, independent services" },
+      { "key": "C", "text": "Using a single database for all features" },
+      { "key": "D", "text": "Avoiding cloud deployment" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 154,
+    "question": "In Microservices, each service usually has its own:",
+    "options": [
+      { "key": "A", "text": "Database" },
+      { "key": "B", "text": "Shared configuration file" },
+      { "key": "C", "text": "Monolithic deployment" },
+      { "key": "D", "text": "UI layer" },
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 155,
+    "question": "To containerize an ASP.NET Core microservice for deployment, what technology is most commonly used?",
+    "options": [
+      { "key": "A", "text": "Virtual Machines (VMs)" },
+      { "key": "B", "text": "Docker" },
+      { "key": "C", "text": "WebDeploy" },
+      { "key": "D", "text": "FTP" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 156,
+    "question": "Which communication protocol is often chosen for high-performance, internal, service-to-service communication due to its use of HTTP/2 and binary serialization?",
+    "options": [
+      { "key": "A", "text": "SOAP" },
+      { "key": "B", "text": "REST over HTTP/1.1 with JSON" },
+      { "key": "C", "text": "gRPC" },
+      { "key": "D", "text": "FTP" },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 157,
+    "question": "In a controller decorated with [ApiController], what happens automatically if ModelState.IsValid is false?",
+    "options": [
+      { "key": "A", "text": "The action method still executes as normal." },
+      { "key": "B", "text": "An HTTP 500 Internal Server Error is returned." },
+      { "key": "C", "text": "The request is automatically rejected with an HTTP 400 Bad Request response containing details of the validation errors." },
+      { "key": "D", "text": "The application logs the error and returns an HTTP 200 OK." },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 158,
+    "question": "To bind a parameter to a request header, which attribute is used?",
+    "options": [
+      { "key": "A", "text": "[FromHeader]" },
+      { "key": "B", "text": "[FromHead]" },
+      { "key": "C", "text": "[BindHeader]" },
+      { "key": "D", "text": "[InHeader]" },
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 159,
+    "question": "How would you access a query string parameter named sort in a controller action?",
+    "options": [
+      { "key": "A", "text": "[HttpGet] public IActionResult Get([FromRoute] string sort) { /*...*/ }" },
+      { "key": "B", "text": "[HttpGet] public IActionResult Get([FromBody] string sort) { /*...*/ }" },
+      { "key": "C", "text": "[HttpGet] public IActionResult Get([FromHeader] string sort) { /*...*/ }" },
+      { "key": "D", "text": "[HttpGet] public IActionResult Get([FromQuery] string sort) { /*...*/ }" },
+    ],
+    "correctAnswer": "D",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 160,
+    "question": "By default, where does the model binder attempt to get the data for a complex type parameter (like a class or record) in an [ApiController] action?",
+    "options": [
+      { "key": "A", "text": "From the query string." },
+      { "key": "B", "text": "From the request body." },
+      { "key": "C", "text": "From the route data." },
+      { "key": "D", "text": "From the request headers." },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 161,
+    "question": "What happens when model validation fails in an ASP.NET Core Web API action?",
+    "options": [
+      { "key": "A", "text": "The API automatically returns 200 OK" },
+      { "key": "B", "text": "The API automatically returns 400 Bad Request" },
+      { "key": "C", "text": "The API automatically returns 404 Not Found" },
+      { "key": "D", "text": "The API automatically retries the request" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 162,
+    "question": "Which trio summarizes WCF endpoint definition (ABC)?",
+    "options": [
+      { "key": "A", "text": "Address, Binding, Contract" },
+      { "key": "B", "text": "Authentication, Binding, Channel" },
+      { "key": "C", "text": "Address, Behavior, Channel" },
+      { "key": "D", "text": "Adapter, Broker, Contract" },
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 163,
+    "question": "Which attribute in WCF specifies that a method can be invoked via HTTP GET or POST in REST style?",
+    "options": [
+      { "key": "A", "text": "[WebGet]/[WebInvoke]" },
+      { "key": "B", "text": "[HttpPost]" },
+      { "key": "C", "text": "[Authorize]" },
+      { "key": "D", "text": "[Route]" },
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 164,
+    "question": "In WCF, which attribute is used to mark an interface as a service contract?",
+    "options": [
+      { "key": "A", "text": "[Service]" },
+      { "key": "B", "text": "[WebContract]" },
+      { "key": "C", "text": "[WcfContract]" },
+      { "key": "D", "text": "[ServiceContract]" },
+    ],
+    "correctAnswer": "D",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 165,
+    "question": "If you want a property within a [DataContract] class to be included in the data exchange, which attribute must you apply to it?",
+    "options": [
+      { "key": "A", "text": "[Include]" },
+      { "key": "B", "text": "[DataMember]" },
+      { "key": "C", "text": "[ExposeProperty]" },
+      { "key": "D", "text": "[ContractProperty]" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 166,
+    "question": "What does WCF stand for in the context of .NET?",
+    "options": [
+      { "key": "A", "text": "Windows Communication Framework" },
+      { "key": "B", "text": "Windows Communication Foundation" },
+      { "key": "C", "text": "Web Communication Framework" },
+      { "key": "D", "text": "Web Control Foundation" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 167,
+    "question": "Which OData query option narrows the set of fields returned?",
+    "options": [
+      { "key": "A", "text": "$expand" },
+      { "key": "B", "text": "$select" },
+      { "key": "C", "text": "$filter" },
+      { "key": "D", "text": "$orderby" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 168,
+    "question": "To retrieve a single Category entity and all of its related Product entities in one request, which query would you use?",
+    "options": [
+      { "key": "A", "text": "GET /Categories(1)?$select=Products" },
+      { "key": "B", "text": "GET /Categories(1)?$expand=Products" },
+      { "key": "C", "text": "GET /Categories(1),/Products" },
+      { "key": "D", "text": "GET /Categories(1)/Products?$fetch=all" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 169,
+    "question": "The metadata of an OData service, which describes its data model, is typically exposed via which endpoint?",
+    "options": [
+      { "key": "A", "text": "/$metadata" },
+      { "key": "B", "text": "/$help" },
+      { "key": "C", "text": "/$schema" },
+      { "key": "D", "text": "/$info" },
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 170,
+    "question": "To delete a product with an ID of 123, which OData request is correct?",
+    "options": [
+      { "key": "A", "text": "POST /Products?$filter=Id eq 123" },
+      { "key": "B", "text": "DELETE /Products(123)" },
+      { "key": "C", "text": "GET /Products(123)?action=delete" },
+      { "key": "D", "text": "REMOVE /Products/123" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 171,
+    "question": "What is the main purpose of OData in ASP.NET Core Web API?",
+    "options": [
+      { "key": "A", "text": "To provide authentication and authorization features" },
+      { "key": "B", "text": "To enable querying and manipulation of data over HTTP using standard conventions" },
+      { "key": "C", "text": "To configure middleware components for logging" },
+      { "key": "D", "text": "To handle static file serving" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 172,
+    "question": "In ASP.NET Core Web API, model validation errors are stored in which property of the Controller?",
+    "options": [
+      { "key": "A", "text": "ModelState" },
+      { "key": "B", "text": "HttpContext" },
+      { "key": "C", "text": "TempData" },
+      { "key": "D", "text": "ActionResult" },
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 173,
+    "question": "After defining your DbContext and model classes in a Code-First approach, what is the next step to create the database schema?",
+    "options": [
+      { "key": "A", "text": "Manually write CREATE TABLE scripts in SQL." },
+      { "key": "B", "text": "Run the application, and the database will be created automatically on the first run." },
+      { "key": "C", "text": "Use EF Core migration commands like dotnet ef migrations add and dotnet ef database update." },
+      { "key": "D", "text": "The database is created when the project is compiled." },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 174,
+    "question": "What is the \"Repository Pattern\" commonly used for in ASP.NET Core data access?",
+    "options": [
+      { "key": "A", "text": "To automatically generate API documentation." },
+      { "key": "B", "text": "To abstract the data access logic, making the application more modular and testable." },
+      { "key": "C", "text": "To handle user authentication and authorization." },
+      { "key": "D", "text": "To define the routing rules for API endpoints." },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 175,
+    "question": "In a .NET 9 application using EF Core, you've defined the following DbContext. How does EF Core know which classes to include in the database model?\n\n```csharp\npublic class ApplicationDbContext : DbContext\n{\n    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }\n    public DbSet<Product> Products { get; set; }\n    public DbSet<Category> Categories { get; set; }\n}\n```",
+    "options": [
+      { "key": "A", "text": "It scans the entire assembly for public classes." },
+      { "key": "B", "text": "Through the DbSet<T> properties defined in the DbContext." },
+      { "key": "C", "text": "It relies on XML configuration files." },
+      { "key": "D", "text": "You must manually register each class using builder.Services.AddTransient<Product>()." },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 176,
+    "question": "Which data types are supported in JSON?",
+    "options": [
+      { "key": "A", "text": "String, Number, Boolean, Array, Object, null" },
+      { "key": "B", "text": "String, Integer, Float, Date, Array, Hashtable" },
+      { "key": "C", "text": "Text, Decimal, Bit, List, Dictionary, null" },
+      { "key": "D", "text": "Varchar, Number, Boolean, Collection, Object, undefined" },
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 177,
+    "question": "By default, ASP.NET Core Web API uses which formatter for output?",
+    "options": [
+      { "key": "A", "text": "XML Formatter" },
+      { "key": "B", "text": "JSON Formatter" },
+      { "key": "C", "text": "Binary Formatter" },
+      { "key": "D", "text": "CSV Formatter" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 178,
+    "question": "What is a key difference in how web browsers and non-browser HTTP clients (like a C# HttpClient or Postman) typically set the Accept header?",
+    "options": [
+      { "key": "A", "text": "Non-browser clients never send an Accept header." },
+      { "key": "B", "text": "Browsers often send a very broad Accept header (e.g., text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8) because they can handle many types." },
+      { "key": "C", "text": "Browsers only accept text/html." },
+      { "key": "D", "text": "Non-browser clients are required to accept application/json only." },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 179,
+    "question": "You want to create a custom input formatter for the text/csv media type. Which base class should you inherit from?",
+    "options": [
+      { "key": "A", "text": "CsvFormatter" },
+      { "key": "B", "text": "TextOutputFormatter" },
+      { "key": "C", "text": "TextInputFormatter" },
+      { "key": "D", "text": "OutputFormatter" },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 180,
+    "question": "Which of the following is a valid JSON object?",
+    "options": [
+      { "key": "A", "text": "{ 'name': 'John Doe', \"age\": 30 }" },
+      { "key": "B", "text": "{ name: \"John Doe\", age: 30 }" },
+      { "key": "C", "text": "{ \"name\": \"John Doe\", \"age\": 30, }" },
+      { "key": "D", "text": "{ \"name\": \"John Doe\", \"age\": 30 }" },
+    ],
+    "correctAnswer": "D",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 181,
+    "question": "What does applying [Authorize] without any parameters to a controller or action do?",
+    "options": [
+      { "key": "A", "text": "It allows anonymous access." },
+      { "key": "B", "text": "It denies all access, regardless of who the user is." },
+      { "key": "C", "text": "It requires that the user be authenticated, but does not check for any specific roles or policies." },
+      { "key": "D", "text": "It defaults to requiring the \"Admin\" role." },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 182,
+    "question": "What is a \"load balancer\" in the context of scaling a web service?",
+    "options": [
+      { "key": "A", "text": "A tool that validates the data load of a JSON request." },
+      { "key": "B", "text": "A server or service that distributes incoming network traffic across multiple backend servers." },
+      { "key": "C", "text": "A database feature that balances data across multiple tables." },
+      { "key": "D", "text": "A client-side library for managing application load times." },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 183,
+    "question": "Which of the following HTTP status codes indicates \"Unauthorized\" access?",
+    "options": [
+      { "key": "A", "text": "200" },
+      { "key": "B", "text": "400" },
+      { "key": "C", "text": "401" },
+      { "key": "D", "text": "403" },
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 184,
+    "question": "What architectural characteristic of RESTful services is most crucial for enabling horizontal scaling?",
+    "options": [
+      { "key": "A", "text": "Stateful" },
+      { "key": "B", "text": "Statelessness" },
+      { "key": "C", "text": "Tight coupling between client and server" },
+      { "key": "D", "text": "Use of XML as the only data format" },
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
 ];
