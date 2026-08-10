@@ -24,7 +24,7 @@ export const subjects: Subject[] = [
     papers: [
       {
         id: "ssl101c_paper1",
-        name: "Đề 1",
+        name: "Đề 1 (60 câu)",
         questions: questionsSSL101C,
       }
     ]

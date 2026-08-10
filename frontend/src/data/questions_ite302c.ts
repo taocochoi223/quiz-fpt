@@ -19,7 +19,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Trojan horse"
+        "text": "Trojan horse\n"
       }
     ],
     "correctAnswer": "B",
@@ -43,7 +43,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "the ethics of the individual inputs"
+        "text": "the ethics of the individual inputs\n"
       }
     ],
     "correctAnswer": "C",
@@ -67,7 +67,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Higher profit margins"
+        "text": "Higher profit margins\n"
       }
     ],
     "correctAnswer": "C",
@@ -91,7 +91,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "The desire for social change."
+        "text": "The desire for social change.\n"
       }
     ],
     "correctAnswer": "D",
@@ -115,7 +115,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Better customer loyalty"
+        "text": "Better customer loyalty\n"
       }
     ],
     "correctAnswer": "C",
@@ -139,7 +139,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Distrust in human judgment"
+        "text": "Distrust in human judgment\n"
       }
     ],
     "correctAnswer": "A",
@@ -163,7 +163,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Fastest processing speed"
+        "text": "Fastest processing speed\n"
       }
     ],
     "correctAnswer": "B",
@@ -187,7 +187,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "There is a strong positive correlation between both variables."
+        "text": "There is a strong positive correlation between both variables.\n"
       }
     ],
     "correctAnswer": "D",
@@ -211,7 +211,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Reducing system complexity"
+        "text": "Reducing system complexity\n"
       }
     ],
     "correctAnswer": "B",
@@ -235,7 +235,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Threat modeling or analysis tools"
+        "text": "Threat modeling or analysis tools\n"
       }
     ],
     "correctAnswer": "D",
@@ -259,7 +259,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "individual's data"
+        "text": "individual's data\n"
       }
     ],
     "correctAnswer": "D",
@@ -283,7 +283,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "By guaranteeing that some event will occur with 100% likelihood"
+        "text": "By guaranteeing that some event will occur with 100% likelihood\n"
       }
     ],
     "correctAnswer": "C",
@@ -307,7 +307,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Any missing values in the dataset and how they were handled."
+        "text": "Any missing values in the dataset and how they were handled.\n"
       }
     ],
     "correctAnswer": "B, D",
@@ -331,7 +331,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Understandability"
+        "text": "Understandability\n"
       }
     ],
     "correctAnswer": "B",
@@ -355,7 +355,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Simplified development processes"
+        "text": "Simplified development processes\n"
       }
     ],
     "correctAnswer": "B",
@@ -379,7 +379,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "It helps us consider risk mitigation in terms of universal tactics that apply to all potential kinds of ethical risk."
+        "text": "It helps us consider risk mitigation in terms of universal tactics that apply to all potential kinds of ethical risk.\n"
       }
     ],
     "correctAnswer": "A, C",
@@ -403,7 +403,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "The law often difficult to understand."
+        "text": "The law often difficult to understand.\n"
       }
     ],
     "correctAnswer": "A",
@@ -427,7 +427,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Video briefing"
+        "text": "Video briefing\n"
       }
     ],
     "correctAnswer": "B, D",
@@ -451,7 +451,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Release information only to major news networks"
+        "text": "Release information only to major news networks\n"
       }
     ],
     "correctAnswer": "A",
@@ -475,7 +475,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Internal stakeholder consensus about how to approach a crisis"
+        "text": "Internal stakeholder consensus about how to approach a crisis\n"
       }
     ],
     "correctAnswer": "A",
@@ -499,7 +499,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "To control product pricing strategies"
+        "text": "To control product pricing strategies\n"
       }
     ],
     "correctAnswer": "B",
@@ -523,7 +523,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "By predicting future crises through historical data analysis"
+        "text": "By predicting future crises through historical data analysis\n"
       }
     ],
     "correctAnswer": "A",
@@ -547,7 +547,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "By encouraging the concealment of ethical concerns"
+        "text": "By encouraging the concealment of ethical concerns\n"
       }
     ],
     "correctAnswer": "A",
@@ -571,7 +571,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "It demonstrates that the organization is committed to accountability and transparency in their data-driven systems."
+        "text": "It demonstrates that the organization is committed to accountability and transparency in their data-driven systems.\n"
       }
     ],
     "correctAnswer": "D",
@@ -595,7 +595,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "The participants will be impressed by your leveraging of new and exciting technologies."
+        "text": "The participants will be impressed by your leveraging of new and exciting technologies.\n"
       }
     ],
     "correctAnswer": "C",
@@ -619,7 +619,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "a type of Javascript that is both human and machine-readable"
+        "text": "a type of Javascript that is both human and machine-readable\n"
       }
     ],
     "correctAnswer": "A",
@@ -643,7 +643,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Consequentialism is newer than deontology"
+        "text": "Consequentialism is newer than deontology\n"
       }
     ],
     "correctAnswer": "A",
@@ -667,7 +667,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "accurate, fair and explainable"
+        "text": "accurate, fair and explainable\n"
       }
     ],
     "correctAnswer": "B",
@@ -691,7 +691,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "It boosts marketing campaigns"
+        "text": "It boosts marketing campaigns\n"
       }
     ],
     "correctAnswer": "B",
@@ -715,7 +715,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Beneficence is the promotion of efficient systems that perform rapidly and benefit companies."
+        "text": "Beneficence is the promotion of efficient systems that perform rapidly and benefit companies.\n"
       }
     ],
     "correctAnswer": "B",
@@ -739,10 +739,10 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "an uncertainty of how the data is gathered"
+        "text": "an uncertainty of how the data is gathered\n"
       }
     ],
-    "correctAnswer": "C",
+    "correctAnswer": "B",
     "explanation": "Chưa có giải thích."
   },
   {
@@ -763,7 +763,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Social contract theory"
+        "text": "Social contract theory\n"
       }
     ],
     "correctAnswer": "C",
@@ -787,7 +787,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Encompassing Al"
+        "text": "Encompassing Al\n"
       }
     ],
     "correctAnswer": "A",
@@ -811,10 +811,10 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Basic Al"
+        "text": "Basic Al\n"
       }
     ],
-    "correctAnswer": "A",
+    "correctAnswer": "C",
     "explanation": "Chưa có giải thích."
   },
   {
@@ -835,7 +835,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "They are taught to us in school."
+        "text": "They are taught to us in school.\n"
       }
     ],
     "correctAnswer": "A",
@@ -859,7 +859,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Human decision making is often influenced by emotion and not logic."
+        "text": "Human decision making is often influenced by emotion and not logic.\n"
       }
     ],
     "correctAnswer": "D",
@@ -883,7 +883,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Each person must use reason to will moral laws."
+        "text": "Each person must use reason to will moral laws.\n"
       }
     ],
     "correctAnswer": "B, C, D",
@@ -907,7 +907,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Availability bias"
+        "text": "Availability bias\n"
       }
     ],
     "correctAnswer": "B",
@@ -931,7 +931,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Optimized resource allocation"
+        "text": "Optimized resource allocation\n"
       }
     ],
     "correctAnswer": "A",
@@ -955,7 +955,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Disabling all tracking features"
+        "text": "Disabling all tracking features\n"
       }
     ],
     "correctAnswer": "B",
@@ -979,7 +979,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "Industrial configurations"
+        "text": "Industrial configurations\n"
       }
     ],
     "correctAnswer": "A, B",
@@ -1003,7 +1003,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "The principle of having security risk."
+        "text": "The principle of having security risk.\n"
       }
     ],
     "correctAnswer": "A",
@@ -1027,7 +1027,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "disagree with their previous beliefs"
+        "text": "disagree with their previous beliefs\n"
       }
     ],
     "correctAnswer": "A",
@@ -1051,7 +1051,7 @@ export const questionsITE302C: Question[] = [
       },
       {
         "key": "D",
-        "text": "more fairness for that group"
+        "text": "more fairness for that group\n"
       }
     ],
     "correctAnswer": "B",
@@ -1059,127 +1059,119 @@ export const questionsITE302C: Question[] = [
   },
   {
     "id": 45,
-    "question": "Provide the two purposes of step one in the three-step approach to reading? Check 2 options.",
+    "question": "An example of automation bias is",
     "options": [
       {
         "key": "A",
-        "text": "Gain further understanding."
+        "text": "using biased survey data instead of parsed survey data"
       },
       {
         "key": "B",
-        "text": "Assess credibility and relevance."
+        "text": "using parsed twitter data over parsed Facebook data"
       },
       {
         "key": "C",
-        "text": "Understand main ideas."
+        "text": "using new data over existing data"
       },
       {
         "key": "D",
-        "text": "Make detailed notes."
-      },
-      {
-        "key": "E",
-        "text": "Circle or highlight them for later reference."
-      }
-    ],
-    "correctAnswer": "B, C",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 46,
-    "question": "What problem is there with the following argument? I have all my best ideas in the shower. I need to regularly have good ideas when I am at work. Therefore, I need to have numerous showers during the day in order to perform well at work. Check one option.",
-    "options": [
-      {
-        "key": "A",
-        "text": "Nothing. It is a good argument"
-      },
-      {
-        "key": "B",
-        "text": "The premises are false."
-      },
-      {
-        "key": "C",
-        "text": "The premises are not connected"
-      },
-      {
-        "key": "D",
-        "text": "The conclusion is not the most logical outcome from the premises"
+        "text": "using scraped twitter data over survey data\n"
       }
     ],
     "correctAnswer": "D",
     "explanation": "Chưa có giải thích."
   },
   {
-    "id": 47,
-    "question": "When evaluating a solution for a university problem, which of the following do you need to consider? Refer to lesson 4.4a and 4.4b. Check one option.",
+    "id": 46,
+    "question": "What percentage of frameworks include privacy as core tenet?",
     "options": [
       {
         "key": "A",
-        "text": "All are correct."
+        "text": "50%"
       },
       {
         "key": "B",
-        "text": "Whether you have answered the question."
+        "text": "85%"
       },
       {
         "key": "C",
-        "text": "Your evaluation criteria."
+        "text": "25%"
       },
       {
         "key": "D",
-        "text": "Key words or phrases in the problem."
-      },
-      {
-        "key": "E",
-        "text": "Common sense."
+        "text": "99%\n"
       }
     ],
     "correctAnswer": "A",
     "explanation": "Chưa có giải thích."
   },
   {
-    "id": 48,
-    "question": "According to the course of Information & Digital Literacy Skills, universities are not just trying to train you for a job role, but are also trying to prepare you . .. Refer to lesson 1.4a. Choose one option.",
+    "id": 47,
+    "question": "Which of the following best describes capability caution as referenced in the Asilomar Al Principles?",
     "options": [
       {
         "key": "A",
-        "text": "…………to conduct qualitative research."
+        "text": "If there is no understanding of the internal mechanisms of Al, then Al development should be halted."
       },
       {
         "key": "B",
-        "text": "…………to not cheat."
+        "text": "Given a lack of consensus, we should avoid strong assumptions regarding upper limits on future Al capabilities."
       },
       {
         "key": "C",
-        "text": "…………to not become involved in political scandals."
+        "text": "Should there be a greater reliance on Al, measures should be taken to ensure that humans are still capable of finding work."
       },
       {
         "key": "D",
-        "text": "………… to behave ethically."
+        "text": "We should keep limits on on what artificial general intelligence (AGI) is capable of.\n"
       }
     ],
-    "correctAnswer": "D",
+    "correctAnswer": "B",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 48,
+    "question": "Which ethical framework emphasizes the importance of moral duties and rules when addressing ethical dilemmas?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Deontological Ethics"
+      },
+      {
+        "key": "B",
+        "text": "Ethical Relativism"
+      },
+      {
+        "key": "C",
+        "text": "Utilitarianism"
+      },
+      {
+        "key": "D",
+        "text": "Virtue Ethics\n"
+      }
+    ],
+    "correctAnswer": "A",
     "explanation": "Chưa có giải thích."
   },
   {
     "id": 49,
-    "question": "Which of the following statements can be considered hasty generalizations?",
+    "question": "Which of the following describes an ethical framework?",
     "options": [
       {
         "key": "A",
-        "text": "When I was young, my dad and brothers never helped with the household chores. All men are useless in the house."
+        "text": "Ethical frameworks raise timeless ethical questions that are not easily put into action."
       },
       {
         "key": "B",
-        "text": "My child's classmates in preschool bullied him. All children are terrorizing bullies."
+        "text": "Ethical frameworks apply meta-ethical theories to everyday business operations."
       },
       {
         "key": "C",
-        "text": "Dozens of poor families come to my grandfather for financial help. All poor people depend on other people for their living."
+        "text": "Ethical frameworks consolidate regulatory requirements for an industry."
       },
       {
         "key": "D",
-        "text": "All of the answers are correct"
+        "text": "Ethical frameworks seek to mitigate ethical concerns by creating actionable steps.\n"
       }
     ],
     "correctAnswer": "D",
@@ -1187,47 +1179,47 @@ export const questionsITE302C: Question[] = [
   },
   {
     "id": 50,
-    "question": "Consider the following statement: \"The government was criticized as responding slowly in the pandemic\". How is bias displayed in this statement?",
+    "question": "Which of the following is a notable aspect of the Personal Information Protection and Electronic Documents Act (PIPEDA) when compared to similar laws and regulations?",
     "options": [
       {
         "key": "A",
-        "text": "False classification schemes"
+        "text": "Its exclusive focus on a single domain rather than a breadth of domains"
       },
       {
         "key": "B",
-        "text": "Use of passive voice to hide responsibility"
+        "text": "The early date of its inauguration"
       },
       {
         "key": "C",
-        "text": "Ad hominem"
+        "text": "Its nationwide scope and specific national focus"
       },
       {
         "key": "D",
-        "text": "Appealing to membership of a common group"
+        "text": "A stipulation to continue providing service even if data usage is denied\n"
       }
     ],
-    "correctAnswer": "B",
+    "correctAnswer": "D",
     "explanation": "Chưa có giải thích."
   },
   {
     "id": 51,
-    "question": "Examples of hasty generalization:",
+    "question": "What is the purpose of change management in terms of creating an ethical organizational culture?",
     "options": [
       {
         "key": "A",
-        "text": "Hearing disability results in miscommunication."
+        "text": "To create a fast transition through training."
       },
       {
         "key": "B",
-        "text": "Inappropriate gestures in certain countries result in miscommunication."
+        "text": "To create a management transition."
       },
       {
         "key": "C",
-        "text": "Women listen better than men."
+        "text": "To create a smooth transition."
       },
       {
         "key": "D",
-        "text": "Women tend to have empathic listening."
+        "text": "To create a slow transition through training.\n"
       }
     ],
     "correctAnswer": "C",
@@ -1235,47 +1227,47 @@ export const questionsITE302C: Question[] = [
   },
   {
     "id": 52,
-    "question": "In order for the information to be acceptable and reliable within the academic context, it needs:",
+    "question": "How can small organizations implement ethical practices with limited resources?",
     "options": [
       {
         "key": "A",
-        "text": "to have a scholarly purpose."
+        "text": "Wait until they grow larger"
       },
       {
         "key": "B",
-        "text": "to be easy to read and understand."
+        "text": "Focus on core ethical principles and gradual implementation"
       },
       {
         "key": "C",
-        "text": "to be easy to be found."
+        "text": "Copy larger organizations exactly"
       },
       {
         "key": "D",
-        "text": "to be used by a lot of people."
+        "text": "Ignore ethics until legally required\n"
       }
     ],
-    "correctAnswer": "A",
+    "correctAnswer": "B",
     "explanation": "Chưa có giải thích."
   },
   {
     "id": 53,
-    "question": "The purpose of studying critical thinking skill is to:",
+    "question": "Which strategy is key to building and maintaining an ethical organizational culture?",
     "options": [
       {
         "key": "A",
-        "text": "Identify types of argument, and bias within arguments, in order to better evaluate the strength of arguments."
+        "text": "Implementing ethics training and effective sessions"
       },
       {
         "key": "B",
-        "text": "Identify types of argument, and bias within arguments, in order to prove that others' arguments are wrong"
+        "text": "Focusing solely on financial performance"
       },
       {
         "key": "C",
-        "text": "Identify types of argument, and bias within arguments, in order to find reliable information sources for an academic context"
+        "text": "Ignoring regional and diversity differences"
       },
       {
         "key": "D",
-        "text": "All of the answers are incorrect"
+        "text": "Minimizing leadership roles\n"
       }
     ],
     "correctAnswer": "A",
@@ -1283,47 +1275,47 @@ export const questionsITE302C: Question[] = [
   },
   {
     "id": 54,
-    "question": "Have a look at the following statement. Which sentence is the conclusion? \"I graduated from the university with good grades. I am good at English, tech skill and communication skill. I can work under pressure. I enjoy reading a lot.\"",
+    "question": "Which approach to corporate governance is more likely to create an ethical organizational culture?",
     "options": [
       {
         "key": "A",
-        "text": "The first sentence"
+        "text": "A systemic approach with incentive systems."
       },
       {
         "key": "B",
-        "text": "The second sentence"
+        "text": "An oversight committee focus on rules."
       },
       {
         "key": "C",
-        "text": "The third sentence"
+        "text": "A board focused on legal and regulatory compliance."
       },
       {
         "key": "D",
-        "text": "There's no conclusion in the statement"
+        "text": "An oversight committee focus on frameworks.\n"
       }
     ],
-    "correctAnswer": "D",
+    "correctAnswer": "A",
     "explanation": "Chưa có giải thích."
   },
   {
     "id": 55,
-    "question": "When critically evaluating web resource, why do we need to look for the publisher?",
+    "question": "Which of the following constitute external stakeholders in the context of a code of ethics?",
     "options": [
       {
         "key": "A",
-        "text": "Because web pages and their information often name the author/authors."
+        "text": "Business managers"
       },
       {
         "key": "B",
-        "text": "Because we need to ask the author/authors for using the information."
+        "text": "Developers"
       },
       {
         "key": "C",
-        "text": "Because it helps us to identify if the publisher is easily identifiable, and if they are credible and known outside of the Internet."
+        "text": "Regulators"
       },
       {
         "key": "D",
-        "text": "Because we should use different information from different authors."
+        "text": "Designers\n"
       }
     ],
     "correctAnswer": "C",
@@ -1331,126 +1323,122 @@ export const questionsITE302C: Question[] = [
   },
   {
     "id": 56,
-    "question": "At university, what is an argument?",
+    "question": "Which of the following is a key element of communications with internal and external stakeholders regarding an organization's ethics policies?",
     "options": [
       {
         "key": "A",
-        "text": "An angry disagreement between two people"
+        "text": "Simple to follow examples"
       },
       {
         "key": "B",
-        "text": "An attempt to defend, validate or explain a conclusion using specific reasons or evidence"
+        "text": "Daily communications"
       },
       {
         "key": "C",
-        "text": "A more polite term for a fight"
+        "text": "Dense procedural descriptions"
       },
       {
         "key": "D",
-        "text": "Another word for a conclusion"
+        "text": "Flexible verbiage\n"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 57,
+    "question": "How can organizations ensure continuous ethical improvement?",
+    "options": [
+      {
+        "key": "A",
+        "text": "By implementing systems once and forgetting them"
+      },
+      {
+        "key": "B",
+        "text": "Through regular assessment, feedback, and adaptation"
+      },
+      {
+        "key": "C",
+        "text": "By following competitors only"
+      },
+      {
+        "key": "D",
+        "text": "By focusing solely on compliance\n"
       }
     ],
     "correctAnswer": "B",
     "explanation": "Chưa có giải thích."
   },
   {
-    "id": 57,
-    "question": "Have a look at the following statement. Which sentence is the conclusion? 'Young people should be guided to develop powerful habits. In particular, Self-reflection is substantially essential for daily practice. Educators defined self-reflection as a process by which you grow your understanding of who you are, what your values are, and why you think and act the way you do. It is a form of personal analysis that allows you to bring your life into alignment with what you wish it to be. This practice is increasingly emphasized in the context of Life-long learning; in which each individual need to actively foster their own development of knowledge and skills\".",
-    "options": [
-      {
-        "key": "A",
-        "text": "The first sentence"
-      },
-      {
-        "key": "B",
-        "text": "The second sentence"
-      },
-      {
-        "key": "C",
-        "text": "The third sentence"
-      },
-      {
-        "key": "D",
-        "text": "The last sentence"
-      }
-    ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
-  },
-  {
     "id": 58,
-    "question": "Which of the following are characteristics of argument fields?",
+    "question": "Which of the following is a misuse of intellectual property (IP) when it comes to ethical accountability for an organization?",
     "options": [
       {
         "key": "A",
-        "text": "Common object of study"
+        "text": "Collecting returns on investments made in research and development."
       },
       {
         "key": "B",
-        "text": "Shared processes of thought"
+        "text": "Filing a patent for the IP that makes non-obvious information known to the public."
       },
       {
         "key": "C",
-        "text": "Shared opinion on the common object of study"
+        "text": "Enhancing the security posture of a product or service."
       },
       {
         "key": "D",
-        "text": "Agreement on what knowledge is"
-      },
-      {
-        "key": "E",
-        "text": "Shared academic discipline such as biology or law"
+        "text": "Using IP as a defensive mechanism to eschew transparency requirements.\n"
       }
     ],
-    "correctAnswer": "A, B, D",
+    "correctAnswer": "D",
     "explanation": "Chưa có giải thích."
   },
   {
     "id": 59,
-    "question": "Consider the following situation. Mohammed is a third-year undergraduate student studying epidemiology. His professor is highly regarded in the field and Mohammed is very excited to study under him. However, after seeing another student use an incorrect equation while trying to replicate one of his professor's experiments, Mohammed notices that his professor made a small error when calculating the data for the original experiment. When Mohammed fixes the error, it changes the results so much that the conclusion isn't correct anymore. Mohammed checks the original and his own multiple times but he still gets the same result. Mohammed is very concerned because the paper with the published results of the experiments his professor did has been referenced many times. What should Mohammed do?",
+    "question": "What does a code of ethics provide for a data-driven organization?",
     "options": [
       {
         "key": "A",
-        "text": "Bring this to his professor's attention as soon as possible"
+        "text": "Specific employee salaries"
       },
       {
         "key": "B",
-        "text": "Go to the head of the school and tell her that his professor has been falsifying his results"
+        "text": "Legal immunity from lawsuits"
       },
       {
         "key": "C",
-        "text": "Do nothing. Mohammed obviously isn't doing the calculations properly as his professor is much more intelligent and knows much more about the subject than he does"
+        "text": "Guiding values and expectations for ethical behavior"
       },
       {
         "key": "D",
-        "text": "He should go to the dean of the faculty and report his professor's experiment"
+        "text": "Product development timelines\n"
       }
     ],
-    "correctAnswer": "A",
+    "correctAnswer": "C",
     "explanation": "Chưa có giải thích."
   },
   {
     "id": 60,
-    "question": "Critically evaluating the source of information that we find enables us to use this information:",
+    "question": "What is a key step in monitoring ethical organizational policies?",
     "options": [
       {
         "key": "A",
-        "text": "in an informed and knowledgeable way."
+        "text": "Establishing a policy committee"
       },
       {
         "key": "B",
-        "text": "in a way that fits our purpose."
+        "text": "Regular compliance checks"
       },
       {
         "key": "C",
-        "text": "in a way that is easy for us to do our assignment."
+        "text": "Creating a rewards system"
       },
       {
         "key": "D",
-        "text": "None of above is correct.\n--------------------------------------------------"
+        "text": "Hosting annual policy workshops\n\n"
       }
     ],
-    "correctAnswer": "A",
+    "correctAnswer": "B",
     "explanation": "Chưa có giải thích."
   }
 ];
