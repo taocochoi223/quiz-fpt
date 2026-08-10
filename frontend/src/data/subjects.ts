@@ -59,11 +59,11 @@ export const subjects: Subject[] = [
   {
     id: "ite302c",
     name: "ITE302C",
-    fullName: "ITE302C - Web Design",
+    fullName: "ITE302C - Ethics in IT",
     papers: [
       {
         id: "ite302c_paper1",
-        name: "Đề 1",
+        name: "Đề 1 (60 câu)",
         questions: questionsITE302C,
       }
     ]
