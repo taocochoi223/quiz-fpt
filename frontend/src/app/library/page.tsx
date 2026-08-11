@@ -164,7 +164,8 @@ export default function LibraryPage() {
                 <AccordionContent className="pb-6">
                   <div className="flex flex-col gap-3 pl-4 border-l-2 border-border/50 ml-2 mt-2">
                     {q.options.map((opt: any, idx: number) => {
-                      const isCorrect = opt.key === q.correctAnswer;
+                      const correctAnsArr = q.correctAnswer.split(',').map((s: string) => s.trim());
+                      const isCorrect = correctAnsArr.includes(opt.key);
                       return (
                         <div
                           key={`${opt.key}-${idx}`}

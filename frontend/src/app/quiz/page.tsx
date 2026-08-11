@@ -195,10 +195,28 @@ export default function QuizPage() {
   const progressPercent = (Object.keys(answers).length / quizSet.length) * 100;
 
   const handleSelect = (key: string) => {
-    setAnswers((prev) => ({
-      ...prev,
-      [currentQ.uniqueId]: key,
-    }));
+    setAnswers((prev) => {
+      const isMulti = currentQ.correctAnswer.includes(',');
+      if (isMulti) {
+        const currentAns = prev[currentQ.uniqueId] ? prev[currentQ.uniqueId].split(',').map((s: string) => s.trim()) : [];
+        if (currentAns.includes(key)) {
+          return {
+            ...prev,
+            [currentQ.uniqueId]: currentAns.filter((k: string) => k !== key).join(', ')
+          };
+        } else {
+          return {
+            ...prev,
+            [currentQ.uniqueId]: [...currentAns, key].sort().join(', ')
+          };
+        }
+      } else {
+        return {
+          ...prev,
+          [currentQ.uniqueId]: key,
+        };
+      }
+    });
   };
 
   const handleNext = () => {
@@ -218,7 +236,10 @@ export default function QuizPage() {
   if (isFinished) {
     let score = 0;
     quizSet.forEach((q) => {
-      if (answers[q.uniqueId] === q.correctAnswer) {
+      const userAns = answers[q.uniqueId] ? answers[q.uniqueId].split(',').map((s: string) => s.trim()).sort().join(', ') : "";
+      const correctAns = q.correctAnswer.split(',').map((s: string) => s.trim()).sort().join(', ');
+      
+      if (userAns === correctAns) {
         score++;
       }
     });
@@ -391,7 +412,8 @@ export default function QuizPage() {
 
           <div className="grid grid-cols-1 gap-3 mt-4">
             {shuffledOptions.map((opt: any, idx: number) => {
-              const isSelected = currentAnswer === opt.key;
+              const currentAnsArr = currentAnswer ? currentAnswer.split(',').map((s: string) => s.trim()) : [];
+              const isSelected = currentAnsArr.includes(opt.key);
               
               let stateClass = "bg-background border-border/50 hover:border-primary/50 hover:bg-muted/50 cursor-pointer";
               let badgeClass = "bg-muted text-muted-foreground";

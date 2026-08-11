@@ -53,7 +53,8 @@ export default function LearnPage() {
   const [customSubjectId, setCustomSubjectId] = React.useState<string>("all");
   const [customPaperId, setCustomPaperId] = React.useState<string>("all");
   
-  const [selectedOpt, setSelectedOpt] = React.useState<string | null>(null);
+  const [selectedOpts, setSelectedOpts] = React.useState<string[]>([]);
+  const [isAnswered, setIsAnswered] = React.useState(false);
   const [shake, setShake] = React.useState(false);
   const [showResumeDialog, setShowResumeDialog] = React.useState(false);
   
@@ -138,7 +139,7 @@ export default function LearnPage() {
         if (showSegmentSummary) {
           e.preventDefault();
           handleBatchEnd();
-        } else if (selectedOpt && currentQ && selectedOpt !== currentQ.correctAnswer) {
+        } else if (isAnswered && currentQ && selectedOpts.slice().sort().join(', ') !== currentQ.correctAnswer.split(',').map((s: string)=>s.trim()).sort().join(', ')) {
           e.preventDefault();
           advance();
         }
@@ -292,7 +293,8 @@ export default function LearnPage() {
     setIsFinalReview(false);
     setIsBatchRetry(false);
     setCompletedCount(0);
-    setSelectedOpt(null);
+    setSelectedOpts([]);
+    setIsAnswered(false);
     setTotalQuestions(ids.length);
   }, []);
 
@@ -325,13 +327,38 @@ export default function LearnPage() {
   };
 
   const handleSelect = (key: string) => {
-    if (selectedOpt || !currentQ) return;
+    if (isAnswered || !currentQ) return;
     
-    setSelectedOpt(key);
     setAiExplanation(null);
     setIsAiLoading(false);
     
-    const isCorrect = key === currentQ.correctAnswer;
+    const correctAnsArr = currentQ.correctAnswer.split(',').map((s: string) => s.trim());
+    const isMulti = correctAnsArr.length > 1;
+
+    let newSelected = [...selectedOpts];
+    
+    if (isMulti) {
+      if (newSelected.includes(key)) {
+        newSelected = newSelected.filter(k => k !== key);
+      } else {
+        newSelected.push(key);
+      }
+      setSelectedOpts(newSelected);
+      
+      if (newSelected.length === correctAnsArr.length) {
+        setIsAnswered(true);
+        gradeAnswer(newSelected, correctAnsArr);
+      }
+    } else {
+      newSelected = [key];
+      setSelectedOpts(newSelected);
+      setIsAnswered(true);
+      gradeAnswer(newSelected, correctAnsArr);
+    }
+  };
+
+  const gradeAnswer = (userAns: string[], correctAns: string[]) => {
+    const isCorrect = userAns.slice().sort().join(', ') === correctAns.slice().sort().join(', ');
     
     if (isCorrect) {
       playCorrectSound();
@@ -360,7 +387,8 @@ export default function LearnPage() {
   };
 
   const advance = () => {
-    setSelectedOpt(null);
+    setSelectedOpts([]);
+    setIsAnswered(false);
     if (qIndex < queue.length - 1) {
       setQIndex(p => p + 1);
     } else {
@@ -408,7 +436,8 @@ export default function LearnPage() {
       const shuffled = shuffle(remaining);
       const newQueue = [...queue.slice(0, qIndex), ...shuffled];
       setQueue(newQueue);
-      setSelectedOpt(null);
+      setSelectedOpts([]);
+      setIsAnswered(false);
       toast.success("Đã trộn các câu đang ôn tập!");
       return;
     }
@@ -422,7 +451,8 @@ export default function LearnPage() {
     setQueue(newQueue);
     setCurrentBatchIds(newQueue);
     setPendingIds(shuffled.slice(spotsLeftInBatch));
-    setSelectedOpt(null);
+    setSelectedOpts([]);
+    setIsAnswered(false);
     toast.success("Đã trộn ngẫu nhiên các câu còn lại!");
   };
 
@@ -433,7 +463,8 @@ export default function LearnPage() {
       const ordered = remaining.sort((a,b) => a.toString().localeCompare(b.toString()));
       const newQueue = [...queue.slice(0, qIndex), ...ordered];
       setQueue(newQueue);
-      setSelectedOpt(null);
+      setSelectedOpts([]);
+      setIsAnswered(false);
       toast.success("Đã sắp xếp các câu đang ôn tập!");
       return;
     }
@@ -447,8 +478,9 @@ export default function LearnPage() {
     setQueue(newQueue);
     setCurrentBatchIds(newQueue);
     setPendingIds(ordered.slice(spotsLeftInBatch));
-    setSelectedOpt(null);
-    toast.success("Đã trộn lại các câu chưa làm!");
+    setSelectedOpts([]);
+    setIsAnswered(false);
+    toast.success("Đã sắp xếp các câu còn lại!");
   };
 
   const startFinalReview = () => {
@@ -592,7 +624,8 @@ export default function LearnPage() {
                 
                 <div className="ml-10 flex flex-col gap-2 mt-2">
                   {q.options.map((opt: any, idx: number) => {
-                    const isCorrect = opt.key === q.correctAnswer;
+                    const correctAnsArr = q.correctAnswer.split(',').map((s: string) => s.trim());
+                    const isCorrect = correctAnsArr.includes(opt.key);
                     return (
                       <div
                         key={`${opt.key}-${idx}`}
@@ -984,13 +1017,14 @@ export default function LearnPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
             {shuffledOptions.map((opt: any, idx: number) => {
-              const isSelected = selectedOpt === opt.key;
-              const isCorrectOpt = opt.key === currentQ.correctAnswer;
+              const isSelected = selectedOpts.includes(opt.key);
+              const correctAnsArr = currentQ.correctAnswer.split(',').map((s: string) => s.trim());
+              const isCorrectOpt = correctAnsArr.includes(opt.key);
               
               let stateClass = "bg-card border-border/50 hover:border-primary/50 hover:shadow-md cursor-pointer";
               let icon = null;
 
-              if (selectedOpt) {
+              if (isAnswered) {
                 if (isCorrectOpt) {
                   stateClass = "bg-emerald-500/10 border-emerald-500/50 text-emerald-900 dark:text-emerald-100 cursor-default shadow-sm ring-1 ring-emerald-500";
                   icon = <Check className="w-5 h-5 text-emerald-500 ml-auto" />;
@@ -1000,19 +1034,22 @@ export default function LearnPage() {
                 } else {
                   stateClass = "opacity-40 cursor-default border-border/30";
                 }
+              } else if (isSelected) {
+                stateClass = "bg-primary/10 border-primary text-primary shadow-sm ring-1 ring-primary";
               }
 
               return (
                 <motion.div
                   key={`${opt.key}-${idx}`}
-                  whileHover={!selectedOpt ? { scale: 1.02, y: -2 } : {}}
-                  whileTap={!selectedOpt ? { scale: 0.98 } : {}}
+                  whileHover={!isAnswered ? { scale: 1.02, y: -2 } : {}}
+                  whileTap={!isAnswered ? { scale: 0.98 } : {}}
                   onClick={() => handleSelect(opt.key)}
                   className={`flex items-start gap-4 p-5 rounded-xl border-2 transition-all duration-200 ${stateClass}`}
                 >
                   <div className={`flex items-center justify-center w-10 h-10 text-lg rounded-md shrink-0 font-bold border ${
-                    isSelected && !isCorrectOpt ? "bg-destructive text-destructive-foreground border-destructive" : 
-                    isCorrectOpt && selectedOpt ? "bg-emerald-500 text-white border-emerald-500" : "bg-muted text-muted-foreground border-border"
+                    isAnswered && isSelected && !isCorrectOpt ? "bg-destructive text-destructive-foreground border-destructive" : 
+                    isAnswered && isCorrectOpt ? "bg-emerald-500 text-white border-emerald-500" :
+                    !isAnswered && isSelected ? "bg-primary text-primary-foreground border-primary" : "bg-muted text-muted-foreground border-border"
                   }`}>
                     {String.fromCharCode(65 + idx)}
                   </div>
@@ -1024,7 +1061,7 @@ export default function LearnPage() {
           </div>
 
           <AnimatePresence>
-            {selectedOpt && selectedOpt !== currentQ.correctAnswer && (
+            {isAnswered && selectedOpts.slice().sort().join(', ') !== currentQ.correctAnswer.split(',').map((s: string)=>s.trim()).sort().join(', ') && (
               <motion.div 
                 initial={{ opacity: 0, y: 10, height: 0 }}
                 animate={{ opacity: 1, y: 0, height: 'auto' }}
