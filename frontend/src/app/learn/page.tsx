@@ -494,7 +494,8 @@ export default function LearnPage() {
     setBatchWrongIds([]);
     setInitialWrongIds([]);
     setIsBatchRetry(false);
-    setSelectedOpt(null);
+    setSelectedOpts([]);
+    setIsAnswered(false);
   };
 
   const handleRestart = () => {
@@ -528,7 +529,7 @@ export default function LearnPage() {
           question: currentQ.question,
           options: currentQ.options,
           correctAnswer: currentQ.correctAnswer,
-          userSelected: selectedOpt
+          userSelected: selectedOpts.slice().sort().join(', ')
         })
       });
       
