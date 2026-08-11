@@ -1013,6 +1013,11 @@ export default function LearnPage() {
               >
                 {currentQ.question}
               </ReactMarkdown>
+              {currentQ.imageUrl && (
+                <div className="mt-6 flex justify-center">
+                  <img src={currentQ.imageUrl} alt="Question figure" className="max-w-full h-auto rounded-lg border border-border shadow-sm max-h-[400px] object-contain" />
+                </div>
+              )}
             </div>
           </Card>
 

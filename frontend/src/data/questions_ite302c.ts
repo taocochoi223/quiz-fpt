@@ -171,7 +171,7 @@ export const questionsITE302C: Question[] = [
   },
   {
     "id": 8,
-    "question": "In the following scatter plot, the GrossIncome variable is plotted against the Revenue variable. What type of correlation does this plot suggest?",
+    "question": "In the following scatter plot, the GrossIncome variable is plotted against the Revenue variable. What type of correlation does this plot suggest?\n",
     "options": [
       {
         "key": "A",
@@ -191,6 +191,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
+    "imageUrl": "/images/ite302c_q8.png",
     "explanation": "Chưa có giải thích."
   },
   {
@@ -670,7 +671,7 @@ export const questionsITE302C: Question[] = [
         "text": "accurate, fair and explainable\n"
       }
     ],
-    "correctAnswer": "B",
+    "correctAnswer": "D",
     "explanation": "Chưa có giải thích."
   },
   {
@@ -982,7 +983,7 @@ export const questionsITE302C: Question[] = [
         "text": "Industrial configurations\n"
       }
     ],
-    "correctAnswer": "A, B",
+    "correctAnswer": "B",
     "explanation": "Chưa có giải thích."
   },
   {
@@ -1102,7 +1103,7 @@ export const questionsITE302C: Question[] = [
         "text": "99%\n"
       }
     ],
-    "correctAnswer": "A",
+    "correctAnswer": "B",
     "explanation": "Chưa có giải thích."
   },
   {

@@ -9,4 +9,5 @@ export type Question = {
   options: Option[];
   correctAnswer: string;
   explanation?: string;
+  imageUrl?: string;
 };

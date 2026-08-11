@@ -152,6 +152,11 @@ export default function LibraryPage() {
                         >
                           {q.question}
                         </ReactMarkdown>
+                        {q.imageUrl && (
+                          <div className="mt-4 flex justify-start w-full">
+                            <img src={q.imageUrl} alt="Question figure" className="max-w-full h-auto rounded-lg border border-border shadow-sm max-h-[300px] object-contain" />
+                          </div>
+                        )}
                       </div>
                     </div>
                     {selectedSubjectId === "all" && (
