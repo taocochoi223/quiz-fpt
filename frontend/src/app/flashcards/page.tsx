@@ -34,8 +34,8 @@ export default function FlashcardsPage() {
   const [deck, setDeck] = React.useState<any[]>([]);
 
   // State for learning logic
-  const [pendingIds, setPendingIds] = React.useState<number[]>([]);
-  const [wrongIds, setWrongIds] = React.useState<number[]>([]);
+  const [pendingIds, setPendingIds] = React.useState<(number | string)[]>([]);
+  const [wrongIds, setWrongIds] = React.useState<(number | string)[]>([]);
   const [qIndex, setQIndex] = React.useState(0);
   const [passCount, setPassCount] = React.useState(1);
 

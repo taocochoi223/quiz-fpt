@@ -37,18 +37,21 @@ export default function QuizPage() {
   }, [currentQ?.uniqueId]);
 
   const startQuiz = () => {
-    let activeQuestions: any[] = [];
+    let activeQs: any[] = [];
     if (selectedSubjectId === "full") {
-      activeQuestions = subjects.flatMap(s => s.papers.flatMap(p => p.questions).map(q => ({...q, uniqueId: `${s.id}-${q.id}`})));
+      activeQs = subjects.flatMap(s => s.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${s.id}-${p.id}-${q.id}` }))));
     } else {
-      activeQuestions = subjects.find(s => s.id === selectedSubjectId)?.papers.flatMap(p => p.questions).map(q => ({...q, uniqueId: `${selectedSubjectId}-${q.id}`})) || [];
+      activeQs = subjects.find(s => s.id === selectedSubjectId)?.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${selectedSubjectId}-${p.id}-${q.id}` }))) || [];
     }
 
-    setQuizSet(shuffleArray(activeQuestions).slice(0, questionCount));
-    setMode("quiz");
+    if (activeQs.length === 0) return;
+
+    const shuffled = shuffleArray(activeQs).slice(0, questionCount);
+    setQuizSet(shuffled);
     setCurrentIndex(0);
     setAnswers({});
     setIsFinished(false);
+    setMode("quiz");
   };
 
   const handleSelectSubject = (id: string) => {

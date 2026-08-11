@@ -15,9 +15,17 @@ export default function LibraryPage() {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [expandedItems, setExpandedItems] = React.useState<string[]>([]);
   const [selectedSubjectId, setSelectedSubjectId] = React.useState<string | "all">("all");
+  const [selectedPaperId, setSelectedPaperId] = React.useState<string | "all">("all");
 
   const allQuestions = React.useMemo(() => {
-    return subjects.flatMap(s => s.papers.flatMap(p => p.questions).map(q => ({ ...q, subjectId: s.id, subjectName: s.name })));
+    return subjects.flatMap(s => s.papers.flatMap(p => p.questions.map(q => ({ 
+      ...q, 
+      subjectId: s.id, 
+      subjectName: s.name,
+      paperId: p.id,
+      paperName: p.name,
+      uniqueId: `${s.id}-${p.id}-${q.id}`
+    }))));
   }, []);
 
   const filteredQuestions = React.useMemo(() => {
@@ -25,6 +33,9 @@ export default function LibraryPage() {
     
     if (selectedSubjectId !== "all") {
       filtered = filtered.filter(q => q.subjectId === selectedSubjectId);
+      if (selectedPaperId !== "all") {
+        filtered = filtered.filter(q => q.paperId === selectedPaperId);
+      }
     }
     
     if (!searchQuery.trim()) return filtered;
@@ -35,20 +46,24 @@ export default function LibraryPage() {
         q.question.toLowerCase().includes(lowerQuery) ||
         q.options.some((o: any) => o.text.toLowerCase().includes(lowerQuery))
     );
-  }, [searchQuery, selectedSubjectId, allQuestions]);
+  }, [searchQuery, selectedSubjectId, selectedPaperId, allQuestions]);
 
   const toggleExpandAll = () => {
     if (expandedItems.length === filteredQuestions.length && filteredQuestions.length > 0) {
       setExpandedItems([]);
     } else {
-      setExpandedItems(filteredQuestions.map((q) => `${q.subjectId}-${q.id}`));
+      setExpandedItems(filteredQuestions.map((q: any) => q.uniqueId));
     }
   };
 
   // Reset expanded items when searching to avoid huge lag, or let them stay
   React.useEffect(() => {
     setExpandedItems([]);
-  }, [searchQuery, selectedSubjectId]);
+  }, [searchQuery, selectedSubjectId, selectedPaperId]);
+
+  React.useEffect(() => {
+    setSelectedPaperId("all");
+  }, [selectedSubjectId]);
 
   return (
     <motion.div
@@ -81,6 +96,34 @@ export default function LibraryPage() {
             </Button>
           ))}
         </div>
+
+        {selectedSubjectId !== "all" && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            className="flex flex-wrap gap-2"
+          >
+            <Button 
+              variant={selectedPaperId === "all" ? "secondary" : "outline"}
+              onClick={() => setSelectedPaperId("all")}
+              size="sm"
+              className="rounded-full"
+            >
+              Tất cả đề
+            </Button>
+            {subjects.find(s => s.id === selectedSubjectId)?.papers.map(p => (
+              <Button 
+                key={p.id}
+                variant={selectedPaperId === p.id ? "secondary" : "outline"}
+                onClick={() => setSelectedPaperId(p.id)}
+                size="sm"
+                className="rounded-full"
+              >
+                <Layers className="w-3 h-3 mr-1.5" /> {p.name}
+              </Button>
+            ))}
+          </motion.div>
+        )}
 
         <div className="relative group">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -121,8 +164,8 @@ export default function LibraryPage() {
             value={expandedItems as any} 
             onValueChange={setExpandedItems as any}
           >
-            {filteredQuestions.map((q, index) => {
-              const uniqueId = `${q.subjectId}-${q.id}`;
+            {filteredQuestions.map((q: any, index: number) => {
+              const uniqueId = q.uniqueId;
               return (
               <AccordionItem key={uniqueId} value={uniqueId} className="border-border/50 px-4">
                 <AccordionTrigger className="hover:no-underline hover:text-primary text-left py-4">

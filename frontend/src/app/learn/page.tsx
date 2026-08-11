@@ -79,25 +79,25 @@ export default function LearnPage() {
     const subj = subjects.find(s => s.id === selectedSubjectId);
     if (subj) {
       if (activePaperId) {
-        activeQuestions = subj.papers.find(p => p.id === activePaperId)?.questions || [];
+        activeQuestions = subj.papers.find(p => p.id === activePaperId)?.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${activePaperId}-${q.id}` })) || [];
       } else {
-        activeQuestions = subj.papers.flatMap(p => p.questions);
+        activeQuestions = subj.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}` })));
       }
     }
   } else if (mode === "full") {
-    activeQuestions = subjects.flatMap(s => s.papers.flatMap(p => p.questions));
+    activeQuestions = subjects.flatMap(s => s.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${s.id}-${p.id}-${q.id}` }))));
   } else {
-    // When in select mode, default to PRN232 for old resume compatibility
-    activeQuestions = subjects.find(s => s.id === "prn232")?.papers.flatMap(p => p.questions) || [];
+    const defaultSubj = subjects[0];
+    activeQuestions = defaultSubj?.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${defaultSubj.id}-${p.id}-${q.id}` }))) || [];
   }
 
   const currentQId = queue[qIndex];
-  const currentQ = activeQuestions.find(q => q.id === currentQId) || null;
+  const currentQ = activeQuestions.find(q => q.uniqueId === currentQId || q.id === currentQId) || null;
 
   const shuffledOptions = React.useMemo(() => {
     if (!currentQ || !currentQ.options) return [];
     return shuffle(currentQ.options);
-  }, [currentQ?.id]);
+  }, [currentQ?.uniqueId, currentQ?.id]);
 
   const [hasSavedSessions, setHasSavedSessions] = React.useState<Record<string, boolean>>({});
 
@@ -588,7 +588,7 @@ export default function LearnPage() {
         
         <div className="flex flex-col gap-4">
           {currentBatchIds.map((qId, idx) => {
-            const q = activeQuestions.find(x => x.id === qId);
+            const q = activeQuestions.find(x => x.uniqueId === qId || x.id === qId);
             if (!q) return null;
             const wasWrong = initialWrongIds.includes(qId);
             return (

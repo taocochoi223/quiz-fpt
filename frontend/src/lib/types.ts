@@ -4,7 +4,8 @@ export type Option = {
 };
 
 export type Question = {
-  id: number;
+  id: number | string;
+  uniqueId?: string;
   question: string;
   options: Option[];
   correctAnswer: string;
