@@ -1119,7 +1119,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 47,
-    "question": "Imagine that you are taking a course in Landscape Architecture. As part of the course you need to give a 10-minute group presentation on sustainable design for urban parks. The presentation needs to include: 1. A definition of sustainable design for urban parks 2. The principles for sustainable design 3. Three examples of sustainable design for urban parks 4. An analysis of each of the example parks in relation to the principles. There are four people in your group: you, James, Rie and Ali. What is the best way to divide the tasks *? (*an example, not the only way!) Refer to lesson 5.3a and 5.3b Check one option.",
+    "question": "Imagine that you are taking a course in Landscape Architecture. As part of the course you need to give a 10-minute group presentation on sustainable design for urban parks. The presentation needs to include:\\n\\n1. A definition of sustainable design for urban parks\\n2. The principles for sustainable design\\n3. Three examples of sustainable design for urban parks\\n4. An analysis of each of the example parks in relation to the principles.\\n\\nThere are four people in your group: you, James, Rie and Ali.\\n\\nWhat is the best way to divide the tasks *?\\n(*an example, not the only way!)\\n\\nRefer to lesson 5.3a and 5.3b\\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -1143,7 +1143,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 48,
-    "question": "Look at the following argument structure as an example: \"(1) Existing stocks of social housing are quite low, and (2) the government is cutting funding. As a result of this, (3) we will no doubt see rising numbers of homeless and (4) increase waiting list for public housing\". (1) And (2) are reasons (3) And (4) are conclusions. What kind of argument structure is represented by the example?",
+    "question": "Look at the following argument structure as an example:\\n\\n\"(1) Existing stocks of social housing are quite low, and (2) the government is cutting funding. As a result of this, (3) we will no doubt see rising numbers of homeless and (4) increase waiting list for public housing\".\\n\\n(1) And (2) are reasons\\n(3) And (4) are conclusions.\\n\\nWhat kind of argument structure is represented by the example?",
     "options": [
       {
         "key": "A",
