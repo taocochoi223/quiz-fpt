@@ -7,102 +7,22 @@ export const questionsITE302C_de3: Question[] = [
     "options": [
       {
         "key": "A",
-        "text": "1. Scan to find the smallest number"
+        "text": "1. Scan to find the smallest number\n2. Set to 0 in the index in the output array\n3. Remove that number from the input array"
+      },
+      {
+        "key": "B",
+        "text": "1. Scan to find the smallest number\n2. Set the length of the array in the index in the output array\n3. Remove that number from the input\n4. Repeat steps 1-3, but add 1 to the index number for each loop"
+      },
+      {
+        "key": "C",
+        "text": "1. Scan to find the smallest number\n2. Set to 0 in the index in the output array\n3. Remove that number from the input array\n4. Repeat steps 1-3, but add 1 to the index number for each loop"
+      },
+      {
+        "key": "D",
+        "text": "1. Scan to find the largest number\n2. Set to 0 in the index in the output array\n3. Remove that number from the input array\n4. Repeat steps 1-3, but add 1 to the index number for each loop"
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 2,
-    "question": "Set to 0 in the index in the output array",
-    "options": [],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 3,
-    "question": "Remove that number from the input array",
-    "options": [
-      {
-        "key": "B",
-        "text": "1. Scan to find the smallest number"
-      }
-    ],
-    "correctAnswer": "B, C",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 2,
-    "question": "Set the length of the array in the index in the output array",
-    "options": [],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 3,
-    "question": "Remove that number from the input",
-    "options": [],
-    "correctAnswer": "B, C",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 4,
-    "question": "Repeat steps 1-3, but add 1 to the index number for each loop",
-    "options": [
-      {
-        "key": "C",
-        "text": "1. Scan to find the smallest number"
-      }
-    ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 2,
-    "question": "Set to 0 in the index in the output array",
-    "options": [],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 3,
-    "question": "Remove that number from the input array",
-    "options": [],
-    "correctAnswer": "B, C",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 4,
-    "question": "Repeat steps 1-3, but add 1 to the index number for each loop",
-    "options": [
-      {
-        "key": "D",
-        "text": "1. Scan to find the largest number"
-      }
-    ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 2,
-    "question": "Set to 0 in the index in the output array",
-    "options": [],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 3,
-    "question": "Remove that number from the input array",
-    "options": [],
-    "correctAnswer": "B, C",
-    "explanation": "Chưa có giải thích."
-  },
-  {
-    "id": 4,
-    "question": "Repeat steps 1-3, but add 1 to the index number for each loop",
-    "options": [],
-    "correctAnswer": "B",
     "explanation": "Chưa có giải thích."
   },
   {
@@ -1036,8 +956,16 @@ export const questionsITE302C_de3: Question[] = [
       },
       {
         "key": "D",
-        "text": "Non-maleficence refers only to malevolent artificial general intelligence (AGI), while beneficence can refer to any \"good\" emerging technology. 41.What is non-maleficence?"
-      },
+        "text": "Non-maleficence refers only to malevolent artificial general intelligence (AGI), while beneficence can refer to any \"good\" emerging technology."
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Chưa có giải thích."
+  },
+  {
+    "id": 41,
+    "question": "What is non-maleficence?",
+    "options": [
       {
         "key": "A",
         "text": "The principle of doing no harm."
@@ -1508,7 +1436,7 @@ export const questionsITE302C_de3: Question[] = [
       },
       {
         "key": "D",
-        "text": "It is a fiduciary and regulatory responsibility for the organization to do so."
+        "text": "It is a fiduciary and regulatory responsibility for the organization to do so.\n--------------------------------------------------"
       }
     ],
     "correctAnswer": "A",
