@@ -2,6 +2,7 @@
 import { questionsSSL101C } from "./questions_ssl101c";
 import { questionsITE302C } from "./questions_ite302c";
 import { questionsITE302C_de2 } from "./questions_ite302c_de2";
+import { questionsITE302C_de3 } from "./questions_ite302c_de3";
 import { questionsSSL101C_de2 } from "./questions_ssl101c_de2";
 import { Question } from "@/lib/types";
 
@@ -50,6 +51,11 @@ export const subjects: Subject[] = [
         id: "ite302c_paper2",
         name: "Đề 2 (60 câu)",
         questions: questionsITE302C_de2,
+      },
+      {
+        id: "ite302c_paper3",
+        name: "Đề 3 (60 câu)",
+        questions: questionsITE302C_de3,
       }
     ]
   }
