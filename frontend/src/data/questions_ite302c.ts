@@ -23,7 +23,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Spyware (Phần mềm gián điệp) được thiết kế đặc biệt để theo dõi hành vi của người dùng, như lịch sử duyệt web hay thao tác bàn phím, mà không có sự cho phép."
   },
   {
     "id": 2,
@@ -47,7 +47,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Bản chất của một mô hình học máy (predictive model) luôn phản ánh dữ liệu mà nó được huấn luyện. Nếu dữ liệu có vấn đề (thiên lệch, thiếu sót), mô hình sẽ tiết lộ điều đó thông qua kết quả của nó."
   },
   {
     "id": 3,
@@ -71,7 +71,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Việc bỏ qua các vấn đề đạo đức (ethics) trong AI có thể dẫn đến sự phản đối dữ dội từ công chúng và các án phạt pháp lý nặng nề từ chính phủ."
   },
   {
     "id": 4,
@@ -95,7 +95,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Hacktivism (chủ nghĩa tin tặc) chủ yếu được thúc đẩy bởi mong muốn tạo ra sự thay đổi xã hội hoặc chính trị, thay vì vì mục đích tài chính hay phá hoại thuần túy."
   },
   {
     "id": 5,
@@ -119,7 +119,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Không xem xét đạo đức trong thuật toán có thể tạo ra các kết quả phân biệt đối xử (discriminatory) đối với các nhóm yếu thế hoặc gây mất an toàn (unsafe)."
   },
   {
     "id": 6,
@@ -143,7 +143,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Automation bias (thiên kiến tự động hóa) là khuynh hướng tâm lý mà con người quá tin tưởng và phụ thuộc vào hệ thống tự động, bỏ qua phán đoán của chính mình."
   },
   {
     "id": 7,
@@ -167,7 +167,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trách nhiệm giải trình (accountability) của hệ thống yêu cầu phải phân công rõ ràng ai là người chịu trách nhiệm cho các quyết định hoặc lỗi của AI."
   },
   {
     "id": 8,
@@ -192,7 +192,7 @@ export const questionsITE302C: Question[] = [
     ],
     "correctAnswer": "D",
     "imageUrl": "/images/ite302c_q8.png",
-    "explanation": "Chưa có giải thích."
+    "explanation": "(Dựa trên biểu đồ giả định) Thu nhập gộp (GrossIncome) tăng cùng chiều với Doanh thu (Revenue), do đó đây là mối tương quan thuận (positive correlation)."
   },
   {
     "id": 9,
@@ -216,7 +216,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Để cải thiện tính công bằng của thuật toán, cần phải kiểm tra thiên lệch (bias testing) thường xuyên và sử dụng dữ liệu huấn luyện đa dạng."
   },
   {
     "id": 10,
@@ -240,7 +240,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "STRIDE và VAST là các khuôn khổ mô hình hóa mối đe dọa (threat modeling), giúp các nhà phân tích phân loại và đánh giá rủi ro an ninh mạng."
   },
   {
     "id": 11,
@@ -264,7 +264,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Theo nguyên tắc Differential Privacy (Quyền riêng tư khác biệt), kết quả hoặc tri thức học được từ mô hình không được thay đổi đáng kể dù có hay không có dữ liệu của một cá nhân cụ thể."
   },
   {
     "id": 12,
@@ -288,7 +288,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "AI và các công nghệ dựa trên dữ liệu sử dụng xác suất để xây dựng mô hình dự đoán khả năng xảy ra của một sự kiện, chứ không phải là sự chắc chắn tuyệt đối."
   },
   {
     "id": 13,
@@ -312,7 +312,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B, D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Để đảm bảo tính minh bạch, nhà phát triển cần thông báo cho người dùng về bất kỳ thiên lệch nào đã biết trong dữ liệu và cách xử lý các giá trị bị thiếu."
   },
   {
     "id": 14,
@@ -336,7 +336,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trách nhiệm giải trình (Accountability) liên quan trực tiếp đến trách nhiệm của các bên liên quan trong việc thiết kế, triển khai và sử dụng các công nghệ dựa trên dữ liệu."
   },
   {
     "id": 15,
@@ -360,7 +360,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Hậu quả lâu dài của việc bỏ qua đạo đức công nghệ là mất niềm tin của công chúng và đối mặt với các phản ứng tiêu cực từ quy định pháp luật."
   },
   {
     "id": 16,
@@ -384,7 +384,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A, C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Phân loại rủi ro đạo đức giúp dễ dàng nhận diện, quản lý và hiểu rõ sự phức tạp của từng nhóm rủi ro cụ thể."
   },
   {
     "id": 17,
@@ -408,7 +408,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Công nghệ và đổi mới phát triển nhanh hơn nhiều so với tốc độ ban hành luật pháp, do đó cần có phương pháp tiếp cận chủ động đối với các vấn đề trách nhiệm pháp lý."
   },
   {
     "id": 18,
@@ -432,7 +432,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B, D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thông cáo báo chí (Press release) và tóm tắt qua video (Video briefing) là các công cụ giao tiếp truyền thông phổ biến và hiệu quả."
   },
   {
     "id": 19,
@@ -456,7 +456,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Cập nhật thông tin thường xuyên giúp truyền thông nắm bắt được tình hình và ngăn chặn tin đồn thất thiệt trong một cuộc khủng hoảng đạo đức."
   },
   {
     "id": 20,
@@ -480,7 +480,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Nhận thức và góc nhìn của công chúng là yếu tố then chốt nhất quyết định sự thành bại của một chương trình truyền thông giải quyết khủng hoảng."
   },
   {
     "id": 21,
@@ -504,7 +504,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Giao tiếp với các bên liên quan giúp đảm bảo rằng kỳ vọng và giá trị của họ được ghi nhận và đưa vào quá trình quản lý rủi ro."
   },
   {
     "id": 22,
@@ -528,7 +528,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "AI có thể tự động hóa việc phân tích cảm xúc (sentiment analysis) trên mạng xã hội và tin tức để đánh giá phản ứng của công chúng."
   },
   {
     "id": 23,
@@ -552,7 +552,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Giao tiếp rõ ràng và minh bạch giúp các bên liên quan hiểu rõ và tuân thủ các nguyên tắc đạo đức trong AI và Khoa học dữ liệu."
   },
   {
     "id": 24,
@@ -576,7 +576,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Sự tham gia sớm của các bên liên quan chứng tỏ cam kết của tổ chức đối với tính minh bạch và trách nhiệm giải trình."
   },
   {
     "id": 25,
@@ -600,7 +600,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Họp báo thực tế ảo cho phép tương tác trực tiếp mà không yêu cầu người tham gia phải có mặt tại cùng một địa điểm vật lý."
   },
   {
     "id": 26,
@@ -624,7 +624,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Pseudocode (mã giả) là mô tả thuật toán bằng ngôn ngữ tự nhiên dễ hiểu dành cho con người, không phải để máy tính thực thi."
   },
   {
     "id": 27,
@@ -648,7 +648,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thuyết hệ quả (Consequentialism) đánh giá tính đạo đức dựa trên kết quả hành động, trong khi Thuyết nghĩa vụ (Deontology) tập trung vào bổn phận và quy tắc."
   },
   {
     "id": 28,
@@ -672,7 +672,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Một mô hình dự đoán có đạo đức phải đảm bảo 3 yếu tố cốt lõi: độ chính xác (accurate), tính công bằng (fair) và có thể giải thích được (explainable)."
   },
   {
     "id": 29,
@@ -696,7 +696,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Công bằng (Equity) là nguyên tắc đảm bảo mọi người đều có quyền truy cập bình đẳng và nhận được kết quả công bằng từ công nghệ."
   },
   {
     "id": 30,
@@ -720,7 +720,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Lòng nhân từ (Beneficence) trong đạo đức công nghệ không chỉ mang lại lợi ích cho con người mà còn cho động vật, môi trường và toàn xã hội."
   },
   {
     "id": 31,
@@ -744,7 +744,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Unknown Unknowns (Những điều chưa biết) ám chỉ sự thiếu khả năng giải thích và không rõ mô hình thực sự dựa vào đặc trưng nào để đưa ra dự đoán."
   },
   {
     "id": 32,
@@ -768,7 +768,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thuyết nghĩa vụ của Kant nhấn mạnh rằng con người là mục đích tự tại, không bao giờ được sử dụng như một phương tiện để đạt mục đích khác."
   },
   {
     "id": 33,
@@ -792,7 +792,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "AI Tổng quát (General AI / AGI) là loại trí tuệ nhân tạo có khả năng hiểu, học hỏi và vượt trội hơn con người trong mọi nhiệm vụ trí tuệ."
   },
   {
     "id": 34,
@@ -816,7 +816,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Siêu trí tuệ (Superintelligence) là một AI vượt trội hơn hẳn bộ não con người trong hầu hết mọi lĩnh vực, bao gồm cả khả năng phán đoán tương lai hoàn hảo."
   },
   {
     "id": 35,
@@ -840,7 +840,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thiên kiến nhận thức sinh ra một phần là do não bộ con người phải tìm cách xử lý lối tắt khi đối mặt với sự quá tải thông tin."
   },
   {
     "id": 36,
@@ -864,7 +864,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Con người hiếm khi suy luận đạo đức một cách hoàn toàn logic vì các quyết định thường bị chi phối mạnh mẽ bởi cảm xúc."
   },
   {
     "id": 37,
@@ -888,7 +888,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B, C, D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Đây là 3 mệnh lệnh tuyệt đối cốt lõi trong triết học đạo đức của Immanuel Kant."
   },
   {
     "id": 38,
@@ -912,7 +912,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thiên kiến lựa chọn (Selection bias) xảy ra khi dữ liệu huấn luyện không đại diện chính xác cho toàn bộ quần thể mà nó dự đoán."
   },
   {
     "id": 39,
@@ -936,7 +936,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Hệ thống trí tuệ môi trường (ambient intelligence) thu thập dữ liệu liên tục 24/7, dẫn đến rủi ro lớn nhất là việc truy cập dữ liệu trái phép (Unauthorized data access)."
   },
   {
     "id": 40,
@@ -960,7 +960,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Sự đồng ý dựa trên thông tin (Informed consent) trong AI đòi hỏi tổ chức phải giao tiếp rõ ràng về cách dữ liệu sẽ được sử dụng và được người dùng cho phép."
   },
   {
     "id": 41,
@@ -984,7 +984,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Viện Tiêu chuẩn và Công nghệ Quốc gia Hoa Kỳ (NIST) cung cấp các tài liệu tham khảo (Reference materials) và tiêu chuẩn kỹ thuật cho các tổ chức."
   },
   {
     "id": 42,
@@ -1008,7 +1008,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Non-maleficence là nguyên tắc đạo đức cơ bản yêu cầu 'không gây hại' (doing no harm)."
   },
   {
     "id": 43,
@@ -1032,7 +1032,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Khi thiếu ngữ cảnh hoặc ý nghĩa, con người có xu hướng lấp đầy những khoảng trống đó bằng kiến thức và định kiến có sẵn của bản thân."
   },
   {
     "id": 44,
@@ -1056,7 +1056,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Nếu một nhóm chiếm đa số trong dữ liệu huấn luyện, mô hình sẽ học được nhiều đặc trưng của nhóm đó hơn và có độ tin cậy (confidence) cao hơn khi dự đoán về họ."
   },
   {
     "id": 45,
@@ -1080,7 +1080,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Việc sử dụng dữ liệu được thu thập tự động từ Twitter thay vì dữ liệu khảo sát được chọn lọc có thể dẫn đến automation bias."
   },
   {
     "id": 46,
@@ -1104,7 +1104,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Ước tính có khoảng 85% các khuôn khổ đạo đức AI bao gồm quyền riêng tư (privacy) như một nguyên tắc cốt lõi."
   },
   {
     "id": 47,
@@ -1128,7 +1128,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Capability caution (Thận trọng về năng lực) khuyên chúng ta không nên đưa ra các giả định chủ quan về giới hạn tối đa của AI trong tương lai."
   },
   {
     "id": 48,
@@ -1152,7 +1152,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thuyết nghĩa vụ (Deontological Ethics) là khuôn khổ nhấn mạnh tầm quan trọng của các quy tắc và nghĩa vụ đạo đức bất di bất dịch khi giải quyết các tình huống khó khăn."
   },
   {
     "id": 49,
@@ -1176,7 +1176,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các khuôn khổ đạo đức (Ethical frameworks) được xây dựng nhằm giảm thiểu rủi ro đạo đức thông qua các bước hành động cụ thể."
   },
   {
     "id": 50,
@@ -1200,7 +1200,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "PIPEDA nổi bật vì có quy định bắt buộc các nhà cung cấp vẫn phải cung cấp dịch vụ ngay cả khi người dùng từ chối chia sẻ dữ liệu cá nhân không cần thiết."
   },
   {
     "id": 51,
@@ -1224,7 +1224,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Quản lý thay đổi (Change management) giúp tổ chức tạo ra một quá trình chuyển đổi suôn sẻ khi áp dụng văn hóa và chính sách đạo đức mới."
   },
   {
     "id": 52,
@@ -1248,7 +1248,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các tổ chức nhỏ với nguồn lực hạn chế nên tập trung vào các nguyên tắc đạo đức cốt lõi và triển khai từng bước thay vì làm mọi thứ cùng lúc."
   },
   {
     "id": 53,
@@ -1272,7 +1272,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Tổ chức các buổi đào tạo đạo đức hiệu quả và thường xuyên là chiến lược then chốt để xây dựng văn hóa đạo đức trong công ty."
   },
   {
     "id": 54,
@@ -1296,7 +1296,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Quản trị doanh nghiệp kết hợp các hệ thống khen thưởng và khích lệ (incentive systems) sẽ tạo ra động lực mạnh mẽ để nhân viên duy trì đạo đức."
   },
   {
     "id": 55,
@@ -1320,7 +1320,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các nhà quản lý và cơ quan chính phủ (Regulators) là ví dụ điển hình của các bên liên quan bên ngoài (external stakeholders) chịu ảnh hưởng bởi bộ quy tắc đạo đức."
   },
   {
     "id": 56,
@@ -1344,7 +1344,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Truyền thông các chính sách đạo đức cần phải có các ví dụ đơn giản, dễ hiểu để mọi đối tượng đều có thể nắm bắt và áp dụng."
   },
   {
     "id": 57,
@@ -1368,7 +1368,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Cải tiến đạo đức liên tục yêu cầu tổ chức phải thường xuyên đánh giá, thu thập phản hồi và thích ứng với các thay đổi của thực tế."
   },
   {
     "id": 58,
@@ -1392,7 +1392,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Sử dụng quyền sở hữu trí tuệ (IP) như một rào cản để từ chối các yêu cầu minh bạch thuật toán là hành vi lạm dụng IP trong trách nhiệm giải trình."
   },
   {
     "id": 59,
@@ -1416,7 +1416,7 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Bộ quy tắc đạo đức cung cấp các giá trị định hướng và kỳ vọng về hành vi đạo đức cho các nhân viên trong tổ chức."
   },
   {
     "id": 60,
@@ -1440,6 +1440,6 @@ export const questionsITE302C: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các đợt kiểm tra tuân thủ thường xuyên (Regular compliance checks) là bước quan trọng nhất để đảm bảo các chính sách đạo đức được thực thi đúng đắn."
   }
 ];

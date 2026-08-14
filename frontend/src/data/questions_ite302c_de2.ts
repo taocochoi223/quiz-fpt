@@ -23,7 +23,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Để một mô hình có thể tự dọn dẹp, phân tích cú pháp và tự huấn luyện tập dữ liệu của chính nó trong khi vẫn duy trì sự khách quan, mô hình cần 'một danh sách các bài kiểm tra về thiên kiến và miền chuyên môn để chạy và tự điều chỉnh'."
   },
   {
     "id": 2,
@@ -47,7 +47,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Quan điểm 'Các công ty có nghĩa vụ với cổ đông của họ' (tối đa hóa lợi nhuận) thường xem AI như 'chỉ là một công cụ khác để tăng tốc nghiên cứu, giống như quảng cáo trực tuyến' mà ít quan tâm đến tác động xã hội sâu rộng hơn."
   },
   {
     "id": 3,
@@ -71,7 +71,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Nguyên tắc phát triển phần mềm thiết yếu trong việc triển khai thực tế các ứng dụng AI trong các tình huống nguy kịch (như xe tự lái) là 'Độ mạnh mẽ chống lại các ví dụ đối kháng' (Robustness to adversarial examples) để tránh bị lừa bởi các dữ liệu đầu vào bị thao túng."
   },
   {
     "id": 4,
@@ -95,7 +95,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "RACI là từ viết tắt của Responsible (Người chịu trách nhiệm), Accountable (Người giải trình), Consulted (Người được tham vấn), Informed (Người được thông báo)."
   },
   {
     "id": 5,
@@ -119,7 +119,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Cạnh tranh công bằng là một cân nhắc đạo đức quan trọng vì 'Cạnh tranh công bằng cung cấp sự lựa chọn sản phẩm cho người dùng', chống lại độc quyền."
   },
   {
     "id": 6,
@@ -143,7 +143,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Hạn chế của việc huấn luyện và kiểm tra mô hình AI trong một bối cảnh cụ thể là 'Các mô hình có thể hoạt động kém khi áp dụng vào các bối cảnh khác nhau' (thiếu khả năng tổng quát hóa)."
   },
   {
     "id": 7,
@@ -167,7 +167,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Lĩnh vực công nghệ mới nổi nào cần được chú ý về đạo đức nhất? Đáp án đúng là 'Tất cả các công nghệ mới nổi đều cần được xem xét về mặt đạo đức'."
   },
   {
     "id": 8,
@@ -191,7 +191,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Mục đích của 'holding statement' (tuyên bố tạm thời) trong truyền thông khủng hoảng là chuẩn bị sẵn các thông điệp truyền thông từ trước khi chúng thực sự cần thiết, giúp phản ứng nhanh chóng."
   },
   {
     "id": 9,
@@ -215,7 +215,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Quyền riêng tư khác biệt (Differential privacy) hoạt động bằng cách thêm 'nhiễu' (noise) vào tập dữ liệu để bảo vệ danh tính cá nhân trong khi vẫn giữ lại đặc điểm thống kê của dữ liệu."
   },
   {
     "id": 10,
@@ -239,7 +239,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong bài toán phân loại sự sập cầu (nơi lớp 'sập' rất hiếm nhưng hậu quả rất nghiêm trọng), số liệu đo lường hữu ích nhất là Recall (Độ thu hồi) vì bạn muốn tối đa hóa việc phát hiện tất cả các cây cầu có nguy cơ sập, chấp nhận cảnh báo nhầm để không bỏ sót nguy hiểm."
   },
   {
     "id": 11,
@@ -263,7 +263,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Một tổ chức có thể thúc đẩy văn hóa đạo đức từ trên xuống bằng cách 'Lãnh đạo tích cực làm gương về hành vi đạo đức'."
   },
   {
     "id": 12,
@@ -287,7 +287,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các bước thiết yếu để tạo persona (chân dung khách hàng): 'Xác định đối tượng mục tiêu, tiến hành nghiên cứu, xây dựng persona hư cấu dựa trên hiểu biết sâu sắc, xác thực các persona'."
   },
   {
     "id": 13,
@@ -311,7 +311,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Vụ bê bối 'Tập dữ liệu bệnh viện Stanford' (Stanford hospital dataset) là một ví dụ về việc một tập dữ liệu công khai bị vi phạm quyền riêng tư thông qua các thuật toán."
   },
   {
     "id": 14,
@@ -335,7 +335,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Một mô hình cân bằng số lượng sai sót mà nó mắc phải đối với mỗi nhóm phụ để giảm thiểu tác hại đang quyết định dựa trên 'Sự bình đẳng của các kết quả âm tính giả' (equality of false negatives)."
   },
   {
     "id": 15,
@@ -359,7 +359,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B, D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thông cáo báo chí (press release) có hai đặc điểm quan trọng là 'Không có tính tương tác' (It's non-interactive) và 'Ngắn gọn/súc tích' (It's concise)."
   },
   {
     "id": 16,
@@ -383,7 +383,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B, C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các chiến lược hữu ích để truyền đạt rủi ro đạo đức: 'Phổ biến thông tin dưới nhiều định dạng' VÀ 'Truyền đạt thông tin trong thời gian thực'."
   },
   {
     "id": 17,
@@ -407,7 +407,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C, D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thiên kiến xác nhận (confirmation bias) có thể tác động xã hội vì 'Nó có thể cản trở sự hợp tác chính trị-xã hội' VÀ 'Nó có thể dẫn đến tư duy tập thể (groupthink), từ đó làm đình trệ sự tiến bộ'."
   },
   {
     "id": 18,
@@ -431,7 +431,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B, D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "IEEE 7000 series khám phá các lĩnh vực đạo đức bao gồm 'Điều khoản quyền riêng tư có thể đọc được bằng máy' (Machine-readable privacy terms) và 'An toàn nhân sự' (Personnel safety)."
   },
   {
     "id": 19,
@@ -455,7 +455,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Câu nói mô tả đúng nhất về văn hóa công ty hoặc tổ chức là 'Đây là cách mọi thứ được thực hiện ở đây' (This is how things are done around here)."
   },
   {
     "id": 20,
@@ -479,7 +479,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Kỹ thuật mã hóa đồng cấu (homomorphic encryption) là 'Một phương pháp thực hiện các phép toán trực tiếp trên dữ liệu đã được mã hóa' mà không cần giải mã nó trước."
   },
   {
     "id": 21,
@@ -503,7 +503,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B, C, D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Các hành động giúp chống lại thiên kiến ẩn (implicit bias): Tu dưỡng nhận thức về thành kiến của chính mình; Tương tác với nhiều nhóm người đa dạng; Để bản thân tiếp xúc với các 'ví dụ phản định kiến'."
   },
   {
     "id": 22,
@@ -527,7 +527,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Kết quả 'âm tính giả' (false negative) của một mô hình dự đoán có nghĩa là: 'Kết quả dự đoán là âm tính (phủ định), nhưng kết quả thực tế lại là dương tính (khẳng định)'."
   },
   {
     "id": 23,
@@ -551,7 +551,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Điều gì sẽ xảy ra nếu người dùng bị loại khỏi các cuộc thảo luận về tác động của AI? 'Hệ thống có thể không phản ánh được các giá trị của công chúng'."
   },
   {
     "id": 24,
@@ -575,7 +575,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Tác động của các thuật toán bị thiên lệch đối với việc ra quyết định là 'Chúng có thể dẫn đến các kết quả không công bằng và phân biệt đối xử'."
   },
   {
     "id": 25,
@@ -599,7 +599,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Phân biệt: Responsibility là nhiệm vụ hoàn thành công việc, Accountability là quyền sở hữu kết quả, Liability là nghĩa vụ pháp lý đối với bất kỳ thiệt hại nào."
   },
   {
     "id": 26,
@@ -623,7 +623,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Đánh giá ngoài tư pháp (Extrajudicial judgment) là 'Một phán quyết hoặc chấm điểm được thực hiện bên ngoài hệ thống tòa án chính thức'."
   },
   {
     "id": 27,
@@ -647,7 +647,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Khi nói đến việc bảo vệ dữ liệu riêng tư, nguyên nhân gốc rễ của vấn đề thường là 'Dữ liệu được lưu trữ một cách không an toàn' (The data was stored insecurely)."
   },
   {
     "id": 28,
@@ -671,7 +671,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A, B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Chiến thuật truyền thông duy trì tính minh bạch: 'Cung cấp phản hồi kịp thời cho câu hỏi của khách hàng về các quyết định của hệ thống' VÀ 'Cung cấp thông tin về hệ thống AI bằng các thuật ngữ đơn giản, dễ hiểu'."
   },
   {
     "id": 29,
@@ -695,7 +695,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Lãnh đạo có đạo đức là yếu tố then chốt trong thời đại dữ liệu vì 'Nó trao quyền cho văn hóa đạo đức và củng cố niềm tin' (empowers ethical culture and trust)."
   },
   {
     "id": 30,
@@ -719,7 +719,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Một kết quả của việc xây dựng văn hóa đạo đức là 'Sự tin tưởng cao hơn giữa các bên liên quan'."
   },
   {
     "id": 31,
@@ -743,7 +743,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Câu hỏi về quyền của robot không quan trọng bằng các vấn đề về thiên lệch hay quyền riêng tư, vì 'Những quyền này đòi hỏi robot phải trở thành thực thể có tri giác, điều mà hiện tại là không khả thi'."
   },
   {
     "id": 32,
@@ -767,7 +767,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Bản thân 'Địa chỉ nhà của một người dùng' (A user's home address) đã đủ điều kiện được coi là Thông tin nhận dạng cá nhân (PII)."
   },
   {
     "id": 33,
@@ -791,7 +791,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Automation bias (Thiên kiến tự động hóa) là loại thiên kiến khiến mọi người tin tưởng vào quyết định của máy móc hơn là quyết định của con người."
   },
   {
     "id": 34,
@@ -815,7 +815,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Vai trò của giao tiếp trong lãnh đạo đạo đức là 'Xây dựng niềm tin và sự liên kết đạo đức'."
   },
   {
     "id": 35,
@@ -839,7 +839,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Mục tiêu tối thượng của đạo đức trong công nghệ mới nổi là 'Đảm bảo công nghệ phục vụ lợi ích tốt nhất của nhân loại'."
   },
   {
     "id": 36,
@@ -863,7 +863,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Quy định GDPR chủ yếu điều chỉnh về 'Bảo vệ dữ liệu và quyền riêng tư' (Data protection and privacy) đối với công dân Châu Âu."
   },
   {
     "id": 37,
@@ -887,7 +887,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "CCPA (Đạo luật quyền riêng tư của người tiêu dùng California) cho phép cư dân California yêu cầu xóa dữ liệu của họ khỏi hồ sơ công ty."
   },
   {
     "id": 38,
@@ -911,7 +911,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Cách tiếp cận thúc đẩy giao tiếp bao trùm (inclusive communication) là 'Xem xét các nhu cầu đa dạng về văn hóa và khả năng tiếp cận'."
   },
   {
     "id": 39,
@@ -935,7 +935,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A, B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "AI có thể hạn chế quyền tự chủ của con người: 'Hệ thống vũ khí có thể tự đưa ra quyết định chết người' VÀ 'Hệ thống AI có thể tác động khác biệt đến các nhóm dễ bị tổn thương, hạn chế quyền tự chủ của họ'."
   },
   {
     "id": 40,
@@ -959,7 +959,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Vai trò của mạng xã hội: 'Tạo điều kiện tương tác trực tiếp với người tiêu dùng' (Facilitates direct engagement with consumers)."
   },
   {
     "id": 41,
@@ -979,7 +979,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A, B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Deep learning và machine learning được gọi là AI hẹp (Narrow AI) vì: 'Chúng chỉ có thể thực hiện các nhiệm vụ cụ thể' VÀ 'Không thể xử lý các tình huống mà dữ liệu huấn luyện không chuẩn bị trước'."
   },
   {
     "id": 42,
@@ -1003,7 +1003,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Lý do có vấn đề khi thí điểm bộ quy tắc đạo đức trước khi triển khai rộng rãi là 'Nó có thể bị coi là chỉ để thể hiện sự nghiêm túc giả tạo mà không thực sự áp dụng toàn diện'."
   },
   {
     "id": 43,
@@ -1027,7 +1027,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Một thực hành bảo mật được khuyến nghị cho các tập dữ liệu học máy là 'Ban hành một cấu trúc quản trị dữ liệu vững chắc' (Enact a sound data governance structure)."
   },
   {
     "id": 44,
@@ -1051,7 +1051,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Định luật Goodhart nhắc nhở chúng ta rằng 'Một mô hình có thể tối ưu hóa một số liệu này gây tổn hại đến các số liệu khác' khi số liệu đó trở thành mục tiêu."
   },
   {
     "id": 45,
@@ -1075,7 +1075,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C, D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Khi đàm phán quyền truy cập đạo đức vào dữ liệu người dùng, cần: Ý định đằng sau một hoạt động/yêu cầu nhất định VÀ Một yêu cầu xin phép để thực hiện một hành động."
   },
   {
     "id": 46,
@@ -1099,7 +1099,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B, D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Lợi ích đạo đức của thử nghiệm thí điểm: 'Giảm thiểu tác động của bất kỳ vấn đề đạo đức nào có thể phát sinh' VÀ 'Nó tiết lộ bất kỳ lỗ hổng nào trong trách nhiệm giải trình hoặc khả năng kiểm toán'."
   },
   {
     "id": 47,
@@ -1123,7 +1123,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong quá trình xác thực chéo (cross-validation), bộ dữ liệu 'Validation test' (Tập kiểm định) được sử dụng để tinh chỉnh (tune) hiệu suất của mô hình."
   },
   {
     "id": 48,
@@ -1147,7 +1147,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "ISO/IEC 42001 là tiêu chuẩn quốc tế cung cấp các hướng dẫn về quản trị AI (AI governance)."
   },
   {
     "id": 49,
@@ -1171,7 +1171,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Thách thức về khả năng giải thích trong các hệ thống AI phức tạp là 'Các thuật toán hộp đen rất khó để diễn giải' (Black-box algorithms are hard to interpret)."
   },
   {
     "id": 50,
@@ -1195,7 +1195,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Cách hiệu quả nhất để đo lường thành công của việc thực hiện đạo đức là 'Kết hợp phản hồi của các bên liên quan, theo dõi sự cố và đánh giá kết quả'."
   },
   {
     "id": 51,
@@ -1219,7 +1219,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Khung 'The Montreal Declaration for a Responsible Development of Artificial Intelligence' đặc biệt nhấn mạnh vào nghiên cứu và phát triển (R&D) AI có trách nhiệm."
   },
   {
     "id": 52,
@@ -1243,7 +1243,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Quan điểm lạc quan về AI tổng quát (AGI) coi AI như một 'tiện ích' (utility) phục vụ vô điều kiện cho con người."
   },
   {
     "id": 53,
@@ -1267,7 +1267,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Rủi ro khi không có văn hóa tổ chức đạo đức: Nhân viên có thể phải đối mặt với sự bất hòa nhận thức (cognitive dissonance)."
   },
   {
     "id": 54,
@@ -1291,7 +1291,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Một trong những khuyến nghị cho các chính phủ về AI là 'Thúc đẩy hợp tác quốc tế' (Promote international cooperation)."
   },
   {
     "id": 55,
@@ -1315,7 +1315,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Một nhà lãnh đạo có thể thúc đẩy hành vi đạo đức bằng cách 'Làm gương về hành vi đạo đức và khuyến khích đối thoại cởi mở'."
   },
   {
     "id": 56,
@@ -1339,7 +1339,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Cạnh tranh công bằng thúc đẩy sự đổi mới bằng cách 'Khuyến khích các ý tưởng và cách tiếp cận đa dạng'."
   },
   {
     "id": 57,
@@ -1363,7 +1363,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Phân tích cảm xúc hữu ích vì 'Nó có thể định hình nội dung và cách truyền đạt thông điệp dựa trên nhận thức của người dùng về tổ chức'."
   },
   {
     "id": 58,
@@ -1387,7 +1387,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Vai trò của sự hợp tác liên ngành là 'Nó mang lại chuyên môn đa dạng cho các thách thức đạo đức'."
   },
   {
     "id": 59,
@@ -1411,7 +1411,7 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Trong một hàm học máy phức tạp, chúng ta thường sẽ hiểu được 'đầu vào/đầu ra' (inputs/outputs) nhưng không hiểu được chi tiết bên trong 'thuật toán' (algorithm)."
   },
   {
     "id": 60,
@@ -1435,6 +1435,6 @@ export const questionsITE302C_de2: Question[] = [
       }
     ],
     "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "explanation": "Việc đưa dữ liệu đầu vào của địa chỉ với 'Thành phố + Tiểu bang' dưới dạng các đầu vào riêng biệt sẽ vi phạm hướng dẫn độ chính xác về 'Không có dữ liệu tương quan' (No correlating data), vì chúng tương quan chặt chẽ."
   }
 ];
