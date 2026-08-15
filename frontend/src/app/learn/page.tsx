@@ -278,9 +278,12 @@ export default function LearnPage() {
   };
 
   const initRound = React.useCallback((ordered = false, subjQuestions: any[]) => {
-    const ids = ordered 
-      ? subjQuestions.map(q => q.id)
-      : shuffle(subjQuestions.map(q => q.id));
+    let ids: any[] = [];
+    if (ordered) {
+      ids = subjQuestions.map(q => q.uniqueId || q.id);
+    } else {
+      ids = shuffle(subjQuestions.map(q => q.uniqueId || q.id));
+    }
     
     const BATCH_SIZE = 7;
     const initialQ = ids.slice(0, BATCH_SIZE);
@@ -309,13 +312,13 @@ export default function LearnPage() {
       const subj = subjects.find(s => s.id === subjectId);
       if (subj) {
         if (paperIds && paperIds.length > 0) {
-          subjQs = subj.papers.filter(p => paperIds.includes(p.id)).flatMap(p => p.questions);
+          subjQs = subj.papers.filter(p => paperIds.includes(p.id)).flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}`, paperId: p.id })));
         } else {
-          subjQs = subj.papers.flatMap(p => p.questions);
+          subjQs = subj.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}`, paperId: p.id })));
         }
       }
     } else if (selectedMode === "full") {
-      subjQs = subjects.flatMap(s => s.papers.flatMap(p => p.questions));
+      subjQs = subjects.flatMap(s => s.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${s.id}-${p.id}-${q.id}`, paperId: p.id }))));
     }
 
     if (customLimit && customLimit > 0) {
@@ -444,7 +447,8 @@ export default function LearnPage() {
     }
 
     const remaining = [...queue.slice(qIndex), ...pendingIds];
-    const shuffled = shuffle(Array.from(new Set(remaining)));
+    const shuffled = shuffle([...remaining]);
+
     const spotsLeftInBatch = queue.length - qIndex;
     const newBatchSuffix = shuffled.slice(0, spotsLeftInBatch);
     const newQueue = [...queue.slice(0, qIndex), ...newBatchSuffix];
@@ -454,7 +458,7 @@ export default function LearnPage() {
     setPendingIds(shuffled.slice(spotsLeftInBatch));
     setSelectedOpts([]);
     setIsAnswered(false);
-    toast.success("Đã trộn ngẫu nhiên các câu còn lại!");
+    toast.success("Đã trộn câu hỏi trong từng đề!");
   };
 
   const orderRemaining = () => {
@@ -471,7 +475,7 @@ export default function LearnPage() {
     }
 
     const remaining = [...queue.slice(qIndex), ...pendingIds];
-    const ordered = Array.from(new Set(remaining)).sort((a,b) => a.toString().localeCompare(b.toString()));
+    const ordered = remaining.sort((a,b) => a.toString().localeCompare(b.toString()));
     const spotsLeftInBatch = queue.length - qIndex;
     const newBatchSuffix = ordered.slice(0, spotsLeftInBatch);
     const newQueue = [...queue.slice(0, qIndex), ...newBatchSuffix];
