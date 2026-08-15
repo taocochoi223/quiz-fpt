@@ -33,7 +33,8 @@ export default function LearnPage() {
   const [selectedSubjectId, setSelectedSubjectId] = React.useState<string | null>(null);
   const [expandedCard, setExpandedCard] = React.useState<string | null>(null);
   
-  const [activePaperId, setActivePaperId] = React.useState<string | null>(null);
+  const [activePaperIds, setActivePaperIds] = React.useState<string[]>([]);
+  const [selectedPapersToStart, setSelectedPapersToStart] = React.useState<string[]>([]);
   const [queue, setQueue] = React.useState<any[]>([]);
   const [pendingIds, setPendingIds] = React.useState<any[]>([]); // Deprecated, always empty
   const [qIndex, setQIndex] = React.useState(0);
@@ -78,8 +79,8 @@ export default function LearnPage() {
   if (mode === "subject" && selectedSubjectId) {
     const subj = subjects.find(s => s.id === selectedSubjectId);
     if (subj) {
-      if (activePaperId) {
-        activeQuestions = subj.papers.find(p => p.id === activePaperId)?.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${activePaperId}-${q.id}` })) || [];
+      if (activePaperIds && activePaperIds.length > 0) {
+        activeQuestions = subj.papers.filter(p => activePaperIds.includes(p.id)).flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}` })));
       } else {
         activeQuestions = subj.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}` })));
       }
@@ -122,14 +123,14 @@ export default function LearnPage() {
 
   React.useEffect(() => {
     if (mode === "select" || (queue.length === 0 && completedCount > 0)) return;
-    const session = { mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
+    const session = { mode, selectedSubjectId, activePaperIds, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
     
     if (mode === "subject" && selectedSubjectId) {
       localStorage.setItem(`learn_session_${selectedSubjectId}`, JSON.stringify(session));
     } else if (mode === "full") {
       localStorage.setItem("learn_session_full", JSON.stringify(session));
     }
-  }, [mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions]);
+  }, [mode, selectedSubjectId, activePaperIds, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions]);
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -163,7 +164,7 @@ export default function LearnPage() {
         const data = JSON.parse(saved);
         setMode(data.mode === "prn232" ? "subject" : data.mode);
         setSelectedSubjectId(resumeSubjectId);
-        setActivePaperId(data.activePaperId || null);
+        setActivePaperIds(data.activePaperIds || (data.activePaperId ? [data.activePaperId] : []));
         setQueue(data.queue);
         setPendingIds(data.pendingIds);
         setQIndex(data.qIndex);
@@ -185,7 +186,7 @@ export default function LearnPage() {
   const generateSyncCode = async (isCustom: boolean = false, specificCode?: string) => {
     setIsSyncing(true);
     try {
-      const payload: any = { mode, selectedSubjectId, activePaperId, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
+      const payload: any = { mode, selectedSubjectId, activePaperIds, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
       const codeToUse = specificCode || customSyncCodeInput.trim();
       if (isCustom && codeToUse) {
         payload.customCode = codeToUse;
@@ -237,7 +238,7 @@ export default function LearnPage() {
         // For now, let's just do it cleanly:
         setMode(s.mode);
         if (s.selectedSubjectId) setSelectedSubjectId(s.selectedSubjectId);
-        setActivePaperId(s.activePaperId || null);
+        setActivePaperIds(s.activePaperIds || (s.activePaperId ? [s.activePaperId] : []));
         setQueue(s.queue);
         setPendingIds(s.pendingIds);
         setQIndex(s.qIndex);
@@ -276,7 +277,7 @@ export default function LearnPage() {
     setShowResumeDialog(false);
   };
 
-  const initRound = React.useCallback((ordered = false, paperId: string | null = null, subjQuestions: any[]) => {
+  const initRound = React.useCallback((ordered = false, subjQuestions: any[]) => {
     const ids = ordered 
       ? subjQuestions.map(q => q.id)
       : shuffle(subjQuestions.map(q => q.id));
@@ -298,17 +299,17 @@ export default function LearnPage() {
     setTotalQuestions(ids.length);
   }, []);
 
-  const handleStartMode = (selectedMode: "full" | "subject", subjectId: string | null = null, paperId: string | null = null, customLimit?: number) => {
+  const handleStartMode = (selectedMode: "full" | "subject", subjectId: string | null = null, paperIds: string[] = [], customLimit?: number) => {
     setMode(selectedMode);
     setSelectedSubjectId(subjectId);
-    setActivePaperId(paperId);
+    setActivePaperIds(paperIds);
     
     let subjQs: any[] = [];
     if (selectedMode === "subject" && subjectId) {
       const subj = subjects.find(s => s.id === subjectId);
       if (subj) {
-        if (paperId) {
-          subjQs = subj.papers.find(p => p.id === paperId)?.questions || [];
+        if (paperIds && paperIds.length > 0) {
+          subjQs = subj.papers.filter(p => paperIds.includes(p.id)).flatMap(p => p.questions);
         } else {
           subjQs = subj.papers.flatMap(p => p.questions);
         }
@@ -322,7 +323,7 @@ export default function LearnPage() {
     }
 
     setTimeout(() => {
-      initRound(true, paperId, subjQs);
+      initRound(true, subjQs);
     }, 100);
   };
 
@@ -505,7 +506,7 @@ export default function LearnPage() {
     }
     setMode("select");
     setSelectedSubjectId(null);
-    setActivePaperId(null);
+    setActivePaperIds([]);
     setQueue([]);
     setPendingIds([]);
     setQIndex(0);
@@ -760,9 +761,9 @@ export default function LearnPage() {
                       e.stopPropagation();
                       const limit = customCount === "" ? undefined : customCount;
                       if (customSubjectId === "all") {
-                        handleStartMode("full", null, null, limit);
+                        handleStartMode("full", null, [], limit);
                       } else {
-                        handleStartMode("subject", customSubjectId, customPaperId === "all" ? null : customPaperId, limit);
+                        handleStartMode("subject", customSubjectId, customPaperId === "all" ? [] : [customPaperId], limit);
                       }
                     }}
                   >
@@ -786,9 +787,12 @@ export default function LearnPage() {
                       setResumeSubjectId(subj.id);
                       setShowResumeDialog(true);
                     } else {
-                      setExpandedCard(subj.id); 
+                      setExpandedCard(subj.id);
+                      setSelectedPapersToStart([]);
                     }
-                  } 
+                  } else {
+                    setExpandedCard(null);
+                  }
                 }}
               >
                 <div className={`flex flex-col md:flex-row items-center gap-4 w-full ${isExpanded ? 'md:justify-between' : 'justify-center'}`}>
@@ -805,30 +809,48 @@ export default function LearnPage() {
                     <Button className="mt-2 w-full rounded-full md:hidden" variant="outline">Chọn môn</Button>
                   )}
                   {isExpanded && (
-                    <Button className="hidden md:inline-flex rounded-full bg-primary/10 text-primary hover:bg-primary/20" variant="ghost" onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, null); }}>
+                    <Button className="hidden md:inline-flex rounded-full bg-primary/10 text-primary hover:bg-primary/20" variant="ghost" onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, []); }}>
                       Học toàn bộ
                     </Button>
                   )}
                 </div>
                 
                 {isExpanded && (
-                  <div className="w-full mt-4 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2">
-                    <Button className="w-full rounded-full md:hidden bg-primary/10 text-primary hover:bg-primary/20 mb-2" variant="ghost" onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, null); }}>
+                  <div className="w-full mt-4 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2" onClick={e => e.stopPropagation()}>
+                    <Button className="w-full rounded-full md:hidden bg-primary/10 text-primary hover:bg-primary/20 mb-2" variant="ghost" onClick={(e) => { handleStartMode("subject", subj.id, []); }}>
                       Học toàn bộ
                     </Button>
                     <div className="h-px w-full bg-border" />
-                    <div className="text-left font-medium text-sm text-muted-foreground">Hoặc chọn học theo đề:</div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 w-full">
-                      {subj.papers.map((paper, i) => (
-                        <Button 
-                          key={paper.id} 
-                          variant="outline" 
-                          className="text-xs py-1 h-9 rounded-full truncate px-2"
-                          onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, paper.id); }}
-                        >
-                          {paper.name} ({paper.questions.length} câu)
+                    <div className="text-left font-medium text-sm text-muted-foreground flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                      <span>Hoặc chọn nhiều đề để học cùng lúc:</span>
+                      {selectedPapersToStart.length > 0 && (
+                        <Button size="sm" className="h-8 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full px-4 w-full sm:w-auto" onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, selectedPapersToStart); }}>
+                          Bắt đầu học {selectedPapersToStart.length} đề
                         </Button>
-                      ))}
+                      )}
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 w-full">
+                      {subj.papers.map((paper, i) => {
+                        const isSelected = selectedPapersToStart.includes(paper.id);
+                        return (
+                          <Button 
+                            key={paper.id} 
+                            variant={isSelected ? "default" : "outline"} 
+                            className={`text-xs py-1 h-9 rounded-full truncate px-2 transition-colors ${isSelected ? 'bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-500' : ''}`}
+                            onClick={(e) => { 
+                              e.stopPropagation(); 
+                              if (isSelected) {
+                                setSelectedPapersToStart(prev => prev.filter(id => id !== paper.id));
+                              } else {
+                                setSelectedPapersToStart(prev => [...prev, paper.id]);
+                              }
+                            }}
+                          >
+                            {isSelected && <Check className="w-3 h-3 mr-1 shrink-0" />}
+                            {paper.name} ({paper.questions.length} câu)
+                          </Button>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
