@@ -24,7 +24,8 @@ function shuffleArray<T>(array: T[]): T[] {
 export default function QuizPage() {
   const [mode, setMode] = React.useState<"select_subject" | "select_options" | "quiz">("select_subject");
   const [selectedSubjectId, setSelectedSubjectId] = React.useState<string | null>(null);
-  const [questionCount, setQuestionCount] = React.useState<number>(20);
+  const [selectedPaperId, setSelectedPaperId] = React.useState<string>("all");
+  const [questionCount, setQuestionCount] = React.useState<number | "">("");
   const [quizSet, setQuizSet] = React.useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [answers, setAnswers] = React.useState<Record<string, string>>({});
@@ -38,15 +39,19 @@ export default function QuizPage() {
 
   const startQuiz = () => {
     let activeQs: any[] = [];
-    if (selectedSubjectId === "full") {
-      activeQs = subjects.flatMap(s => s.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${s.id}-${p.id}-${q.id}` }))));
+    const subj = subjects.find(s => s.id === selectedSubjectId);
+    if (!subj) return;
+
+    if (selectedPaperId === "all") {
+      activeQs = subj.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}` })));
     } else {
-      activeQs = subjects.find(s => s.id === selectedSubjectId)?.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${selectedSubjectId}-${p.id}-${q.id}` }))) || [];
+      activeQs = subj.papers.find(p => p.id === selectedPaperId)?.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${selectedPaperId}-${q.id}` })) || [];
     }
 
     if (activeQs.length === 0) return;
 
-    const shuffled = shuffleArray(activeQs).slice(0, questionCount);
+    const finalCount = typeof questionCount === 'number' ? questionCount : activeQs.length;
+    const shuffled = shuffleArray(activeQs).slice(0, finalCount);
     setQuizSet(shuffled);
     setCurrentIndex(0);
     setAnswers({});
@@ -56,14 +61,9 @@ export default function QuizPage() {
 
   const handleSelectSubject = (id: string) => {
     setSelectedSubjectId(id);
-    let count = 0;
-    if (id === "full") {
-      count = subjects.flatMap(s => s.papers.flatMap(p => p.questions)).length;
-    } else {
-      count = subjects.find(s => s.id === id)?.papers.flatMap(p => p.questions).length || 0;
-    }
-    // Adjust question count if the subject has fewer questions
-    if (count < questionCount) setQuestionCount(count);
+    setSelectedPaperId("all");
+    const count = subjects.find(s => s.id === id)?.papers.flatMap(p => p.questions).length || 0;
+    setQuestionCount(count > 20 ? 20 : count);
     setMode("select_options");
   };
 
@@ -104,36 +104,21 @@ export default function QuizPage() {
               <Button className="mt-2 w-full rounded-full" variant="outline">Chọn môn này</Button>
             </Card>
           ))}
-          <Card 
-            className="flex flex-col p-6 items-center text-center gap-4 cursor-pointer hover:border-emerald-500/50 hover:shadow-lg transition-all group"
-            onClick={() => handleSelectSubject("full")}
-          >
-            <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center transition-transform group-hover:scale-110 shrink-0">
-              <ListOrdered className="w-8 h-8" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-1">Thi tổng hợp (Full)</h3>
-              <p className="text-sm text-muted-foreground">Thi trộn tất cả các môn.</p>
-            </div>
-            <Button className="mt-2 w-full rounded-full" variant="outline">Chọn thi tổng hợp</Button>
-          </Card>
         </motion.div>
       </div>
     );
   }
 
   if (mode === "select_options") {
+    const subj = subjects.find(s => s.id === selectedSubjectId);
     let totalAvailable = 0;
-    if (selectedSubjectId === "full") {
-      totalAvailable = subjects.flatMap(s => s.papers.flatMap(p => p.questions)).length;
+    if (selectedPaperId === "all") {
+      totalAvailable = subj?.papers.flatMap(p => p.questions).length || 0;
     } else {
-      totalAvailable = subjects.find(s => s.id === selectedSubjectId)?.papers.flatMap(p => p.questions).length || 0;
+      totalAvailable = subj?.papers.find(p => p.id === selectedPaperId)?.questions.length || 0;
     }
-    
-    const options = [10, 20, 30, 40, totalAvailable].filter(n => n <= totalAvailable);
-    if (!options.includes(totalAvailable)) options.push(totalAvailable);
 
-    const currentSubjectName = selectedSubjectId === "full" ? "Tổng hợp" : subjects.find(s => s.id === selectedSubjectId)?.name;
+    const currentSubjectName = subj?.name || "";
 
     return (
       <div className="flex flex-col h-full max-w-2xl mx-auto w-full gap-8 pt-10 pb-20 items-center justify-center">
@@ -156,19 +141,48 @@ export default function QuizPage() {
           className="w-full"
         >
           <Card className="p-8 border-2 shadow-sm flex flex-col gap-8 items-center text-center">
-            <div className="w-full flex flex-col gap-4 items-center">
-              <h3 className="text-lg font-medium">Số lượng câu hỏi:</h3>
-              <div className="flex flex-wrap justify-center gap-3">
-                {Array.from(new Set(options)).map((num) => (
-                  <Button
-                    key={num}
-                    variant={questionCount === num ? "default" : "outline"}
-                    onClick={() => setQuestionCount(num)}
-                    className={`rounded-full px-6 transition-all ${questionCount === num ? 'bg-emerald-500 hover:bg-emerald-600 text-white' : ''}`}
-                  >
-                    {num} câu
-                  </Button>
-                ))}
+            <div className="w-full flex flex-col gap-4 items-center text-left">
+              <div className="w-full flex flex-col gap-2">
+                <label className="text-sm font-medium">Chọn đề thi</label>
+                <select 
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  value={selectedPaperId}
+                  onChange={(e) => {
+                    setSelectedPaperId(e.target.value);
+                    const newTotal = e.target.value === "all" 
+                      ? (subj?.papers.flatMap(p => p.questions).length || 0)
+                      : (subj?.papers.find(p => p.id === e.target.value)?.questions.length || 0);
+                    if (typeof questionCount === 'number' && questionCount > newTotal) {
+                      setQuestionCount(newTotal);
+                    }
+                  }}
+                >
+                  <option value="all">Trộn tất cả các đề (Lộn xộn)</option>
+                  {subj?.papers.map(p => (
+                    <option key={p.id} value={p.id}>{p.name} ({p.questions.length} câu)</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="w-full flex flex-col gap-2 mt-2">
+                <label className="text-sm font-medium">Số lượng câu hỏi muốn làm (Tối đa: {totalAvailable})</label>
+                <input 
+                  type="number" 
+                  min="1"
+                  max={totalAvailable}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  value={questionCount}
+                  onChange={(e) => {
+                    if (e.target.value === "") {
+                      setQuestionCount("");
+                    } else {
+                      let val = parseInt(e.target.value);
+                      if (val > totalAvailable) val = totalAvailable;
+                      setQuestionCount(val);
+                    }
+                  }}
+                  placeholder={`Nhập số câu (VD: ${Math.min(20, totalAvailable)})`}
+                />
               </div>
             </div>
 
