@@ -743,7 +743,7 @@ export const questionsITE302C: Question[] = [
         "text": "an uncertainty of how the data is gathered\n"
       }
     ],
-    "correctAnswer": "B",
+    "correctAnswer": "C",
     "explanation": "Unknown Unknowns (Những điều chưa biết) ám chỉ sự thiếu khả năng giải thích và không rõ mô hình thực sự dựa vào đặc trưng nào để đưa ra dự đoán."
   },
   {
