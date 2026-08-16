@@ -27,7 +27,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 2,
-    "question": "What problems are there with the following 'laundry list' approach to the following issue: Too many private cars => \nInadequate public transport => congestion \nInsufficient road networks =>",
+    "question": "What problems are there with the following 'laundry list' approach to the following issue: Too many private cars => \n\nInadequate public transport => congestion \n\nInsufficient road networks =>",
     "options": [
       {
         "key": "A",

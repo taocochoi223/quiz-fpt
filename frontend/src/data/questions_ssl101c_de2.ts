@@ -3,7 +3,7 @@ import { Question } from "@/lib/types";
 export const questionsSSL101C_de2: Question[] = [
   {
     "id": 1,
-    "question": "Consider the following fictional newspaper article. Homeless man Mike Davis pulled himself back on his feet with some hard work in his new microbusiness, cleaning local restaurants and bars. While his microbusiness might have given him a newfound sense of dignity, along with a few dollars, Mike confessed to his case manager Susan Lee at New Choices Welfare that he still had a unfulfilled dream - to find his long-lost sister in the city of Bramingham. That's when Susan, in conjunction with Flyaway Travel, worked to make Mike's dream a reality ... A cultural studies theorist continues critiquing the article in the following way. Narratives of individual responsibility, such as the Southern Messenger article, serve to redirect blame towards the homeless for their fate. This ideology then reinforces how the broader housing system, that prioritizes the exchange-value of houses on the market rather than their use-value as accommodation, creates a homeless underclass. Which feature of critique, outlined in lesson 5.3a, can be found in the theorist's writing?",
+    "question": "Consider the following fictional newspaper article. \n\nHomeless man Mike Davis pulled himself back on his feet with some hard work in his new microbusiness, cleaning local restaurants and bars. While his microbusiness might have given him a newfound sense of dignity, along with a few dollars, Mike confessed to his case manager Susan Lee at New Choices Welfare that he still had a unfulfilled dream - to find his long-lost sister in the city of Bramingham. That's when Susan, in conjunction with Flyaway Travel, worked to make Mike's dream a reality ... \n\nA cultural studies theorist continues critiquing the article in the following way. Narratives of individual responsibility, such as the Southern Messenger article, serve to redirect blame towards the homeless for their fate. This ideology then reinforces how the broader housing system, that prioritizes the exchange-value of houses on the market rather than their use-value as accommodation, creates a homeless underclass. \n\nWhich feature of critique, outlined in lesson 5.3a, can be found in the theorist's writing?",
     "options": [
       {
         "key": "A",
@@ -19,11 +19,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Theory is never neutral, but either maintains or challenges unequal power structures.\n"
+        "text": "Theory is never neutral, but either maintains or challenges unequal power structures."
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 2,
@@ -39,11 +38,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "C",
-        "text": "It misrepresents the original argument.\n"
+        "text": "It misrepresents the original argument."
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 3,
@@ -59,11 +57,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "C",
-        "text": "It misrepresents the original argument.\n"
+        "text": "It misrepresents the original argument."
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "C"
   },
   {
     "id": 4,
@@ -83,11 +80,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "All above are correct.\n"
+        "text": "All above are correct."
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 5,
@@ -107,11 +103,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "recommendation\n"
+        "text": "recommendation"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 6,
@@ -131,11 +126,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "is your lecturer or marker.\n"
+        "text": "is your lecturer or marker."
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 7,
@@ -155,11 +149,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "\"Does this look like an essay/report?\"\n"
+        "text": "\"Does this look like an essay/report?\""
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "C"
   },
   {
     "id": 8,
@@ -179,11 +172,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "He did not violate anything in academic study.\n"
+        "text": "He did not violate anything in academic study."
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 9,
@@ -203,11 +195,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "assistance and protection.\n"
+        "text": "assistance and protection."
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 10,
@@ -227,11 +218,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "clarifying expectations and responsibilities\n"
+        "text": "clarifying expectations and responsibilities"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 11,
@@ -251,11 +241,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Pictograph\n"
+        "text": "Pictograph"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 12,
@@ -279,11 +268,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "E",
-        "text": "Help students communicate online\n"
+        "text": "Help students communicate online"
       }
     ],
-    "correctAnswer": "A, C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A, C"
   },
   {
     "id": 13,
@@ -303,11 +291,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "A conversation between a student and an administrative staff member over options for deferring a course for half a year\n"
+        "text": "A conversation between a student and an administrative staff member over options for deferring a course for half a year"
       }
     ],
-    "correctAnswer": "A, B, D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A, B, D"
   },
   {
     "id": 14,
@@ -331,11 +318,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "E",
-        "text": "Ask for help from other students\n"
+        "text": "Ask for help from other students"
       }
     ],
-    "correctAnswer": "B, C, D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B, C, D"
   },
   {
     "id": 15,
@@ -355,11 +341,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "No, though it will tarnish his results and not make them valid\n"
+        "text": "No, though it will tarnish his results and not make them valid"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 16,
@@ -379,11 +364,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Having clear structure of arguments; Developing slides; Planning main parts of body; Concluding on main points\n"
+        "text": "Having clear structure of arguments; Developing slides; Planning main parts of body; Concluding on main points"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 17,
@@ -403,11 +387,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Quaternary source\n"
+        "text": "Quaternary source"
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "C"
   },
   {
     "id": 18,
@@ -427,11 +410,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "What you're looking for\n"
+        "text": "What you're looking for"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 19,
@@ -459,11 +441,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "F",
-        "text": "Your Instagram account\n"
+        "text": "Your Instagram account"
       }
     ],
-    "correctAnswer": "A, C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A, C"
   },
   {
     "id": 20,
@@ -487,11 +468,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "E",
-        "text": "com\n"
+        "text": "com"
       }
     ],
-    "correctAnswer": "E",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "E"
   },
   {
     "id": 21,
@@ -515,11 +495,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "E",
-        "text": "They are not written by experts\n"
+        "text": "They are not written by experts"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 22,
@@ -539,11 +518,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "is similar to the experience of entering university\n"
+        "text": "is similar to the experience of entering university"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 23,
@@ -567,11 +545,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "E",
-        "text": "Facilitation of academic misconduct of another student\n"
+        "text": "Facilitation of academic misconduct of another student"
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "C"
   },
   {
     "id": 24,
@@ -591,11 +568,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "tertiary sources\n"
+        "text": "tertiary sources"
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "C"
   },
   {
     "id": 25,
@@ -615,11 +591,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "All of the answers are correct\n"
+        "text": "All of the answers are correct"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 26,
@@ -639,11 +614,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "They may cover previous research on the topic\n"
+        "text": "They may cover previous research on the topic"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 27,
@@ -663,11 +637,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Noticing how your field structures knowledge\n"
+        "text": "Noticing how your field structures knowledge"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 28,
@@ -687,11 +660,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "All of the answers are correct\n"
+        "text": "All of the answers are correct"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 29,
@@ -711,11 +683,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Study skills\n"
+        "text": "Study skills"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 30,
@@ -735,11 +706,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Cheating\n"
+        "text": "Cheating"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 31,
@@ -759,11 +729,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "A brainstorm is a natural disaster that can interrupt students' studies\n"
+        "text": "A brainstorm is a natural disaster that can interrupt students' studies"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 32,
@@ -783,11 +752,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Abductive\n"
+        "text": "Abductive"
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "C"
   },
   {
     "id": 33,
@@ -807,11 +775,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Least impressive to most impressive\n"
+        "text": "Least impressive to most impressive"
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "C"
   },
   {
     "id": 34,
@@ -831,11 +798,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Because they are more up to date compare to textbook and they present a problematic view of a field.\n"
+        "text": "Because they are more up to date compare to textbook and they present a problematic view of a field."
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 35,
@@ -859,11 +825,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "E",
-        "text": "Role\n"
+        "text": "Role"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 36,
@@ -875,11 +840,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "B",
-        "text": "Well-defined\n"
+        "text": "Well-defined"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 37,
@@ -899,11 +863,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "All are correct\n"
+        "text": "All are correct"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 38,
@@ -923,11 +886,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Understand - Strategies - Execute - Evaluate\n"
+        "text": "Understand - Strategies - Execute - Evaluate"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 39,
@@ -947,11 +909,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Any scholarly journal article\n"
+        "text": "Any scholarly journal article"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 40,
@@ -971,11 +932,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Films and television shows\n"
+        "text": "Films and television shows"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 41,
@@ -995,11 +955,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Intellectual problems\n"
+        "text": "Intellectual problems"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 42,
@@ -1023,11 +982,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "E",
-        "text": "None of above\n"
+        "text": "None of above"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 43,
@@ -1047,11 +1005,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Working forwards\n"
+        "text": "Working forwards"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 44,
@@ -1071,11 +1028,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "A medical student was asked to analyze the long-term effects of cigarette smoking on smokers' daily life.\n"
+        "text": "A medical student was asked to analyze the long-term effects of cigarette smoking on smokers' daily life."
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 45,
@@ -1095,11 +1051,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "To gain marks\n"
+        "text": "To gain marks"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 46,
@@ -1111,15 +1066,42 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "B",
-        "text": "A well-defined problem\n"
+        "text": "A well-defined problem"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 47,
-    "question": "Imagine that you are taking a course in Landscape Architecture. As part of the course you need to give a 10-minute group presentation on sustainable design for urban parks. The presentation needs to include:\\n\\n1. A definition of sustainable design for urban parks\\n2. The principles for sustainable design\\n3. Three examples of sustainable design for urban parks\\n4. An analysis of each of the example parks in relation to the principles.\\n\\nThere are four people in your group: you, James, Rie and Ali.\\n\\nWhat is the best way to divide the tasks *?\\n(*an example, not the only way!)\\n\\nRefer to lesson 5.3a and 5.3b\\nCheck one option.",
+    "question": "Imagine that you are taking a course in Landscape Architecture. As part of the course you need to give a 10-minute group presentation on sustainable design for urban parks. The presentation needs to include:",
+    "options": [
+    ],
+    "correctAnswer": "B"
+  },
+  {
+    "id": 1,
+    "question": "A definition of sustainable design for urban parks",
+    "options": [
+    ],
+    "correctAnswer": "A"
+  },
+  {
+    "id": 2,
+    "question": "The principles for sustainable design",
+    "options": [
+    ],
+    "correctAnswer": "A"
+  },
+  {
+    "id": 3,
+    "question": "Three examples of sustainable design for urban parks",
+    "options": [
+    ],
+    "correctAnswer": "C"
+  },
+  {
+    "id": 4,
+    "question": "An analysis of each of the example parks in relation to the principles. \n\nThere are four people in your group: you, James, Rie and Ali. \n\nWhat is the best way to divide the tasks *? \n\n(*an example, not the only way!) \n\nRefer to lesson 5.3a and 5.3b \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -1135,15 +1117,14 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Three people do wverything and the last person presents it to the class.\n"
+        "text": "Three people do wverything and the last person presents it to the class."
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 48,
-    "question": "Look at the following argument structure as an example:\\n\\n\"(1) Existing stocks of social housing are quite low, and (2) the government is cutting funding. As a result of this, (3) we will no doubt see rising numbers of homeless and (4) increase waiting list for public housing\".\\n\\n(1) And (2) are reasons\\n(3) And (4) are conclusions.\\n\\nWhat kind of argument structure is represented by the example?",
+    "question": "Look at the following argument structure as an example: \n\n\"(1) Existing stocks of social housing are quite low, and (2) the government is cutting funding. As a result of this, (3) we will no doubt see rising numbers of homeless and (4) increase waiting list for public housing\". \n\n(1) And (2) are reasons (3) And (4) are conclusions. What kind of argument structure is represented by the example?",
     "options": [
       {
         "key": "A",
@@ -1159,11 +1140,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Serial argument\n"
+        "text": "Serial argument"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 49,
@@ -1183,11 +1163,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "In the arts and social sciences argumentation generally takes the form of arguing for solutions\n"
+        "text": "In the arts and social sciences argumentation generally takes the form of arguing for solutions"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 50,
@@ -1207,11 +1186,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Sentences 3, 4, 5 and 6\n"
+        "text": "Sentences 3, 4, 5 and 6"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 51,
@@ -1231,11 +1209,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Because the year includes the semesters.\n"
+        "text": "Because the year includes the semesters."
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 52,
@@ -1255,11 +1232,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Quasilogical argument\n"
+        "text": "Quasilogical argument"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "B"
   },
   {
     "id": 53,
@@ -1279,11 +1255,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "All are correct\n"
+        "text": "All are correct"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 54,
@@ -1303,11 +1278,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "The first premise is not valid\n"
+        "text": "The first premise is not valid"
       }
     ],
-    "correctAnswer": "B",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 55,
@@ -1327,11 +1301,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Metacognition\n"
+        "text": "Metacognition"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 56,
@@ -1351,11 +1324,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Conjunctive\n"
+        "text": "Conjunctive"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "D"
   },
   {
     "id": 57,
@@ -1375,11 +1347,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "It depends; Timmy should check his course outline or lecturer to make sure.\n"
+        "text": "It depends; Timmy should check his course outline or lecturer to make sure."
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   },
   {
     "id": 58,
@@ -1399,11 +1370,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Relevance\n"
+        "text": "Relevance"
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "C"
   },
   {
     "id": 59,
@@ -1423,11 +1393,10 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "There is no conclusion sentence\n"
+        "text": "There is no conclusion sentence"
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "C"
   },
   {
     "id": 60,
@@ -1447,10 +1416,9 @@ export const questionsSSL101C_de2: Question[] = [
       },
       {
         "key": "D",
-        "text": "Cataloging information on a library website\n\n"
+        "text": "Cataloging information on a library website"
       }
     ],
-    "correctAnswer": "A",
-    "explanation": "Chưa có giải thích."
+    "correctAnswer": "A"
   }
 ];
