@@ -176,7 +176,7 @@ export default function LibraryPage() {
                         <ReactMarkdown
                           components={{
                             p({node, children, ...props}: any) {
-                              return <span {...props}>{children}</span>
+                              return <span className="block mb-2 last:mb-0" {...props}>{children}</span>
                             },
                             code({node, inline, className, children, ...props}: any) {
                               return !inline ? (
