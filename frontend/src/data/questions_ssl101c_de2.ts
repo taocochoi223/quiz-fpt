@@ -1073,35 +1073,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 47,
-    "question": "Imagine that you are taking a course in Landscape Architecture. As part of the course you need to give a 10-minute group presentation on sustainable design for urban parks. The presentation needs to include:",
-    "options": [
-    ],
-    "correctAnswer": "B"
-  },
-  {
-    "id": 1,
-    "question": "A definition of sustainable design for urban parks",
-    "options": [
-    ],
-    "correctAnswer": "A"
-  },
-  {
-    "id": 2,
-    "question": "The principles for sustainable design",
-    "options": [
-    ],
-    "correctAnswer": "A"
-  },
-  {
-    "id": 3,
-    "question": "Three examples of sustainable design for urban parks",
-    "options": [
-    ],
-    "correctAnswer": "C"
-  },
-  {
-    "id": 4,
-    "question": "An analysis of each of the example parks in relation to the principles. \n\nThere are four people in your group: you, James, Rie and Ali. \n\nWhat is the best way to divide the tasks *? \n\n(*an example, not the only way!) \n\nRefer to lesson 5.3a and 5.3b \n\nCheck one option.",
+    "question": "Imagine that you are taking a course in Landscape Architecture. As part of the course you need to give a 10-minute group presentation on sustainable design for urban parks. The presentation needs to include:\n\n1. A definition of sustainable design for urban parks\n2. The principles for sustainable design\n3. Three examples of sustainable design for urban parks\n4. An analysis of each of the example parks in relation to the principles.\n\nThere are four people in your group: you, James, Rie and Ali.\n\nWhat is the best way to divide the tasks *?\n\n(*an example, not the only way!)\n\nRefer to lesson 5.3a and 5.3b\n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -1120,7 +1092,7 @@ export const questionsSSL101C_de2: Question[] = [
         "text": "Three people do wverything and the last person presents it to the class."
       }
     ],
-    "correctAnswer": "D"
+    "correctAnswer": "B"
   },
   {
     "id": 48,
