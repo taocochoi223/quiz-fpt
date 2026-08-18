@@ -133,6 +133,10 @@ export default function LearnPage() {
   }, [mode, selectedSubjectId, activePaperIds, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions]);
 
   React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [qIndex, showSegmentSummary, mode]);
+
+  React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
