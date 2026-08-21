@@ -51,7 +51,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 3,
-    "question": "Conversation analysis is a well-defined method and school of thought that analyses language from a social perspective. It seeks to study naturally occurring talk, either in everyday conversations or institutional settings such as schools and organizations. Any conversation analysis must be strictly based on the actual conversation, and outside categories (such as the race or class of the speaker) cannot be imposed unless they are referred to in the conversation being analyzed. Conversation analysts seek to find out what actions are performed by speakers in conversation (e.g. telling stories, making arrangements), and how they organize their talk in order to do that. They use a special mode of analysis to understand how actions are performed in talk called the next turn proof procedure. In this procedure, the action of the speaker is understood by examining how the following speaker understood them. When discussing the organization of talk, conversation analysts use terms such as turns, sequence organization and repair (how speakers fix errors in their talk). When thinking about Conversation Analysis as an argument field, what is a specialized process of thought? Check one option.",
+    "question": "Conversation analysis is a well-defined method and school of thought that analyses language from a social perspective. It seeks to study naturally occurring talk, either in everyday conversations or institutional settings such as schools and organizations. Any conversation analysis must be strictly based on the actual conversation, and outside categories (such as the race or class of the speaker) cannot be imposed unless they are referred to in the conversation being analyzed. Conversation analysts seek to find out what actions are performed by speakers in conversation (e.g. telling stories, making arrangements), and how they organize their talk in order to do that. They use a special mode of analysis to understand how actions are performed in talk called the next turn proof procedure. In this procedure, the action of the speaker is understood by examining how the following speaker understood them. When discussing the organization of talk, conversation analysts use terms such as turns, sequence organization and repair (how speakers fix errors in their talk).\n\nWhen thinking about Conversation Analysis as an argument field, what is a specialized process of thought? Check one option.",
     "options": [
       {
         "key": "A",
@@ -275,7 +275,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 12,
-    "question": "Your team is developing a solar energy project. Write a... to the business of your choice detailing your team's project development strategy. Your .... should include: \n- An executive summary \n- An overview of the problem of using solar energy in current life \n- Detailed description of the project development strategy \n- The reason for the team's choices and the reason the company should choose to adopt your team's strategy. \nThis assignment is an example of a/an ...",
+    "question": "Your team is developing a solar energy project. Write a... to the business of your choice detailing your team's project development strategy. Your .... should include: \n- An executive summary \n\n- An overview of the problem of using solar energy in current life \n\n- Detailed description of the project development strategy \n\n- The reason for the team's choices and the reason the company should choose to adopt your team's strategy. \n\nThis assignment is an example of a/an ...",
     "options": [
       {
         "key": "A",
@@ -343,7 +343,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 15,
-    "question": "What referencing system is used in the following part of an article? The worlds in which students grow up prior to entering college are not seeing a comparable diversification. Elementary and secondary schools are growing more segregated (Orfield, Bachmeier, James, & Eitle, 1997), and even in diverse schools, the Black and White students are almost completely socially self-segregated (Echenique & Fryer, 2007), suggesting that even students from integrated high schools may have little experience with diversity.",
+    "question": "What referencing system is used in the following part of an article? \n\nThe worlds in which students grow up prior to entering college are not seeing a comparable diversification. Elementary and secondary schools are growing more segregated (Orfield, Bachmeier, James, & Eitle, 1997), and even in diverse schools, the Black and White students are almost completely socially self-segregated (Echenique & Fryer, 2007), suggesting that even students from integrated high schools may have little experience with diversity.",
     "options": [
       {
         "key": "A",
@@ -367,7 +367,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 16,
-    "question": "Consider the following situation. Mike is a first year undergraduate studying Philosophy at university and his housemate, Jon, is a third year Nutrition student. As part of one of his courses, Jon needs to collect data on the eating habits of first year university students. To do this, he has asked Mike and nine of his other friends to keep a record of what they eat, and when, for a week. Mike agrees to help, and keeps a fairly accurate record of what he has eaten. When the week is up Jon asks Mike to email him his data. However, when Mike is typing up his eating habits for the week, he realises that he hasn't eaten any vegetables at all. Not wanting to seem unhealthy, especially because he doesn't want Jon to judge him, he pretends that he made a pumpkin soup and adds that to his list. He also adds a couple of salads to some of his main meals and deletes one of the chocolate bars. Satisfied, he emails the list to Jon. Can Mike get in trouble for academic misconduct?",
+    "question": "Consider the following situation. \n\nMike is a first year undergraduate studying Philosophy at university and his housemate, Jon, is a third year Nutrition student. As part of one of his courses, Jon needs to collect data on the eating habits of first year university students. To do this, he has asked Mike and nine of his other friends to keep a record of what they eat, and when, for a week. \n\nMike agrees to help, and keeps a fairly accurate record of what he has eaten. When the week is up Jon asks Mike to email him his data. However, when Mike is typing up his eating habits for the week, he realises that he hasn't eaten any vegetables at all. Not wanting to seem unhealthy, especially because he doesn't want Jon to judge him, he pretends that he made a pumpkin soup and adds that to his list. He also adds a couple of salads to some of his main meals and deletes one of the chocolate bars. Satisfied, he emails the list to Jon. Can Mike get in trouble for academic misconduct?",
     "options": [
       {
         "key": "A",
@@ -390,7 +390,7 @@ export const questionsSSL101C: Question[] = [
         "text": "No, he hasn't violated academic integrity\n"
       }
     ],
-    "correctAnswer": "D",
+    "correctAnswer": "B, D",
     "explanation": "Việc Mike tự ý bịa ra dữ liệu (pumpkin soup) thay vì ghi nhận thực tế là hành vi ngụy tạo dữ liệu (fabrication). Jon nộp báo cáo này sẽ khiến kết quả bị sai lệch nghiêm trọng và mất giá trị học thuật."
   },
   {
@@ -514,7 +514,7 @@ export const questionsSSL101C: Question[] = [
         "text": "Fine-grained searching\n"
       }
     ],
-    "correctAnswer": "D",
+    "correctAnswer": "A",
     "explanation": "Sử dụng các toán tử Boolean (AND, OR, NOT) và từ khóa chính xác (keywords) là cách hiệu quả nhất để tìm kiếm dữ liệu trên các cơ sở dữ liệu học thuật (academic databases)."
   },
   {
@@ -714,8 +714,8 @@ export const questionsSSL101C: Question[] = [
         "text": "Listening to concert with other audiences\n"
       }
     ],
-    "correctAnswer": "D",
-    "explanation": "Hoạt động chung (joint activity) đòi hỏi sự phối hợp của 2 người trở lên. Việc tự ngồi làm bài tập một mình không phải là joint activity."
+    "correctAnswer": "C",
+    "explanation": "Việc chào hỏi người bên cạnh (Greeting) chỉ là một tương tác xã hội ngắn ngủi, không phải là một hoạt động chung (joint activity) đòi hỏi sự phối hợp hướng tới mục tiêu cụ thể như làm việc nhóm hay chuyển nhà."
   },
   {
     "id": 30,
@@ -786,8 +786,8 @@ export const questionsSSL101C: Question[] = [
         "text": "Knowledge - rich problem\n"
       }
     ],
-    "correctAnswer": "C",
-    "explanation": "Vấn đề đòi hỏi nhiều kiến thức nền tảng và mang tính đặc thù ngành (domain-specific) là các bài toán chuyên môn sâu (ill-defined hoặc complex domain problems)."
+    "correctAnswer": "D",
+    "explanation": "Các vấn đề đòi hỏi nhiều kiến thức nền tảng (prior knowledge) và mang tính đặc thù của một lĩnh vực (domain specific) được gọi là vấn đề giàu kiến thức (Knowledge-rich problem)."
   },
   {
     "id": 33,
@@ -863,7 +863,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 36,
-    "question": "Imagine that it is the first week of term. After looking through your course outlines for the next term, you realize that you have the following readings and assignments to do in the first four weeks: 1. Linguistics 1002: Phonetics. Weekly problem sets, worth 5% each and a chapter of the textbook each week. 2. English1002: The Romantics. One book to read each week, plus a 1, 000 word essay due in Week 4 worth 40%. 3. Physics 1001: Life Physics. Weekly problem sets, worth 2% each, and a 1,000 word lab report of an experiment you conduct in class due in Week 2 worth 15%. 4. Business 1004: Leadership. 2 weekly readings and a 10 minute group presentation due in Week 4 worth 35%. What work should you do each week?",
+    "question": "Imagine that it is the first week of term. After looking through your course outlines for the next term, you realize that you have the following readings and assignments to do in the first four weeks:\n\n1. Linguistics 1002: Phonetics. Weekly problem sets, worth 5% each and a chapter of the textbook each week.\n\n2. English1002: The Romantics. One book to read each week, plus a 1, 000 word essay due in Week 4 worth 40%.\n\n3. Physics 1001: Life Physics. Weekly problem sets, worth 2% each, and a 1,000 word lab report of an experiment you conduct in class due in Week 2 worth 15%.\n\n4. Business 1004: Leadership. 2 weekly readings and a 10 minute group presentation due in Week 4 worth 35%.\n\nWhat work should you do each week?",
     "options": [
       {
         "key": "A",
@@ -919,7 +919,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 38,
-    "question": "Consider the following problem: \"You have just been hired as the new CEO of a major multi-national company. A company-wide survey has revealed that there is high absenteeism, low productivity and that 31% of employees are bored or otherwise unsatisfied with their work. Additionally, 13% are seriously considering offers from rival companies. The company is losing money, and work that should take a few days is taking weeks to complete. What are some leadership measures that you could put in place to help improve workplace productivity and morale?\" Which of the following case studies could you choose to use? Choose three answers.",
+    "question": "Consider the following problem: \"You have just been hired as the new CEO of a major multi-national company. A company-wide survey has revealed that there is high absenteeism, low productivity and that 31% of employees are bored or otherwise unsatisfied with their work. Additionally, 13% are seriously considering offers from rival companies. The company is losing money, and work that should take a few days is taking weeks to complete.\n\nWhat are some leadership measures that you could put in place to help improve workplace productivity and morale?\" Which of the following case studies could you choose to use? Choose three answers.",
     "options": [
       {
         "key": "A",
@@ -938,8 +938,8 @@ export const questionsSSL101C: Question[] = [
         "text": "A case study of how a principle in a large international high school with high absenteeism, low marks and low school-pride managed to change the school culture, increasing the students' school-pride and satisfaction\n"
       }
     ],
-    "correctAnswer": "A, B, C",
-    "explanation": "Ill-defined problems (vấn đề thiếu xác định) như việc làm CEO đòi hỏi nhiều giải pháp sáng tạo, không có một đáp án duy nhất đúng và thông tin ban đầu thường không đầy đủ."
+    "correctAnswer": "B, C, D",
+    "explanation": "Khi giải quyết một vấn đề phức tạp ở quy mô lớn, bạn nên tham khảo các case study (nghiên cứu tình huống) tương đương về quy mô (công ty đa quốc gia, trường học lớn) hoặc có hoàn cảnh tương tự (CEO cải thiện văn hóa) để đúc rút kinh nghiệm thực tế."
   },
   {
     "id": 39,
@@ -1086,7 +1086,7 @@ export const questionsSSL101C: Question[] = [
         "text": "Get to know your professors and create good network\n"
       }
     ],
-    "correctAnswer": "E",
+    "correctAnswer": "A, C, E",
     "explanation": "Để tận dụng tối đa thời gian đại học, bạn nên chủ động tham gia các câu lạc bộ, xây dựng mạng lưới quan hệ (networking), tự học và rèn luyện kỹ năng mềm, thay vì chỉ học trên lớp."
   },
   {
@@ -1387,7 +1387,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 57,
-    "question": "Have a look at the following statement. Which sentence is the conclusion? 'Young people should be guided to develop powerful habits. In particular, Self-reflection is substantially essential for daily practice. Educators defined self-reflection as a process by which you grow your understanding of who you are, what your values are, and why you think and act the way you do. It is a form of personal analysis that allows you to bring your life into alignment with what you wish it to be. This practice is increasingly emphasized in the context of Life-long learning; in which each individual need to actively foster their own development of knowledge and skills\".",
+    "question": "Have a look at the following statement. Which sentence is the conclusion? 'Young people should be guided to develop powerful habits.\n\nIn particular, Self-reflection is substantially essential for daily practice. Educators defined self-reflection as a process by which you grow your understanding of who you are, what your values are, and why you think and act the way you do. It is a form of personal analysis that allows you to bring your life into alignment with what you wish it to be. This practice is increasingly emphasized in the context of Life-long learning; in which each individual need to actively foster their own development of knowledge and skills\".",
     "options": [
       {
         "key": "A",
@@ -1434,8 +1434,8 @@ export const questionsSSL101C: Question[] = [
         "text": "Shared academic discipline such as biology or law\n"
       }
     ],
-    "correctAnswer": "A, B, D",
-    "explanation": "Argument fields (Các trường lập luận) như Khoa học tự nhiên, Xã hội học hay Luật... có các quy tắc, tiêu chuẩn đánh giá bằng chứng và cách thức tranh luận hoàn toàn khác nhau."
+    "correctAnswer": "A, B, D, E",
+    "explanation": "Một trường lập luận (argument field) thường được xác định bởi các đặc điểm: có chung đối tượng nghiên cứu (Common object), quy trình tư duy chung (Shared processes), có chung quan điểm về định nghĩa của kiến thức (Agreement on what knowledge is), và thường thuộc cùng một chuyên ngành (Shared academic discipline)."
   },
   {
     "id": 59,
