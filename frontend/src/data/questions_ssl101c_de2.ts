@@ -26,7 +26,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 2,
-    "question": "Have a look at the following passage. What is wrong with the argument? During the 2000s smart phone sales and ownership increased dramatically. At the same time, warfare in the Middle East escalated. It is clear that smart phones usage was a main contributor to the intensity of international warfare in the 2000s. Check one option.",
+    "question": "Have a look at the following passage. What is wrong with the argument?\n\nDuring the 2000s smart phone sales and ownership increased dramatically. At the same time, warfare in the Middle East escalated. It is clear that smart phones usage was a main contributor to the intensity of international warfare in the 2000s. \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -45,7 +45,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 3,
-    "question": "Have a look at the following passage. What is wrong with the counter-argument? Argument: Sometimes when you are having trouble writing your assignment it is good to take a short break. Counter-argument: Procrastinating instead of doing your work means nothing will ever get done. Check one option.",
+    "question": "Have a look at the following passage. What is wrong with the counter-argument? \n\nArgument: Sometimes when you are having trouble writing your assignment it is good to take a short break. Counter-argument: Procrastinating instead of doing your work means nothing will ever get done. \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -64,7 +64,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 4,
-    "question": "To avoid plagiarism, what should you do?",
+    "question": "An analysis of each of the example parks in relation to the principles. \n\nThere are four people in your group: you, James, Rie and Ali. \n\nWhat is the best way to divide the tasks *? \n\n(*an example, not the only way!) \n\nRefer to lesson 5.3a and 5.3b \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -156,7 +156,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 8,
-    "question": "David is a very intelligent Business student, he is excellent at marketing subjects. Last semester, David studied Digital Marketing with Ms. Barbara. Unfortunately, David missed the final exam of Digital Marketing subject because of a traffic accident. He had to retake this subject. In this semester, David studied Digital Marketing with Mr. Ambe. To save time doing report, David submitted the report he wrote last semester to Mr. Ambe. What did David violate in academic study?",
+    "question": "David is a very intelligent Business student, he is excellent at marketing subjects. Last semester, David studied Digital Marketing with Ms. Barbara. Unfortunately, David missed the final exam of Digital Marketing subject because of a traffic accident. He had to retake this subject. \n\nIn this semester, David studied Digital Marketing with Mr. Ambe. \n\nTo save time doing report, David submitted the report he wrote last semester to Mr. Ambe. What did David violate in academic study?",
     "options": [
       {
         "key": "A",
@@ -325,7 +325,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 15,
-    "question": "Consider the following situation. Mike is a first year undergraduate studying Philosophy at university and his housemate, Jon, is a first year Nutrition student. As part of one of his courses, Jon needs to collect data on the eating habits of first year university students. To do this, he has asked Mike and nine of his other friends to keep a record of what they eat, and when, for a week. Mike agrees to help, and keeps a fairly accurate record of what he has eaten. When the week is up Jon asks Mike to email him his data. However, when Mike is typing up his eating habits for the week, he realises that he hasn't eaten any vegetables at all. Not wanting to seem unhealthy, especially because he doesn't want Jon to judge him, he pretends that he made a pumpkin soup and adds that to his list. He also adds a couple of salads to some of his main meals and deletes one of the chocolate bars. Satisfied, he emails the list to Jon. Can Jon get in trouble for academic misconduct?",
+    "question": "Consider the following situation. \n\nMike is a first year undergraduate studying Philosophy at university and his housemate, Jon, is a first year Nutrition student. As part of one of his courses, Jon needs to collect data on the eating habits of first year university students. To do this, he has asked Mike and nine of his other friends to keep a record of what they eat, and when, for a week. \n\nMike agrees to help, and keeps a fairly accurate record of what he has eaten. When the week is up Jon asks Mike to email him his data. However, when Mike is typing up his eating habits for the week, he realises that he hasn't eaten any vegetables at all. Not wanting to seem unhealthy, especially because he doesn't want Jon to judge him, he pretends that he made a pumpkin soup and adds that to his list. He also adds a couple of salads to some of his main meals and deletes one of the chocolate bars. Satisfied, he emails the list to Jon. \n\nCan Jon get in trouble for academic misconduct?",
     "options": [
       {
         "key": "A",
@@ -371,7 +371,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 17,
-    "question": "Is a first-year visual art textbook called Introduction to Art History an example of a primary source, secondary source, or tertiary source? (Refer to 2.1b) Check one option.",
+    "question": "Is a first-year visual art textbook called Introduction to Art History an example of a primary source, secondary source, or tertiary source? \n\n(Refer to 2.1b) \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -394,7 +394,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 18,
-    "question": "What is the most important thing that determines where you look for information sources, according to Pat Norman in lesson 2.3? (Refer to 2.3) Check one option.",
+    "question": "What is the most important thing that determines where you look for information sources, according to Pat Norman in lesson 2.3? \n\n(Refer to 2.3) \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -525,7 +525,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 23,
-    "question": "Read the following example of misconduct: An assignment on Coursera required Mike to critically evaluate an academic source to determine its reliability. In particular, Mike needed to assess all mentioned criteria including Scholarly purpose, Authority, Audience, Objectivity, Accuracy and Currency. However, he decided to not follow the given requirement. He wrote some sentences instead: \"Hello my friend, the weather today is so beautiful. What a nice day. I hope you are enjoying learning this online course. Could you please give me two points for my assignment? I will support you exactly the same\" What kind of misconduct is happening?",
+    "question": "Read the following example of misconduct: \n\nAn assignment on Coursera required Mike to critically evaluate an academic source to determine its reliability. In particular, Mike needed to assess all mentioned criteria including Scholarly purpose, Authority, Audience, Objectivity, Accuracy and Currency. However, he decided to not follow the given requirement. He wrote some sentences instead:\n\n \"Hello my friend, the weather today is so beautiful. What a nice day. I hope you are enjoying learning this online course. Could you please give me two points for my assignment? I will support you exactly the same\" What kind of misconduct is happening?",
     "options": [
       {
         "key": "A",
@@ -621,7 +621,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 27,
-    "question": "In first semester at university, Mike often stayed up till midnight and woke up late in the morning. He arrived classes late and forgot to submit assignments in time. He also missed meetings for group project. In his second semester, he became more aware of his study, which resulted in better grades and better contribution to group projects. Which survival skill at university does Mike's case refer to?",
+    "question": "In first semester at university, Mike often stayed up till midnight and woke up late in the morning. He arrived classes late and forgot to submit assignments in time. He also missed meetings for group project. In his second semester, he became more aware of his study, which resulted in better grades and better contribution to group projects. \n\nWhich survival skill at university does Mike's case refer to?",
     "options": [
       {
         "key": "A",
@@ -667,7 +667,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 29,
-    "question": "David is a very intelligent Business student, he is excellent at marketing subjects. Last semester, he missed the final exam of Digital Marketing subject because of a traffic accident. He had to retake this subject. In this semester, David studied Digital Marketing with Mr. Ambe and the lecturer assigned David to be group leader of a group of 5. His group members are too new to the subject and David needed to put a lot of time to guide the group. He could complete the assignment by himself, so, to save time guiding his group to do the assignment, he asked the lecturer to allow him to do the group assignment alone. Which survival skill mentioned in lesson 1.3 is missed in this situation?",
+    "question": "David is a very intelligent Business student, he is excellent at marketing subjects. Last semester, he missed the final exam of Digital Marketing subject because of a traffic accident. He had to retake this subject. In this semester, David studied Digital Marketing with Mr. Ambe and the lecturer assigned David to be group leader of a group of 5. His group members are too new to the subject and David needed to put a lot of time to guide the group. He could complete the assignment by himself, so, to save time guiding his group to do the assignment, he asked the lecturer to allow him to do the group assignment alone. \n\nWhich survival skill mentioned in lesson 1.3 is missed in this situation?",
     "options": [
       {
         "key": "A",
@@ -736,7 +736,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 32,
-    "question": "\"The weather has a huge impact on Mai's mood. The sun makes her tired. The rain makes her sad. Only the autumn breeze makes her happy.\" What form of reasoning is used in the above sentence?",
+    "question": "\"The weather has a huge impact on Mai's mood. The sun makes her tired. The rain makes her sad. Only the autumn breeze makes her happy.\" \n\nWhat form of reasoning is used in the above sentence?",
     "options": [
       {
         "key": "A",
@@ -805,7 +805,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 35,
-    "question": "Consider the following question: \"Analyze the role of a country's culture when brands want to expand its business in that country\". What is the function word or phrase in the question?",
+    "question": "Consider the following question: \"Analyze the role of a country's culture when brands want to expand its business in that country\". \n\nWhat is the function word or phrase in the question?",
     "options": [
       {
         "key": "A",
@@ -832,7 +832,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 36,
-    "question": "Solve: 12/x + 3=7. What kind of problem is this?",
+    "question": "Solve: 12/x + 3=7. \n\nWhat kind of problem is this?",
     "options": [
       {
         "key": "A",
@@ -893,7 +893,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 39,
-    "question": "Abstract, Introduction, Body, Conclusion, References. This is the usual structure of ...._..",
+    "question": "Abstract, Introduction, Body, Conclusion, References. \n\nThis is the usual structure of ...._..",
     "options": [
       {
         "key": "A",
@@ -1035,7 +1035,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 45,
-    "question": "Consider the following situation. You are studying a unit titled 'Pedagogy and Professional Practice' as part of your education degree. 10% of your final mark is a reflective blog, where students must reflect on course content and relate it to their experiences in the classroom. Students are also expected to respond to others blog posts. What is the purpose in this rhetorical situation? Check one option.",
+    "question": "Consider the following situation. \n\nYou are studying a unit titled 'Pedagogy and Professional Practice' as part of your education degree. 10% of your final mark is a reflective blog, where students must reflect on course content and relate it to their experiences in the classroom. Students are also expected to respond to others blog posts. What is the purpose in this rhetorical situation? \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -1058,7 +1058,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 46,
-    "question": "Consider the following problem from a university course: \"In 2006, Mt Red High School, a public school in Sydney's inner-west, ranked 1st in NSW for HSC Physics and Biology. Since 2013, however, there has been a sharp decline the Physics scores and this year only 3 students signed up for the course. A study was done that indicates students are losing interest in Science during year 9. Design a curriculum outline with the aim of increasing interest in Science. Your curriculum outline should include the sequence of units, descriptions of each unit, and all assessments for the course.\" Is this an example of: Refer to lesson 2.1b Check one option.",
+    "question": "Consider the following problem from a university course: \n\n\"In 2006, Mt Red High School, a public school in Sydney's inner-west, ranked 1st in NSW for HSC Physics and Biology. Since 2013, however, there has been a sharp decline the Physics scores and this year only 3 students signed up for the course. A study was done that indicates students are losing interest in Science during year 9. Design a curriculum outline with the aim of increasing interest in Science. Your curriculum outline should include the sequence of units, descriptions of each unit, and all assessments for the course.\" Is this an example of: \n\nRefer to lesson 2.1b \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -1096,7 +1096,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 48,
-    "question": "Look at the following argument structure as an example: \n\n\"(1) Existing stocks of social housing are quite low, and (2) the government is cutting funding. As a result of this, (3) we will no doubt see rising numbers of homeless and (4) increase waiting list for public housing\". \n\n(1) And (2) are reasons (3) And (4) are conclusions. What kind of argument structure is represented by the example?",
+    "question": "Look at the following argument structure as an example: \n\n\"(1) Existing stocks of social housing are quite low, and (2) the government is cutting funding. As a result of this, (3) we will no doubt see rising numbers of homeless and (4) increase waiting list for public housing\". \n\n(1) And (2) are reasons \n\n(3) And (4) are conclusions. \n\nWhat kind of argument structure is represented by the example?",
     "options": [
       {
         "key": "A",
@@ -1142,7 +1142,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 50,
-    "question": "Read the following argument. Identify which sentences are part of the argument chain. (1) A significant percentage of people experiencing homelessness are aged between 0-24 years of age. (2) One contributing factor for youth homelessness is a lack of exit planning after leaving statutory care, juvenile justice or medical facilities. (3) If there was increased funding for exit planning then youth at risk would have more opportunities for support. (4) If there were more opportunities for support then there would be a higher chance of intervention when at-risk youth face homelessness. (5) This would lead to a decrease in youth homelessness. (6) Therefore, funding for better exit planning would lead to a decrease in youth homelessness.",
+    "question": "Read the following argument. Identify which sentences are part of the argument chain. \n\n(1) A significant percentage of people experiencing homelessness are aged between 0-24 years of age. (2) One contributing factor for youth homelessness is a lack of exit planning after leaving statutory care, juvenile justice or medical facilities. (3) If there was increased funding for exit planning then youth at risk would have more opportunities for support. (4) If there were more opportunities for support then there would be a higher chance of intervention when at-risk youth face homelessness. (5) This would lead to a decrease in youth homelessness. (6) Therefore, funding for better exit planning would lead to a decrease in youth homelessness.",
     "options": [
       {
         "key": "A",
@@ -1188,7 +1188,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 52,
-    "question": "Consider the following statement. \"In the case of some areas of the internet that are heavily regulated, online trade has suffered from excess government regulation and control. It's not hard to imagine the same thing happening if that kind of control was extended to all areas of the online economy.\" What type of argument is this?",
+    "question": "Consider the following statement. \n\n\"In the case of some areas of the internet that are heavily regulated, online trade has suffered from excess government regulation and control. It's not hard to imagine the same thing happening if that kind of control was extended to all areas of the online economy.\" What type of argument is this?",
     "options": [
       {
         "key": "A",
@@ -1234,7 +1234,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 54,
-    "question": "Have a look at the following statement. What is the problem with the argument? \"According to the law, workers have the right to rest and leisure, including reasonable number of vacation days. I have been working so hard recently, which makes me feel tired. In sum, I have the right to enjoy a vacation.'",
+    "question": "Have a look at the following statement. What is the problem with the argument? \n\n\"According to the law, workers have the right to rest and leisure, including reasonable number of vacation days. I have been working so hard recently, which makes me feel tired. In sum, I have the right to enjoy a vacation.'",
     "options": [
       {
         "key": "A",
@@ -1257,7 +1257,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 55,
-    "question": "A student is asked to do an ethnic factor analysis of a movie. The student already has strong opinions about both ethnic characteristics, sovereignty and the film they must analyze. However, they make a mental note of their biases when conducting research. Instead of giving a subjective opinion, the student makes sure they read sources representing a variety of different views. Which of the following dispositions or habits of mind for critical thinking is the student displaying?",
+    "question": "A student is asked to do an ethnic factor analysis of a movie. The student already has strong opinions about both ethnic characteristics, sovereignty and the film they must analyze. However, they make a mental note of their biases when conducting research. Instead of giving a subjective opinion, the student makes sure they read sources representing a variety of different views. \n\nWhich of the following dispositions or habits of mind for critical thinking is the student displaying?",
     "options": [
       {
         "key": "A",
@@ -1303,7 +1303,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 57,
-    "question": "For a course Timmy is taking, he has to conduct a research experiment and write a full research report. Part of the research report is a literature review. Timmy feels really lucky because earlier in the semester they had to write a literature review for the same class. If Timmy uses the same literature review he did earlier in the course for this assignment, will he violate the academic integrity?",
+    "question": "For a course Timmy is taking, he has to conduct a research experiment and write a full research report. Part of the research report is a literature review. Timmy feels really lucky because earlier in the semester they had to write a literature review for the same class. \n\nIf Timmy uses the same literature review he did earlier in the course for this assignment, will he violate the academic integrity?",
     "options": [
       {
         "key": "A",
@@ -1326,7 +1326,7 @@ export const questionsSSL101C_de2: Question[] = [
   },
   {
     "id": 58,
-    "question": "What problem is there with the following evidence? Homelessness is an increasingly worrying problem in the USA. According to Langdon and Kass (1985), \"[homelessness] is a national crisis of ever-increasing proportions. Hundreds of thousands of persons across the country are so desperately poor that they lack even minimal shelter\" (p.305). They state that there are more homeless people now than any time since the Great Depression. Reference: Langdon, J. K. & Kass, M.A. (1985). Homelessness in America: Looking for the Right to Shelter. Columbia Journal of Law and Social Problems, 19(3), 305-392.",
+    "question": "What problem is there with the following evidence? \n\nHomelessness is an increasingly worrying problem in the USA. According to Langdon and Kass (1985), \"[homelessness] is a national crisis of ever-increasing proportions. Hundreds of thousands of persons across the country are so desperately poor that they lack even minimal shelter\" (p.305). They state that there are more homeless people now than any time since the Great Depression. \n\nReference: Langdon, J. K. & Kass, M.A. (1985). Homelessness in America: Looking for the Right to Shelter. Columbia Journal of Law and Social Problems, 19(3), 305-392.",
     "options": [
       {
         "key": "A",
