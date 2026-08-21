@@ -471,7 +471,7 @@ export const questionsSSL101C_de2: Question[] = [
         "text": "com"
       }
     ],
-    "correctAnswer": "A, C"
+    "correctAnswer": "E"
   },
   {
     "id": 21,
