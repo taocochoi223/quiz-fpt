@@ -433,7 +433,7 @@ export const questionsSSL101C_de3: Question[] = [
         "text": "Motivated. Committed. Passionate."
       }
     ],
-    "correctAnswer": "A"
+    "correctAnswer": "B"
   },
   {
     "id": 19,
@@ -1138,7 +1138,7 @@ export const questionsSSL101C_de3: Question[] = [
         "text": "The information is written at an appropriate level."
       }
     ],
-    "correctAnswer": "A"
+    "correctAnswer": "C"
   },
   {
     "id": 50,
