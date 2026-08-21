@@ -291,7 +291,9 @@ export default function QuizPage() {
           <h2 className="text-2xl font-bold tracking-tight mb-2">Chi tiết bài làm</h2>
           {quizSet.map((q, index) => {
             const userAnswer = answers[q.uniqueId];
-            const isCorrect = userAnswer === q.correctAnswer;
+            const correctAnsArr = q.correctAnswer.split(',').map((s: string) => s.trim()).sort();
+            const userAnsArr = userAnswer ? userAnswer.split(',').map((s: string) => s.trim()).sort() : [];
+            const isCorrect = correctAnsArr.join(',') === userAnsArr.join(',');
             
             return (
               <Card key={q.uniqueId} className="p-6 border-2 shadow-sm bg-card flex flex-col gap-4">
@@ -329,8 +331,8 @@ export default function QuizPage() {
                 
                 <div className="flex flex-col gap-3 mt-2">
                   {q.options.map((opt: any, idx: number) => {
-                    const isSelected = userAnswer === opt.key;
-                    const isCorrectOpt = q.correctAnswer === opt.key;
+                    const isSelected = userAnsArr.includes(opt.key);
+                    const isCorrectOpt = correctAnsArr.includes(opt.key);
                     
                     let bgClass = "bg-muted/50 border-transparent text-muted-foreground";
                     let badgeClass = "bg-muted text-muted-foreground";

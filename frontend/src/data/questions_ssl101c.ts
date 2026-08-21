@@ -75,7 +75,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 4,
-    "question": "Business 1004: Leadership. 2 weekly readings and a 10 minute group presentation due in Week 4 worth 35%. \n\nWhat work should you do each week?",
+    "question": "The introduction of essay has three main functions. What are they? Choose 3 options.",
     "options": [
       {
         "key": "A",
