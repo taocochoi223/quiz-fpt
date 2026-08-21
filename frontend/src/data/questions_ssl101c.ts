@@ -242,7 +242,7 @@ export const questionsSSL101C: Question[] = [
         "text": "Prepare controversial questions for discussion\n"
       }
     ],
-    "correctAnswer": "A, B",
+    "correctAnswer": "A, B, D",
     "explanation": "Để thu hút khán giả và tạo phong cách riêng, bạn cần giao tiếp bằng mắt (eye contact), sử dụng ngôn ngữ cơ thể, kể chuyện (storytelling) và truyền tải năng lượng tích cực."
   },
   {
