@@ -27,7 +27,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 2,
-    "question": "What problems are there with the following 'laundry list' approach to the following issue: \n\nToo many private cars => \n\nInadequate public transport => congestion \n\nInsufficient road networks =>",
+    "question": "What problems are there with the following 'laundry list' approach to the following issue: Too many private cars => \n\nInadequate public transport => congestion \n\nInsufficient road networks =>",
     "options": [
       {
         "key": "A",
@@ -51,7 +51,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 3,
-    "question": "Conversation analysis is a well-defined method and school of thought that analyses language from a social perspective. It seeks to study naturally occurring talk, either in everyday conversations or institutional settings such as schools and organizations. Any conversation analysis must be strictly based on the actual conversation, and outside categories (such as the race or class of the speaker) cannot be imposed unless they are referred to in the conversation being analyzed. Conversation analysts seek to find out what actions are performed by speakers in conversation (e.g. telling stories, making arrangements), and how they organize their talk in order to do that. They use a special mode of analysis to understand how actions are performed in talk called the next turn proof procedure. In this procedure, the action of the speaker is understood by examining how the following speaker understood them. When discussing the organization of talk, conversation analysts use terms such as turns, sequence organization and repair (how speakers fix errors in their talk).\n\nWhen thinking about Conversation Analysis as an argument field, what is a specialized process of thought? Check one option.",
+    "question": "Conversation analysis is a well-defined method and school of thought that analyses language from a social perspective. It seeks to study naturally occurring talk, either in everyday conversations or institutional settings such as schools and organizations. Any conversation analysis must be strictly based on the actual conversation, and outside categories (such as the race or class of the speaker) cannot be imposed unless they are referred to in the conversation being analyzed. Conversation analysts seek to find out what actions are performed by speakers in conversation (e.g. telling stories, making arrangements), and how they organize their talk in order to do that. They use a special mode of analysis to understand how actions are performed in talk called the next turn proof procedure. In this procedure, the action of the speaker is understood by examining how the following speaker understood them. When discussing the organization of talk, conversation analysts use terms such as turns, sequence organization and repair (how speakers fix errors in their talk). \n\nWhen thinking about Conversation Analysis as an argument field, what is a specialized process of thought? Check one option.",
     "options": [
       {
         "key": "A",
@@ -75,7 +75,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 4,
-    "question": "The introduction of essay has three main functions. What are they? Choose 3 options.",
+    "question": "Business 1004: Leadership. 2 weekly readings and a 10 minute group presentation due in Week 4 worth 35%. \n\nWhat work should you do each week?",
     "options": [
       {
         "key": "A",
@@ -275,7 +275,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 12,
-    "question": "Your team is developing a solar energy project. Write a... to the business of your choice detailing your team's project development strategy. Your .... should include: \n- An executive summary \n\n- An overview of the problem of using solar energy in current life \n\n- Detailed description of the project development strategy \n\n- The reason for the team's choices and the reason the company should choose to adopt your team's strategy. \n\nThis assignment is an example of a/an ...",
+    "question": "Your team is developing a solar energy project. Write a... to the business of your choice detailing your team's project development strategy. Your .... should include: \n\n- An executive summary \n\n- An overview of the problem of using solar energy in current life \n\n- Detailed description of the project development strategy \n\n- The reason for the team's choices and the reason the company should choose to adopt your team's strategy. \n\nThis assignment is an example of a/an ...",
     "options": [
       {
         "key": "A",
@@ -419,7 +419,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 18,
-    "question": "Knowledge is soon changed, then lost in the mist, an echo half-heard.” - Gene Wolfe. What quality of academic culture does this relate to? (Refer to 1.2) Check one option.",
+    "question": "Knowledge is soon changed, then lost in the mist, an echo half-heard.” - Gene Wolfe. What quality of academic culture does this relate to? \n\n(Refer to 1.2) \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -839,7 +839,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 35,
-    "question": "Consider the following question from a Business Communication exam: \"To successfully communicate in business working environment, some principles should be adopted. List those principles.\" What is the function word or phrase in the question?",
+    "question": "Consider the following question from a Business Communication exam: \n\n\"To successfully communicate in business working environment, some principles should be adopted. List those principles.\" \n\nWhat is the function word or phrase in the question?",
     "options": [
       {
         "key": "A",
@@ -919,7 +919,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 38,
-    "question": "Consider the following problem: \"You have just been hired as the new CEO of a major multi-national company. A company-wide survey has revealed that there is high absenteeism, low productivity and that 31% of employees are bored or otherwise unsatisfied with their work. Additionally, 13% are seriously considering offers from rival companies. The company is losing money, and work that should take a few days is taking weeks to complete.\n\nWhat are some leadership measures that you could put in place to help improve workplace productivity and morale?\" Which of the following case studies could you choose to use? Choose three answers.",
+    "question": "Consider the following problem: \n\n\"You have just been hired as the new CEO of a major multi-national company. A company-wide survey has revealed that there is high absenteeism, low productivity and that 31% of employees are bored or otherwise unsatisfied with their work. Additionally, 13% are seriously considering offers from rival companies. The company is losing money, and work that should take a few days is taking weeks to complete. What are some leadership measures that you could put in place to help improve workplace productivity and morale?\" Which of the following case studies could you choose to use? Choose three answers.",
     "options": [
       {
         "key": "A",
@@ -991,7 +991,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 41,
-    "question": "Consider the following problem: \n\"A construction company has recently seen a significant increase of accidents on worksites. Workers are angry about the accidents and are threatening strikes, and management are worried about their employees' safety. What solutions would you suggest to help reduce the number of accidents?\" Which of the following solutions demonstrate an understanding of underlying systemic causes rather than just focusing on events? \nChoose 2 options.",
+    "question": "Consider the following problem: \n\n\"A construction company has recently seen a significant increase of accidents on worksites. Workers are angry about the accidents and are threatening strikes, and management are worried about their employees' safety. What solutions would you suggest to help reduce the number of accidents?\" Which of the following solutions demonstrate an understanding of underlying systemic causes rather than just focusing on events? \n\nChoose 2 options.",
     "options": [
       {
         "key": "A",
@@ -1119,7 +1119,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 46,
-    "question": "What problem is there with the following argument? I have all my best ideas in the shower. I need to regularly have good ideas when I am at work. Therefore, I need to have numerous showers during the day in order to perform well at work. Check one option.",
+    "question": "What problem is there with the following argument? \n\nI have all my best ideas in the shower. I need to regularly have good ideas when I am at work. Therefore, I need to have numerous showers during the day in order to perform well at work. \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -1143,7 +1143,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 47,
-    "question": "When evaluating a solution for a university problem, which of the following do you need to consider? Refer to lesson 4.4a and 4.4b. Check one option.",
+    "question": "When evaluating a solution for a university problem, which of the following do you need to consider? \n\nRefer to lesson 4.4a and 4.4b. \n\nCheck one option.",
     "options": [
       {
         "key": "A",
@@ -1171,7 +1171,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 48,
-    "question": "According to the course of Information & Digital Literacy Skills, universities are not just trying to train you for a job role, but are also trying to prepare you . .. Refer to lesson 1.4a. Choose one option.",
+    "question": "According to the course of Information & Digital Literacy Skills, universities are not just trying to train you for a job role, but are also trying to prepare you . .. \n\nRefer to lesson 1.4a. \n\nChoose one option.",
     "options": [
       {
         "key": "A",
@@ -1219,7 +1219,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 50,
-    "question": "Consider the following statement: \"The government was criticized as responding slowly in the pandemic\". How is bias displayed in this statement?",
+    "question": "Consider the following statement: \n\n\"The government was criticized as responding slowly in the pandemic\". \n\nHow is bias displayed in this statement?",
     "options": [
       {
         "key": "A",
@@ -1315,7 +1315,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 54,
-    "question": "Have a look at the following statement. Which sentence is the conclusion? \"I graduated from the university with good grades. I am good at English, tech skill and communication skill. I can work under pressure. I enjoy reading a lot.\"",
+    "question": "Have a look at the following statement. Which sentence is the conclusion? \n\n\"I graduated from the university with good grades. I am good at English, tech skill and communication skill. I can work under pressure. I enjoy reading a lot.\"",
     "options": [
       {
         "key": "A",
@@ -1387,7 +1387,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 57,
-    "question": "Have a look at the following statement. Which sentence is the conclusion? 'Young people should be guided to develop powerful habits.\n\nIn particular, Self-reflection is substantially essential for daily practice. Educators defined self-reflection as a process by which you grow your understanding of who you are, what your values are, and why you think and act the way you do. It is a form of personal analysis that allows you to bring your life into alignment with what you wish it to be. This practice is increasingly emphasized in the context of Life-long learning; in which each individual need to actively foster their own development of knowledge and skills\".",
+    "question": "Have a look at the following statement. Which sentence is the conclusion? \n\n'Young people should be guided to develop powerful habits. In particular, Self-reflection is substantially essential for daily practice. Educators defined self-reflection as a process by which you grow your understanding of who you are, what your values are, and why you think and act the way you do. It is a form of personal analysis that allows you to bring your life into alignment with what you wish it to be. This practice is increasingly emphasized in the context of Life-long learning; in which each individual need to actively foster their own development of knowledge and skills\".",
     "options": [
       {
         "key": "A",
@@ -1439,7 +1439,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 59,
-    "question": "Consider the following situation. Mohammed is a third-year undergraduate student studying epidemiology. His professor is highly regarded in the field and Mohammed is very excited to study under him. However, after seeing another student use an incorrect equation while trying to replicate one of his professor's experiments, Mohammed notices that his professor made a small error when calculating the data for the original experiment. When Mohammed fixes the error, it changes the results so much that the conclusion isn't correct anymore. Mohammed checks the original and his own multiple times but he still gets the same result. Mohammed is very concerned because the paper with the published results of the experiments his professor did has been referenced many times. What should Mohammed do?",
+    "question": "Consider the following situation. \n\nMohammed is a third-year undergraduate student studying epidemiology. His professor is highly regarded in the field and Mohammed is very excited to study under him. However, after seeing another student use an incorrect equation while trying to replicate one of his professor's experiments, Mohammed notices that his professor made a small error when calculating the data for the original experiment. When Mohammed fixes the error, it changes the results so much that the conclusion isn't correct anymore. Mohammed checks the original and his own multiple times but he still gets the same result. Mohammed is very concerned because the paper with the published results of the experiments his professor did has been referenced many times. \n\nWhat should Mohammed do?",
     "options": [
       {
         "key": "A",
