@@ -344,7 +344,7 @@ export const questionsSSL101C_de2: Question[] = [
         "text": "No, though it will tarnish his results and not make them valid"
       }
     ],
-    "correctAnswer": "A, C"
+    "correctAnswer": "D"
   },
   {
     "id": 16,
