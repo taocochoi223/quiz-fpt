@@ -390,7 +390,7 @@ export const questionsSSL101C: Question[] = [
         "text": "No, he hasn't violated academic integrity\n"
       }
     ],
-    "correctAnswer": "B, D",
+    "correctAnswer": "D",
     "explanation": "Việc Mike tự ý bịa ra dữ liệu (pumpkin soup) thay vì ghi nhận thực tế là hành vi ngụy tạo dữ liệu (fabrication). Jon nộp báo cáo này sẽ khiến kết quả bị sai lệch nghiêm trọng và mất giá trị học thuật."
   },
   {
