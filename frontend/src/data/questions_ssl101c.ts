@@ -27,7 +27,7 @@ export const questionsSSL101C: Question[] = [
   },
   {
     "id": 2,
-    "question": "What problems are there with the following 'laundry list' approach to the following issue: \n\nToo many private cars => \n\nInadequate public transport => congestion \n\nInsufficient road networks =>",
+    "question": "What problems are there with the following 'laundry list' approach to the following issue: \n\nToo many private cars => \n\nInadequate public transport => congestion \n\nInsufficient road networks =>\n\n Check two options",
     "options": [
       {
         "key": "A",
@@ -46,7 +46,7 @@ export const questionsSSL101C: Question[] = [
         "text": "It doesn't provide any solutions to the problem.\n"
       }
     ],
-    "correctAnswer": "B",
+    "correctAnswer": "B, C",
     "explanation": "Cách tiếp cận 'laundry list' (liệt kê một chiều) bị lỗi vì nó ám chỉ mối quan hệ nhân quả chỉ đi theo một hướng duy nhất (one-way relationship) giữa các yếu tố, bỏ qua sự tương tác phức tạp qua lại."
   },
   {
