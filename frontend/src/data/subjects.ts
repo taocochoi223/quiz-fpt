@@ -1,10 +1,5 @@
-
-import { questionsSSL101C } from "./questions_ssl101c";
-import { questionsITE302C } from "./questions_ite302c";
-import { questionsITE302C_de2 } from "./questions_ite302c_de2";
-import { questionsITE302C_de3 } from "./questions_ite302c_de3";
-import { questionsSSL101C_de2 } from "./questions_ssl101c_de2";
-import { questionsSSL101C_de3 } from "./questions_ssl101c_de3";
+import { questionsMLN131_de1 } from "./questions_mln131_de1";
+import { questionsMLN131_de2 } from "./questions_mln131_de2";
 import { Question } from "@/lib/types";
 
 export interface Paper {
@@ -22,46 +17,19 @@ export interface Subject {
 
 export const subjects: Subject[] = [
   {
-    id: "ssl101c",
-    name: "SSL101C",
-    fullName: "SSL101C - Academic Skills",
+    id: "mln131",
+    name: "MLN131",
+    fullName: "MLN131 - Triết học Mác - Lênin / CNXHKH",
     papers: [
       {
-        id: "ssl101c_paper1",
+        id: "mln131_paper1",
         name: "Đề 1 (60 câu)",
-        questions: questionsSSL101C,
+        questions: questionsMLN131_de1,
       },
       {
-        id: "ssl101c_paper2",
+        id: "mln131_paper2",
         name: "Đề 2 (60 câu)",
-        questions: questionsSSL101C_de2,
-      },
-        {
-          id: "ssl101c_paper3",
-          name: "Đề 3 (60 câu)",
-          questions: questionsSSL101C_de3,
-        }
-    ]
-  },
-  {
-    id: "ite302c",
-    name: "ITE302C",
-    fullName: "ITE302C - Ethics in IT",
-    papers: [
-      {
-        id: "ite302c_paper1",
-        name: "Đề 1 (60 câu)",
-        questions: questionsITE302C,
-      },
-      {
-        id: "ite302c_paper2",
-        name: "Đề 2 (60 câu)",
-        questions: questionsITE302C_de2,
-      },
-      {
-        id: "ite302c_paper3",
-        name: "Đề 3 (60 câu)",
-        questions: questionsITE302C_de3,
+        questions: questionsMLN131_de2,
       }
     ]
   }
