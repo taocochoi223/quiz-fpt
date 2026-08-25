@@ -348,7 +348,7 @@ export const questionsMLN131_de1: Question[] = [
   },
   {
     "id": 16,
-    "question": "Liên Xô, Đông Âu và các nước xã hội chủ nghĩa hiện nay đã và đang quá độ lên chủ nghĩa xã hội bằng hình thức nào?\\nNOTE: Liên xô, Đông Âu -> Trực tiếp\\nViệt Nam -> Gián tiếp",
+    "question": "Liên Xô, Đông Âu và các nước xã hội chủ nghĩa hiện nay đã và đang quá độ lên chủ nghĩa xã hội bằng hình thức nào?\n\nNOTE: Liên xô, Đông Âu -> Trực tiếp\n\nViệt Nam -> Gián tiếp",
     "options": [
       {
         "key": "A",

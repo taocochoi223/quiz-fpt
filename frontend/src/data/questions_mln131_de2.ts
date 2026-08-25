@@ -1291,7 +1291,7 @@ export const questionsMLN131_de2: Question[] = [
   },
   {
     "id": 57,
-    "question": "A -> phương hướng đầu tiên\nb -> phương hướng thứ 2\nc -> phướng hướng thứ 3\nd -> phương hướng thứ 4\nCương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội (Bổ sung và phát triển năm 2011) xác định phương hướng đầu tiên, phản ánh con đường đi lên chủ nghĩa xã hội ở nước ta là gì?",
+    "question": "Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội (Bổ sung và phát triển năm 2011) xác định phương hướng đầu tiên, phản ánh con đường đi lên chủ nghĩa xã hội ở nước ta là gì?\n\nA -> phương hướng đầu tiên\n\nb -> phương hướng thứ 2\n\nc -> phướng hướng thứ 3\n\nd -> phương hướng thứ 4",
     "options": [
       {
         "key": "A",
