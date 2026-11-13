@@ -1,6 +1,5 @@
-import { questionsMLN131_de1 } from "./questions_mln131_de1";
-import { questionsMLN131_de2 } from "./questions_mln131_de2";
-import { questionsMLN131_de3 } from "./questions_mln131_de3";
+import { questionsVNR202_de1 } from "./questions_vnr202_de1";
+import { questionsVNR202_de2 } from "./questions_vnr202_de2";
 import { Question } from "@/lib/types";
 
 export interface Paper {
@@ -18,25 +17,20 @@ export interface Subject {
 
 export const subjects: Subject[] = [
   {
-    id: "mln131",
-    name: "MLN131",
-    fullName: "MLN131 - Triết học Mác - Lênin / CNXHKH",
+    id: "vnr202",
+    name: "VNR202",
+    fullName: "VNR202 - Lịch sử Đảng Cộng sản Việt Nam",
     papers: [
       {
-        id: "mln131_paper1",
-        name: "Đề 1 (60 câu)",
-        questions: questionsMLN131_de1,
+        id: "vnr202_paper1",
+        name: "VNR202 - SP26 - RE",
+        questions: questionsVNR202_de1,
       },
       {
-        id: "mln131_paper2",
-        name: "Đề 2 (60 câu)",
-        questions: questionsMLN131_de2,
+        id: "vnr202_paper2",
+        name: "VNR202 - SU26 - FE - C2",
+        questions: questionsVNR202_de2,
       },
-      {
-        id: "mln131_paper3",
-        name: "Đề 3 (60 câu)",
-        questions: questionsMLN131_de3,
-      }
-    ]
-  }
+    ],
+  },
 ];

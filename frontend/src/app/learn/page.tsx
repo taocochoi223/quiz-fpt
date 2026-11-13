@@ -2,70 +2,86 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, X, RotateCcw, Shuffle, ListOrdered, ArrowRight, BookOpen, Bot, Sparkles, Loader2, GraduationCap, Settings, Smartphone } from "lucide-react";
+import {
+  Check,
+  X,
+  RotateCcw,
+  Shuffle,
+  ListOrdered,
+  ArrowRight,
+  BookOpen,
+  Bot,
+  Sparkles,
+  Loader2,
+  GraduationCap,
+  Settings,
+  Smartphone,
+} from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { subjects, Subject } from "@/data/subjects";
+import { subjects } from "@/data/subjects";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import Link from "next/link";
 import { playCorrectSound, playWrongSound } from "@/lib/audio";
+import { MarkdownContent } from "@/components/markdown-content";
+import {
+  getAllQuestionsWithMeta,
+  getSubjectQuestions,
+  isCorrectSelection,
+  parseAnswerKeys,
+  shuffleArray,
+} from "@/lib/quiz-utils";
+import { QuestionWithMeta } from "@/lib/types";
 
-function shuffle<T>(array: T[]): T[] {
-  const copy = [...array];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
-const generateChunks = (total: number, size: number) => {
-  return []; // Deprecated, we use papers now
-};
+const BATCH_SIZE = 7;
 
 export default function LearnPage() {
   const [mode, setMode] = React.useState<"select" | "subject" | "full">("select");
   const [selectedSubjectId, setSelectedSubjectId] = React.useState<string | null>(null);
   const [expandedCard, setExpandedCard] = React.useState<string | null>(null);
-  
+
   const [activePaperIds, setActivePaperIds] = React.useState<string[]>([]);
   const [selectedPapersToStart, setSelectedPapersToStart] = React.useState<string[]>([]);
-  const [queue, setQueue] = React.useState<any[]>([]);
-  const [pendingIds, setPendingIds] = React.useState<any[]>([]); // Deprecated, always empty
+  const [queue, setQueue] = React.useState<string[]>([]);
+  const [pendingIds, setPendingIds] = React.useState<string[]>([]);
   const [qIndex, setQIndex] = React.useState(0);
-  const [batchWrongIds, setBatchWrongIds] = React.useState<any[]>([]);
+  const [batchWrongIds, setBatchWrongIds] = React.useState<string[]>([]);
   const [isBatchRetry, setIsBatchRetry] = React.useState(false);
   const [completedCount, setCompletedCount] = React.useState(0);
   const [showSegmentSummary, setShowSegmentSummary] = React.useState(false);
-  
-  const [currentBatchIds, setCurrentBatchIds] = React.useState<any[]>([]);
-  const [initialWrongIds, setInitialWrongIds] = React.useState<any[]>([]);
-  
-  const [globalWrongIds, setGlobalWrongIds] = React.useState<any[]>([]);
+
+  const [currentBatchIds, setCurrentBatchIds] = React.useState<string[]>([]);
+  const [initialWrongIds, setInitialWrongIds] = React.useState<string[]>([]);
+  const [globalWrongIds, setGlobalWrongIds] = React.useState<string[]>([]);
   const [isFinalReview, setIsFinalReview] = React.useState(false);
   const [totalQuestions, setTotalQuestions] = React.useState(0);
-  
+
   const [customCount, setCustomCount] = React.useState<number | "">("");
   const [customSubjectId, setCustomSubjectId] = React.useState<string>("all");
   const [customPaperId, setCustomPaperId] = React.useState<string>("all");
-  
+
   const [selectedOpts, setSelectedOpts] = React.useState<string[]>([]);
   const [isAnswered, setIsAnswered] = React.useState(false);
   const [shake, setShake] = React.useState(false);
   const [showResumeDialog, setShowResumeDialog] = React.useState(false);
-  
-  // For resume dialog, we need to know what to resume
   const [resumeSubjectId, setResumeSubjectId] = React.useState<string | null>(null);
 
   // AI state
   const [aiExplanation, setAiExplanation] = React.useState<string | null>(null);
   const [isAiLoading, setIsAiLoading] = React.useState(false);
-  
+
   // Sync state
   const [showSyncDialog, setShowSyncDialog] = React.useState(false);
   const [syncCodeInput, setSyncCodeInput] = React.useState("");
@@ -74,99 +90,240 @@ export default function LearnPage() {
   const [customSyncCodeInput, setCustomSyncCodeInput] = React.useState("");
   const [lastSyncCode, setLastSyncCode] = React.useState<string | null>(null);
 
-  // Determine current active questions list based on mode
-  let activeQuestions: any[] = [];
-  if (mode === "subject" && selectedSubjectId) {
-    const subj = subjects.find(s => s.id === selectedSubjectId);
-    if (subj) {
-      if (activePaperIds && activePaperIds.length > 0) {
-        activeQuestions = subj.papers.filter(p => activePaperIds.includes(p.id)).flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}` })));
-      } else {
-        activeQuestions = subj.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}` })));
-      }
+  const activeQuestions: QuestionWithMeta[] = React.useMemo(() => {
+    if (mode === "subject" && selectedSubjectId) {
+      return getSubjectQuestions(selectedSubjectId, activePaperIds);
     }
-  } else if (mode === "full") {
-    activeQuestions = subjects.flatMap(s => s.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${s.id}-${p.id}-${q.id}` }))));
-  } else {
+    if (mode === "full") {
+      return getAllQuestionsWithMeta();
+    }
     const defaultSubj = subjects[0];
-    activeQuestions = defaultSubj?.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${defaultSubj.id}-${p.id}-${q.id}` }))) || [];
-  }
+    return defaultSubj ? getSubjectQuestions(defaultSubj.id) : [];
+  }, [mode, selectedSubjectId, activePaperIds]);
 
   const currentQId = queue[qIndex];
-  const currentQ = activeQuestions.find(q => q.uniqueId === currentQId || q.id === currentQId) || null;
+  const currentQ = activeQuestions.find((q) => q.uniqueId === currentQId) || null;
 
   const shuffledOptions = React.useMemo(() => {
-    if (!currentQ || !currentQ.options) return [];
-    return shuffle(currentQ.options);
-  }, [currentQ?.uniqueId, currentQ?.id]);
+    if (!currentQ?.options) return [];
+    return shuffleArray(currentQ.options);
+  }, [currentQ]);
 
   const [hasSavedSessions, setHasSavedSessions] = React.useState<Record<string, boolean>>({});
 
   React.useEffect(() => {
-    const sessions: Record<string, boolean> = {};
-    for (const subj of subjects) {
-      if (localStorage.getItem(`learn_session_${subj.id}`)) {
-        sessions[subj.id] = true;
+    const id = requestAnimationFrame(() => {
+      const sessions: Record<string, boolean> = {};
+      for (const subj of subjects) {
+        if (localStorage.getItem(`learn_session_${subj.id}`)) {
+          sessions[subj.id] = true;
+        }
       }
-    }
-    if (localStorage.getItem("learn_session")) {
-      sessions["prn232"] = true;
-    }
-    setHasSavedSessions(sessions);
-    
-    const savedSyncCode = localStorage.getItem("lastSyncCode");
-    if (savedSyncCode) {
-      setLastSyncCode(savedSyncCode);
-      setCustomSyncCodeInput(savedSyncCode);
-    }
+      setHasSavedSessions(sessions);
+
+      const savedSyncCode = localStorage.getItem("lastSyncCode");
+      if (savedSyncCode) {
+        setLastSyncCode(savedSyncCode);
+        setCustomSyncCodeInput(savedSyncCode);
+      }
+    });
+    return () => cancelAnimationFrame(id);
   }, []);
 
   React.useEffect(() => {
     if (mode === "select" || (queue.length === 0 && completedCount > 0)) return;
-    const session = { mode, selectedSubjectId, activePaperIds, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
-    
+    const session = {
+      mode,
+      selectedSubjectId,
+      activePaperIds,
+      queue,
+      pendingIds,
+      qIndex,
+      batchWrongIds,
+      isBatchRetry,
+      completedCount,
+      currentBatchIds,
+      initialWrongIds,
+      globalWrongIds,
+      isFinalReview,
+      totalQuestions,
+    };
+
     if (mode === "subject" && selectedSubjectId) {
       localStorage.setItem(`learn_session_${selectedSubjectId}`, JSON.stringify(session));
     } else if (mode === "full") {
       localStorage.setItem("learn_session_full", JSON.stringify(session));
     }
-  }, [mode, selectedSubjectId, activePaperIds, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions]);
+  }, [
+    mode,
+    selectedSubjectId,
+    activePaperIds,
+    queue,
+    pendingIds,
+    qIndex,
+    batchWrongIds,
+    isBatchRetry,
+    completedCount,
+    currentBatchIds,
+    initialWrongIds,
+    globalWrongIds,
+    isFinalReview,
+    totalQuestions,
+  ]);
 
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [qIndex, showSegmentSummary, mode]);
 
+  const advance = React.useCallback(() => {
+    setSelectedOpts([]);
+    setIsAnswered(false);
+    setAiExplanation(null);
+    if (qIndex < queue.length - 1) {
+      setQIndex((p) => p + 1);
+    } else if (batchWrongIds.length > 0) {
+      toast("Bạn cần ôn lại các câu sai trong chặng này!");
+      setQueue([...batchWrongIds]);
+      setBatchWrongIds([]);
+      setQIndex(0);
+      setIsBatchRetry(true);
+    } else {
+      setShowSegmentSummary(true);
+    }
+  }, [batchWrongIds, qIndex, queue.length]);
+
+  const handleBatchEnd = React.useCallback(() => {
+    setShowSegmentSummary(false);
+    if (pendingIds.length === 0) {
+      if (!isFinalReview) {
+        toast.success("Chúc mừng! Bạn đã hoàn thành toàn bộ câu hỏi!");
+      }
+      if (mode === "subject" && selectedSubjectId) {
+        localStorage.removeItem(`learn_session_${selectedSubjectId}`);
+      }
+      setQueue([]);
+      setCurrentBatchIds([]);
+      return;
+    }
+    toast.success("Tuyệt vời! Bắt đầu chặng mới.");
+    const nextBatch = pendingIds.slice(0, BATCH_SIZE);
+    setQueue(nextBatch);
+    setCurrentBatchIds(nextBatch);
+    setPendingIds(pendingIds.slice(BATCH_SIZE));
+    setQIndex(0);
+    setIsBatchRetry(false);
+    setBatchWrongIds([]);
+    setInitialWrongIds([]);
+  }, [isFinalReview, mode, pendingIds, selectedSubjectId]);
+
+  const gradeAnswer = React.useCallback(
+    (userAns: string[], correctAnswerStr: string) => {
+      const isCorrect = isCorrectSelection(userAns, correctAnswerStr);
+
+      if (isCorrect) {
+        playCorrectSound();
+        toast.success("Chính xác!", { duration: 800 });
+        if (!isFinalReview) {
+          setCompletedCount((c) => c + 1);
+        }
+        setTimeout(() => {
+          advance();
+        }, 1100);
+      } else {
+        playWrongSound();
+        setShake(true);
+        setTimeout(() => setShake(false), 500);
+        toast.error("Sai rồi!", { duration: 1400 });
+        if (currentQId && !batchWrongIds.includes(currentQId)) {
+          setBatchWrongIds((prev) => [...prev, currentQId]);
+        }
+        if (currentQId && !isBatchRetry && !initialWrongIds.includes(currentQId)) {
+          setInitialWrongIds((prev) => [...prev, currentQId]);
+        }
+        if (currentQId && !isBatchRetry && !isFinalReview && !globalWrongIds.includes(currentQId)) {
+          setGlobalWrongIds((prev) => [...prev, currentQId]);
+        }
+      }
+    },
+    [advance, batchWrongIds, currentQId, globalWrongIds, initialWrongIds, isBatchRetry, isFinalReview]
+  );
+
+  const handleSelect = React.useCallback(
+    (key: string) => {
+      if (isAnswered || !currentQ) return;
+
+      setAiExplanation(null);
+      setIsAiLoading(false);
+
+      const correctAnsArr = parseAnswerKeys(currentQ.correctAnswer);
+      const isMulti = correctAnsArr.length > 1;
+
+      if (isMulti) {
+        const newSelected = selectedOpts.includes(key)
+          ? selectedOpts.filter((k) => k !== key)
+          : [...selectedOpts, key];
+        setSelectedOpts(newSelected);
+
+        if (newSelected.length === correctAnsArr.length) {
+          setIsAnswered(true);
+          gradeAnswer(newSelected, currentQ.correctAnswer);
+        }
+      } else {
+        const newSelected = [key];
+        setSelectedOpts(newSelected);
+        setIsAnswered(true);
+        gradeAnswer(newSelected, currentQ.correctAnswer);
+      }
+    },
+    [currentQ, gradeAnswer, isAnswered, selectedOpts]
+  );
+
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (mode === "select" || showResumeDialog || showSyncDialog) return;
 
       if (e.key === "Enter" || e.key === " ") {
         if (showSegmentSummary) {
           e.preventDefault();
           handleBatchEnd();
-        } else if (isAnswered && currentQ && selectedOpts.slice().sort().join(', ') !== currentQ.correctAnswer.split(',').map((s: string)=>s.trim()).sort().join(', ')) {
+        } else if (
+          isAnswered &&
+          currentQ &&
+          !isCorrectSelection(selectedOpts, currentQ.correctAnswer)
+        ) {
           e.preventDefault();
           advance();
         }
+      } else if (!isAnswered && !showSegmentSummary && ["1", "2", "3", "4"].includes(e.key)) {
+        const idx = Number(e.key) - 1;
+        const opt = shuffledOptions[idx];
+        if (opt) handleSelect(opt.key);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  });
+  }, [
+    advance,
+    currentQ,
+    handleBatchEnd,
+    handleSelect,
+    isAnswered,
+    mode,
+    selectedOpts,
+    showResumeDialog,
+    showSegmentSummary,
+    showSyncDialog,
+    shuffledOptions,
+  ]);
 
   const resumeSession = () => {
-    let saved = null;
-    if (resumeSubjectId) {
-      saved = localStorage.getItem(`learn_session_${resumeSubjectId}`);
-      if (!saved && resumeSubjectId === "prn232") {
-        saved = localStorage.getItem("learn_session"); // Legacy
-      }
-    }
-    
+    if (!resumeSubjectId) return;
+    const saved = localStorage.getItem(`learn_session_${resumeSubjectId}`);
     if (saved) {
       try {
         const data = JSON.parse(saved);
-        setMode(data.mode === "prn232" ? "subject" : data.mode);
+        setMode(data.mode);
         setSelectedSubjectId(resumeSubjectId);
         setActivePaperIds(data.activePaperIds || (data.activePaperId ? [data.activePaperId] : []));
         setQueue(data.queue);
@@ -190,7 +347,22 @@ export default function LearnPage() {
   const generateSyncCode = async (isCustom: boolean = false, specificCode?: string) => {
     setIsSyncing(true);
     try {
-      const payload: any = { mode, selectedSubjectId, activePaperIds, queue, pendingIds, qIndex, batchWrongIds, isBatchRetry, completedCount, currentBatchIds, initialWrongIds, globalWrongIds, isFinalReview, totalQuestions };
+      const payload: Record<string, unknown> = {
+        mode,
+        selectedSubjectId,
+        activePaperIds,
+        queue,
+        pendingIds,
+        qIndex,
+        batchWrongIds,
+        isBatchRetry,
+        completedCount,
+        currentBatchIds,
+        initialWrongIds,
+        globalWrongIds,
+        isFinalReview,
+        totalQuestions,
+      };
       const codeToUse = specificCode || customSyncCodeInput.trim();
       if (isCustom && codeToUse) {
         payload.customCode = codeToUse;
@@ -198,7 +370,7 @@ export default function LearnPage() {
       const res = await fetch("/api/sync", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (data.code) {
@@ -212,7 +384,7 @@ export default function LearnPage() {
       } else {
         toast.error("Lỗi tạo mã đồng bộ");
       }
-    } catch (e) {
+    } catch {
       toast.error("Không thể kết nối đến máy chủ");
     } finally {
       setIsSyncing(false);
@@ -226,20 +398,10 @@ export default function LearnPage() {
     }
     setIsSyncing(true);
     try {
-      const res = await fetch(`/api/sync?code=${syncCodeInput}`);
+      const res = await fetch(`/api/sync?code=${encodeURIComponent(syncCodeInput.trim())}`);
       const data = await res.json();
       if (data.session) {
         const s = data.session;
-        setMode(s.mode);
-        setSelectedSubjectId(s.mode === "subject" ? s.activePaperId /* wait, no subject is lost! */ : null); // wait!
-        
-        // Let's just fix the assignment. We need to save selectedSubjectId in the session!
-        // But for now, we can just load the session data and let the component handle it.
-        // Wait! The session save object doesn't have `selectedSubjectId`.
-        // Let me fix that later. I will just do a fast implementation for now.
-        // Actually I should just put `selectedSubjectId` in the session!
-        
-        // For now, let's just do it cleanly:
         setMode(s.mode);
         if (s.selectedSubjectId) setSelectedSubjectId(s.selectedSubjectId);
         setActivePaperIds(s.activePaperIds || (s.activePaperId ? [s.activePaperId] : []));
@@ -254,16 +416,15 @@ export default function LearnPage() {
         setGlobalWrongIds(s.globalWrongIds || []);
         setIsFinalReview(s.isFinalReview || false);
         setTotalQuestions(s.totalQuestions || 0);
-        
-        setLastSyncCode(syncCodeInput);
-        localStorage.setItem("lastSyncCode", syncCodeInput);
-        
+
+        setLastSyncCode(syncCodeInput.trim());
+        localStorage.setItem("lastSyncCode", syncCodeInput.trim());
         setShowSyncDialog(false);
         toast.success("Đồng bộ thành công! Đang tiếp tục bài học...");
       } else {
         toast.error(data.error || "Mã không hợp lệ hoặc không tìm thấy");
       }
-    } catch (e) {
+    } catch {
       toast.error("Không thể kết nối đến máy chủ");
     } finally {
       setIsSyncing(false);
@@ -273,23 +434,16 @@ export default function LearnPage() {
   const abandonSession = () => {
     if (resumeSubjectId) {
       localStorage.removeItem(`learn_session_${resumeSubjectId}`);
-      if (resumeSubjectId === "prn232") localStorage.removeItem("learn_session");
-      
-      setHasSavedSessions(prev => ({ ...prev, [resumeSubjectId]: false }));
+      setHasSavedSessions((prev) => ({ ...prev, [resumeSubjectId]: false }));
       setExpandedCard(resumeSubjectId);
     }
     setShowResumeDialog(false);
   };
 
-  const initRound = React.useCallback((ordered = false, subjQuestions: any[]) => {
-    let ids: any[] = [];
-    if (ordered) {
-      ids = subjQuestions.map(q => q.uniqueId || q.id);
-    } else {
-      ids = shuffle(subjQuestions.map(q => q.uniqueId || q.id));
-    }
-    
-    const BATCH_SIZE = 7;
+  const initRound = React.useCallback((ordered: boolean, subjQuestions: QuestionWithMeta[]) => {
+    const rawIds = subjQuestions.map((q) => q.uniqueId);
+    const ids = ordered ? rawIds : shuffleArray(rawIds);
+
     const initialQ = ids.slice(0, BATCH_SIZE);
     setPendingIds(ids.slice(BATCH_SIZE));
     setQueue(initialQ);
@@ -303,146 +457,38 @@ export default function LearnPage() {
     setCompletedCount(0);
     setSelectedOpts([]);
     setIsAnswered(false);
+    setAiExplanation(null);
     setTotalQuestions(ids.length);
   }, []);
 
-  const handleStartMode = (selectedMode: "full" | "subject", subjectId: string | null = null, paperIds: string[] = [], customLimit?: number) => {
+  const handleStartMode = (
+    selectedMode: "full" | "subject",
+    subjectId: string | null = null,
+    paperIds: string[] = [],
+    customLimit?: number
+  ) => {
     setMode(selectedMode);
     setSelectedSubjectId(subjectId);
     setActivePaperIds(paperIds);
-    
-    let subjQs: any[] = [];
-    if (selectedMode === "subject" && subjectId) {
-      const subj = subjects.find(s => s.id === subjectId);
-      if (subj) {
-        if (paperIds && paperIds.length > 0) {
-          subjQs = subj.papers.filter(p => paperIds.includes(p.id)).flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}`, paperId: p.id })));
-        } else {
-          subjQs = subj.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${subj.id}-${p.id}-${q.id}`, paperId: p.id })));
-        }
-      }
-    } else if (selectedMode === "full") {
-      subjQs = subjects.flatMap(s => s.papers.flatMap(p => p.questions.map(q => ({ ...q, uniqueId: `${s.id}-${p.id}-${q.id}`, paperId: p.id }))));
-    }
+
+    let subjQs =
+      selectedMode === "subject" && subjectId
+        ? getSubjectQuestions(subjectId, paperIds)
+        : getAllQuestionsWithMeta();
 
     if (customLimit && customLimit > 0) {
-      subjQs = shuffle([...subjQs]).slice(0, customLimit);
+      subjQs = shuffleArray(subjQs).slice(0, customLimit);
     }
 
     setTimeout(() => {
       initRound(true, subjQs);
-    }, 100);
-  };
-
-  const handleSelect = (key: string) => {
-    if (isAnswered || !currentQ) return;
-    
-    setAiExplanation(null);
-    setIsAiLoading(false);
-    
-    const correctAnsArr = currentQ.correctAnswer.split(',').map((s: string) => s.trim());
-    const isMulti = correctAnsArr.length > 1;
-
-    let newSelected = [...selectedOpts];
-    
-    if (isMulti) {
-      if (newSelected.includes(key)) {
-        newSelected = newSelected.filter(k => k !== key);
-      } else {
-        newSelected.push(key);
-      }
-      setSelectedOpts(newSelected);
-      
-      if (newSelected.length === correctAnsArr.length) {
-        setIsAnswered(true);
-        gradeAnswer(newSelected, correctAnsArr);
-      }
-    } else {
-      newSelected = [key];
-      setSelectedOpts(newSelected);
-      setIsAnswered(true);
-      gradeAnswer(newSelected, correctAnsArr);
-    }
-  };
-
-  const gradeAnswer = (userAns: string[], correctAns: string[]) => {
-    const isCorrect = userAns.slice().sort().join(', ') === correctAns.slice().sort().join(', ');
-    
-    if (isCorrect) {
-      playCorrectSound();
-      toast.success("Chính xác!", { duration: 800 });
-      if (!isFinalReview) {
-        setCompletedCount(c => c + 1);
-      }
-      setTimeout(() => {
-        advance();
-      }, 1200);
-    } else {
-      playWrongSound();
-      setShake(true);
-      setTimeout(() => setShake(false), 500);
-      toast.error("Sai rồi!", { duration: 1500 });
-      if (!batchWrongIds.includes(currentQId)) {
-        setBatchWrongIds(prev => [...prev, currentQId]);
-      }
-      if (!isBatchRetry && !initialWrongIds.includes(currentQId)) {
-        setInitialWrongIds(prev => [...prev, currentQId]);
-      }
-      if (!isBatchRetry && !isFinalReview && !globalWrongIds.includes(currentQId)) {
-        setGlobalWrongIds(prev => [...prev, currentQId]);
-      }
-    }
-  };
-
-  const advance = () => {
-    setSelectedOpts([]);
-    setIsAnswered(false);
-    if (qIndex < queue.length - 1) {
-      setQIndex(p => p + 1);
-    } else {
-      if (batchWrongIds.length > 0) {
-        toast("Bạn cần ôn lại các câu sai trong chặng này!");
-        setQueue([...batchWrongIds]);
-        setBatchWrongIds([]);
-        setQIndex(0);
-        setIsBatchRetry(true);
-      } else {
-        setShowSegmentSummary(true);
-      }
-    }
-  };
-
-  const handleBatchEnd = () => {
-    setShowSegmentSummary(false);
-    if (pendingIds.length === 0) {
-      if (!isFinalReview) {
-        toast.success("Chúc mừng! Bạn đã hoàn thành toàn bộ câu hỏi!");
-      }
-      if (mode === "subject" && selectedSubjectId) {
-        localStorage.removeItem(`learn_session_${selectedSubjectId}`);
-        if (selectedSubjectId === "prn232") localStorage.removeItem("learn_session");
-      }
-      setQueue([]);
-      setCurrentBatchIds([]);
-      return;
-    }
-    toast.success("Tuyệt vời! Bắt đầu chặng mới.");
-    const BATCH_SIZE = 7;
-    const nextBatch = pendingIds.slice(0, BATCH_SIZE);
-    setQueue(nextBatch);
-    setCurrentBatchIds(nextBatch);
-    setPendingIds(pendingIds.slice(BATCH_SIZE));
-    setQIndex(0);
-    setIsBatchRetry(false);
-    setBatchWrongIds([]);
-    setInitialWrongIds([]);
+    }, 80);
   };
 
   const shuffleRemaining = () => {
     if (isBatchRetry) {
-      const remaining = [...queue.slice(qIndex)];
-      const shuffled = shuffle(remaining);
-      const newQueue = [...queue.slice(0, qIndex), ...shuffled];
+      const remaining = queue.slice(qIndex);
+      const newQueue = [...queue.slice(0, qIndex), ...shuffleArray(remaining)];
       setQueue(newQueue);
       setSelectedOpts([]);
       setIsAnswered(false);
@@ -451,50 +497,42 @@ export default function LearnPage() {
     }
 
     const remaining = [...queue.slice(qIndex), ...pendingIds];
-    const shuffled = shuffle([...remaining]);
-
+    const shuffled = shuffleArray(remaining);
     const spotsLeftInBatch = queue.length - qIndex;
-    const newBatchSuffix = shuffled.slice(0, spotsLeftInBatch);
-    const newQueue = [...queue.slice(0, qIndex), ...newBatchSuffix];
-    
+    const newQueue = [...queue.slice(0, qIndex), ...shuffled.slice(0, spotsLeftInBatch)];
+
     setQueue(newQueue);
     setCurrentBatchIds(newQueue);
     setPendingIds(shuffled.slice(spotsLeftInBatch));
     setSelectedOpts([]);
     setIsAnswered(false);
-    toast.success("Đã trộn câu hỏi trong từng đề!");
+    toast.success("Đã trộn ngẫu nhiên các câu còn lại!");
   };
 
   const orderRemaining = () => {
     if (isBatchRetry) {
-      const remaining = [...queue.slice(qIndex)];
-      // fallback for strings
-      const ordered = remaining.sort((a,b) => a.toString().localeCompare(b.toString()));
-      const newQueue = [...queue.slice(0, qIndex), ...ordered];
-      setQueue(newQueue);
+      const remaining = [...queue.slice(qIndex)].sort((a, b) => a.localeCompare(b));
+      setQueue([...queue.slice(0, qIndex), ...remaining]);
       setSelectedOpts([]);
       setIsAnswered(false);
       toast.success("Đã sắp xếp các câu đang ôn tập!");
       return;
     }
 
-    const remaining = [...queue.slice(qIndex), ...pendingIds];
-    const ordered = remaining.sort((a,b) => a.toString().localeCompare(b.toString()));
+    const remaining = [...queue.slice(qIndex), ...pendingIds].sort((a, b) => a.localeCompare(b));
     const spotsLeftInBatch = queue.length - qIndex;
-    const newBatchSuffix = ordered.slice(0, spotsLeftInBatch);
-    const newQueue = [...queue.slice(0, qIndex), ...newBatchSuffix];
-    
+    const newQueue = [...queue.slice(0, qIndex), ...remaining.slice(0, spotsLeftInBatch)];
+
     setQueue(newQueue);
     setCurrentBatchIds(newQueue);
-    setPendingIds(ordered.slice(spotsLeftInBatch));
+    setPendingIds(remaining.slice(spotsLeftInBatch));
     setSelectedOpts([]);
     setIsAnswered(false);
-    toast.success("Đã sắp xếp các câu còn lại!");
+    toast.success("Đã sắp xếp các câu còn lại theo thứ tự!");
   };
 
   const startFinalReview = () => {
     setIsFinalReview(true);
-    const BATCH_SIZE = 7;
     const initialQ = globalWrongIds.slice(0, BATCH_SIZE);
     setPendingIds(globalWrongIds.slice(BATCH_SIZE));
     setQueue(initialQ);
@@ -510,7 +548,6 @@ export default function LearnPage() {
   const handleRestart = () => {
     if (mode === "subject" && selectedSubjectId) {
       localStorage.removeItem(`learn_session_${selectedSubjectId}`);
-      if (selectedSubjectId === "prn232") localStorage.removeItem("learn_session");
     }
     setMode("select");
     setSelectedSubjectId(null);
@@ -529,7 +566,7 @@ export default function LearnPage() {
     if (!currentQ || isAiLoading) return;
     setIsAiLoading(true);
     setAiExplanation(null);
-    
+
     try {
       const response = await fetch("/api/explain", {
         method: "POST",
@@ -538,17 +575,17 @@ export default function LearnPage() {
           question: currentQ.question,
           options: currentQ.options,
           correctAnswer: currentQ.correctAnswer,
-          userSelected: selectedOpts.slice().sort().join(', ')
-        })
+          userSelected: [...selectedOpts].sort().join(", "),
+        }),
       });
-      
+
       const data = await response.json();
       if (response.ok) {
         setAiExplanation(data.explanation);
       } else {
         toast.error(data.error || "Có lỗi khi gọi AI.");
       }
-    } catch (error) {
+    } catch {
       toast.error("Không thể kết nối với server AI.");
     } finally {
       setIsAiLoading(false);
@@ -560,15 +597,28 @@ export default function LearnPage() {
   if (showResumeDialog) {
     return (
       <div className="flex flex-col h-full max-w-xl mx-auto w-full gap-8 pt-20 pb-20 items-center justify-center text-center">
-        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="flex flex-col gap-6">
-          <div className="w-20 h-20 rounded-full bg-amber-500/10 flex items-center justify-center mx-auto mb-2">
-            <RotateCcw className="w-10 h-10 text-amber-500" />
+        <motion.div
+          initial={{ scale: 0.94, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="flex flex-col gap-6 p-8 rounded-3xl border border-border/60 bg-card/85 backdrop-blur-md shadow-xl"
+        >
+          <div className="w-16 h-16 rounded-2xl bg-amber-500/15 flex items-center justify-center mx-auto">
+            <RotateCcw className="w-8 h-8 text-amber-500" />
           </div>
-          <h1 className="text-3xl font-bold tracking-tight">Tiếp tục bài học?</h1>
-          <p className="text-muted-foreground text-lg">Bạn có bài học đang dang dở. Bạn muốn tiếp tục hay học bài mới?</p>
-          <div className="flex gap-4 justify-center mt-4">
-            <Button onClick={abandonSession} variant="outline" className="rounded-full px-8">Bắt đầu mới</Button>
-            <Button onClick={resumeSession} className="rounded-full px-8 bg-emerald-500 hover:bg-emerald-600 text-white">Tiếp tục học</Button>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Tiếp tục bài học?</h1>
+          <p className="text-muted-foreground">
+            Bạn có bài học đang dang dở. Bạn muốn tiếp tục hay bắt đầu bài mới?
+          </p>
+          <div className="flex gap-3 justify-center mt-2">
+            <Button onClick={abandonSession} variant="outline" className="rounded-full px-7">
+              Bắt đầu mới
+            </Button>
+            <Button
+              onClick={resumeSession}
+              className="rounded-full px-7 bg-emerald-500 hover:bg-emerald-600 text-white"
+            >
+              Tiếp tục học
+            </Button>
           </div>
         </motion.div>
       </div>
@@ -578,99 +628,104 @@ export default function LearnPage() {
   if (showSegmentSummary) {
     return (
       <div className="flex flex-col h-full max-w-3xl mx-auto w-full gap-6 pt-4 pb-20">
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-2 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col gap-2 relative"
+        >
           <div className="flex justify-between items-center w-full">
-            <div className="w-24 hidden md:block"></div>
+            <div className="w-24 hidden md:block" />
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-center flex-1">
               Tổng kết chặng {isBatchRetry ? "(Ôn tập)" : ""}
             </h1>
             <div className="w-auto md:w-24 flex justify-end">
-              <Button onClick={handleBatchEnd} variant="outline" size="sm" className="rounded-full bg-background shadow-sm hover:bg-muted">
+              <Button
+                onClick={handleBatchEnd}
+                variant="outline"
+                size="sm"
+                className="rounded-full bg-background shadow-sm hover:bg-muted"
+              >
                 Bỏ qua <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
           </div>
-          <p className="text-muted-foreground text-center mb-4 mt-2">
-            Dưới đây là các câu hỏi bạn vừa làm. Hãy xem lại các câu sai (màu đỏ) nhé!
+          <p className="text-muted-foreground text-center mb-2 mt-1 text-sm md:text-base">
+            Xem lại các câu vừa hoàn thành trong chặng này trước khi sang chặng tiếp theo.
           </p>
         </motion.div>
-        
+
         <div className="flex flex-col gap-4">
           {currentBatchIds.map((qId, idx) => {
-            const q = activeQuestions.find(x => x.uniqueId === qId || x.id === qId);
+            const q = activeQuestions.find((x) => x.uniqueId === qId);
             if (!q) return null;
             const wasWrong = initialWrongIds.includes(qId);
+            const correctKeys = parseAnswerKeys(q.correctAnswer);
+
             return (
-              <Card key={qId} className={`p-5 flex flex-col gap-4 border-2 ${wasWrong ? 'border-destructive/50 bg-destructive/5' : 'border-emerald-500/30 bg-emerald-500/5'}`}>
-                <div className="font-medium text-lg leading-relaxed flex items-start gap-3">
-                  <Badge variant={wasWrong ? "destructive" : "default"} className={wasWrong ? "" : "bg-emerald-500"}>
+              <Card
+                key={qId}
+                className={`p-5 flex flex-col gap-4 border-2 rounded-2xl ${
+                  wasWrong
+                    ? "border-destructive/50 bg-destructive/5"
+                    : "border-emerald-500/30 bg-emerald-500/5"
+                }`}
+              >
+                <div className="font-medium text-base md:text-lg leading-relaxed flex items-start gap-3">
+                  <Badge
+                    variant={wasWrong ? "destructive" : "default"}
+                    className={wasWrong ? "" : "bg-emerald-500 text-white"}
+                  >
                     {idx + 1}
                   </Badge>
                   <div className={wasWrong ? "text-destructive w-full" : "w-full"}>
-                    <ReactMarkdown
-                      components={{
-                        p({node, children, ...props}: any) {
-                          return <span className="block mb-2 last:mb-0" {...props}>{children}</span>
-                        },
-                        code({node, inline, className, children, ...props}: any) {
-                          return !inline ? (
-                            <span className="block bg-muted p-3 rounded-lg overflow-x-auto text-[0.85rem] my-2 border border-border/50 shadow-inner font-mono text-left w-full max-w-full text-foreground">
-                              <code className={className} {...props}>
-                                {children}
-                              </code>
-                            </span>
-                          ) : (
-                            <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-foreground" {...props}>
-                              {children}
-                            </code>
-                          )
-                        }
-                      }}
-                    >
-                      {q.question}
-                    </ReactMarkdown>
+                    <MarkdownContent content={q.question} inlineParagraphs />
                   </div>
                 </div>
-                
-                <div className="ml-10 flex flex-col gap-2 mt-2">
-                  {q.options.map((opt: any, idx: number) => {
-                    const correctAnsArr = q.correctAnswer.split(',').map((s: string) => s.trim());
-                    const isCorrect = correctAnsArr.includes(opt.key);
+
+                <div className="ml-8 flex flex-col gap-2">
+                  {q.options.map((opt, oIdx) => {
+                    const isCorrect = correctKeys.includes(opt.key);
                     return (
                       <div
-                        key={`${opt.key}-${idx}`}
-                        className={`flex items-start gap-3 p-3 rounded-lg border transition-colors ${
-                          isCorrect 
-                            ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-900 dark:text-emerald-100" 
+                        key={`${opt.key}-${oIdx}`}
+                        className={`flex items-start gap-3 p-3 rounded-xl border transition-colors ${
+                          isCorrect
+                            ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-950 dark:text-emerald-100"
                             : "bg-muted/30 border-transparent text-muted-foreground"
                         }`}
                       >
-                        <Badge variant={isCorrect ? "default" : "secondary"} className={isCorrect ? "bg-emerald-500 hover:bg-emerald-600" : ""}>
+                        <Badge
+                          variant={isCorrect ? "default" : "secondary"}
+                          className={isCorrect ? "bg-emerald-500 text-white" : ""}
+                        >
                           {opt.key}
                         </Badge>
-                        <div className="whitespace-pre-wrap text-base leading-relaxed">{opt.text}</div>
+                        <div className="whitespace-pre-wrap text-sm md:text-base leading-relaxed">
+                          {opt.text}
+                        </div>
                       </div>
                     );
                   })}
                 </div>
 
                 {q.explanation && (
-                  <div className="ml-10 mt-2 relative overflow-hidden bg-blue-50 dark:bg-blue-900/20 border-y border-r border-blue-200 dark:border-blue-800 border-l-4 border-l-blue-500 rounded-xl p-4 text-sm text-blue-900 dark:text-blue-100 shadow-sm">
-                    <div className="font-semibold text-blue-700 dark:text-blue-300 mb-2 flex items-center gap-2">
+                  <div className="ml-8 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/60 border-l-4 border-l-blue-500 rounded-xl p-4 text-sm text-blue-900 dark:text-blue-100">
+                    <div className="font-semibold text-blue-700 dark:text-blue-300 mb-1.5 flex items-center gap-2">
                       <BookOpen className="w-4 h-4" /> Giải thích chi tiết:
                     </div>
-                    <div className="leading-relaxed whitespace-pre-wrap">
-                      {q.explanation}
-                    </div>
+                    <div className="leading-relaxed whitespace-pre-wrap">{q.explanation}</div>
                   </div>
                 )}
               </Card>
-            )
+            );
           })}
         </div>
 
-        <div className="flex justify-center mt-6">
-          <Button onClick={handleBatchEnd} className="rounded-full px-8 h-12 text-lg shadow-md bg-primary text-primary-foreground hover:bg-primary/90">
+        <div className="flex justify-center mt-4">
+          <Button
+            onClick={handleBatchEnd}
+            className="rounded-full px-8 h-12 text-base shadow-md bg-primary text-primary-foreground hover:bg-primary/90"
+          >
             Tiếp tục <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </div>
@@ -680,63 +735,88 @@ export default function LearnPage() {
 
   if (mode === "select") {
     return (
-      <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-8 pt-10 pb-20 items-center justify-center relative">
-        <div className="absolute top-4 right-4">
-          <Button variant="outline" className="rounded-full shadow-sm" onClick={() => { setGeneratedSyncCode(null); setShowSyncDialog(true); }}>
+      <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-8 pt-8 pb-20 items-center justify-center relative">
+        <div className="w-full flex justify-end">
+          <Button
+            variant="outline"
+            className="rounded-full shadow-sm"
+            onClick={() => {
+              setGeneratedSyncCode(null);
+              setShowSyncDialog(true);
+            }}
+          >
             <Smartphone className="w-4 h-4 mr-2" /> Nhập mã đồng bộ
           </Button>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col gap-6 text-center mb-6 mt-8"
+          className="flex flex-col gap-3 text-center mb-2"
         >
-          <h1 className="text-4xl font-bold tracking-tight">Chọn môn học</h1>
-          <p className="text-muted-foreground text-lg">Bạn muốn ôn luyện môn nào hôm nay?</p>
+          <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-1">
+            <BookOpen className="w-7 h-7" />
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Học theo chặng</h1>
+          <p className="text-muted-foreground text-base md:text-lg">
+            Học cuốn chiếu 7 câu mỗi chặng — sai câu nào ôn lại ngay câu đó
+          </p>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.08 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
         >
-          <Card 
-            className={`flex flex-col p-6 md:p-8 items-center text-center gap-4 transition-all ${expandedCard === 'custom' ? 'border-primary shadow-lg ring-2 ring-primary/20 md:col-span-2 lg:col-span-3' : 'cursor-pointer hover:border-primary/50 hover:shadow-lg group'}`}
-            onClick={() => setExpandedCard('custom')}
+          <Card
+            className={`flex flex-col p-6 md:p-8 items-center text-center gap-4 transition-all bg-card/75 backdrop-blur-md ${
+              expandedCard === "custom"
+                ? "border-primary shadow-xl ring-2 ring-primary/20 md:col-span-2 lg:col-span-3"
+                : "cursor-pointer hover:border-primary/50 hover:shadow-lg group"
+            }`}
+            onClick={() => setExpandedCard(expandedCard === "custom" ? null : "custom")}
           >
-            <div className={`flex flex-col md:flex-row items-center gap-4 w-full ${expandedCard === 'custom' ? 'md:justify-between' : 'justify-center'}`}>
+            <div
+              className={`flex flex-col md:flex-row items-center gap-4 w-full ${
+                expandedCard === "custom" ? "md:justify-between" : "justify-center"
+              }`}
+            >
               <div className="flex flex-col md:flex-row items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center transition-transform group-hover:scale-110 shrink-0">
-                  <Settings className="w-8 h-8" />
+                <div className="w-14 h-14 rounded-2xl bg-amber-500/15 text-amber-500 flex items-center justify-center transition-transform group-hover:scale-110 shrink-0">
+                  <Settings className="w-7 h-7" />
                 </div>
-                <div className={expandedCard === 'custom' ? 'text-center md:text-left' : ''}>
+                <div className={expandedCard === "custom" ? "text-center md:text-left" : ""}>
                   <h3 className="text-xl font-bold mb-1">Tùy chỉnh luyện tập</h3>
-                  <p className="text-sm text-muted-foreground">Chọn số câu và phạm vi học.</p>
+                  <p className="text-sm text-muted-foreground">Chọn số câu và phạm vi học linh hoạt.</p>
                 </div>
               </div>
             </div>
-            
-            {expandedCard === 'custom' && (
-              <div className="w-full mt-4 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2 text-left">
-                <div className="h-px w-full bg-border" />
+
+            {expandedCard === "custom" && (
+              <div
+                className="w-full mt-2 flex flex-col gap-4 text-left"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="h-px w-full bg-border/60" />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-medium">Số lượng câu hỏi</label>
-                    <input 
-                      type="number" 
-                      min="1"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    <input
+                      type="number"
+                      min={1}
+                      className="flex h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       value={customCount}
-                      onChange={(e) => setCustomCount(e.target.value === "" ? "" : parseInt(e.target.value))}
-                      placeholder="VD: 20"
+                      onChange={(e) =>
+                        setCustomCount(e.target.value === "" ? "" : parseInt(e.target.value, 10))
+                      }
+                      placeholder="VD: 20 (để trống = tất cả)"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-medium">Môn học</label>
-                    <select 
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    <select
+                      className="flex h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       value={customSubjectId}
                       onChange={(e) => {
                         setCustomSubjectId(e.target.value);
@@ -744,34 +824,47 @@ export default function LearnPage() {
                       }}
                     >
                       <option value="all">Tất cả môn</option>
-                      {subjects.map(s => <option key={s.id} value={s.id}>{s.fullName}</option>)}
+                      {subjects.map((s) => (
+                        <option key={s.id} value={s.id}>
+                          {s.fullName}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-medium">Đề thi (tùy chọn)</label>
-                    <select 
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    <select
+                      className="flex h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       value={customPaperId}
                       onChange={(e) => setCustomPaperId(e.target.value)}
                       disabled={customSubjectId === "all"}
                     >
                       <option value="all">Tất cả đề</option>
-                      {customSubjectId !== "all" && subjects.find(s => s.id === customSubjectId)?.papers.map(p => (
-                        <option key={p.id} value={p.id}>{p.name}</option>
-                      ))}
+                      {customSubjectId !== "all" &&
+                        subjects
+                          .find((s) => s.id === customSubjectId)
+                          ?.papers.map((p) => (
+                            <option key={p.id} value={p.id}>
+                              {p.name}
+                            </option>
+                          ))}
                     </select>
                   </div>
                 </div>
                 <div className="flex justify-end mt-2">
-                  <Button 
+                  <Button
                     className="rounded-full px-8"
-                    onClick={(e) => {
-                      e.stopPropagation();
+                    onClick={() => {
                       const limit = customCount === "" ? undefined : customCount;
                       if (customSubjectId === "all") {
                         handleStartMode("full", null, [], limit);
                       } else {
-                        handleStartMode("subject", customSubjectId, customPaperId === "all" ? [] : [customPaperId], limit);
+                        handleStartMode(
+                          "subject",
+                          customSubjectId,
+                          customPaperId === "all" ? [] : [customPaperId],
+                          limit
+                        );
                       }
                     }}
                   >
@@ -781,17 +874,23 @@ export default function LearnPage() {
               </div>
             )}
           </Card>
-          {subjects.map(subj => {
+
+          {subjects.map((subj) => {
             const isExpanded = expandedCard === subj.id;
             const hasSession = hasSavedSessions[subj.id];
-            
+            const totalQs = subj.papers.reduce((sum, p) => sum + p.questions.length, 0);
+
             return (
-              <Card 
+              <Card
                 key={subj.id}
-                className={`flex flex-col p-6 md:p-8 items-center text-center gap-4 transition-all ${isExpanded ? 'border-primary shadow-lg ring-2 ring-primary/20 md:col-span-2 lg:col-span-3' : 'cursor-pointer hover:border-primary/50 hover:shadow-lg group'}`}
-                onClick={() => { 
+                className={`flex flex-col p-6 md:p-8 items-center text-center gap-4 transition-all bg-card/75 backdrop-blur-md ${
+                  isExpanded
+                    ? "border-primary shadow-xl ring-2 ring-primary/20 md:col-span-2 lg:col-span-3"
+                    : "cursor-pointer hover:border-primary/50 hover:shadow-lg group"
+                }`}
+                onClick={() => {
                   if (!isExpanded) {
-                    if (hasSavedSessions[subj.id]) {
+                    if (hasSession) {
                       setResumeSubjectId(subj.id);
                       setShowResumeDialog(true);
                     } else {
@@ -803,59 +902,88 @@ export default function LearnPage() {
                   }
                 }}
               >
-                <div className={`flex flex-col md:flex-row items-center gap-4 w-full ${isExpanded ? 'md:justify-between' : 'justify-center'}`}>
+                <div
+                  className={`flex flex-col md:flex-row items-center gap-4 w-full ${
+                    isExpanded ? "md:justify-between" : "justify-center"
+                  }`}
+                >
                   <div className="flex flex-col md:flex-row items-center gap-4">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center transition-transform group-hover:scale-110 shrink-0">
-                      <GraduationCap className="w-8 h-8" />
+                    <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center transition-transform group-hover:scale-110 shrink-0">
+                      <GraduationCap className="w-7 h-7" />
                     </div>
-                    <div className={isExpanded ? 'text-center md:text-left' : ''}>
-                      <h3 className="text-xl font-bold mb-1">{subj.fullName}</h3>
-                      <p className="text-sm text-muted-foreground">Bộ {subj.papers.flatMap(p => p.questions).length} câu hỏi.</p>
+                    <div className={isExpanded ? "text-center md:text-left" : ""}>
+                      <div className="flex items-center justify-center md:justify-start gap-2">
+                        <h3 className="text-xl font-bold">{subj.fullName}</h3>
+                        {hasSession && (
+                          <Badge variant="secondary" className="text-[11px] bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                            Đang học dở
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {subj.papers.length} bộ đề • {totalQs} câu hỏi
+                      </p>
                     </div>
                   </div>
-                  {!isExpanded && (
-                    <Button className="mt-2 w-full rounded-full md:hidden" variant="outline">Chọn môn</Button>
-                  )}
                   {isExpanded && (
-                    <Button className="hidden md:inline-flex rounded-full bg-primary/10 text-primary hover:bg-primary/20" variant="ghost" onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, []); }}>
+                    <Button
+                      className="rounded-full bg-primary/10 text-primary hover:bg-primary/20"
+                      variant="ghost"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleStartMode("subject", subj.id, []);
+                      }}
+                    >
                       Học toàn bộ
                     </Button>
                   )}
                 </div>
-                
+
                 {isExpanded && (
-                  <div className="w-full mt-4 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2" onClick={e => e.stopPropagation()}>
-                    <Button className="w-full rounded-full md:hidden bg-primary/10 text-primary hover:bg-primary/20 mb-2" variant="ghost" onClick={(e) => { handleStartMode("subject", subj.id, []); }}>
-                      Học toàn bộ
-                    </Button>
-                    <div className="h-px w-full bg-border" />
+                  <div
+                    className="w-full mt-2 flex flex-col gap-4"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="h-px w-full bg-border/60" />
                     <div className="text-left font-medium text-sm text-muted-foreground flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                      <span>Hoặc chọn nhiều đề để học cùng lúc:</span>
+                      <span>Hoặc chọn đề muốn học:</span>
                       {selectedPapersToStart.length > 0 && (
-                        <Button size="sm" className="h-8 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full px-4 w-full sm:w-auto" onClick={(e) => { e.stopPropagation(); handleStartMode("subject", subj.id, selectedPapersToStart); }}>
+                        <Button
+                          size="sm"
+                          className="h-8 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full px-4 w-full sm:w-auto"
+                          onClick={() => handleStartMode("subject", subj.id, selectedPapersToStart)}
+                        >
                           Bắt đầu học {selectedPapersToStart.length} đề
                         </Button>
                       )}
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 w-full">
-                      {subj.papers.map((paper, i) => {
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 w-full">
+                      {subj.papers.map((paper) => {
                         const isSelected = selectedPapersToStart.includes(paper.id);
                         return (
-                          <Button 
-                            key={paper.id} 
-                            variant={isSelected ? "default" : "outline"} 
-                            className={`text-xs py-1 h-9 rounded-full truncate px-2 transition-colors ${isSelected ? 'bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-500' : ''}`}
-                            onClick={(e) => { 
-                              e.stopPropagation(); 
-                              if (isSelected) {
-                                setSelectedPapersToStart(prev => prev.filter(id => id !== paper.id));
-                              } else {
-                                setSelectedPapersToStart(prev => [...prev, paper.id]);
-                              }
+                          <Button
+                            key={paper.id}
+                            variant={isSelected ? "default" : "outline"}
+                            className={`text-sm h-10 rounded-xl justify-between px-4 transition-colors ${
+                              isSelected
+                                ? "bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-500"
+                                : ""
+                            }`}
+                            onClick={() => {
+                              setSelectedPapersToStart((prev) =>
+                                isSelected
+                                  ? prev.filter((id) => id !== paper.id)
+                                  : [...prev, paper.id]
+                              );
                             }}
                           >
-                            {isSelected && <Check className="w-3 h-3 mr-1 shrink-0" />}
-                            {paper.name} ({paper.questions.length} câu)
+                            <span className="flex items-center truncate">
+                              {isSelected && <Check className="w-3.5 h-3.5 mr-1.5 shrink-0" />}
+                              {paper.name}
+                            </span>
+                            <Badge variant={isSelected ? "secondary" : "outline"} className="ml-2">
+                              {paper.questions.length}
+                            </Badge>
                           </Button>
                         );
                       })}
@@ -863,30 +991,38 @@ export default function LearnPage() {
                   </div>
                 )}
               </Card>
-            )
+            );
           })}
         </motion.div>
-        
+
         <Dialog open={showSyncDialog} onOpenChange={setShowSyncDialog}>
           <DialogContent className="sm:max-w-md rounded-2xl">
             <DialogHeader>
               <DialogTitle className="text-xl">Đồng bộ từ thiết bị khác</DialogTitle>
               <DialogDescription>
-                Nhập mã 6 số bạn nhận được từ thiết bị cũ để tiếp tục bài học.
+                Nhập mã bạn nhận được từ thiết bị cũ để tiếp tục bài học.
               </DialogDescription>
             </DialogHeader>
             <div className="flex flex-col gap-4 py-4">
-              <Input 
-                value={syncCodeInput} 
-                onChange={(e) => setSyncCodeInput(e.target.value)} 
-                placeholder="Ví dụ: 123456 hoặc mahien" 
+              <Input
+                value={syncCodeInput}
+                onChange={(e) => setSyncCodeInput(e.target.value)}
+                placeholder="Ví dụ: 123456"
                 className="text-center text-2xl tracking-widest h-14 font-mono"
               />
             </div>
             <DialogFooter>
-              <Button disabled={isSyncing} onClick={fetchSyncCode} className="w-full h-12 rounded-full text-base">
-                {isSyncing ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Smartphone className="w-5 h-5 mr-2" />}
-                Xác nhận & Đồng bộ
+              <Button
+                disabled={isSyncing}
+                onClick={fetchSyncCode}
+                className="w-full h-12 rounded-full text-base"
+              >
+                {isSyncing ? (
+                  <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                ) : (
+                  <Smartphone className="w-5 h-5 mr-2" />
+                )}
+                Xác nhận &amp; Đồng bộ
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -899,17 +1035,26 @@ export default function LearnPage() {
     if (isFinalReview) {
       return (
         <div className="flex flex-col items-center justify-center h-full max-w-xl mx-auto w-full gap-6 pb-20 pt-10 text-center">
-          <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", bounce: 0.5 }}>
-            <div className="w-24 h-24 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">
-              <Check className="w-12 h-12 text-emerald-500" />
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="p-8 rounded-3xl border border-border/60 bg-card/85 backdrop-blur-md shadow-xl"
+          >
+            <div className="w-20 h-20 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-5">
+              <Check className="w-10 h-10 text-emerald-500" />
             </div>
             <h1 className="text-3xl font-bold tracking-tight mb-2">Hoàn thành ôn tập!</h1>
-            <p className="text-muted-foreground text-lg mb-8">Bạn đã khắc phục xong tất cả các câu sai.</p>
-            <div className="flex gap-4 justify-center">
-              <Button onClick={handleRestart} className="rounded-full px-8">
+            <p className="text-muted-foreground text-base mb-8">
+              Bạn đã khắc phục xong toàn bộ các câu từng làm sai.
+            </p>
+            <div className="flex gap-3 justify-center">
+              <Button onClick={handleRestart} className="rounded-full px-7">
                 <RotateCcw className="w-4 h-4 mr-2" /> Học bài khác
               </Button>
-              <Link href="/" className="inline-flex h-10 items-center justify-center rounded-full border border-input bg-background px-8 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
+              <Link
+                href="/"
+                className="inline-flex h-10 items-center justify-center rounded-full border border-input bg-background px-7 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+              >
                 Về trang chủ
               </Link>
             </div>
@@ -923,36 +1068,56 @@ export default function LearnPage() {
 
     return (
       <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto w-full gap-6 pb-20 pt-4 text-center">
-        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-full flex flex-col items-center">
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="w-full flex flex-col items-center p-8 rounded-3xl border border-border/60 bg-card/85 backdrop-blur-md shadow-xl"
+        >
           <div className="w-20 h-20 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
             <GraduationCap className="w-10 h-10 text-emerald-500" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Tổng kết bài học</h1>
-          <p className="text-muted-foreground text-lg mb-8">Bạn đã hoàn thành {totalActiveQuestions} câu hỏi trong bài này.</p>
-          
+          <p className="text-muted-foreground text-base md:text-lg mb-8">
+            Bạn đã hoàn thành {totalActiveQuestions} câu hỏi trong bài này.
+          </p>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mb-8">
-            <Card className="p-6 flex flex-col items-center justify-center bg-card border-2">
-              <div className="text-4xl font-bold text-primary mb-2">{accuracy.toFixed(0)}%</div>
-              <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Độ chính xác</div>
+            <Card className="p-6 flex flex-col items-center justify-center bg-card border">
+              <div className="text-4xl font-bold text-primary mb-1">{accuracy.toFixed(0)}%</div>
+              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Độ chính xác
+              </div>
             </Card>
-            <Card className="p-6 flex flex-col items-center justify-center bg-emerald-500/5 border-2 border-emerald-500/20">
-              <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">{firstAttemptCorrect}</div>
-              <div className="text-sm font-medium text-emerald-600/80 dark:text-emerald-400/80 uppercase tracking-wider">Làm đúng ngay</div>
+            <Card className="p-6 flex flex-col items-center justify-center bg-emerald-500/5 border border-emerald-500/25">
+              <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-1">
+                {firstAttemptCorrect}
+              </div>
+              <div className="text-xs font-semibold text-emerald-600/80 dark:text-emerald-400/80 uppercase tracking-wider">
+                Làm đúng ngay
+              </div>
             </Card>
-            <Card className="p-6 flex flex-col items-center justify-center bg-destructive/5 border-2 border-destructive/20">
-              <div className="text-4xl font-bold text-destructive mb-2">{globalWrongIds.length}</div>
-              <div className="text-sm font-medium text-destructive/80 uppercase tracking-wider">Làm sai (cần ôn)</div>
+            <Card className="p-6 flex flex-col items-center justify-center bg-destructive/5 border border-destructive/25">
+              <div className="text-4xl font-bold text-destructive mb-1">{globalWrongIds.length}</div>
+              <div className="text-xs font-semibold text-destructive/80 uppercase tracking-wider">
+                Làm sai (cần ôn)
+              </div>
             </Card>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center w-full max-w-md mx-auto">
             {globalWrongIds.length > 0 && (
-              <Button onClick={startFinalReview} className="rounded-full px-8 h-12 text-lg w-full sm:w-auto shadow-md">
-                <RotateCcw className="w-5 h-5 mr-2" /> Ôn lại {globalWrongIds.length} câu sai
+              <Button
+                onClick={startFinalReview}
+                className="rounded-full px-8 h-12 text-base w-full sm:w-auto shadow-md"
+              >
+                <RotateCcw className="w-4 h-4 mr-2" /> Ôn lại {globalWrongIds.length} câu sai
               </Button>
             )}
-            <Link href="/" className="inline-flex h-12 items-center justify-center rounded-full border-2 border-input bg-background px-8 text-base font-medium hover:bg-accent hover:text-accent-foreground transition-colors w-full sm:w-auto">
-              Đóng
+            <Link
+              href="/"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-input bg-background px-8 text-base font-medium hover:bg-accent hover:text-accent-foreground transition-colors w-full sm:w-auto"
+            >
+              Về trang chủ
             </Link>
           </div>
         </motion.div>
@@ -962,47 +1127,89 @@ export default function LearnPage() {
 
   if (!currentQ) return null;
 
-  const progressPercent = (completedCount / totalActiveQuestions) * 100;
-  const currentSubject = mode === "subject" ? subjects.find(s => s.id === selectedSubjectId) : null;
+  const progressPercent = totalActiveQuestions > 0 ? (completedCount / totalActiveQuestions) * 100 : 0;
+  const currentSubject = mode === "subject" ? subjects.find((s) => s.id === selectedSubjectId) : null;
+  const correctKeys = parseAnswerKeys(currentQ.correctAnswer);
+  const isMulti = correctKeys.length > 1;
+  const isUserCorrect = isAnswered && isCorrectSelection(selectedOpts, currentQ.correctAnswer);
 
   return (
-    <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-8 pt-4 pb-20">
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center justify-between">
+    <div className="flex flex-col h-full max-w-5xl mx-auto w-full gap-6 pt-4 pb-20">
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Chế độ học: {currentSubject ? currentSubject.name : "Toàn bộ"}</h1>
-            <p className="text-sm text-muted-foreground">
-              {isBatchRetry ? "Đang ôn lại câu sai..." : `Chặng hiện tại: Câu ${qIndex + 1} / ${queue.length}`}
+            <div className="flex items-center gap-2.5">
+              <h1 className="text-2xl font-bold tracking-tight">
+                {currentSubject ? currentSubject.name : "Tất cả môn"}
+              </h1>
+              {isMulti && (
+                <Badge className="rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                  Chọn {correctKeys.length} đáp án
+                </Badge>
+              )}
+            </div>
+            <p className="text-xs md:text-sm text-muted-foreground mt-0.5">
+              {isBatchRetry
+                ? "Đang ôn lại câu sai trong chặng..."
+                : `Chặng hiện tại: Câu ${qIndex + 1} / ${queue.length} • Phím 1-4 để chọn nhanh`}
             </p>
           </div>
-          <div className="flex gap-2">
+
+          <div className="flex flex-wrap gap-1.5">
             {lastSyncCode && (
-              <Button variant="outline" size="sm" onClick={() => generateSyncCode(true, lastSyncCode)} disabled={isSyncing} title={`Lưu tiến độ vào mã ${lastSyncCode}`}>
-                {isSyncing ? <Loader2 className="w-4 h-4 mr-1 md:mr-2 animate-spin" /> : <Smartphone className="w-4 h-4 mr-1 md:mr-2" />}
+              <Button
+                variant="outline"
+                size="sm"
+                className="rounded-full"
+                onClick={() => generateSyncCode(true, lastSyncCode)}
+                disabled={isSyncing}
+                title={`Lưu tiến độ vào mã ${lastSyncCode}`}
+              >
+                {isSyncing ? (
+                  <Loader2 className="w-4 h-4 mr-1.5 animate-spin" />
+                ) : (
+                  <Smartphone className="w-4 h-4 mr-1.5" />
+                )}
                 <span className="hidden md:inline">Đồng bộ nhanh</span>
               </Button>
             )}
-            <Button variant="outline" size="sm" onClick={() => { setGeneratedSyncCode(null); setCustomSyncCodeInput(lastSyncCode || ""); setShowSyncDialog(true); }} title="Đổi mã đồng bộ khác">
-              <Smartphone className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">{lastSyncCode ? 'Mã khác' : 'Đồng bộ'}</span>
+            <Button
+              variant="outline"
+              size="sm"
+              className="rounded-full"
+              onClick={() => {
+                setGeneratedSyncCode(null);
+                setCustomSyncCodeInput(lastSyncCode || "");
+                setShowSyncDialog(true);
+              }}
+            >
+              <Smartphone className="w-4 h-4 mr-1.5" />
+              <span className="hidden md:inline">{lastSyncCode ? "Mã khác" : "Đồng bộ"}</span>
             </Button>
-            <Button variant="outline" size="sm" onClick={handleRestart} title="Chọn môn khác">
-              <RotateCcw className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Đổi môn</span>
+            <Button variant="outline" size="sm" className="rounded-full" onClick={handleRestart}>
+              <RotateCcw className="w-4 h-4 mr-1.5" />
+              <span className="hidden md:inline">Đổi môn</span>
             </Button>
-            <Button variant="outline" size="sm" onClick={orderRemaining} title="Sắp xếp theo thứ tự">
-              <ListOrdered className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Thứ tự</span>
+            <Button variant="outline" size="sm" className="rounded-full" onClick={orderRemaining}>
+              <ListOrdered className="w-4 h-4 mr-1.5" />
+              <span className="hidden md:inline">Thứ tự</span>
             </Button>
-            <Button variant="outline" size="sm" onClick={shuffleRemaining} title="Xáo trộn ngẫu nhiên">
-              <Shuffle className="w-4 h-4 mr-1 md:mr-2" /> <span className="hidden md:inline">Trộn</span>
+            <Button variant="outline" size="sm" className="rounded-full" onClick={shuffleRemaining}>
+              <Shuffle className="w-4 h-4 mr-1.5" />
+              <span className="hidden md:inline">Trộn</span>
             </Button>
           </div>
         </div>
+
         <div className="flex items-center gap-4">
-          <Progress 
-            value={progressPercent} 
-            segmentBreakpoints={Array.from({ length: Math.ceil(totalActiveQuestions / 7) - 1 }).map((_, i) => ((i + 1) * 7 / totalActiveQuestions) * 100)}
-            className="h-3 flex-1 [&_[data-slot=progress-indicator]]:bg-emerald-500" 
+          <Progress
+            value={progressPercent}
+            segmentBreakpoints={Array.from({
+              length: Math.max(0, Math.ceil(totalActiveQuestions / BATCH_SIZE) - 1),
+            }).map((_, i) => (((i + 1) * BATCH_SIZE) / totalActiveQuestions) * 100)}
+            className="h-2.5 flex-1 [&_[data-slot=progress-indicator]]:bg-emerald-500"
           />
-          <span className="text-sm font-medium text-muted-foreground min-w-[60px] text-right">
+          <span className="text-sm font-semibold text-muted-foreground min-w-[68px] text-right tabular-nums">
             {completedCount} / {totalActiveQuestions}
           </span>
         </div>
@@ -1010,115 +1217,111 @@ export default function LearnPage() {
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={currentQ.id}
+          key={currentQ.uniqueId}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0, x: shake ? [-5, 5, -5, 5, 0] : 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-5"
         >
-          <Card className="p-6 md:p-10 border border-border/50 shadow-sm bg-card/50 backdrop-blur relative overflow-hidden">
+          <Card className="p-6 md:p-9 border border-border/60 shadow-lg bg-card/85 backdrop-blur-md relative overflow-hidden rounded-3xl">
             {isBatchRetry && (
-              <div className="absolute top-0 right-0 bg-amber-500 text-white px-4 py-1 text-sm font-semibold rounded-bl-xl shadow-sm flex items-center gap-1">
+              <div className="absolute top-0 right-0 bg-amber-500 text-white px-4 py-1 text-xs font-semibold rounded-bl-2xl shadow-sm flex items-center gap-1">
                 <RotateCcw className="w-3 h-3" /> Làm lại
               </div>
             )}
-            <div className="text-2xl md:text-3xl font-medium leading-relaxed max-w-none w-full">
-              <ReactMarkdown
-                components={{
-                  code({node, inline, className, children, ...props}: any) {
-                    return !inline ? (
-                      <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-[1rem] my-4 border border-border/50 shadow-inner font-mono">
-                        <code className={className} {...props}>
-                          {children}
-                        </code>
-                      </pre>
-                    ) : (
-                      <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-primary" {...props}>
-                        {children}
-                      </code>
-                    )
-                  }
-                }}
-              >
-                {currentQ.question}
-              </ReactMarkdown>
+            <div className="text-xl md:text-2xl font-semibold leading-relaxed w-full">
+              <MarkdownContent content={currentQ.question} />
               {currentQ.imageUrl && (
-                <div className="mt-6 flex justify-center">
-                  <img src={currentQ.imageUrl} alt="Question figure" className="max-w-full h-auto rounded-lg border border-border shadow-sm max-h-[400px] object-contain" />
+                <div className="mt-5 flex justify-center">
+                  <img
+                    src={currentQ.imageUrl}
+                    alt="Hình minh họa câu hỏi"
+                    className="max-w-full h-auto rounded-xl border border-border shadow-sm max-h-[380px] object-contain"
+                  />
                 </div>
               )}
             </div>
           </Card>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-            {shuffledOptions.map((opt: any, idx: number) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            {shuffledOptions.map((opt, idx) => {
               const isSelected = selectedOpts.includes(opt.key);
-              const correctAnsArr = currentQ.correctAnswer.split(',').map((s: string) => s.trim());
-              const isCorrectOpt = correctAnsArr.includes(opt.key);
-              
-              let stateClass = "bg-card border-border/50 hover:border-primary/50 hover:shadow-md cursor-pointer";
+              const isCorrectOpt = correctKeys.includes(opt.key);
+
+              let stateClass =
+                "bg-card/75 border-border/60 hover:border-primary/50 hover:shadow-md cursor-pointer";
               let icon = null;
 
               if (isAnswered) {
                 if (isCorrectOpt) {
-                  stateClass = "bg-emerald-500/10 border-emerald-500/50 text-emerald-900 dark:text-emerald-100 cursor-default shadow-sm ring-1 ring-emerald-500";
-                  icon = <Check className="w-5 h-5 text-emerald-500 ml-auto" />;
+                  stateClass =
+                    "bg-emerald-500/10 border-emerald-500/60 text-emerald-950 dark:text-emerald-100 cursor-default shadow-sm ring-1 ring-emerald-500";
+                  icon = <Check className="w-5 h-5 text-emerald-500 ml-auto shrink-0" />;
                 } else if (isSelected && !isCorrectOpt) {
-                  stateClass = "bg-destructive/10 border-destructive/50 text-destructive-foreground cursor-default shadow-sm ring-1 ring-destructive";
-                  icon = <X className="w-5 h-5 text-destructive ml-auto" />;
+                  stateClass =
+                    "bg-destructive/10 border-destructive/60 text-destructive cursor-default shadow-sm ring-1 ring-destructive";
+                  icon = <X className="w-5 h-5 text-destructive ml-auto shrink-0" />;
                 } else {
-                  stateClass = "opacity-40 cursor-default border-border/30";
+                  stateClass = "opacity-45 cursor-default border-border/30";
                 }
               } else if (isSelected) {
-                stateClass = "bg-primary/10 border-primary text-primary shadow-sm ring-1 ring-primary";
+                stateClass =
+                  "bg-primary/10 border-primary text-foreground shadow-sm ring-1 ring-primary";
               }
 
               return (
-                <motion.div
+                <motion.button
+                  type="button"
                   key={`${opt.key}-${idx}`}
-                  whileHover={!isAnswered ? { scale: 1.02, y: -2 } : {}}
-                  whileTap={!isAnswered ? { scale: 0.98 } : {}}
+                  whileHover={!isAnswered ? { scale: 1.01, y: -1 } : {}}
+                  whileTap={!isAnswered ? { scale: 0.99 } : {}}
                   onClick={() => handleSelect(opt.key)}
-                  className={`flex items-start gap-4 p-5 rounded-xl border-2 transition-all duration-200 ${stateClass}`}
+                  className={`flex items-start gap-3.5 p-4 md:p-5 rounded-2xl border-2 text-left transition-all duration-150 ${stateClass}`}
                 >
-                  <div className={`flex items-center justify-center w-10 h-10 text-lg rounded-md shrink-0 font-bold border ${
-                    isAnswered && isSelected && !isCorrectOpt ? "bg-destructive text-destructive-foreground border-destructive" : 
-                    isAnswered && isCorrectOpt ? "bg-emerald-500 text-white border-emerald-500" :
-                    !isAnswered && isSelected ? "bg-primary text-primary-foreground border-primary" : "bg-muted text-muted-foreground border-border"
-                  }`}>
+                  <div
+                    className={`flex items-center justify-center w-9 h-9 text-base rounded-xl shrink-0 font-bold border ${
+                      isAnswered && isSelected && !isCorrectOpt
+                        ? "bg-destructive text-white border-destructive"
+                        : isAnswered && isCorrectOpt
+                        ? "bg-emerald-500 text-white border-emerald-500"
+                        : !isAnswered && isSelected
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-muted text-muted-foreground border-border"
+                    }`}
+                  >
                     {String.fromCharCode(65 + idx)}
                   </div>
-                  <div className="flex-1 whitespace-pre-wrap text-lg md:text-xl leading-relaxed pt-1">{opt.text}</div>
+                  <div className="flex-1 whitespace-pre-wrap text-base md:text-lg leading-relaxed pt-0.5">
+                    {opt.text}
+                  </div>
                   {icon}
-                </motion.div>
+                </motion.button>
               );
             })}
           </div>
 
           <AnimatePresence>
-            {isAnswered && selectedOpts.slice().sort().join(', ') !== currentQ.correctAnswer.split(',').map((s: string)=>s.trim()).sort().join(', ') && (
-              <motion.div 
+            {isAnswered && !isUserCorrect && (
+              <motion.div
                 initial={{ opacity: 0, y: 10, height: 0 }}
-                animate={{ opacity: 1, y: 0, height: 'auto' }}
+                animate={{ opacity: 1, y: 0, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="flex flex-col gap-4 mt-2"
+                className="flex flex-col gap-4 mt-1"
               >
                 {currentQ.explanation && (
-                  <div className="relative overflow-hidden bg-blue-50 dark:bg-blue-900/20 border-y border-r border-blue-200 dark:border-blue-800 border-l-4 border-l-blue-500 rounded-xl p-5 md:p-6 text-sm md:text-base text-blue-900 dark:text-blue-100 shadow-md mt-2">
-                    <div className="font-semibold text-blue-700 dark:text-blue-300 mb-3 flex items-center gap-2 text-base md:text-lg">
-                      <BookOpen className="w-5 h-5" /> Giải thích chi tiết:
+                  <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/60 border-l-4 border-l-blue-500 rounded-2xl p-5 text-sm md:text-base text-blue-900 dark:text-blue-100 shadow-sm">
+                    <div className="font-semibold text-blue-700 dark:text-blue-300 mb-2 flex items-center gap-2">
+                      <BookOpen className="w-4 h-4" /> Giải thích chi tiết:
                     </div>
-                    <div className="leading-relaxed whitespace-pre-wrap">
-                      {currentQ.explanation}
-                    </div>
+                    <div className="leading-relaxed whitespace-pre-wrap">{currentQ.explanation}</div>
                   </div>
                 )}
 
                 {aiExplanation && (
-                  <div className="relative overflow-hidden bg-purple-50 dark:bg-purple-900/20 border-y border-r border-purple-200 dark:border-purple-800 border-l-4 border-l-purple-500 rounded-xl p-5 md:p-6 text-sm md:text-base text-purple-900 dark:text-purple-100 shadow-md mt-2">
-                    <div className="font-semibold text-purple-700 dark:text-purple-300 mb-3 flex items-center gap-2 text-base md:text-lg">
-                      <Sparkles className="w-5 h-5" /> Trợ lý AI giải thích:
+                  <div className="bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800/60 border-l-4 border-l-purple-500 rounded-2xl p-5 text-sm md:text-base text-purple-900 dark:text-purple-100 shadow-sm">
+                    <div className="font-semibold text-purple-700 dark:text-purple-300 mb-2 flex items-center gap-2">
+                      <Sparkles className="w-4 h-4" /> Trợ lý AI giải thích:
                     </div>
                     <div className="leading-relaxed prose prose-purple dark:prose-invert max-w-none">
                       <ReactMarkdown>{aiExplanation}</ReactMarkdown>
@@ -1126,22 +1329,26 @@ export default function LearnPage() {
                   </div>
                 )}
 
-                <div className="flex justify-between items-center mt-2">
-                  <Button 
-                    onClick={handleAskAI} 
-                    disabled={isAiLoading || !!aiExplanation}
+                <div className="flex justify-between items-center pt-1">
+                  <Button
+                    onClick={handleAskAI}
+                    disabled={isAiLoading || Boolean(aiExplanation)}
                     variant="outline"
-                    className="rounded-full px-4 md:px-6 border-purple-200 hover:border-purple-300 hover:bg-purple-50 text-purple-700 dark:border-purple-800 dark:text-purple-300 dark:hover:bg-purple-900/30"
+                    className="rounded-full px-5 border-purple-300 hover:bg-purple-50 text-purple-700 dark:border-purple-800 dark:text-purple-300 dark:hover:bg-purple-900/30"
                   >
                     {isAiLoading ? (
-                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Đang hỏi AI...</>
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Đang hỏi AI...
+                      </>
                     ) : (
-                      <><Bot className="w-4 h-4 mr-2" /> Hỏi AI</>
+                      <>
+                        <Bot className="w-4 h-4 mr-2" /> Hỏi AI
+                      </>
                     )}
                   </Button>
-                  <Button 
-                    onClick={advance} 
-                    className="rounded-full px-6 md:px-8 bg-amber-500 hover:bg-amber-600 text-white shadow-sm"
+                  <Button
+                    onClick={advance}
+                    className="rounded-full px-7 bg-amber-500 hover:bg-amber-600 text-white shadow-sm"
                   >
                     Tiếp tục <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -1151,13 +1358,15 @@ export default function LearnPage() {
           </AnimatePresence>
         </motion.div>
       </AnimatePresence>
-      
+
       <Dialog open={showSyncDialog} onOpenChange={setShowSyncDialog}>
         <DialogContent className="sm:max-w-md rounded-2xl">
           <DialogHeader>
             <DialogTitle className="text-xl">Đồng bộ thiết bị</DialogTitle>
             <DialogDescription>
-              {generatedSyncCode ? "Nhập mã này trên thiết bị khác để tiếp tục bài học. Mã có hiệu lực trong 2 giờ." : "Tạo mã đồng bộ ngẫu nhiên hoặc tự nhập mã bạn muốn."}
+              {generatedSyncCode
+                ? "Nhập mã này trên thiết bị khác để tiếp tục bài học."
+                : "Tạo mã đồng bộ ngẫu nhiên hoặc tự nhập mã bạn muốn."}
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col items-center justify-center gap-4 py-6">
@@ -1167,25 +1376,33 @@ export default function LearnPage() {
                 <p>Đang tạo mã...</p>
               </div>
             ) : generatedSyncCode ? (
-              <div className="text-5xl font-mono tracking-[0.2em] font-bold text-primary bg-primary/10 p-6 rounded-xl border border-primary/20 break-all text-center">
+              <div className="text-4xl font-mono tracking-[0.2em] font-bold text-primary bg-primary/10 p-6 rounded-2xl border border-primary/20 break-all text-center">
                 {generatedSyncCode}
               </div>
             ) : (
               <div className="w-full flex flex-col gap-4">
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-medium">Nhập mã tùy chỉnh (Tùy chọn)</label>
-                  <Input 
-                    value={customSyncCodeInput} 
-                    onChange={(e) => setCustomSyncCodeInput(e.target.value)} 
-                    placeholder="VD: dht123, toilaai..." 
+                  <Input
+                    value={customSyncCodeInput}
+                    onChange={(e) => setCustomSyncCodeInput(e.target.value)}
+                    placeholder="VD: vnr202..."
                     className="h-12"
                   />
                 </div>
                 <div className="flex gap-2 w-full mt-2">
-                  <Button onClick={() => generateSyncCode(false)} variant="outline" className="flex-1 h-12">
+                  <Button
+                    onClick={() => generateSyncCode(false)}
+                    variant="outline"
+                    className="flex-1 h-11 rounded-full"
+                  >
                     Tạo mã ngẫu nhiên
                   </Button>
-                  <Button onClick={() => generateSyncCode(true)} disabled={!customSyncCodeInput.trim()} className="flex-1 h-12">
+                  <Button
+                    onClick={() => generateSyncCode(true)}
+                    disabled={!customSyncCodeInput.trim()}
+                    className="flex-1 h-11 rounded-full"
+                  >
                     Dùng mã này
                   </Button>
                 </div>
@@ -1194,7 +1411,13 @@ export default function LearnPage() {
           </div>
           {generatedSyncCode && (
             <DialogFooter>
-              <Button onClick={() => setShowSyncDialog(false)} variant="outline" className="w-full rounded-full">Đóng</Button>
+              <Button
+                onClick={() => setShowSyncDialog(false)}
+                variant="outline"
+                className="w-full rounded-full"
+              >
+                Đóng
+              </Button>
             </DialogFooter>
           )}
         </DialogContent>
