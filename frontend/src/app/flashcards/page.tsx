@@ -465,22 +465,22 @@ export default function FlashcardsPage() {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentQ.uniqueId}
-            className="w-full cursor-pointer"
-            initial={{ opacity: 0, scale: 0.96 }}
+            className="w-full cursor-pointer touch-manipulation select-none"
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.03 }}
-            transition={{ duration: 0.25 }}
+            exit={{ opacity: 0, scale: 1.01 }}
+            transition={{ duration: 0.15 }}
             onClick={() => setIsFlipped((f) => !f)}
           >
             <motion.div
               className="w-full grid relative"
               style={{ transformStyle: "preserve-3d" }}
               animate={{ rotateX: isFlipped ? 180 : 0 }}
-              transition={{ type: "spring", stiffness: 260, damping: 22 }}
+              transition={{ type: "spring", stiffness: 320, damping: 26 }}
             >
               {/* FRONT */}
               <Card
-                className="col-start-1 row-start-1 p-6 md:p-10 flex flex-col items-center justify-center border-2 border-border/60 shadow-xl hover:border-primary/40 transition-colors bg-card/85 backdrop-blur-md min-h-[360px] rounded-3xl"
+                className="col-start-1 row-start-1 p-6 md:p-10 flex flex-col items-center justify-center border-2 border-border/60 shadow-xl hover:border-primary/40 transition-colors bg-card/95 md:bg-card/85 md:backdrop-blur-md min-h-[360px] rounded-3xl"
                 style={{ backfaceVisibility: "hidden" }}
               >
                 <div className="absolute top-5 left-6 flex items-center gap-2">

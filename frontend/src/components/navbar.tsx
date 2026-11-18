@@ -57,7 +57,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/75 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 md:bg-background/75 md:backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between mx-auto px-4 md:px-8">
         <div className="flex items-center gap-6">
           <Link

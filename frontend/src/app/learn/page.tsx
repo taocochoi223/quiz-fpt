@@ -132,28 +132,32 @@ export default function LearnPage() {
 
   React.useEffect(() => {
     if (mode === "select" || (queue.length === 0 && completedCount > 0)) return;
-    const session = {
-      mode,
-      selectedSubjectId,
-      activePaperIds,
-      queue,
-      pendingIds,
-      qIndex,
-      batchWrongIds,
-      isBatchRetry,
-      completedCount,
-      currentBatchIds,
-      initialWrongIds,
-      globalWrongIds,
-      isFinalReview,
-      totalQuestions,
-    };
+    const timer = setTimeout(() => {
+      const session = {
+        mode,
+        selectedSubjectId,
+        activePaperIds,
+        queue,
+        pendingIds,
+        qIndex,
+        batchWrongIds,
+        isBatchRetry,
+        completedCount,
+        currentBatchIds,
+        initialWrongIds,
+        globalWrongIds,
+        isFinalReview,
+        totalQuestions,
+      };
 
-    if (mode === "subject" && selectedSubjectId) {
-      localStorage.setItem(`learn_session_${selectedSubjectId}`, JSON.stringify(session));
-    } else if (mode === "full") {
-      localStorage.setItem("learn_session_full", JSON.stringify(session));
-    }
+      if (mode === "subject" && selectedSubjectId) {
+        localStorage.setItem(`learn_session_${selectedSubjectId}`, JSON.stringify(session));
+      } else if (mode === "full") {
+        localStorage.setItem("learn_session_full", JSON.stringify(session));
+      }
+    }, 150);
+
+    return () => clearTimeout(timer);
   }, [
     mode,
     selectedSubjectId,
@@ -221,19 +225,19 @@ export default function LearnPage() {
       const isCorrect = isCorrectSelection(userAns, correctAnswerStr);
 
       if (isCorrect) {
-        playCorrectSound();
-        toast.success("Chính xác!", { duration: 800 });
+        setTimeout(() => playCorrectSound(), 0);
+        toast.success("Chính xác!", { duration: 700 });
         if (!isFinalReview) {
           setCompletedCount((c) => c + 1);
         }
         setTimeout(() => {
           advance();
-        }, 1100);
+        }, 750);
       } else {
-        playWrongSound();
+        setTimeout(() => playWrongSound(), 0);
         setShake(true);
-        setTimeout(() => setShake(false), 500);
-        toast.error("Sai rồi!", { duration: 1400 });
+        setTimeout(() => setShake(false), 400);
+        toast.error("Sai rồi!", { duration: 1200 });
         if (currentQId && !batchWrongIds.includes(currentQId)) {
           setBatchWrongIds((prev) => [...prev, currentQId]);
         }
@@ -1218,13 +1222,13 @@ export default function LearnPage() {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentQ.uniqueId}
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0, x: shake ? [-5, 5, -5, 5, 0] : 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.12 }}
           className="flex flex-col gap-5"
         >
-          <Card className="p-6 md:p-9 border border-border/60 shadow-lg bg-card/85 backdrop-blur-md relative overflow-hidden rounded-3xl">
+          <Card className="p-6 md:p-9 border border-border/60 shadow-lg bg-card/95 md:bg-card/85 md:backdrop-blur-md relative overflow-hidden rounded-3xl">
             {isBatchRetry && (
               <div className="absolute top-0 right-0 bg-amber-500 text-white px-4 py-1 text-xs font-semibold rounded-bl-2xl shadow-sm flex items-center gap-1">
                 <RotateCcw className="w-3 h-3" /> Làm lại
@@ -1271,13 +1275,12 @@ export default function LearnPage() {
               }
 
               return (
-                <motion.button
+                <button
                   type="button"
                   key={`${opt.key}-${idx}`}
-                  whileHover={!isAnswered ? { scale: 1.01, y: -1 } : {}}
-                  whileTap={!isAnswered ? { scale: 0.99 } : {}}
+                  disabled={isAnswered}
                   onClick={() => handleSelect(opt.key)}
-                  className={`flex items-start gap-3.5 p-4 md:p-5 rounded-2xl border-2 text-left transition-all duration-150 ${stateClass}`}
+                  className={`touch-manipulation select-none flex items-start gap-3.5 p-4 md:p-5 rounded-2xl border-2 text-left transition-colors duration-100 active:scale-[0.99] ${stateClass}`}
                 >
                   <div
                     className={`flex items-center justify-center w-9 h-9 text-base rounded-xl shrink-0 font-bold border ${
@@ -1296,7 +1299,7 @@ export default function LearnPage() {
                     {opt.text}
                   </div>
                   {icon}
-                </motion.button>
+                </button>
               );
             })}
           </div>

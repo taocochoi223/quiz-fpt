@@ -579,13 +579,13 @@ export default function QuizPage() {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentQ.uniqueId}
-              initial={{ opacity: 0, x: 14 }}
+              initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -14 }}
-              transition={{ duration: 0.2 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{ duration: 0.12 }}
               className="flex flex-col gap-5"
             >
-              <Card className="p-6 md:p-8 border border-border/60 shadow-lg bg-card/85 backdrop-blur-md rounded-3xl">
+              <Card className="p-6 md:p-8 border border-border/60 shadow-lg bg-card/95 md:bg-card/85 md:backdrop-blur-md rounded-3xl">
                 <div className="text-lg md:text-2xl font-semibold leading-relaxed w-full">
                   <MarkdownContent content={currentQ.question} />
                   {currentQ.imageUrl && (
@@ -604,16 +604,14 @@ export default function QuizPage() {
                 {currentQ.shuffledOptions.map((opt, idx) => {
                   const isSelected = currentAnswerArr.includes(opt.key);
                   return (
-                    <motion.button
+                    <button
                       type="button"
                       key={`${opt.key}-${idx}`}
-                      whileHover={{ scale: 1.005 }}
-                      whileTap={{ scale: 0.995 }}
                       onClick={() => handleSelectOption(opt.key)}
-                      className={`flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all ${
+                      className={`touch-manipulation select-none flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-colors duration-100 active:scale-[0.99] ${
                         isSelected
                           ? "bg-primary/10 border-primary text-foreground shadow-sm"
-                          : "bg-card/70 border-border/60 hover:border-primary/40 hover:bg-muted/50"
+                          : "bg-card/90 md:bg-card/70 border-border/60 hover:border-primary/40 hover:bg-muted/50"
                       }`}
                     >
                       <div
@@ -631,7 +629,7 @@ export default function QuizPage() {
                       <span className="hidden sm:inline-block text-xs text-muted-foreground/60 font-mono">
                         [{idx + 1}]
                       </span>
-                    </motion.button>
+                    </button>
                   );
                 })}
               </div>

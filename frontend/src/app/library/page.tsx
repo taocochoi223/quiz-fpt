@@ -230,7 +230,7 @@ export default function LibraryPage() {
         )}
       </div>
 
-      <Card className="border-border/60 shadow-sm bg-card/70 backdrop-blur-md overflow-hidden rounded-2xl">
+      <Card className="border-border/60 shadow-sm bg-card/95 md:bg-card/70 md:backdrop-blur-md overflow-hidden rounded-2xl">
         {filteredQuestions.length > 0 ? (
           <Accordion
             className="w-full"
