@@ -1,6 +1,7 @@
 import { questionsVNR202_de1 } from "./questions_vnr202_de1";
 import { questionsVNR202_de2 } from "./questions_vnr202_de2";
 import { questionsVNR202_de3 } from "./questions_vnr202_de3";
+import { questionsVNR202_de4 } from "./questions_vnr202_de4";
 import { Question } from "@/lib/types";
 
 export interface Paper {
@@ -36,6 +37,11 @@ export const subjects: Subject[] = [
         id: "vnr202_paper3",
         name: "VNR202 - SU26 - FE - RE",
         questions: questionsVNR202_de3,
+      },
+      {
+        id: "vnr202_paper4",
+        name: "VNR202_SU26_B5_FE",
+        questions: questionsVNR202_de4,
       },
     ],
   },
