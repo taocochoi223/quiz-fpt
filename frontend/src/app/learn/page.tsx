@@ -1248,13 +1248,13 @@ export default function LearnPage() {
             </div>
           </Card>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <div className="grid grid-cols-1 gap-3">
             {shuffledOptions.map((opt, idx) => {
               const isSelected = selectedOpts.includes(opt.key);
               const isCorrectOpt = correctKeys.includes(opt.key);
 
               let stateClass =
-                "bg-card/75 border-border/60 hover:border-primary/50 hover:shadow-md cursor-pointer";
+                "bg-card/85 border-border/60 hover:border-primary/50 hover:bg-muted/40 hover:shadow-sm cursor-pointer";
               let icon = null;
 
               if (isAnswered) {
@@ -1280,10 +1280,10 @@ export default function LearnPage() {
                   key={`${opt.key}-${idx}`}
                   disabled={isAnswered}
                   onClick={() => handleSelect(opt.key)}
-                  className={`touch-manipulation select-none flex items-start gap-3.5 p-4 md:p-5 rounded-2xl border-2 text-left transition-colors duration-100 active:scale-[0.99] ${stateClass}`}
+                  className={`touch-manipulation select-none flex items-center gap-4 p-4 md:px-5 md:py-4 rounded-2xl border-2 text-left transition-colors duration-100 active:scale-[0.99] ${stateClass}`}
                 >
                   <div
-                    className={`flex items-center justify-center w-9 h-9 text-base rounded-xl shrink-0 font-bold border ${
+                    className={`flex items-center justify-center w-9 h-9 text-sm rounded-xl shrink-0 font-bold border ${
                       isAnswered && isSelected && !isCorrectOpt
                         ? "bg-destructive text-white border-destructive"
                         : isAnswered && isCorrectOpt
@@ -1295,10 +1295,14 @@ export default function LearnPage() {
                   >
                     {String.fromCharCode(65 + idx)}
                   </div>
-                  <div className="flex-1 whitespace-pre-wrap text-base md:text-lg leading-relaxed pt-0.5">
+                  <div className="flex-1 whitespace-pre-wrap text-base md:text-lg leading-relaxed">
                     {opt.text}
                   </div>
-                  {icon}
+                  {icon ?? (
+                    <span className="hidden sm:inline-block text-xs text-muted-foreground/50 font-mono shrink-0">
+                      [{idx + 1}]
+                    </span>
+                  )}
                 </button>
               );
             })}

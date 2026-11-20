@@ -504,13 +504,13 @@ export default function FlashcardsPage() {
                     <MarkdownContent content={currentQ.question} />
                   </div>
 
-                  <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-3 text-left pointer-events-none">
+                  <div className="w-full max-w-3xl grid grid-cols-1 gap-2.5 text-left pointer-events-none">
                     {currentQ.options.map((opt, idx) => (
                       <div
                         key={`${opt.key}-${idx}`}
-                        className="flex items-start gap-3 p-3.5 rounded-xl border border-border/60 bg-muted/35"
+                        className="flex items-center gap-3 p-3.5 rounded-xl border border-border/60 bg-muted/35"
                       >
-                        <div className="w-7 h-7 flex items-center justify-center shrink-0 rounded-lg bg-background border font-bold text-xs text-muted-foreground mt-0.5">
+                        <div className="w-7 h-7 flex items-center justify-center shrink-0 rounded-lg bg-background border font-bold text-xs text-muted-foreground">
                           {opt.key}
                         </div>
                         <div className="text-sm md:text-base leading-relaxed">{opt.text}</div>
