@@ -226,21 +226,22 @@ export default function FlashcardsPage() {
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isFinished || showResumeDialog || mode === "select") return;
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
         setIsFlipped((prev) => !prev);
-      } else if (isFlipped) {
-        if (e.key === "ArrowLeft") {
-          handleStillLearning();
-        } else if (e.key === "ArrowRight") {
-          handleKnow();
-        }
+      } else if (e.key === "1" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        handleStillLearning();
+      } else if (e.key === "2" || e.key === "ArrowRight") {
+        e.preventDefault();
+        handleKnow();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isFlipped, isFinished, showResumeDialog, mode, handleKnow, handleStillLearning]);
+  }, [isFinished, showResumeDialog, mode, handleKnow, handleStillLearning]);
 
   if (showResumeDialog) {
     return (
@@ -433,9 +434,7 @@ export default function FlashcardsPage() {
               Flashcards: {currentSubject ? currentSubject.name : "Toàn bộ"}
             </h1>
             <p className="text-xs md:text-sm text-muted-foreground mt-1">
-              {isFlipped
-                ? "Phím ⬅️ Chưa thuộc  |  Phím ➡️ Đã thuộc"
-                : "Nhấn Space hoặc chạm vào thẻ để lật xem đáp án"}
+              Space / Enter: Lật thẻ • Phím 1 / ⬅️: Chưa thuộc • Phím 2 / ➡️: Đã thuộc
             </p>
           </div>
           <div className="flex gap-2">
@@ -563,39 +562,38 @@ export default function FlashcardsPage() {
 
       {/* ACTION BUTTONS */}
       <div className="h-20 flex items-center justify-center mt-2">
-        <AnimatePresence>
-          {isFlipped && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              className="flex items-center gap-4 sm:gap-6"
-            >
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-full h-13 px-7 shadow-sm text-destructive hover:text-destructive hover:bg-destructive/10 border-destructive/30"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleStillLearning();
-                }}
-              >
-                <X className="w-5 h-5 mr-2" /> Chưa thuộc
-              </Button>
-              <Button
-                variant="default"
-                size="lg"
-                className="rounded-full h-13 px-7 shadow-md shadow-emerald-500/20 bg-emerald-500 hover:bg-emerald-600 text-white"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleKnow();
-                }}
-              >
-                <Check className="w-5 h-5 mr-2" /> Đã thuộc
-              </Button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div
+          className={`flex items-center gap-3 sm:gap-5 transition-opacity duration-150 ${
+            isFlipped ? "opacity-100" : "opacity-85"
+          }`}
+        >
+          <Button
+            variant="outline"
+            size="lg"
+            className="touch-manipulation rounded-full h-13 px-5 sm:px-7 shadow-sm text-destructive hover:text-destructive hover:bg-destructive/10 border-destructive/30"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleStillLearning();
+            }}
+          >
+            <X className="w-5 h-5 mr-2" />
+            <span>Chưa thuộc</span>
+            <span className="hidden sm:inline-block ml-2 text-xs font-mono opacity-70">[1 / ⬅]</span>
+          </Button>
+          <Button
+            variant="default"
+            size="lg"
+            className="touch-manipulation rounded-full h-13 px-5 sm:px-7 shadow-md shadow-emerald-500/20 bg-emerald-500 hover:bg-emerald-600 text-white"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleKnow();
+            }}
+          >
+            <Check className="w-5 h-5 mr-2" />
+            <span>Đã thuộc</span>
+            <span className="hidden sm:inline-block ml-2 text-xs font-mono opacity-85">[2 / ➡]</span>
+          </Button>
+        </div>
       </div>
     </div>
   );
