@@ -52,7 +52,6 @@ export const questionsVNR202_de3: Question[] = [
       { key: "A", text: "Quốc tế Vô sản" },
       { key: "B", text: "Quốc tế Nông dân" },
       { key: "C", text: "Liên hiệp các nước thuộc địa" },
-      { key: "D", text: "Không có trong ảnh gốc" },
     ],
     correctAnswer: "B",
   },
@@ -76,7 +75,7 @@ export const questionsVNR202_de3: Question[] = [
       { key: "C", text: "Kinh tế Việt Nam phát triển một cách tự chủ" },
       { key: "D", text: "Kinh tế Việt Nam phụ thuộc kinh tế Pháp" },
     ],
-    correctAnswer: "A",
+    correctAnswer: "D",
   },
   {
     id: 8,
@@ -120,7 +119,7 @@ export const questionsVNR202_de3: Question[] = [
       { key: "C", text: "Công nhân, trí thức, tư sản dân tộc" },
       { key: "D", text: "Công nhân, nông dân, tiểu tư sản, tư sản dân tộc, địa địa chủ" },
     ],
-    correctAnswer: "D",
+    correctAnswer: "B",
   },
   {
     id: 12,
