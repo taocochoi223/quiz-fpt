@@ -285,7 +285,7 @@ export const questionsVNR202_de1: Question[] = [
       { key: "C", text: "Tiếp tục đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới, xây dựng và bảo vệ vững chắc Tổ quốc, giữ vững môi trường hòa bình, ổn định, phấn đấu đến giữa thế kỷ XXI nước ta trở thành nước phát triển theo định hướng xã hội chủ nghĩa." },
       { key: "D", text: "Tăng cường xây dựng Đảng trong sạch vững mạnh, phát huy sức mạnh toàn dân tộc, dân chủ xã hội chủ nghĩa, đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới, bảo vệ vững chắc Tổ quốc, giữ vững môi trường hòa bình, ổn định, phấn đấu sớm đưa nước ta cơ bản trở thành nước công nghiệp theo hướng hiện đại." },
     ],
-    correctAnswer: "A",
+    correctAnswer: "B",
   },
   {
     id: 27,
@@ -516,7 +516,7 @@ export const questionsVNR202_de1: Question[] = [
       { key: "C", text: "Thành lập nước dân chủ cộng hòa Việt Nam" },
       { key: "D", text: "Thành lập Nước Việt Nam Dân chủ Cộng hòa" },
     ],
-    correctAnswer: "C",
+    correctAnswer: "D",
   },
   {
     id: 48,
@@ -527,7 +527,7 @@ export const questionsVNR202_de1: Question[] = [
       { key: "C", text: "Công nhân, trí thức, tư sản dân tộc" },
       { key: "D", text: "Công nhân, nông dân, tiểu tư sản, tư sản dân tộc, đại địa chủ" },
     ],
-    correctAnswer: "D",
+    correctAnswer: "B",
   },
   {
     id: 49,
