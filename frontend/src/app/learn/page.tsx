@@ -65,6 +65,7 @@ export default function LearnPage() {
   const [currentBatchIds, setCurrentBatchIds] = React.useState<string[]>([]);
   const [initialWrongIds, setInitialWrongIds] = React.useState<string[]>([]);
   const [globalWrongIds, setGlobalWrongIds] = React.useState<string[]>([]);
+  const [reviewWrongIds, setReviewWrongIds] = React.useState<string[]>([]);
   const [isFinalReview, setIsFinalReview] = React.useState(false);
   const [totalQuestions, setTotalQuestions] = React.useState(0);
 
@@ -247,9 +248,21 @@ export default function LearnPage() {
         if (currentQId && !isBatchRetry && !isFinalReview && !globalWrongIds.includes(currentQId)) {
           setGlobalWrongIds((prev) => [...prev, currentQId]);
         }
+        if (currentQId && !isBatchRetry && isFinalReview && !reviewWrongIds.includes(currentQId)) {
+          setReviewWrongIds((prev) => [...prev, currentQId]);
+        }
       }
     },
-    [advance, batchWrongIds, currentQId, globalWrongIds, initialWrongIds, isBatchRetry, isFinalReview]
+    [
+      advance,
+      batchWrongIds,
+      currentQId,
+      globalWrongIds,
+      initialWrongIds,
+      isBatchRetry,
+      isFinalReview,
+      reviewWrongIds,
+    ]
   );
 
   const handleSelect = React.useCallback(
@@ -456,6 +469,7 @@ export default function LearnPage() {
     setBatchWrongIds([]);
     setInitialWrongIds([]);
     setGlobalWrongIds([]);
+    setReviewWrongIds([]);
     setIsFinalReview(false);
     setIsBatchRetry(false);
     setCompletedCount(0);
@@ -535,10 +549,11 @@ export default function LearnPage() {
     toast.success("Đã sắp xếp các câu còn lại theo thứ tự!");
   };
 
-  const startFinalReview = () => {
+  const startReviewRound = (targetIds: string[]) => {
     setIsFinalReview(true);
-    const initialQ = globalWrongIds.slice(0, BATCH_SIZE);
-    setPendingIds(globalWrongIds.slice(BATCH_SIZE));
+    setReviewWrongIds([]);
+    const initialQ = targetIds.slice(0, BATCH_SIZE);
+    setPendingIds(targetIds.slice(BATCH_SIZE));
     setQueue(initialQ);
     setCurrentBatchIds(initialQ);
     setQIndex(0);
@@ -548,6 +563,10 @@ export default function LearnPage() {
     setSelectedOpts([]);
     setIsAnswered(false);
   };
+
+  const startFinalReview = () => startReviewRound(globalWrongIds);
+
+  const startRetryReviewWrong = () => startReviewRound(reviewWrongIds);
 
   const handleRestart = () => {
     if (mode === "subject" && selectedSubjectId) {
@@ -560,6 +579,7 @@ export default function LearnPage() {
     setPendingIds([]);
     setQIndex(0);
     setBatchWrongIds([]);
+    setReviewWrongIds([]);
     setIsBatchRetry(false);
     setCompletedCount(0);
     setShowSegmentSummary(false);
@@ -1037,22 +1057,47 @@ export default function LearnPage() {
 
   if (!currentQ && queue.length === 0 && completedCount > 0) {
     if (isFinalReview) {
+      const hasReviewWrong = reviewWrongIds.length > 0;
       return (
         <div className="flex flex-col items-center justify-center h-full max-w-xl mx-auto w-full gap-6 pb-20 pt-10 text-center">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="p-8 rounded-3xl border border-border/60 bg-card/85 backdrop-blur-md shadow-xl"
+            className="p-8 rounded-3xl border border-border/60 bg-card/85 backdrop-blur-md shadow-xl w-full"
           >
-            <div className="w-20 h-20 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-5">
-              <Check className="w-10 h-10 text-emerald-500" />
+            <div
+              className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-5 ${
+                hasReviewWrong ? "bg-amber-500/20" : "bg-emerald-500/20"
+              }`}
+            >
+              {hasReviewWrong ? (
+                <RotateCcw className="w-10 h-10 text-amber-500" />
+              ) : (
+                <Check className="w-10 h-10 text-emerald-500" />
+              )}
             </div>
-            <h1 className="text-3xl font-bold tracking-tight mb-2">Hoàn thành ôn tập!</h1>
+            <h1 className="text-3xl font-bold tracking-tight mb-2">
+              {hasReviewWrong ? "Vẫn còn câu chưa vững!" : "Hoàn thành ôn tập!"}
+            </h1>
             <p className="text-muted-foreground text-base mb-8">
-              Bạn đã khắc phục xong toàn bộ các câu từng làm sai.
+              {hasReviewWrong
+                ? `Bạn vừa làm sai ${reviewWrongIds.length} câu trong lượt ôn tập này. Làm lại ngay để nhớ chắc nhé!`
+                : "Bạn đã khắc phục xong toàn bộ các câu từng làm sai."}
             </p>
-            <div className="flex gap-3 justify-center">
-              <Button onClick={handleRestart} className="rounded-full px-7">
+            <div className="flex flex-wrap gap-3 justify-center">
+              {hasReviewWrong && (
+                <Button
+                  onClick={startRetryReviewWrong}
+                  className="rounded-full px-7 bg-amber-500 hover:bg-amber-600 text-white shadow-md"
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" /> Làm lại {reviewWrongIds.length} câu vừa sai
+                </Button>
+              )}
+              <Button
+                variant={hasReviewWrong ? "outline" : "default"}
+                onClick={handleRestart}
+                className="rounded-full px-7"
+              >
                 <RotateCcw className="w-4 h-4 mr-2" /> Học bài khác
               </Button>
               <Link
